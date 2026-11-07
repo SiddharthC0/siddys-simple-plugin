@@ -1,0 +1,346 @@
+name: SiddysSimplePlugin
+version: 2.0.0
+main: org.siddharth.ssmp.ssmp
+description: A plugin designed to replace them all whilst being so simple that even a child understands.
+author: SiddharthC
+api-version: '1.21.11'
+
+commands:
+
+  ssmp:
+    description: Main SSMP management command.
+    usage: /ssmp <permission|reload>
+    aliases:
+      - siddysimpleplugin
+      - ssp
+
+  rtp:
+    description: Opens the SSMP Random Teleport GUI.
+    usage: /rtp
+    aliases:
+      - randomtp
+      - wild
+      - wildtp
+      - randomteleport
+
+  rank:
+    description: Manages SSMP ranks.
+    usage: /rank <list|create|delete|give|remove|setprefix|setsuffix|setname|info>
+    aliases:
+      - ranks
+
+  economy:
+    description: Manages the SSMP economy.
+    usage: /economy <balance|pay|give|take|set>
+    aliases:
+      - eco
+      - bal
+      - balance
+
+  shop:
+    description: Opens the SSMP shop.
+    usage: /shop
+    aliases:
+      - store
+
+  ah:
+    description: Opens the SSMP Auction House.
+    usage: /ah [sell <price>|remove <id>]
+    aliases:
+      - auctionhouse
+      - auction
+
+  enderchest:
+    description: Opens your Ender Chest.
+    usage: /enderchest
+    aliases:
+      - ec
+      - echest
+
+  sethome:
+    description: Sets a home at your current location.
+    usage: /sethome <name>
+
+  home:
+    description: Teleports to a home or opens the homes GUI.
+    usage: /home [name]
+
+  homes:
+    description: Opens the homes GUI.
+    usage: /homes
+
+  delhome:
+    description: Deletes a home.
+    usage: /delhome <name>
+
+  setwarp:
+    description: Sets a server warp at your current location.
+    usage: /setwarp <name>
+
+  warp:
+    description: Teleports to a server warp or opens the warps GUI.
+    usage: /warp [name]
+    aliases:
+      - w
+
+  warps:
+    description: Opens the warps GUI.
+    usage: /warps
+
+  delwarp:
+    description: Deletes a server warp.
+    usage: /delwarp <name>
+
+  nick:
+    description: Changes your nickname.
+    usage: /nick <nickname|off|color>
+    aliases:
+      - nickname
+      - nicky
+
+  kit:
+    description: Opens and manages SSMP kits.
+    usage: /kit [name|create|delete|edit|give|list|reload]
+    aliases:
+      - kits
+      - kitgui
+      - kitsgui
+      - kitsshop
+      - kitshop
+
+permissions:
+
+  ssmp.admin:
+    description: Grants access to all SSMP administrative features.
+    default: op
+    children:
+      ssmp.rtp.use: true
+      ssmp.rank.use: true
+      ssmp.rank.create: true
+      ssmp.rank.delete: true
+      ssmp.rank.give: true
+      ssmp.rank.remove: true
+      ssmp.rank.setprefix: true
+      ssmp.rank.setsuffix: true
+      ssmp.rank.setname: true
+
+      ssmp.permission.use: true
+      ssmp.permission.player: true
+      ssmp.permission.rank: true
+
+      ssmp.economy.use: true
+      ssmp.economy.balance: true
+      ssmp.economy.pay: true
+      ssmp.economy.give: true
+      ssmp.economy.take: true
+      ssmp.economy.set: true
+
+      ssmp.shop.use: true
+
+      ssmp.enderchest.use: true
+
+      ssmp.auction.use: true
+      ssmp.auction.sell: true
+      ssmp.auction.buy: true
+      ssmp.auction.remove: true
+
+      ssmp.orders.use: true
+      ssmp.orders.create: true
+      ssmp.orders.fulfill: true
+      ssmp.orders.cancel: true
+
+      ssmp.kits.use: true
+      ssmp.kits.create: true
+      ssmp.kits.delete: true
+      ssmp.kits.give: true
+
+      ssmp.crates.use: true
+      ssmp.crates.create: true
+      ssmp.crates.delete: true
+      ssmp.crates.give: true
+
+      ssmp.nickname.use: true
+      ssmp.nickname.color: true
+
+      ssmp.homes.use: true
+      ssmp.homes.sethome: true
+      ssmp.homes.delete: true
+
+      ssmp.warps.use: true
+      ssmp.warps.set: true
+      ssmp.warps.delete: true
+
+  ssmp.rank.use:
+    description: Allows the use of SSMP rank commands.
+    default: op
+
+  ssmp.rank.create:
+    description: Allows creating ranks.
+    default: op
+
+  ssmp.rank.delete:
+    description: Allows deleting ranks.
+    default: op
+
+  ssmp.rank.give:
+    description: Allows assigning ranks to players.
+    default: op
+
+  ssmp.rank.remove:
+    description: Allows removing ranks from players.
+    default: op
+
+  ssmp.rank.setprefix:
+    description: Allows changing rank prefixes.
+    default: op
+
+  ssmp.rank.setsuffix:
+    description: Allows changing rank suffixes.
+    default: op
+
+  ssmp.rank.setname:
+    description: Allows changing rank display names.
+    default: op
+
+  ssmp.kits.use:
+    description: Allows using SSMP kits.
+    default: true
+  ssmp.kits.create:
+    description: Allows creating and editing kits.
+    default: op
+  ssmp.kits.delete:
+    description: Allows deleting kits.
+    default: op
+  ssmp.kits.give:
+    description: Allows giving kits to players.
+    default: op
+  ssmp.rtp.use:
+    description: Allows using SSMP Random Teleport.
+    default: true
+
+
+  ssmp.permission.use:
+    description: Allows using SSMP permission management.
+    default: op
+
+  ssmp.permission.player:
+    description: Allows managing player permissions.
+    default: op
+
+  ssmp.permission.rank:
+    description: Allows managing rank permissions.
+    default: op
+
+  ssmp.economy.use:
+    description: Allows use of SSMP economy management commands.
+    default: op
+
+  ssmp.economy.balance:
+    description: Allows viewing balances.
+    default: true
+
+  ssmp.economy.pay:
+    description: Allows sending money to players.
+    default: true
+
+  ssmp.economy.give:
+    description: Allows giving money to players.
+    default: op
+
+  ssmp.economy.take:
+    description: Allows taking money from players.
+    default: op
+
+  ssmp.economy.set:
+    description: Allows setting player balances.
+    default: op
+
+  ssmp.shop.use:
+    description: Allows using the SSMP shop.
+    default: true
+
+  ssmp.enderchest.use:
+    description: Allows using the SSMP ender chest.
+    default: true
+
+  ssmp.auction.use:
+    description: Allows using the Auction House.
+    default: true
+
+  ssmp.auction.sell:
+    description: Allows listing items on the Auction House.
+    default: true
+
+  ssmp.auction.buy:
+    description: Allows buying items from the Auction House.
+    default: true
+
+  ssmp.auction.remove:
+    description: Allows removing own Auction House listings.
+    default: true
+
+  ssmp.orders.use:
+    description: Allows using SSMP Orders.
+    default: true
+
+  ssmp.orders.create:
+    description: Allows creating orders.
+    default: true
+
+  ssmp.orders.fulfill:
+    description: Allows fulfilling orders.
+    default: true
+
+  ssmp.orders.cancel:
+    description: Allows cancelling own orders.
+    default: true
+
+
+
+  ssmp.crates.use:
+    description: Allows using crates.
+    default: true
+
+  ssmp.crates.create:
+    description: Allows creating crates.
+    default: op
+
+  ssmp.crates.delete:
+    description: Allows deleting crates.
+    default: op
+
+  ssmp.crates.give:
+    description: Allows giving crate keys.
+    default: op
+
+  ssmp.nickname.use:
+    description: Allows using nicknames.
+    default: true
+
+  ssmp.nickname.color:
+    description: Allows changing nickname colors.
+    default: true
+
+  ssmp.homes.use:
+    description: Allows using and viewing homes.
+    default: true
+
+  ssmp.homes.sethome:
+    description: Allows setting homes.
+    default: true
+
+  ssmp.homes.delete:
+    description: Allows deleting homes.
+    default: true
+
+  ssmp.warps.use:
+    description: Allows using server warps.
+    default: true
+
+  ssmp.warps.set:
+    description: Allows setting server warps.
+    default: op
+
+  ssmp.warps.delete:
+    description: Allows deleting server warps.
+    default: op
