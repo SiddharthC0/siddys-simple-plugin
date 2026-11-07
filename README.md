@@ -15,9 +15,6 @@
   <a href="https://hangar.papermc.io/SiddharthC0/SiddysSimplePlugin"><img alt="sheilds-hangar" src="https://img.shields.io/hangar/dt/SiddysSimplePlugin?link=https%3A%2F%2Fhangar.papermc.io%2FSiddharthC0%2FSiddysSimplePlugin&style=for-the-badge"></a>
 </p>
 
-
-<h2>Note that some of these links may not work as these pages are under review :(</h2>
-
 </div>
 <hr><br>
 <h2>Handles everything, in one simple jar.</h2>
