@@ -1,4 +1,4 @@
-<div align="center" style="gap:5px; display: flex;">
+<div align="center">
 <img src="https://raw.githubusercontent.com/SiddharthC0/ssmp-image-host/refs/heads/main/titlex.png" alt="Siddy's Simple Pugin Title Image">
 <br><br>
 <p>
@@ -6,19 +6,12 @@
   <img alt="Modrinth" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_64h.png" > </a>
   <a href="https://hangar.papermc.io/SiddharthC0/SiddysSimplePlugin">
   <img alt="Hangar" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/hangar_vector.svg"> </a>
-  
   <img alt="CurseForge" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_vector.svg" src="https://www.curseforge.com/minecraft/bukkit-plugins/siddys-simple-plugin/preview"> 
-
   <a href="https://github.com/SiddharthC0/siddys-simple-plugin"><img alt="github" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a>
 </p>
-
-
 <p>
   <img alt="sheilds-hangar" src="https://img.shields.io/hangar/dt/SiddysSimplePlugin?link=https%3A%2F%2Fhangar.papermc.io%2FSiddharthC0%2FSiddysSimplePlugin&style=for-the-badge">
 </p>
-
-
-<h2>Note that some of these links may not work as these pages are under review :(</h2>
 
 </div>
 <hr><br>
@@ -58,7 +51,7 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
 
 ![goodies](https://raw.githubusercontent.com/SiddharthC0/ssmp-image-host/refs/heads/main/goodiestext.png)
 <br>
-<h2 align="center" font-size="large">Different sounds in tabular form (appropriate with version 1.8.3)</h2>
+<h2 align="center" font-size="large">Different sounds in tabular form (appropriate with version 1.9.0)</h2>
 
 <table>
   <thead>
@@ -149,7 +142,7 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
 </table>
 </code>
 <br><hr><br>
-<h2 align="center">Different permission groups (for version 1.8.3)</h2>
+<h2 align="center">Different permission groups (for version 1.9.0)</h2>
 
 <table>
 <thead>
@@ -213,7 +206,7 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
 
 
 <details>
-<summary> Version 1.8.3 : config.yml</summary>
+<summary> Version 1.9.0 : config.yml</summary>
 
 ```
 modules:
@@ -273,7 +266,7 @@ modules:
 
 
 <details>
-<summary> Version 1.8.3 : sounds / config.yml</summary>
+<summary> Version 1.9.0 : sounds / config.yml</summary>
 
 
 ```
@@ -359,14 +352,14 @@ sounds:
 
 </details>
 <details>
-<summary> Version 1.8.3 : chatformatting / config.yml</summary>
+<summary> Version 1.9.0 : chatformatting / config.yml</summary>
 ```
 format: '%ssmp_player_prefix%%player%%ssmp_player_suffix% &8» &f%message%'
 ```
 </details>
 
 <details>
-<summary> Version 1.8.3 : menu / config.yml</summary>
+<summary> Version 1.9.0 : menu / config.yml</summary>
 
 ```
 menu:
@@ -486,7 +479,7 @@ items:
 </details>
 
 <details>
-<summary> Version 1.8.3 : scoreboard / config.yml</summary>
+<summary> Version 1.9.0 : scoreboard / config.yml</summary>
 
 ```
 enabled: true
@@ -504,7 +497,7 @@ lines:
 </details>
 
 <details>
-<summary> Version 1.8.3 : menuitem/config.yml</summary>
+<summary> Version 1.9.0 : menuitem/config.yml</summary>
 
 ```
 enabled: true
@@ -520,7 +513,7 @@ lore:
 
 
 <details>
-<summary> Version 1.8.3 : economy/config.yml</summary>
+<summary> Version 1.9.0 : economy/config.yml</summary>
 
 
 ```
