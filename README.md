@@ -3,13 +3,13 @@
 <br><br>
 <p>
   <a href="https://modrinth.com/plugin/siddys-simple-plugin">
-  <img alt="Modrinth" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_64h.png" > </a>
+  <img alt="Modrinth" height="50" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_64h.png" > </a>
   <a href="https://hangar.papermc.io/SiddharthC0/SiddysSimplePlugin">
-  <img alt="Hangar" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/hangar_vector.svg"> </a>
+  <img alt="Hangar" height="50" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/hangar_vector.svg"> </a>
   
-  <img alt="CurseForge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_vector.svg" src="https://www.curseforge.com/minecraft/bukkit-plugins/siddys-simple-plugin/preview"> 
+  <img alt="CurseForge" height="50" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_vector.svg" src="https://www.curseforge.com/minecraft/bukkit-plugins/siddys-simple-plugin/preview"> 
 
-  <a href="https://github.com/SiddharthC0/siddys-simple-plugin"><img alt="github" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a>
+  <a href="https://github.com/SiddharthC0/siddys-simple-plugin"><img alt="github" height="50" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a>
 </p>
 
 
