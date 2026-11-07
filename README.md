@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center" style="gap:5px; display: flex;">
 <img src="https://raw.githubusercontent.com/SiddharthC0/ssmp-image-host/refs/heads/main/titlex.png" alt="Siddy's Simple Pugin Title Image">
 <br><br>
 <p>
@@ -8,7 +8,10 @@
   <img alt="Hangar" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/hangar_vector.svg"> </a>
   
   <img alt="CurseForge" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_vector.svg" src="https://www.curseforge.com/minecraft/bukkit-plugins/siddys-simple-plugin/preview"> 
+
+  <a href="https://github.com/SiddharthC0/siddys-simple-plugin"><img alt="github" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a>
 </p>
+
 
 <p>
   <img alt="sheilds-hangar" src="https://img.shields.io/hangar/dt/SiddysSimplePlugin?link=https%3A%2F%2Fhangar.papermc.io%2FSiddharthC0%2FSiddysSimplePlugin&style=for-the-badge">
