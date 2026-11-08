@@ -1,0 +1,33 @@
+{
+  "sections": [
+    {
+      "id": "getting-started",
+      "title": "Getting Started",
+      "icon": "sparkles",
+      "files": [
+        "getting-started/welcome.md",
+        "getting-started/installation.md",
+        "getting-started/first-steps.md"
+      ]
+    },
+    {
+      "id": "features",
+      "title": "Features",
+      "icon": "layers",
+      "features": true,
+      "files": [
+        "features/features.md"
+      ]
+    },
+    {
+      "id": "reference",
+      "title": "Reference",
+      "icon": "command",
+      "files": [
+        "reference/commands.md",
+        "reference/permissions.md",
+        "reference/configuration.md"
+      ]
+    }
+  ]
+}
