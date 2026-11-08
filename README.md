@@ -1,16 +1,21 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/SiddharthC0/ssmp-image-host/refs/heads/main/titlex.png" alt="Siddy's Simple Pugin Title Image">
+<img src="https://raw.githubusercontent.com/SiddharthC0/siddys-simple-plugin/refs/heads/main/external-textures/main-title_renovated-edition.png" alt="Siddy's Simple Pugin Title Image">
 <br><br>
 <p>
   <a href="https://modrinth.com/plugin/siddys-simple-plugin">
-  <img alt="Modrinth" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_64h.png" > </a>
+  <img alt="modrinth" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/modrinth_vector.svg"> </a>
   <a href="https://hangar.papermc.io/SiddharthC0/SiddysSimplePlugin">
-  <img alt="Hangar" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/hangar_vector.svg"> </a>
-  <img alt="CurseForge" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_vector.svg" src="https://www.curseforge.com/minecraft/bukkit-plugins/siddys-simple-plugin/preview"> 
-  <a href="https://github.com/SiddharthC0/siddys-simple-plugin"><img alt="github" height="60" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a>
+  <img alt="hangar" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/hangar_vector.svg">
+ </a>
+  <img style="filter: grayscale(100%);"  alt="curseforge" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/curseforge_vector.svg">
+  <a href="https://www.spigotmc.org/resources/siddys-simple-plugin.140401/"><img alt="spigot" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/supported/spigot_vector.svg"></a>
+  <img style="filter: grayscale(100%);"  alt="builtbybit" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/builtbybit_vector.svg">
+<a href="https://github.com/SiddharthC0/siddys-simple-plugin"><img alt="github-plural" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/social/github-plural_vector.svg">
+</a>
 </p>
 <p>
   <img alt="sheilds-hangar" src="https://img.shields.io/hangar/dt/SiddysSimplePlugin?link=https%3A%2F%2Fhangar.papermc.io%2FSiddharthC0%2FSiddysSimplePlugin&style=for-the-badge">
+  <img alt="sheilds-modrinth" src="https://img.shields.io/modrinth/dt/mIr78G7Z?style=for-the-badge&logo=modrinth">
 </p>
 
 </div>
@@ -28,30 +33,63 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
 <br><br>
 
 ![ImagedText_Features](https://raw.githubusercontent.com/SiddharthC0/ssmp-image-host/refs/heads/main/features.png)
-- Ranks + Prefix / Suffix system
-- Chat Formatting
-- Custom Placeholders (%)
-- Warps
-- Homes
-- GUI Menus + Compass Menus
-- Custom Tab List + Header + Footer + Tablist Formatting
-- Custom Scoreboard 
-- Rank Permissions
-- Portable Ender Chest Command
-- Economy + Give / Take / Deposit / Banking
-- Shop
-- Custom Sounds (On specified actions)
-- User Permissions System (Rank system synchronised)
-- Nicknames
-- Nickname colors
-- /bal and Economy improvements
+## Ranks and permissions
+- You can setup custom ranks, that are saved in a config file
+- You can also give those ranks specific permissions, a prefix, a suffix and set its color and all too!
+
+## Chat Formatting and Custom Placeholders
+- The plugin includes a custom chat formatting feature which implements the Ranks system in the chat so that Prefix / Suffix / Colors work
+- You can also change your nickname, which is a replacement for your username.
+- Placeholders are also supported and listed in the table inside the <b>Goodies</b> section
+
+## Warps and Homes
+- You can set up warps and homes (which have their own permissions like every other module), and then teleport to them.
+- Both warps and homes have a GUI system and support multiple homes / warps.
+- Customizable through config file.
+
+## Main menu
+- Every player receives a compass menu in their last (9th) slot, which when on click opens a main menu. Which is customizable through config file.
+- Just like the ones you see in lobbies and all other, you can also disable this.
+
+## Tablist and Scoreboard
+- This plugin includes a fully customizable Tablist and Scoreboard, which can display useful information.
+- Tablist includes the rank prefix / color system too.
+- Placeholders can be used here, from the placeholder table in the <b>Goodies</b> section
+
+## Economy with Shop and Auction House
+- The plugin includes a custom economy system which is also implemented in the Shop and Auction House.
+- These can be disabled, and starting amount, max amount and many other fields can be configured
+- Items in shop can also be configured, through the shop file.
+
+## Custom sounds and Action Bar Implementations for almost everything
+- This plugin includes custom sounds to be played on each action / almost all actions.
+- These sounds can be found in the sounds table in the <b>Goodies</b> section.
+
+## Kits and Kit Permissions
+- This plugin includes kits, player kits and configurable kits
+- Kits have cooldown, custom items and all, and even supports Shulker Boxes!
+
+## Random Teleport
+- This plugin also includes a random teleport system, so you can use /rtp to teleport (through GUI).
+- RTP design also has safety features and custom worlds can be added too!
+- This is a <b>NEW</b> feature and hence debug for this is enabled. Will be removed in the next iteration of this plugin.
+
+## Optimizations 
+- This plugin has inbuilt optimization for your server
+- This includes all the modules of this plugin ONLY.
+
+## Modular design and Total configuration
+- This plugin is very modular and was designed with portability in mind.
+- You can disable tons of features according to your needs if wanted
+- You can also configure each / most aspects of the modules too. Very powerful.
+- Most / Each feature has a GUI in it too.
 
 <br><br>
 <hr>
 
 ![goodies](https://raw.githubusercontent.com/SiddharthC0/ssmp-image-host/refs/heads/main/goodiestext.png)
 <br>
-<h2 align="center" font-size="large">Different sounds in tabular form (appropriate with version 1.9.0)</h2>
+<h2 align="center" font-size="large">Different sounds in tabular form (appropriate with version 2.0.0)</h2>
 
 <table>
   <thead>
@@ -123,6 +161,31 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
       <td><code>minecraft:entity.villager.no</code></td>
     </tr>
     <tr>
+      <td><code>rtp-open</code></td>
+      <td>Sound played when opening the RTP world selection GUI.</td>
+      <td><code>minecraft:ui.button.click</code></td>
+    </tr>
+    <tr>
+      <td><code>rtp-select</code></td>
+      <td>Sound played when selecting an RTP world or distance.</td>
+      <td><code>minecraft:ui.button.click</code></td>
+    </tr>
+    <tr>
+      <td><code>rtp-searching</code></td>
+      <td>Sound played when the random teleport location search begins.</td>
+      <td><code>minecraft:block.note_block.pling</code></td>
+    </tr>
+    <tr>
+      <td><code>rtp-success</code></td>
+      <td>Sound played when a random teleport succeeds.</td>
+      <td><code>minecraft:entity.player.levelup</code></td>
+    </tr>
+    <tr>
+      <td><code>rtp-failed</code></td>
+      <td>Sound played when a random teleport attempt fails.</td>
+      <td><code>minecraft:entity.villager.no</code></td>
+    </tr>
+    <tr>
       <td><code>command-error</code></td>
       <td>Sound played when a command action fails.</td>
       <td><code>minecraft:entity.villager.no</code></td>
@@ -142,7 +205,7 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
 </table>
 </code>
 <br><hr><br>
-<h2 align="center">Different permission groups (for version 1.9.0)</h2>
+<h2 align="center">Different permission groups (for version 2.0.0)</h2>
 
 <table>
 <thead>
@@ -198,6 +261,7 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
 <tr><td><code>ssmp.warps.use</code></td><td>Use server warps</td><td>Warps</td><td>default</td></tr>
 <tr><td><code>ssmp.warps.set</code></td><td>Set server warps</td><td>Warps</td><td>op</td></tr>
 <tr><td><code>ssmp.warps.delete</code></td><td>Delete server warps</td><td>Warps</td><td>op</td></tr>
+<tr><td><code>ssmp.rtp.use</code></td><td>Use Random Teleport</td><td>RTP</td><td>default</td></tr>
 </tbody>
 </table>
 
@@ -206,7 +270,7 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
 
 
 <details>
-<summary> Version 1.9.0 : config.yml</summary>
+<summary> Version 2.0.0 : config.yml</summary>
 
 ```
 modules:
@@ -261,12 +325,16 @@ modules:
     max-homes: 3
   warps:
     enabled: true
+  kits:
+    enabled: true
+  rtp:
+    enabled: true
 ```
 </details>
 
 
 <details>
-<summary> Version 1.9.0 : sounds / config.yml</summary>
+<summary> Version 2.0.0 : sounds / config.yml</summary>
 
 
 ```
@@ -352,14 +420,14 @@ sounds:
 
 </details>
 <details>
-<summary> Version 1.9.0 : chatformatting / config.yml</summary>
+<summary> Version 2.0.0 : chatformatting / config.yml</summary>
 ```
 format: '%ssmp_player_prefix%%player%%ssmp_player_suffix% &8» &f%message%'
 ```
 </details>
 
 <details>
-<summary> Version 1.9.0 : menu / config.yml</summary>
+<summary> Version 2.0.0 : menu / config.yml</summary>
 
 ```
 menu:
@@ -479,7 +547,7 @@ items:
 </details>
 
 <details>
-<summary> Version 1.9.0 : scoreboard / config.yml</summary>
+<summary> Version 2.0.0 : scoreboard / config.yml</summary>
 
 ```
 enabled: true
@@ -497,7 +565,7 @@ lines:
 </details>
 
 <details>
-<summary> Version 1.9.0 : menuitem/config.yml</summary>
+<summary> Version 2.0.0 : menuitem/config.yml</summary>
 
 ```
 enabled: true
@@ -511,9 +579,149 @@ lore:
 
 </details>
 
+<details>
+<summary> Version 2.0.0 : kits.yml</summary>
+
+```
+settings:
+  enabled: true
+  default-cooldown: 86400
+  gui-title: '&8SSMP | Kits'
+```
+
+</details>
 
 <details>
-<summary> Version 1.9.0 : economy/config.yml</summary>
+<summary> Version 2.0.0 : rtp/config.yml</summary>
+
+```
+settings:
+  enabled: true
+  cooldown: 60
+  max-attempts: 50
+  min-y: -64
+  max-y: 320
+worlds:
+  overworld:
+    enabled: true
+    world-name: world
+    min-distance: 0
+  nether:
+    enabled: true
+    world-name: world_nether
+    min-distance: 0
+  end:
+    enabled: true
+    world-name: world_the_end
+    min-distance: 0
+distances:
+- 1000
+- 5000
+- 10000
+- 20000
+safety:
+  check-ground: true
+  check-headroom: true
+  avoid-water: true
+  avoid-lava: true
+  avoid-fire: true
+  avoid-cactus: true
+  avoid-magma: true
+  avoid-powder-snow: true
+  avoid-suffocation: true
+  avoid-unloaded-chunks: false
+gui:
+  world:
+    title: '&8SSMP | Select World'
+    size: 27
+    filler:
+      enabled: true
+      material: BLACK_STAINED_GLASS_PANE
+      name: ' '
+    overworld:
+      slot: 11
+      material: GRASS_BLOCK
+      name: '&aOverworld'
+      lore:
+      - '&7Explore the Overworld.'
+      - ''
+      - '&eClick to select.'
+    nether:
+      slot: 13
+      material: NETHERRACK
+      name: '&cNether'
+      lore:
+      - '&7Explore the Nether.'
+      - ''
+      - '&eClick to select.'
+    end:
+      slot: 15
+      material: END_STONE
+      name: '&5The End'
+      lore:
+      - '&7Explore the End.'
+      - ''
+      - '&eClick to select.'
+  distance:
+    title: '&8SSMP | Select Distance'
+    size: 27
+    slots:
+    - 10
+    - 12
+    - 14
+    - 16
+    material: COMPASS
+    name: '&b%distance% Blocks'
+    lore:
+    - '&7Random teleport within this distance.'
+    - ''
+    - '&eClick to teleport.'
+    filler:
+      enabled: true
+      material: BLACK_STAINED_GLASS_PANE
+      name: ' '
+actionbar:
+  enabled: true
+  searching: '&eSearching for a safe location...'
+  success: '&aTeleport successful!'
+  failed: '&cCould not find a safe location.'
+  cooldown: '&cWait %time%s before using RTP again.'
+sounds:
+  enabled: true
+  open:
+    sound: UI_BUTTON_CLICK
+    volume: 1.0
+    pitch: 1.0
+  select:
+    sound: UI_BUTTON_CLICK
+    volume: 1.0
+    pitch: 1.2
+  searching:
+    sound: BLOCK_NOTE_BLOCK_PLING
+    volume: 1.0
+    pitch: 1.0
+  success:
+    sound: ENTITY_PLAYER_LEVELUP
+    volume: 1.0
+    pitch: 1.0
+  failed:
+    sound: ENTITY_VILLAGER_NO
+    volume: 1.0
+    pitch: 1.0
+messages:
+  prefix: '&8[&bSSMP&8] '
+  no-permission: '&cYou don''t have permission to use RTP.'
+  disabled: '&cRandom Teleport is currently disabled.'
+  world-unavailable: '&cThat world is unavailable.'
+  invalid-location: '&cUnable to find a safe location.'
+  cooldown: '&cPlease wait %time% seconds.'
+  success: '&aYou have been randomly teleported!'
+```
+
+</details>
+
+<details>
+<summary> Version 2.0.0 : economy/config.yml</summary>
 
 
 ```
@@ -576,7 +784,12 @@ errors:
 
 <br><hr><br>
 
+<div align="center">
+<img alt="spigot" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/spigot_vector.svg">
+<img alt="paper" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/paper_vector.svg">
+<img alt="bukkit" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/bukkit_vector.svg">
 
+</div>
 <br>
 <h2>Thank you very much for visiting</h2>
 :)

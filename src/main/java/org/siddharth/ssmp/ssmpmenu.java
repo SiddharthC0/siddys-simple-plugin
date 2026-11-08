@@ -282,6 +282,35 @@ public class ssmpmenu implements Listener {
         );
 
         setItemDefaults(
+                "kits",
+                true,
+                38,
+                "DIAMOND_SWORD",
+                "&3&lKits",
+                List.of(
+                        "",
+                        "&7Browse claimable kits.",
+                        "",
+                        "&8» &9Click to open"
+                ),
+                "kits"
+        );
+        setItemDefaults(
+                "rtp",
+                true,
+                42,
+                "ENDER_PEARL",
+                "&3&lRandom Teleport",
+                List.of(
+                        "",
+                        "&7Randomly teleport through a GUI.",
+                        "",
+                        "&8» &9Click to open"
+                ),
+                "rtp"
+        );
+
+        setItemDefaults(
                 "player",
                 true,
                 4,

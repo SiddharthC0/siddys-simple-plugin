@@ -53,6 +53,8 @@ public class ssmprtp implements CommandExecutor, Listener {
 
     private static class RtpHolder implements InventoryHolder {
         private final MenuType type;
+        private final Map<Integer, String> worldSlots = new HashMap<>();
+        private final Map<Integer, Integer> distanceSlots = new HashMap<>();
         private Inventory inventory;
 
         private RtpHolder(MenuType type) {
@@ -84,6 +86,10 @@ public class ssmprtp implements CommandExecutor, Listener {
     private void loadConfig() {
         config = core.createConfig("rtp/config");
         addDefaults();
+        plugin.getLogger().info("[RTP DEBUG] Config file: "
+                + new File(plugin.getDataFolder(), "rtp/config.yml").getAbsolutePath());
+        plugin.getLogger().info("[RTP DEBUG] Overworld slot: "
+                + config.getInt("gui.world.overworld.slot", -1));
     }
 
     private void addDefaults() {
@@ -114,7 +120,7 @@ public class ssmprtp implements CommandExecutor, Listener {
         config.addDefault("safety.avoid-magma", true);
         config.addDefault("safety.avoid-powder-snow", true);
         config.addDefault("safety.avoid-suffocation", true);
-        config.addDefault("safety.avoid-unloaded-chunks", true);
+        config.addDefault("safety.avoid-unloaded-chunks", false);
 
         config.addDefault("gui.world.title", "&8SSMP | Select World");
         config.addDefault("gui.world.size", 27);
@@ -175,6 +181,7 @@ public class ssmprtp implements CommandExecutor, Listener {
         config.addDefault("messages.cooldown", "&cPlease wait %time% seconds.");
         config.addDefault("messages.success", "&aYou have been randomly teleported!");
 
+        config.addDefaults(config);
         config.options().copyDefaults(true);
         core.saveConfig("rtp/config", config);
     }
@@ -208,48 +215,102 @@ public class ssmprtp implements CommandExecutor, Listener {
 
     private void openWorldGui(Player player) {
         RtpHolder holder = new RtpHolder(MenuType.WORLD);
-        Inventory inventory = core.createGui(holder, validGuiSize(config.getInt("gui.world.size", 27)), config.getString("gui.world.title", "&8SSMP | Select World"));
+
+        Inventory inventory = core.createGui(
+                holder,
+                validGuiSize(config.getInt("gui.world.size", 27)),
+                config.getString("gui.world.title", "&8SSMP | Select World")
+        );
+
         holder.inventory = inventory;
+
         fillGui(inventory, "gui.world.filler");
 
         for (String worldKey : List.of("overworld", "nether", "end")) {
+            String path = "gui.world." + worldKey;
+
             if (!config.getBoolean("worlds." + worldKey + ".enabled", true)) {
                 continue;
             }
-            int slot = config.getInt("gui.world." + worldKey + ".slot", -1);
+
+            Object rawSlot = config.get(path + ".slot");
+            int slot = rawSlot instanceof Number number ? number.intValue() : -1;
+
             if (slot < 0 || slot >= inventory.getSize()) {
+                plugin.getLogger().warning("[RTP] Invalid GUI slot for " + worldKey + ": " + slot);
                 continue;
             }
-            Material material = getMaterial(config.getString("gui.world." + worldKey + ".material"), Material.BARRIER);
-            String name = config.getString("gui.world." + worldKey + ".name", "&f" + worldKey);
-            List<String> lore = config.getStringList("gui.world." + worldKey + ".lore");
-            core.setGuiItem(inventory, slot, core.createGuiItem(material, name, lore));
+
+            Material material = getMaterial(
+                    config.getString(path + ".material"),
+                    Material.BARRIER
+            );
+
+            String name = config.getString(path + ".name", "&f" + worldKey);
+            List<String> lore = config.getStringList(path + ".lore");
+
+            inventory.setItem(
+                    slot,
+                    core.createGuiItem(material, name, lore)
+            );
+
+            holder.worldSlots.put(slot, worldKey);
+
+            plugin.getLogger().info("[RTP] Registered world button: " + worldKey + " at slot " + slot);
         }
+
         core.openGui(player, inventory);
         playSound(player, "open");
     }
 
     private void openDistanceGui(Player player) {
         RtpHolder holder = new RtpHolder(MenuType.DISTANCE);
-        Inventory inventory = core.createGui(holder, validGuiSize(config.getInt("gui.distance.size", 27)), config.getString("gui.distance.title", "&8SSMP | Select Distance"));
+
+        Inventory inventory = core.createGui(
+                holder,
+                validGuiSize(config.getInt("gui.distance.size", 27)),
+                config.getString("gui.distance.title", "&8SSMP | Select Distance")
+        );
+
         holder.inventory = inventory;
 
         List<Integer> distances = config.getIntegerList("distances");
         List<Integer> slots = config.getIntegerList("gui.distance.slots");
-        Material material = getMaterial(config.getString("gui.distance.material", "COMPASS"), Material.COMPASS);
+
+        Material material = getMaterial(
+                config.getString("gui.distance.material", "COMPASS"),
+                Material.COMPASS
+        );
+
         List<String> configuredLore = config.getStringList("gui.distance.lore");
 
         for (int i = 0; i < Math.min(distances.size(), slots.size()); i++) {
             int distance = distances.get(i);
             int slot = slots.get(i);
+
             if (distance <= 0 || slot < 0 || slot >= inventory.getSize()) {
                 continue;
             }
-            String name = config.getString("gui.distance.name", "&b%distance% Blocks").replace("%distance%", String.valueOf(distance));
-            List<String> lore = configuredLore.stream().map(line -> line.replace("%distance%", String.valueOf(distance))).toList();
-            core.setGuiItem(inventory, slot, core.createGuiItem(material, name, lore));
+
+            String name = config.getString(
+                    "gui.distance.name",
+                    "&b%distance% Blocks"
+            ).replace("%distance%", String.valueOf(distance));
+
+            List<String> lore = configuredLore.stream()
+                    .map(line -> line.replace("%distance%", String.valueOf(distance)))
+                    .toList();
+
+            inventory.setItem(
+                    slot,
+                    core.createGuiItem(material, name, lore)
+            );
+
+            holder.distanceSlots.put(slot, distance);
         }
+
         fillEmptyGui(inventory, "gui.distance.filler");
+
         core.openGui(player, inventory);
         playSound(player, "open");
     }
@@ -282,19 +343,29 @@ public class ssmprtp implements CommandExecutor, Listener {
         if (!(event.getWhoClicked() instanceof Player player)) {
             return;
         }
+
         Inventory top = event.getView().getTopInventory();
+
         if (!(top.getHolder() instanceof RtpHolder holder)) {
             return;
         }
+
         event.setCancelled(true);
-        int rawSlot = event.getRawSlot();
-        if (rawSlot < 0 || rawSlot >= top.getSize()) {
+
+        int slot = event.getRawSlot();
+
+        if (slot < 0 || slot >= top.getSize()) {
             return;
         }
+
+        plugin.getLogger().info(
+                "[RTP] Click detected | Type: " + holder.type + " | Slot: " + slot
+        );
+
         if (holder.type == MenuType.WORLD) {
-            handleWorldSelection(player, rawSlot);
+            handleWorldSelection(player, holder, slot);
         } else {
-            handleDistanceSelection(player, rawSlot);
+            handleDistanceSelection(player, holder, slot);
         }
     }
 
@@ -305,48 +376,59 @@ public class ssmprtp implements CommandExecutor, Listener {
         }
     }
 
-    private void handleWorldSelection(Player player, int slot) {
-        for (String worldKey : List.of("overworld", "nether", "end")) {
-            if (!config.getBoolean("worlds." + worldKey + ".enabled", true)
-                    || config.getInt("gui.world." + worldKey + ".slot", -1) != slot) {
-                continue;
-            }
-            String worldName = config.getString("worlds." + worldKey + ".world-name", worldKey);
-            if (worldName == null || Bukkit.getWorld(worldName) == null) {
-                message(player, "world-unavailable");
-                playSound(player, "failed");
-                return;
-            }
-            selectedWorlds.put(player.getUniqueId(), worldKey);
-            playSound(player, "select");
-            openDistanceGui(player);
+    private void handleWorldSelection(Player player, RtpHolder holder, int slot) {
+        plugin.getLogger().info("[RTP DEBUG] Handling world selection: " + slot);
+
+        String worldKey = holder.worldSlots.get(slot);
+
+        if (worldKey == null) {
+            plugin.getLogger().warning("[RTP] No world registered at slot " + slot);
             return;
         }
+
+        if (!config.getBoolean("worlds." + worldKey + ".enabled", true)) {
+            plugin.getLogger().warning("[RTP] World is disabled: " + worldKey);
+            return;
+        }
+
+        String worldName = config.getString("worlds." + worldKey + ".world-name", worldKey);
+
+        plugin.getLogger().info("[RTP DEBUG] Selected: " + worldKey);
+        plugin.getLogger().info("[RTP DEBUG] Configured world name: " + worldName);
+        plugin.getLogger().info("[RTP DEBUG] Bukkit world loaded: " + (Bukkit.getWorld(worldName) != null));
+
+        selectedWorlds.put(player.getUniqueId(), worldKey);
+
+        playSound(player, "select");
+
+        plugin.getLogger().info("[RTP DEBUG] Opening distance GUI...");
+        openDistanceGui(player);
+        plugin.getLogger().info("[RTP DEBUG] Distance GUI opened.");
     }
 
-    private void handleDistanceSelection(Player player, int slot) {
+    private void handleDistanceSelection(Player player, RtpHolder holder, int slot) {
+        Integer distance = holder.distanceSlots.get(slot);
+
+        if (distance == null) {
+            plugin.getLogger().warning("[RTP] No distance registered at slot " + slot);
+            return;
+        }
+
         String worldKey = selectedWorlds.get(player.getUniqueId());
+
         if (worldKey == null) {
             player.closeInventory();
             openWorldGui(player);
             return;
         }
-        List<Integer> distances = config.getIntegerList("distances");
-        List<Integer> slots = config.getIntegerList("gui.distance.slots");
-        for (int i = 0; i < Math.min(distances.size(), slots.size()); i++) {
-            if (slots.get(i) != slot) {
-                continue;
-            }
-            int distance = distances.get(i);
-            if (distance <= 0) {
-                return;
-            }
-            player.closeInventory();
-            playSound(player, "select");
-            startSearch(player, worldKey, distance);
-            return;
-        }
+
+        player.closeInventory();
+        playSound(player, "select");
+
+        startSearch(player, worldKey, distance);
     }
+
+
 
     private void startSearch(Player player, String worldKey, int distance) {
         UUID uuid = player.getUniqueId();
