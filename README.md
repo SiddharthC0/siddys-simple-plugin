@@ -18,6 +18,7 @@
 <p>
   <img alt="sheilds-hangar" src="https://img.shields.io/hangar/dt/SiddysSimplePlugin?link=https%3A%2F%2Fhangar.papermc.io%2FSiddharthC0%2FSiddysSimplePlugin&style=for-the-badge">
   <img alt="sheilds-modrinth" src="https://img.shields.io/modrinth/dt/mIr78G7Z?style=for-the-badge&logo=modrinth">
+  <img alt="sheilds-curseforge" src="https://img.shields.io/curseforge/dt/1778309?style=for-the-badge&logo=curseforge">
 </p>
 
 </div>
