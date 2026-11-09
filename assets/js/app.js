@@ -146,8 +146,6 @@
             $("#project-version").textContent = brand.version || "";
         }
 
-        document.title = `${brand.name || "SSMP"} — Documentation`;
-
         const links = config.links || {};
 
         const destinations = {
@@ -598,7 +596,10 @@ if (deleteButton) {
 
                 <span class="search-result-info">
                     <strong>${escape(page.title)}</strong>
-                    <small>${escape(page.category)}</small>
+<small>${escape(page.category)}</small>
+<span class="search-result-description">
+    ${escape(page.searchSnippet || page.description || "")}
+</span>
                 </span>
 
                 <span class="search-result-enter">↵</span>

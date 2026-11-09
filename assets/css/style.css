@@ -2,12 +2,12 @@
 :root {
     color-scheme: dark;
     --bg: #070b16;
-    --bg-secondary: #0b1121;
-    --surface: rgba(15, 23, 42, .78);
+    --bg-secondary: #111a35;
+    --surface: rgba(8, 20, 47, 0.78);
     --surface-solid: #101a2d;
     --surface-hover: rgba(35, 52, 82, .55);
     --surface-active: rgba(44, 91, 170, .17);
-    --border: rgba(148, 169, 207, .13);
+    --border: rgb(34, 44, 62);
     --border-strong: rgba(148, 169, 207, .22);
     --text: #e9efff;
     --text-secondary: #a2aec7;
@@ -15,7 +15,7 @@
     --accent: #76a9ff;
     --accent-strong: #4389ff;
     --accent-soft: rgba(73, 137, 255, .14);
-    --accent-glow: rgba(49, 115, 255, .22);
+    --accent-glow: rgba(48, 86, 168, 0.22);
     --success: #4dd5a0;
     --warning: #f4bd68;
     --danger: #ff7185;
@@ -1941,10 +1941,13 @@ kbd {
     }
 
     .search-trigger {
-        width: 40px;
-        justify-content: center;
-        padding: 0;
-    }
+    width: 280px;
+    justify-content: flex-start;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface-hover);
+}
 
     .search-trigger-left {
         gap: 0;
@@ -2726,4 +2729,12 @@ a:focus-visible {
 
 .document-body a.doc-button-long:hover {
     transform: translateY(-1px);
+}
+
+.search-result-description {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.5;
 }

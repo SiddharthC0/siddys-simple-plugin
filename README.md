@@ -7,7 +7,9 @@
   <a href="https://hangar.papermc.io/SiddharthC0/SiddysSimplePlugin">
   <img alt="hangar" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/hangar_vector.svg">
  </a>
+ <a href="https://www.curseforge.com/minecraft/bukkit-plugins/siddys-simple-plugin">
   <img style="filter: grayscale(100%);"  alt="curseforge" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/curseforge_vector.svg">
+  </a>
   <a href="https://www.spigotmc.org/resources/siddys-simple-plugin.140401/"><img alt="spigot" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/supported/spigot_vector.svg"></a>
   <img style="filter: grayscale(100%);"  alt="builtbybit" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/builtbybit_vector.svg">
 <a href="https://github.com/SiddharthC0/siddys-simple-plugin"><img alt="github-plural" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/social/github-plural_vector.svg">

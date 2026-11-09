@@ -12,3 +12,13 @@ Now, you have to start the server for the first time. Open a terminal / use `cd`
 ```
 java -Xms2G -Xmx4G -jar server.jar nogui
 ```
+**Note**: You can actually configure the amount of RAM alloted to the server by changing the variable `-Xmx4G` with the ram in GBs. For example, `-Xmx8G` means your server can use a maximum of 8GB RAM. 
+
+## Installing the plugin
+Now comes the important part. This is the part where we actually install the plugin into the server. Its very easy. Just get the jar and put it in the plugins folder which is generated automatically upon first launch beside the *server.jar*. [Download the plugin jar here](https://modrinth.com/plugin/siddys-simple-plugin#download)
+
+Now, the next step is putting the plugin jar in the **plugins** folder. That will allow the server to identify the plugin. Once everything is set up, run the server again through 
+```
+java -Xms2G -Xmx4G -jar server.jar nogui
+```
+**Note**: Final testing, just do `/plugins` in the terminal window and check if the plugin list contains `SiddysSimplePlugin`. If it does, the plugin has loaded!
