@@ -9,9 +9,11 @@
         pages: [],
         activePage: config.content?.defaultPage || "getting-started-welcome",
         theme: "dark",
-        expanded: {},
+        expanded: {
+            "Getting Started": true
+        },
         sidebarOpen: false,
-        editorMode: "create",
+        editorMode: "",
         originalPage: null
     };
 
@@ -53,28 +55,10 @@
     }
 
     function write(key, value) {
-        try {
-            localStorage.setItem(prefix + key, JSON.stringify(value));
-        } catch {
-            notify("Unable to save changes in this browser.", "error");
-        }
+        // lol
     }
 
     function notify(message, type = "success") {
-        if (!el.toast) return;
-
-        const item = document.createElement("div");
-        item.className = `toast toast-${type}`;
-        item.textContent = message;
-
-        el.toast.appendChild(item);
-
-        requestAnimationFrame(() => item.classList.add("visible"));
-
-        setTimeout(() => {
-            item.classList.remove("visible");
-            setTimeout(() => item.remove(), 300);
-        }, 2600);
     }
 
     function applyConfig() {
@@ -133,14 +117,6 @@
         }
 
         const brand = config.brand || {};
-
-        if ($("#brand-logo")) {
-            $("#brand-logo").textContent = brand.logoText || "S";
-        }
-
-        if ($("#brand-name")) {
-            $("#brand-name").textContent = brand.name || "SSMP";
-        }
 
         if ($("#project-version")) {
             $("#project-version").textContent = brand.version || "";
@@ -349,50 +325,73 @@
         renderNavigation();
     }
 
-    function buildTOC() {
-        if (!el.toc || config.layout?.showTableOfContents === false) {
-            if (el.toc) el.toc.innerHTML = "";
-            return;
-        }
+    
+function buildTOC() {
+    if (!el.toc || config.layout?.showTableOfContents === false) {
+        if (el.toc) el.toc.innerHTML = "";
+        return;
+    }
 
-        const headings = el.document?.querySelectorAll(
+    const headings = [
+        ...el.document.querySelectorAll(
             ".document-body h2, .document-body h3"
+        )
+    ];
+
+    if (!headings.length) {
+        el.toc.innerHTML = "";
+        return;
+    }
+
+    const usedIds = new Set();
+
+    headings.forEach((heading, index) => {
+        let id = heading.id || window.SSMP_MARKDOWN.slugify(
+            heading.textContent.trim()
         );
 
-        if (!headings?.length) {
-            el.toc.innerHTML = "";
-            return;
+        const baseId = id || `section-${index + 1}`;
+        let uniqueId = baseId;
+        let suffix = 2;
+
+        while (usedIds.has(uniqueId)) {
+            uniqueId = `${baseId}-${suffix++}`;
         }
 
-        el.toc.innerHTML = `
-            <div class="toc-heading">ON THIS PAGE</div>
-            <nav class="toc-links">
-                ${[...headings].map(heading => `
-                    <a
-                        class="toc-link toc-level-${heading.tagName.toLowerCase()}"
-                        href="#${encodeURIComponent(heading.id)}"
-                    >
-                        ${escape(heading.textContent)}
-                    </a>
-                `).join("")}
-            </nav>
-        `;
+        usedIds.add(uniqueId);
+        heading.id = uniqueId;
+    });
 
-        el.toc.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", event => {
-                event.preventDefault();
+    el.toc.innerHTML = `
+        <div class="toc-heading">ON THIS PAGE</div>
+        <nav class="toc-links">
+            ${headings.map(heading => `
+                <a
+                    class="toc-link toc-level-${heading.tagName.toLowerCase()}"
+                    href="#${encodeURIComponent(heading.id)}"
+                >${escape(heading.textContent.trim())}</a>
+            `).join("")}
+        </nav>
+    `;
 
-                document.getElementById(
-                    decodeURIComponent(link.hash.slice(1))
-                )?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+    el.toc.querySelectorAll(".toc-link").forEach(link => {
+        link.addEventListener("click", event => {
+            event.preventDefault();
 
-                history.replaceState(null, "", link.hash);
+            const id = decodeURIComponent(link.hash.slice(1));
+            const target = document.getElementById(id);
+
+            if (!target) return;
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
             });
+
+            history.replaceState(null, "", `#${encodeURIComponent(id)}`);
         });
-    }
+    });
+}
 
     function renderBreadcrumbs(page) {
         if (!el.breadcrumbs) return;
@@ -531,27 +530,36 @@ if (deleteButton) {
         );
     }
 
-    function openSearch() {
-        if (
-            config.search?.enabled === false ||
-            !el.searchOverlay
-        ) return;
+    let searchScrollY = 0;
 
-        el.searchOverlay.classList.add("open");
-        el.searchOverlay.setAttribute("aria-hidden", "false");
+function openSearch() {
+    if (config.search?.enabled === false || !el.searchOverlay) return;
 
-        if (el.searchInput) {
-            el.searchInput.value = "";
-            el.searchInput.focus();
-        }
+    searchScrollY = window.scrollY;
 
-        renderSearch("");
+    document.documentElement.classList.add("search-open");
+    document.body.classList.add("search-open");
+
+    el.searchOverlay.classList.add("open");
+    el.searchOverlay.setAttribute("aria-hidden", "false");
+
+    if (el.searchInput) {
+        el.searchInput.value = "";
+        el.searchInput.focus();
     }
 
-    function closeSearch() {
-        el.searchOverlay?.classList.remove("open");
-        el.searchOverlay?.setAttribute("aria-hidden", "true");
-    }
+    renderSearch("");
+}
+
+function closeSearch() {
+    el.searchOverlay?.classList.remove("open");
+    el.searchOverlay?.setAttribute("aria-hidden", "true");
+
+    document.documentElement.classList.remove("search-open");
+    document.body.classList.remove("search-open");
+
+    window.scrollTo(0, searchScrollY);
+}
 
     function renderSearch(query) {
         if (!el.searchResults) return;
@@ -565,9 +573,6 @@ if (deleteButton) {
         if (!query.trim()) {
             el.searchResults.innerHTML = `
                 <div class="search-empty">
-                    <span>⌕</span>
-                    <p>Search the SSMP documentation</p>
-                    <small>Try "RTP", "kits" or "permissions"</small>
                 </div>
             `;
             return;
@@ -576,9 +581,7 @@ if (deleteButton) {
         if (!results.length) {
             el.searchResults.innerHTML = `
                 <div class="search-empty">
-                    <span>⌕</span>
                     <p>No results found</p>
-                    <small>Try another search term.</small>
                 </div>
             `;
             return;
@@ -980,7 +983,6 @@ if (deleteButton) {
                 event.target?.isContentEditable;
 
             if (
-                (event.ctrlKey || event.metaKey) &&
                 event.key.toLowerCase() ===
                     (config.search?.keyboardShortcut || "k").toLowerCase() &&
                 !typing

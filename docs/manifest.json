@@ -11,22 +11,11 @@
       ]
     },
     {
-      "id": "features",
-      "title": "Features",
-      "icon": "layers",
-      "features": true,
+      "id": "modules",
+      "title": "Modules",
+      "icon": "robot",
       "files": [
-        "features/features.md"
-      ]
-    },
-    {
-      "id": "reference",
-      "title": "Reference",
-      "icon": "command",
-      "files": [
-        "reference/commands.md",
-        "reference/permissions.md",
-        "reference/configuration.md"
+        "modules/configuration.md"
       ]
     }
   ]
