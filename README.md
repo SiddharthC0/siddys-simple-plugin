@@ -22,6 +22,12 @@
   <img alt="sheilds-spigotmc" src="https://img.shields.io/spiget/downloads/140401?style=for-the-badge&logo=spigotmc&logoColor=%23FFEF00">
 </p>
 
+<p>
+  <a href="https://ssmp-docs.devs.li/">
+  <img alt="read-our-documentation" height="40" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/documentation/generic_vector.svg">
+  </a>
+</p>
+
 </div>
 <hr><br>
 <h2>Handles everything, in one simple jar.</h2>
