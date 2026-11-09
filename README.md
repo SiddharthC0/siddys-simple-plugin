@@ -16,9 +16,10 @@
 </a>
 </p>
 <p>
-  <img alt="sheilds-hangar" src="https://img.shields.io/hangar/dt/SiddysSimplePlugin?link=https%3A%2F%2Fhangar.papermc.io%2FSiddharthC0%2FSiddysSimplePlugin&style=for-the-badge">
-  <img alt="sheilds-modrinth" src="https://img.shields.io/modrinth/dt/mIr78G7Z?style=for-the-badge&logo=modrinth">
-  <img alt="sheilds-curseforge" src="https://img.shields.io/curseforge/dt/1778309?style=for-the-badge&logo=curseforge">
+  <img alt="sheilds-hangar" src="https://img.shields.io/hangar/dt/SiddysSimplePlugin?link=https%3A%2F%2Fhangar.papermc.io%2FSiddharthC0%2FSiddysSimplePlugin&style=for-the-badge&logoColor=%23FFEF00">
+  <img alt="sheilds-modrinth" src="https://img.shields.io/modrinth/dt/mIr78G7Z?style=for-the-badge&logo=modrinth&logoColor=%23FFEF00">
+  <img alt="sheilds-curseforge" src="https://img.shields.io/curseforge/dt/1778309?style=for-the-badge&logo=curseforge&logoColor=%23FFEF00">
+  <img alt="sheilds-spigotmc" src="https://img.shields.io/spiget/downloads/140401?style=for-the-badge&logo=spigotmc&logoColor=%23FFEF00">
 </p>
 
 </div>
@@ -547,7 +548,7 @@ items:
     action: none
 ```
 
-</details>
+</details>                    
 
 <details>
 <summary> Version 2.0.0 : scoreboard / config.yml</summary>
