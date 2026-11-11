@@ -39,6 +39,15 @@ public final class ssmp extends JavaPlugin {
     private ssmpoptimization optimization;
     private ssmplevels levels;
 
+    // Wonders of rpg start from here
+    private ssmpeconomy economy;
+    private ssmpcontracts contracts;
+    private ssmpcontractsgui contractGui;
+    private ssmpbounties bounties;
+    private ssmpbountygui bountyGui;
+    private ssmpplayerinfo playerInfo;
+    private ssmpplayerinfogui playerInfoGui;
+
     public ssmpcore getCore() {
         return core;
     }
@@ -152,7 +161,7 @@ public final class ssmp extends JavaPlugin {
             );
         }
 
-        ssmpeconomy economy = null;
+        economy = null;
 
         if (isEnabled("economy")) {
             economy = new ssmpeconomy(
@@ -196,6 +205,34 @@ public final class ssmp extends JavaPlugin {
                 getCommand("shop").setExecutor(shop);
             }
         }
+
+        if (isEnabled("contracts")) {
+            contracts = new ssmpcontracts(this, economy, levels);
+            contractGui = new ssmpcontractsgui(contracts);
+
+            getServer().getPluginManager().registerEvents(contracts, this);
+            getServer().getPluginManager().registerEvents(contractGui, this);
+        }
+
+        if (isEnabled("bounties") && economy != null) {
+            bounties = new ssmpbounties(this, economy);
+            bountyGui = new ssmpbountygui(bounties, economy);
+
+            getServer().getPluginManager().registerEvents(bounties, this);
+            getServer().getPluginManager().registerEvents(bountyGui, this);
+        }
+
+        playerInfo = new ssmpplayerinfo(
+                this,
+                economy,
+                levels,
+                contracts,
+                bounties
+        );
+
+        playerInfoGui = new ssmpplayerinfogui(playerInfo);
+
+        getServer().getPluginManager().registerEvents(playerInfoGui, this);
 
         if (isEnabled("scoreboard") && economy != null) {
             scoreboard =
@@ -354,16 +391,40 @@ public final class ssmp extends JavaPlugin {
                         warpCommands
                 );
             }
+            if (contracts != null && contractGui != null && getCommand("contracts") != null) {
+                getCommand("contracts").setExecutor(
+                        new ssmpcontractcommands(contractGui)
+                );
+            }
+
+            if (bounties != null && bountyGui != null) {
+                ssmpbountycommands bountyCommands = new ssmpbountycommands(bountyGui);
+
+                if (getCommand("bounties") != null) {
+                    getCommand("bounties").setExecutor(bountyCommands);
+                }
+
+                if (getCommand("bounty") != null) {
+                    getCommand("bounty").setExecutor(bountyCommands);
+                }
+            }
+
+            if (playerInfoGui != null && getCommand("playerinfo") != null) {
+                getCommand("playerinfo").setExecutor(
+                        new ssmpplayerinfocommands(playerInfoGui)
+                );
+            }
         }
 
         getLogger().info(
                 "Siddy's Simple Server Plugin has been enabled."
         );
         getLogger().info("""
-                  Siddy's    | Paper
-                  Simple     | Spigot
-                  Plugin     | Bukkit
-                  V. 2.1.0   | Purpur
+                  
+                  [Siddy's Simple Plugin] V.2.1.0
+                  *A Leap Towards Wonders Of RPG - SSMP-RPE
+                  *Release Code : SALT
+                  *DoR - UNSPECIFIED   
                 """
         );
     }
@@ -373,6 +434,9 @@ public final class ssmp extends JavaPlugin {
         if (optimization != null) {
             optimization.shutdown();
         }
+        if (levels != null) levels.save();
+        if (contracts != null) contracts.reload();
+        if (bounties != null) bounties.save();
 
         getLogger().info("SSMP disabled.");
     }
@@ -460,6 +524,9 @@ public final class ssmp extends JavaPlugin {
                 "modules.economy.enabled",
                 true
         );
+
+        config.addDefault("modules.contracts.enabled", true);
+        config.addDefault("modules.bounties.enabled", true);
 
         config.addDefault(
                 "modules.shop.enabled",
@@ -612,5 +679,33 @@ public final class ssmp extends JavaPlugin {
 
     public ssmpwarps getWarps() {
         return warps;
+    }
+
+    public ssmpeconomy getEconomy() {
+        return economy;
+    }
+
+    public ssmpcontracts getContracts() {
+        return contracts;
+    }
+
+    public ssmpcontractsgui getContractGui() {
+        return contractGui;
+    }
+
+    public ssmpbounties getBounties() {
+        return bounties;
+    }
+
+    public ssmpbountygui getBountyGui() {
+        return bountyGui;
+    }
+
+    public ssmpplayerinfo getPlayerInfo() {
+        return playerInfo;
+    }
+
+    public ssmpplayerinfogui getPlayerInfoGui() {
+        return playerInfoGui;
     }
 }

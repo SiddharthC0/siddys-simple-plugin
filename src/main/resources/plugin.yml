@@ -1,5 +1,5 @@
 name: SiddysSimplePlugin
-version: 2.0.0
+version: 2.1.1
 main: org.siddharth.ssmp.ssmp
 description: A plugin designed to replace them all whilst being so simple that even a child understands.
 author: SiddharthC
@@ -107,6 +107,32 @@ commands:
       - kitsgui
       - kitsshop
       - kitshop
+
+  contracts:
+    description: Opens the contracts GUI
+    usage: /contracts
+    permission: ssmp.contracts.use
+    aliases:
+      - contractsgui
+      - contractgui
+      - contract
+
+  bounty:
+    description: Opens the bounties GUI
+    usage: /bounty
+    permission: ssmp.bounties.use
+    aliases:
+      - bountygui
+      - bounties
+
+  playerinfo:
+    description: Opens your player profile
+    usage: /playerinfo
+    permission: ssmp.playerinfo.use
+    aliases:
+      - pinfo
+      - info
+      - playerinfogui
 
 permissions:
 
@@ -344,3 +370,13 @@ permissions:
   ssmp.warps.delete:
     description: Allows deleting server warps.
     default: op
+
+  ssmp.contracts.use:
+    description: Allows using contracts GUI
+    default: true
+  ssmp.bounties.use:
+    description: Allows using bounty GUI
+    default: true
+  ssmp.playerinfo.use:
+    description: Allows using player info GUI
+    default: true
