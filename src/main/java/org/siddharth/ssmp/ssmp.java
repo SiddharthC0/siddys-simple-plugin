@@ -424,7 +424,7 @@ public final class ssmp extends JavaPlugin {
                   [Siddy's Simple Plugin] V.2.1.0
                   *A Leap Towards Wonders Of RPG - SSMP-RPE
                   *Release Code : SALT
-                  *DoR - UNSPECIFIED   
+                  *DoR - 11NOV26   
                 """
         );
     }
