@@ -13,9 +13,22 @@
     {
       "id": "modules",
       "title": "Modules",
-      "icon": "robot",
+      "icon": "book",
       "files": [
-        "modules/configuration.md"
+        "modules/configuration.md",
+        "modules/economy.md",
+        "modules/shop.md",
+        "modules/auctionhouse.md",
+        "modules/menu.md",
+        "modules/permissions.md",
+        "modules/ranks.md",
+        "modules/placeholders.md",
+        "modules/chat_formatting.md",
+        "modules/scoreboard.md",
+        "modules/tablist.md",
+        "modules/kits.md",
+        "modules/homes_warps.md",
+        "modules/rtp.md"
       ]
     }
   ]

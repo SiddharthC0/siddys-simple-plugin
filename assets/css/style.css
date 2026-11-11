@@ -263,9 +263,6 @@ textarea:focus-visible {
     width: 39px;
     height: 39px;
     place-items: center;
-    border: 1px solid rgba(130, 174, 255, .34);
-    border-radius: 12px;
-    background: linear-gradient(145deg, #235eb8, #13294f);
     color: white;
     font-size: 19px;
     font-weight: 800;
@@ -1090,7 +1087,7 @@ kbd {
     padding: 3px 6px;
     border: 1px solid var(--border);
     border-radius: 5px;
-    background: var(--accent-soft);
+    background: var(--code-bg);
     color: var(--accent);
     font-family: var(--mono);
     font-size: .9em;
@@ -2629,7 +2626,7 @@ a:focus-visible {
     box-sizing: border-box;
     padding: 0 20px 18px;
     border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-    color: var(--text-secondary, #b5b5b5);
+    color: var(--text-primary);
     animation: collapse-open 0.2s ease;
 }
 

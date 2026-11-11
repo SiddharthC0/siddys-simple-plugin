@@ -37,6 +37,7 @@ public final class ssmp extends JavaPlugin {
     private ssmpcore core;
     private ssmprtp rtp;
     private ssmpoptimization optimization;
+    private ssmplevels levels;
 
     public ssmpcore getCore() {
         return core;
@@ -71,6 +72,11 @@ public final class ssmp extends JavaPlugin {
 
         if (getCommand("rank") != null) {
             getCommand("rank").setExecutor(rankCommands);
+        }
+        if (optimization.isModuleEnabled("levels")) {
+            levels = new ssmplevels(this);
+        } else {
+            levels = null;
         }
 
         if (isEnabled("tablist")) {
@@ -353,9 +359,12 @@ public final class ssmp extends JavaPlugin {
         getLogger().info(
                 "Siddy's Simple Server Plugin has been enabled."
         );
-
-        getLogger().info(
-                "Contact Siddharth (Check on mod-download-page) for support"
+        getLogger().info("""
+                  Siddy's    | Paper
+                  Simple     | Spigot
+                  Plugin     | Bukkit
+                  V. 2.1.0   | Purpur
+                """
         );
     }
 
@@ -366,6 +375,9 @@ public final class ssmp extends JavaPlugin {
         }
 
         getLogger().info("SSMP disabled.");
+    }
+    public ssmplevels getLevels() {
+        return levels;
     }
 
     public boolean reloadSSMP() {
@@ -579,6 +591,7 @@ public final class ssmp extends JavaPlugin {
                 "modules.rtp.enabled",
                 true
         );
+        config.addDefault("modules.levels.enabled", true);
 
         config.options().copyDefaults(true);
 
