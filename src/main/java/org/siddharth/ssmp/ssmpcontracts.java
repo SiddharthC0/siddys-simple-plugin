@@ -584,4 +584,26 @@ public class ssmpcontracts implements Listener {
     public YamlConfiguration getConfig() {
         return config;
     }
+
+    public double getRewardMoney(String id) {
+        return contracts.getDouble(
+                "contracts." + id + ".rewards.money",
+                0
+        );
+    }
+
+    public long getRewardXP(String id) {
+        return contracts.getLong(
+                "contracts." + id + ".rewards.xp",
+                0
+        );
+    }
+
+    public int getRewardLevelUpgrade(String id) {
+        return contracts.getInt(
+                "contracts." + id + ".rewards.level-upgrade",
+                0
+        );
+    }
+
 }

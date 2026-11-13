@@ -5,7 +5,7 @@ window.SSMP_CONFIG = {
         fullName: "Siddy's Simple Plugin",
         subtitle: "DOCUMENTATION",
         logoText: "S",
-        version: "2.0.0",
+        version: "2.2.1",
         author: "Siddharth C",
         copyright: "© 2026 Siddharth C",
         license: "MIT",

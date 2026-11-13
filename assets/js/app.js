@@ -167,36 +167,60 @@
         return state.pages.find(page => page.id === id);
     }
 
-    function getMetadata(markdown, path, category) {
-        const lines = markdown.split(/\r?\n/);
+    
+function getMetadata(markdown, path, category) {
+    const mediaMatch = markdown.match(/^:::hero\s+(image|video)\s+(\S+)\s*$/im);
 
-        const title = lines.find(line => /^#\s+/.test(line))
-            ?.replace(/^#\s+/, "")
-            .trim()
-            || path.split("/").pop()
-                .replace(/\.md$/i, "")
-                .replace(/[-_]/g, " ");
+    let media = null;
 
-        const description = lines.find(line =>
-            line.trim() && !line.startsWith("#")
-        )?.trim() || "";
+    if (mediaMatch) {
+        try {
+            const url = new URL(mediaMatch[2], location.href);
 
-        return {
-            id: path
-                .replace(/\.md$/i, "")
-                .replace(/[\/]/g, "-")
-                .replace(/[^a-z0-9-]/gi, "-")
-                .toLowerCase(),
-            title,
-            category,
-            icon: "book",
-            description,
-            keywords: [title, category],
-            content: markdown,
-            custom: false,
-            source: "markdown"
-        };
+            if (["http:", "https:"].includes(url.protocol)) {
+                media = {
+                    type: mediaMatch[1].toLowerCase(),
+                    url: url.href
+                };
+            }
+        } catch {}
     }
+
+    const content = mediaMatch
+        ? markdown.replace(mediaMatch[0], "").trim()
+        : markdown;
+
+    const lines = content.split(/\r?\n/);
+
+    const title = lines.find(line => /^#\s+/.test(line))
+        ?.replace(/^#\s+/, "")
+        .trim()
+        || path.split("/").pop()
+            .replace(/\.md$/i, "")
+            .replace(/[-_]/g, " ");
+
+    const description = lines.find(line =>
+        line.trim() && !/^#\s+/.test(line)
+    )?.trim() || "";
+
+    return {
+        id: path
+            .replace(/\.md$/i, "")
+            .replace(/[\/]/g, "-")
+            .replace(/[^a-z0-9-]/gi, "-")
+            .toLowerCase(),
+        title,
+        category,
+        icon: "book",
+        description,
+        media,
+        keywords: [title, category],
+        content,
+        custom: false,
+        source: "markdown"
+    };
+}
+
 
     async function loadDocumentation() {
         const response = await fetch("docs/manifest.json", {
@@ -442,6 +466,45 @@ function buildTOC() {
         `;
     }
 
+function renderPageMedia(page) {
+    const media = page.media;
+
+    if (!media || !["image", "video"].includes(media.type)) {
+        return "";
+    }
+
+    let url;
+
+    try {
+        url = new URL(media.url, location.href);
+
+        if (!["http:", "https:"].includes(url.protocol)) {
+            return "";
+        }
+    } catch {
+        return "";
+    }
+
+    const src = escape(url.href);
+
+    if (media.type === "image") {
+        return `
+            <div class="document-hero">
+                <img src="${src}" alt="${escape(page.title)}">
+            </div>
+        `;
+    }
+
+    return `
+        <div class="document-hero">
+            <video controls playsinline preload="metadata">
+                <source src="${src}">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+    `;
+}
+
     function renderDocument(page) {
         if (!el.document || !page) return;
 
@@ -458,7 +521,7 @@ function buildTOC() {
                             : ""
                     }
                 </div>
-
+                ${renderPageMedia(page)}
                 <h1 class="document-title">${escape(page.title)}</h1>
 
                 ${

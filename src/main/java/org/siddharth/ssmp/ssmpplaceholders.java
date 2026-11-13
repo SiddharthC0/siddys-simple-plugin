@@ -14,7 +14,7 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
+import java.util.Locale;
 public class ssmpplaceholders {
 
     private final ssmp plugin;
@@ -32,6 +32,29 @@ public class ssmpplaceholders {
         registerDefaults();
         startTpsTracker();
     }
+
+
+    public String get(Player player, String name) {
+        if (name == null || name.isBlank()) {
+            return null;
+        }
+
+        Function<Player, String> provider = placeholders.get(
+                name.replace("%", "").toLowerCase()
+        );
+
+        if (provider == null) {
+            return null;
+        }
+
+        try {
+            String value = provider.apply(player);
+            return value == null ? "" : value;
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
 
     private void startTpsTracker() {
         lastTickTime = System.nanoTime();
@@ -259,4 +282,7 @@ public class ssmpplaceholders {
     public Map<String, Function<Player, String>> getPlaceholders() {
         return Map.copyOf(placeholders);
     }
+
+
+
 }

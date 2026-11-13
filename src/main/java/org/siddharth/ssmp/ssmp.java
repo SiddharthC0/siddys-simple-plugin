@@ -7,6 +7,7 @@
  */
 package org.siddharth.ssmp;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -21,6 +22,7 @@ public final class ssmp extends JavaPlugin {
     private ssmpranks ranks;
     private ssmppermissions permissions;
     private ssmpsoundsystem sounds;
+    private ssmppapi papiExpansion;
     private ssmpplaceholders placeholders;
     private ssmptablist tablist;
     private ssmpscoreboard scoreboard;
@@ -54,7 +56,6 @@ public final class ssmp extends JavaPlugin {
     @Override
     public void onEnable() {
         createConfig();
-        createConfig();
 
         optimization = new ssmpoptimization(this);
         optimization.initialize();
@@ -62,7 +63,17 @@ public final class ssmp extends JavaPlugin {
 
         ranks = new ssmpranks(this);
         permissions = new ssmppermissions(this, ranks);
-        placeholders = new ssmpplaceholders(this, ranks);
+        if (optimization.isModuleEnabled("levels")) {
+            levels = new ssmplevels(this);
+        } else {
+            levels = null;
+        }
+        if (isEnabled("placeholders")) {
+            placeholders = new ssmpplaceholders(this, ranks);
+        } else {
+            placeholders = null;
+        }
+
         sounds = new ssmpsoundsystem(this);
         nicknames = new ssmpnicknames(this);
 
@@ -82,11 +93,8 @@ public final class ssmp extends JavaPlugin {
         if (getCommand("rank") != null) {
             getCommand("rank").setExecutor(rankCommands);
         }
-        if (optimization.isModuleEnabled("levels")) {
-            levels = new ssmplevels(this);
-        } else {
-            levels = null;
-        }
+
+
 
         if (isEnabled("tablist")) {
             tablist = new ssmptablist(
@@ -185,6 +193,17 @@ public final class ssmp extends JavaPlugin {
                 getCommand("economy").setTabCompleter(
                         economyCommands
                 );
+            }
+
+            if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
+                Bukkit.getServicesManager().register(
+                        net.milkbowl.vault.economy.Economy.class,
+                        new ssmpvaulteconomy(this, economy),
+                        this,
+                        org.bukkit.plugin.ServicePriority.Normal
+                );
+
+                getLogger().info("Vault economy support enabled.");
             }
         }
 
@@ -391,40 +410,61 @@ public final class ssmp extends JavaPlugin {
                         warpCommands
                 );
             }
-            if (contracts != null && contractGui != null && getCommand("contracts") != null) {
-                getCommand("contracts").setExecutor(
-                        new ssmpcontractcommands(contractGui)
-                );
+
+        }
+        if (contracts != null && contractGui != null && getCommand("contracts") != null) {
+            getCommand("contracts").setExecutor(
+                    new ssmpcontractcommands(contractGui)
+            );
+        }
+
+        if (bounties != null && bountyGui != null) {
+            ssmpbountycommands bountyCommands = new ssmpbountycommands(bountyGui);
+
+            if (getCommand("bounties") != null) {
+                getCommand("bounties").setExecutor(bountyCommands);
             }
 
-            if (bounties != null && bountyGui != null) {
-                ssmpbountycommands bountyCommands = new ssmpbountycommands(bountyGui);
-
-                if (getCommand("bounties") != null) {
-                    getCommand("bounties").setExecutor(bountyCommands);
-                }
-
-                if (getCommand("bounty") != null) {
-                    getCommand("bounty").setExecutor(bountyCommands);
-                }
-            }
-
-            if (playerInfoGui != null && getCommand("playerinfo") != null) {
-                getCommand("playerinfo").setExecutor(
-                        new ssmpplayerinfocommands(playerInfoGui)
-                );
+            if (getCommand("bounty") != null) {
+                getCommand("bounty").setExecutor(bountyCommands);
             }
         }
+
+        if (playerInfoGui != null && getCommand("playerinfo") != null) {
+            getCommand("playerinfo").setExecutor(
+                    new ssmpplayerinfocommands(playerInfoGui)
+            );
+        }
+
+        if (placeholders != null
+                && getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+
+            papiExpansion = new ssmppapi(
+                    this,
+                    placeholders,
+                    ranks,
+                    contracts,
+                    bounties,
+                    levels,
+                    economy
+            );
+
+            if (papiExpansion.register()) {
+                getLogger().info("PlaceholderAPI expansion registered.");
+            } else {
+                getLogger().warning("Failed to register PlaceholderAPI expansion.");
+            }
+        }
+
 
         getLogger().info(
                 "Siddy's Simple Server Plugin has been enabled."
         );
         getLogger().info("""
-                  
-                  [Siddy's Simple Plugin] V.2.1.0
+                  [Siddy's Simple Plugin] V.2.2.0
                   *A Leap Towards Wonders Of RPG - SSMP-RPE
                   *Release Code : SALT
-                  *DoR - 11NOV26   
+                  *DoR - UNSPECIFIED
                 """
         );
     }
@@ -437,7 +477,13 @@ public final class ssmp extends JavaPlugin {
         if (levels != null) levels.save();
         if (contracts != null) contracts.reload();
         if (bounties != null) bounties.save();
+        if (papiExpansion != null) {
+            papiExpansion.unregister();
+        }
 
+        if (placeholders != null) {
+            placeholders.stop();
+        }
         getLogger().info("SSMP disabled.");
     }
     public ssmplevels getLevels() {
@@ -656,6 +702,10 @@ public final class ssmp extends JavaPlugin {
 
         config.addDefault(
                 "modules.rtp.enabled",
+                true
+        );
+        config.addDefault(
+                "modules.placeholders.enabled",
                 true
         );
         config.addDefault("modules.levels.enabled", true);

@@ -22,6 +22,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.UUID;
+import org.bukkit.OfflinePlayer;
 
 public class ssmpeconomy implements Listener {
 
@@ -844,4 +845,138 @@ public class ssmpeconomy implements Listener {
             );
         }
     }
+
+    public boolean isEnabledForVault() {
+        return isEnabled();
+    }
+
+    public int getDecimalPlaces() {
+        return Math.max(
+                0,
+                economyConfig.getInt(
+                        "display.decimal-places",
+                        2
+                )
+        );
+    }
+
+    public double getPlayerBalance(
+            OfflinePlayer player
+    ) {
+        if (player == null) {
+            return 0.0;
+        }
+
+        String uuid = player.getUniqueId().toString();
+
+        return economyData.getDouble(
+                "players." + uuid + ".balance",
+                getStartingBalance()
+        );
+    }
+
+    public boolean hasAccount(
+            OfflinePlayer player
+    ) {
+        if (player == null) {
+            return false;
+        }
+
+        return economyData.contains(
+                "players."
+                        + player.getUniqueId()
+                        + ".balance"
+        );
+    }
+
+    public boolean createAccount(
+            OfflinePlayer player
+    ) {
+        if (!isEnabled() || player == null) {
+            return false;
+        }
+
+        String path =
+                "players." + player.getUniqueId();
+
+        if (!economyData.contains(path + ".balance")) {
+            economyData.set(
+                    path + ".balance",
+                    getStartingBalance()
+            );
+
+            economyData.set(
+                    path + ".name",
+                    player.getName()
+            );
+
+            saveEconomy();
+        }
+
+        return true;
+    }
+
+    public boolean addOfflinePlayerBalance(
+            OfflinePlayer player,
+            double amount
+    ) {
+        if (!isEnabled()
+                || player == null
+                || !canUseAmount(amount)) {
+            return false;
+        }
+
+        double finalBalance =
+                getPlayerBalance(player) + amount;
+
+        if (!Double.isFinite(finalBalance)) {
+            return false;
+        }
+
+        economyData.set(
+                "players."
+                        + player.getUniqueId()
+                        + ".balance",
+                finalBalance
+        );
+
+        saveEconomy();
+
+        return true;
+    }
+
+    public boolean removeOfflinePlayerBalance(
+            OfflinePlayer player,
+            double amount
+    ) {
+        if (!isEnabled()
+                || player == null
+                || !canUseAmount(amount)
+                || !canRemove(player, amount)) {
+            return false;
+        }
+
+        double finalBalance =
+                getPlayerBalance(player) - amount;
+
+        economyData.set(
+                "players."
+                        + player.getUniqueId()
+                        + ".balance",
+                finalBalance
+        );
+
+        saveEconomy();
+
+        return true;
+    }
+
+    public boolean canRemove(
+            OfflinePlayer player,
+            double amount
+    ) {
+        return allowNegativeBalances()
+                || getPlayerBalance(player) >= amount;
+    }
+
 }

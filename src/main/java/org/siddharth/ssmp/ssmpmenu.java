@@ -37,11 +37,13 @@ public class ssmpmenu implements Listener {
     private static final String[] MENU_ITEMS = {
             "shop",
             "auction",
-            "support",
+            "kits",
             "homes",
             "enderchest",
             "warps",
-            "player"
+            "player",
+            "ranks",
+            "rtp"
     };
 
     public ssmpmenu(
@@ -130,7 +132,7 @@ public class ssmpmenu implements Listener {
 
         config.set(
                 "menu.border.bottom.enabled",
-                true
+                false
         );
 
         config.set(
@@ -221,19 +223,19 @@ public class ssmpmenu implements Listener {
         );
 
         setItemDefaults(
-                "support",
+                "kits",
                 true,
                 24,
                 "NETHER_STAR",
                 "&6&lSupport",
                 List.of(
                         "",
-                        "&7Support the creator",
+                        "&7Open the menu of available kits",
                         "&7by clicking this.",
                         "",
-                        "&8» &6Click to support Siddy"
+                        "&8» &6Click to open kits"
                 ),
-                "support"
+                "kits"
         );
 
         setItemDefaults(
@@ -282,18 +284,18 @@ public class ssmpmenu implements Listener {
         );
 
         setItemDefaults(
-                "kits",
+                "ranks",
                 true,
                 38,
-                "DIAMOND_SWORD",
-                "&3&lKits",
+                "DIAMOND_CHESTPLATE",
+                "&3&lRanks",
                 List.of(
                         "",
-                        "&7Browse claimable kits.",
+                        "&7Browse available ranks.",
                         "",
                         "&8» &9Click to open"
                 ),
-                "kits"
+                "ranks"
         );
         setItemDefaults(
                 "rtp",
@@ -318,12 +320,11 @@ public class ssmpmenu implements Listener {
                 "&b&l%player%",
                 List.of(
                         "",
-                        "&7Welcome to ",
-                        "&bSiddy's Simple Plugin",
-                        "",
-                        "&8» &7SSMP Menu"
+                        "&7Click to open",
+                        "&bPlayer Info",
+                        ""
                 ),
-                "none"
+                "playerinfo"
         );
 
         saveConfig();

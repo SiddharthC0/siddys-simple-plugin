@@ -1,5 +1,5 @@
 name: SiddysSimplePlugin
-version: 2.1.1
+version: 2.2.1
 main: org.siddharth.ssmp.ssmp
 description: A plugin designed to replace them all whilst being so simple that even a child understands.
 author: SiddharthC
@@ -380,3 +380,7 @@ permissions:
   ssmp.playerinfo.use:
     description: Allows using player info GUI
     default: true
+
+softdepend:
+  - PlaceholderAPI
+  - Vault

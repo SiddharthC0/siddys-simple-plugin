@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "org.siddharth"
-version = "2.1.1"
+version = "2.2.1"
 
 base {
     archivesName.set("SiddysSimplePlugin")
@@ -13,14 +13,27 @@ base {
 repositories {
     mavenCentral()
 
-    maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/") {
+    maven {
         name = "spigotmc"
+        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    }
+
+    maven {
+        name = "placeholderapi"
+        url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+    }
+
+    maven {
+        url = uri("https://jitpack.io")
     }
 }
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:26.3-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.11.7")
+    compileOnly("com.github.milkbowl:VaultAPI:1.7.1")
 }
+
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(25))
