@@ -19,73 +19,73 @@ import java.util.List;
 
 public final class ssmp extends JavaPlugin {
 
-    private ssmpranks ranks;
-    private ssmppermissions permissions;
-    private ssmpsoundsystem sounds;
-    private ssmppapi papiExpansion;
-    private ssmpplaceholders placeholders;
-    private ssmptablist tablist;
-    private ssmpscoreboard scoreboard;
-    private ssmpauction auction;
-    private ssmpeconomycommands economyCommands;
-    private ssmpenderchest enderChest;
-    private ssmphomes homes;
-    private ssmpwarps warps;
-    private ssmpmenu menu;
-    private ssmpnicknames nicknames;
-    private ssmpkits kits;
-    private ssmpkitgui kitGui;
-    private ssmpkitcommands kitCommands;
-    private ssmpcore core;
-    private ssmprtp rtp;
-    private ssmpoptimization optimization;
-    private ssmplevels levels;
+    private ssmpRanks ranks;
+    private ssmpPermissions permissions;
+    private ssmpSoundSystem sounds;
+    private ssmpPlaceholderAPI papiExpansion;
+    private ssmpPlaceholders placeholders;
+    private ssmpTablist tablist;
+    private ssmpScoreboard scoreboard;
+    private ssmpAuction auction;
+    private ssmpEconomyCommands economyCommands;
+    private ssmpEnderChest enderChest;
+    private ssmpHomes homes;
+    private ssmpWarps warps;
+    private ssmpMenu menu;
+    private ssmpNicknames nicknames;
+    private ssmpKits kits;
+    private ssmpKitGUI kitGui;
+    private ssmpKitCommands kitCommands;
+    private ssmpCoreMethods core;
+    private ssmpRTP rtp;
+    private ssmpOptimization optimization;
+    private ssmpLevels levels;
 
     // Wonders of rpg start from here
-    private ssmpeconomy economy;
-    private ssmpcontracts contracts;
-    private ssmpcontractsgui contractGui;
-    private ssmpbounties bounties;
-    private ssmpbountygui bountyGui;
-    private ssmpplayerinfo playerInfo;
-    private ssmpplayerinfogui playerInfoGui;
+    private ssmpEconomy economy;
+    private ssmpContracts contracts;
+    private ssmpContractsGUI contractGui;
+    private ssmpBounties bounties;
+    private ssmpBountyGUI bountyGui;
+    private ssmpPlayerInfo playerInfo;
+    private ssmpPlayerInfoGUI playerInfoGui;
 
-    public ssmpcore getCore() {
+    public ssmpCoreMethods getCore() {
         return core;
     }
     @Override
     public void onEnable() {
         createConfig();
 
-        optimization = new ssmpoptimization(this);
+        optimization = new ssmpOptimization(this);
         optimization.initialize();
-        core = new ssmpcore(this);
+        core = new ssmpCoreMethods(this);
 
-        ranks = new ssmpranks(this);
-        permissions = new ssmppermissions(this, ranks);
+        ranks = new ssmpRanks(this);
+        permissions = new ssmpPermissions(this, ranks);
         if (optimization.isModuleEnabled("levels")) {
-            levels = new ssmplevels(this);
+            levels = new ssmpLevels(this);
         } else {
             levels = null;
         }
         if (isEnabled("placeholders")) {
-            placeholders = new ssmpplaceholders(this, ranks);
+            placeholders = new ssmpPlaceholders(this, ranks);
         } else {
             placeholders = null;
         }
 
-        sounds = new ssmpsoundsystem(this);
-        nicknames = new ssmpnicknames(this);
+        sounds = new ssmpSoundSystem(this);
+        nicknames = new ssmpNicknames(this);
 
-        menu = new ssmpmenu(this, sounds);
+        menu = new ssmpMenu(this, sounds);
 
         getServer().getPluginManager().registerEvents(
                 menu,
                 this
         );
 
-        ssmprankcommands rankCommands =
-                new ssmprankcommands(
+        ssmpRankCommands rankCommands =
+                new ssmpRankCommands(
                         ranks,
                         permissions
                 );
@@ -97,7 +97,7 @@ public final class ssmp extends JavaPlugin {
 
 
         if (isEnabled("tablist")) {
-            tablist = new ssmptablist(
+            tablist = new ssmpTablist(
                     this,
                     ranks
             );
@@ -111,7 +111,7 @@ public final class ssmp extends JavaPlugin {
             tablist.start();
         }
         if (isEnabled("rtp")) {
-            rtp = new ssmprtp(this);
+            rtp = new ssmpRTP(this);
 
             getServer().getPluginManager().registerEvents(
                     rtp,
@@ -124,9 +124,9 @@ public final class ssmp extends JavaPlugin {
         }
 
         if (isEnabled("kits")) {
-            kits = new ssmpkits(this);
-            kitGui = new ssmpkitgui(this, kits);
-            kitCommands = new ssmpkitcommands(this, kits, kitGui);
+            kits = new ssmpKits(this);
+            kitGui = new ssmpKitGUI(this, kits);
+            kitCommands = new ssmpKitCommands(this, kits, kitGui);
 
             getServer().getPluginManager().registerEvents(kitGui, this);
             if (getCommand("kit") != null) {
@@ -136,8 +136,8 @@ public final class ssmp extends JavaPlugin {
         }
 
         if (isEnabled("chat")) {
-            chatformatting chatFormatting =
-                    new chatformatting(
+            ssmpChatFormatting chatFormatting =
+                    new ssmpChatFormatting(
                             this,
                             ranks,
                             sounds
@@ -155,13 +155,13 @@ public final class ssmp extends JavaPlugin {
 
         if (getCommand("nick") != null) {
             getCommand("nick").setExecutor(
-                    new ssmpnicknamecommands(nicknames)
+                    new ssmpNicknameCommands(nicknames)
             );
         }
 
         if (getCommand("ssmp") != null) {
             getCommand("ssmp").setExecutor(
-                    new ssmpcommand(
+                    new ssmpCommands(
                             this,
                             sounds,
                             menu
@@ -172,7 +172,7 @@ public final class ssmp extends JavaPlugin {
         economy = null;
 
         if (isEnabled("economy")) {
-            economy = new ssmpeconomy(
+            economy = new ssmpEconomy(
                     this,
                     sounds
             );
@@ -183,7 +183,7 @@ public final class ssmp extends JavaPlugin {
             );
 
             economyCommands =
-                    new ssmpeconomycommands(economy);
+                    new ssmpEconomyCommands(economy);
 
             if (getCommand("economy") != null) {
                 getCommand("economy").setExecutor(
@@ -198,7 +198,7 @@ public final class ssmp extends JavaPlugin {
             if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
                 Bukkit.getServicesManager().register(
                         net.milkbowl.vault.economy.Economy.class,
-                        new ssmpvaulteconomy(this, economy),
+                        new ssmpVaultEconomy(this, economy),
                         this,
                         org.bukkit.plugin.ServicePriority.Normal
                 );
@@ -208,8 +208,8 @@ public final class ssmp extends JavaPlugin {
         }
 
         if (isEnabled("shop") && economy != null) {
-            ssmpshop shop =
-                    new ssmpshop(
+            ssmpShop shop =
+                    new ssmpShop(
                             economy,
                             this,
                             sounds
@@ -226,22 +226,22 @@ public final class ssmp extends JavaPlugin {
         }
 
         if (isEnabled("contracts")) {
-            contracts = new ssmpcontracts(this, economy, levels);
-            contractGui = new ssmpcontractsgui(contracts);
+            contracts = new ssmpContracts(this, economy, levels);
+            contractGui = new ssmpContractsGUI(contracts);
 
             getServer().getPluginManager().registerEvents(contracts, this);
             getServer().getPluginManager().registerEvents(contractGui, this);
         }
 
         if (isEnabled("bounties") && economy != null) {
-            bounties = new ssmpbounties(this, economy);
-            bountyGui = new ssmpbountygui(bounties, economy);
+            bounties = new ssmpBounties(this, economy);
+            bountyGui = new ssmpBountyGUI(bounties, economy);
 
             getServer().getPluginManager().registerEvents(bounties, this);
             getServer().getPluginManager().registerEvents(bountyGui, this);
         }
 
-        playerInfo = new ssmpplayerinfo(
+        playerInfo = new ssmpPlayerInfo(
                 this,
                 economy,
                 levels,
@@ -249,13 +249,13 @@ public final class ssmp extends JavaPlugin {
                 bounties
         );
 
-        playerInfoGui = new ssmpplayerinfogui(playerInfo);
+        playerInfoGui = new ssmpPlayerInfoGUI(playerInfo);
 
         getServer().getPluginManager().registerEvents(playerInfoGui, this);
 
         if (isEnabled("scoreboard") && economy != null) {
             scoreboard =
-                    new ssmpscoreboard(
+                    new ssmpScoreboard(
                             economy,
                             this
                     );
@@ -270,8 +270,8 @@ public final class ssmp extends JavaPlugin {
         }
 
         if (isEnabled("menu")) {
-            ssmpmenuitem menuItem =
-                    new ssmpmenuitem(this);
+            ssmpMenuItem menuItem =
+                    new ssmpMenuItem(this);
 
             getServer().getPluginManager().registerEvents(
                     menuItem,
@@ -281,7 +281,7 @@ public final class ssmp extends JavaPlugin {
 
         if (isEnabled("auction") && economy != null) {
             auction =
-                    new ssmpauction(
+                    new ssmpAuction(
                             this,
                             economy,
                             permissions,
@@ -301,7 +301,7 @@ public final class ssmp extends JavaPlugin {
 
         if (isEnabled("enderchest")) {
             enderChest =
-                    new ssmpenderchest(this);
+                    new ssmpEnderChest(this);
 
             getServer().getPluginManager().registerEvents(
                     enderChest,
@@ -309,7 +309,7 @@ public final class ssmp extends JavaPlugin {
             );
 
             if (getCommand("enderchest") != null) {
-                ssmpenderchest finalEnderChest = enderChest;
+                ssmpEnderChest finalEnderChest = enderChest;
 
                 getCommand("enderchest").setExecutor(
                         (sender, command, label, args) -> {
@@ -340,15 +340,15 @@ public final class ssmp extends JavaPlugin {
 
         if (isEnabled("homes")) {
             homes =
-                    new ssmphomes(this);
+                    new ssmpHomes(this);
 
             getServer().getPluginManager().registerEvents(
                     homes,
                     this
             );
 
-            ssmphomecommands homeCommands =
-                    new ssmphomecommands(homes);
+            ssmpHomeCommands homeCommands =
+                    new ssmpHomeCommands(homes);
 
             if (getCommand("sethome") != null) {
                 getCommand("sethome").setExecutor(
@@ -377,15 +377,15 @@ public final class ssmp extends JavaPlugin {
 
         if (isEnabled("warps")) {
             warps =
-                    new ssmpwarps(this);
+                    new ssmpWarps(this);
 
             getServer().getPluginManager().registerEvents(
                     warps,
                     this
             );
 
-            ssmpwarpcommands warpCommands =
-                    new ssmpwarpcommands(warps);
+            ssmpWarpCommands warpCommands =
+                    new ssmpWarpCommands(warps);
 
             if (getCommand("setwarp") != null) {
                 getCommand("setwarp").setExecutor(
@@ -414,12 +414,12 @@ public final class ssmp extends JavaPlugin {
         }
         if (contracts != null && contractGui != null && getCommand("contracts") != null) {
             getCommand("contracts").setExecutor(
-                    new ssmpcontractcommands(contractGui)
+                    new ssmpContractCommands(contractGui)
             );
         }
 
         if (bounties != null && bountyGui != null) {
-            ssmpbountycommands bountyCommands = new ssmpbountycommands(bountyGui);
+            ssmpBountyCommands bountyCommands = new ssmpBountyCommands(bountyGui);
 
             if (getCommand("bounties") != null) {
                 getCommand("bounties").setExecutor(bountyCommands);
@@ -432,14 +432,14 @@ public final class ssmp extends JavaPlugin {
 
         if (playerInfoGui != null && getCommand("playerinfo") != null) {
             getCommand("playerinfo").setExecutor(
-                    new ssmpplayerinfocommands(playerInfoGui)
+                    new ssmpPlayerInfoCommands(playerInfoGui)
             );
         }
 
         if (placeholders != null
                 && getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
 
-            papiExpansion = new ssmppapi(
+            papiExpansion = new ssmpPlaceholderAPI(
                     this,
                     placeholders,
                     ranks,
@@ -461,9 +461,10 @@ public final class ssmp extends JavaPlugin {
                 "Siddy's Simple Server Plugin has been enabled."
         );
         getLogger().info("""
-                  [Siddy's Simple Plugin] V.2.2.0
+                  [Siddy's Simple Plugin] V.2.4.0 
+                  *Build Iteration 1
                   *A Leap Towards Wonders Of RPG - SSMP-RPE
-                  *Release Code : SALT
+                  *Release Code : SUGAR
                   *DoR - UNSPECIFIED
                 """
         );
@@ -486,7 +487,7 @@ public final class ssmp extends JavaPlugin {
         }
         getLogger().info("SSMP disabled.");
     }
-    public ssmplevels getLevels() {
+    public ssmpLevels getLevels() {
         return levels;
     }
 
@@ -718,44 +719,37 @@ public final class ssmp extends JavaPlugin {
     private boolean isEnabled(String module) {
         return optimization.isModuleEnabled(module);
     }
-
-    public ssmphomes getHomes() {
+    public ssmpHomes getHomes() {
         return homes;
     }
-
-    public ssmpenderchest getEnderChest() {
+    public ssmpEnderChest getEnderChest() {
         return enderChest;
     }
-
-    public ssmpwarps getWarps() {
+    public ssmpWarps getWarps() {
         return warps;
     }
-
-    public ssmpeconomy getEconomy() {
+    public ssmpEconomy getEconomy() {
         return economy;
     }
-
-    public ssmpcontracts getContracts() {
+    public ssmpContracts getContracts() {
         return contracts;
     }
-
-    public ssmpcontractsgui getContractGui() {
+    public ssmpContractsGUI getContractGui() {
         return contractGui;
     }
-
-    public ssmpbounties getBounties() {
+    public ssmpBounties getBounties() {
         return bounties;
     }
-
-    public ssmpbountygui getBountyGui() {
+    public ssmpBountyGUI getBountyGui() {
         return bountyGui;
     }
-
-    public ssmpplayerinfo getPlayerInfo() {
+    public ssmpPlayerInfo getPlayerInfo() {
         return playerInfo;
     }
-
-    public ssmpplayerinfogui getPlayerInfoGui() {
+    public ssmpPlayerInfoGUI getPlayerInfoGui() {
         return playerInfoGui;
     }
+    public ssmpKitGUI getKitGui() {return kitGui;}
+    public ssmpRTP getRTP() {return rtp;}
+    public ssmpRanks getRanks() {return ranks;}
 }

@@ -1,0 +1,12 @@
+{
+  "defaultProject": "ssmp",
+  "projects": [
+    {
+      "id": "ssmp",
+      "name": "Siddy's Simple Plugin",
+      "version": "2.0.0",
+      "manifest": "docs/manifest.json",
+      "defaultPage": "getting-started-welcome"
+    }
+  ]
+}
