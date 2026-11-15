@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "org.siddharth"
-version = "2.4.0"
+version = "2.5.1"
 
 base {
     archivesName.set("SiddysSimplePlugin")

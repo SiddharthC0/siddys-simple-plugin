@@ -17,7 +17,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.siddharth.ssmp.updateChecker.update;
+import org.siddharth.ssmp.info.info;
+
 public final class ssmp extends JavaPlugin {
+
+    String version = "r2.5.1";
+    String code_name = "Sugar";
+    String full_name = "Leap Towards Wonders of RPG";
+    String plugin_prefix = "[Siddy's Simple Plugin]";
 
     private ssmpRanks ranks;
     private ssmpPermissions permissions;
@@ -55,6 +63,8 @@ public final class ssmp extends JavaPlugin {
     }
     @Override
     public void onEnable() {
+        new update(this).check();
+        new info(this).create();
         createConfig();
 
         optimization = new ssmpOptimization(this);
@@ -457,17 +467,10 @@ public final class ssmp extends JavaPlugin {
         }
 
 
-        getLogger().info(
-                "Siddy's Simple Server Plugin has been enabled."
-        );
-        getLogger().info("""
-                  [Siddy's Simple Plugin] V.2.4.0 
-                  *Build Iteration 1
-                  *A Leap Towards Wonders Of RPG - SSMP-RPE
-                  *Release Code : SUGAR
-                  *DoR - UNSPECIFIED
-                """
-        );
+        getLogger().info(plugin_prefix+" Enabled plugin version "+version);
+        getLogger().info(plugin_prefix+" By Siddharth C");
+        getLogger().info(plugin_prefix+" Code "+code_name+" Release "+full_name);
+
     }
 
     @Override
