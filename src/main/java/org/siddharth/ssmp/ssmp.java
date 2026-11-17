@@ -19,12 +19,13 @@ import java.util.List;
 
 import org.siddharth.ssmp.updateChecker.update;
 import org.siddharth.ssmp.info.info;
+import org.siddharth.ssmp.cpanel.ssmpCPanel;
 
 public final class ssmp extends JavaPlugin {
 
-    String version = "r2.5.1";
+    String version = "r3.0.0";
     String code_name = "Sugar";
-    String full_name = "Leap Towards Wonders of RPG";
+    String full_name = "COMPLETED Wonders of RPG";
     String plugin_prefix = "[Siddy's Simple Plugin]";
 
     private ssmpRanks ranks;
@@ -58,6 +59,8 @@ public final class ssmp extends JavaPlugin {
     private ssmpPlayerInfo playerInfo;
     private ssmpPlayerInfoGUI playerInfoGui;
 
+    private ssmpCPanel control;
+
     public ssmpCoreMethods getCore() {
         return core;
     }
@@ -66,6 +69,9 @@ public final class ssmp extends JavaPlugin {
         new update(this).check();
         new info(this).create();
         createConfig();
+        control = new ssmpCPanel(this);
+        control.setUpdateCheckAction(() -> new update(this).check());
+        control.start();
 
         optimization = new ssmpOptimization(this);
         optimization.initialize();
@@ -475,6 +481,9 @@ public final class ssmp extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (control != null) {
+            control.stop();
+        }
         if (optimization != null) {
             optimization.shutdown();
         }
@@ -710,6 +719,11 @@ public final class ssmp extends JavaPlugin {
         );
         config.addDefault(
                 "modules.placeholders.enabled",
+                true
+        );
+
+        config.addDefault(
+                "cpanel.console.enabled",
                 true
         );
         config.addDefault("modules.levels.enabled", true);

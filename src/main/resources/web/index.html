@@ -1,0 +1,245 @@
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>SSMP Control Panel</title>
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/api.js" defer></script>
+<script src="/js/app.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+    <div class="topbar">
+    <div class="topbar-brand">SSMP Control Panel</div>
+    <div class="topbar-menu">
+        <button class="nav-item" data-view="security"><span>◇</span> Security</button>
+            <button class="nav-item" id="theme-toggle"><span>◐</span> Toggle theme</button>
+            <button class="nav-item" id="logout"><span>↪</span> Sign out</button>
+    </div>
+</div>
+    <aside class="sidebar">
+        <div class="nav-label">MAIN</div>
+        <button class="nav-item active" data-view="overview">Overview</button>
+        <button class="nav-item" data-view="modules">Modules</button>
+        <button class="nav-item" data-view="monitor">Monitor</button>
+        <div class="nav-label nav-files-label">Configuration files</div>
+        <div id="file-nav" class="file-nav"><div class="nav-loading">Loading files…</div></div>
+        <div class="sidebar-bottom">
+            
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <section id="view-overview" class="view">
+
+            <section class="server-overview">
+    <div class="section-heading">
+        <div>
+            <h2 id="server-name">Loading server...</h2>
+        </div>
+    </div>
+
+    <div class="stat-grid">
+        <article class="stat-card">
+            <span class="stat-label">Online players</span>
+            <strong id="server-online">—</strong>
+            <small id="server-player-limit">Player capacity</small>
+        </article>
+        <article class="stat-card">
+            <span class="stat-label">Total players</span>
+            <strong id="server-total-players">—</strong>
+            <small>Known player data files</small>
+        </article>
+                <article class="stat-card">
+                    <span class="stat-label">Resource usage</span>
+                    <strong id="stat-resources">—</strong>
+                    <small id="stat-resource-details">Waiting for server statistics…</small>
+                </article>
+    </div>
+</section>
+
+            <section class="console-card">
+                <div class="console-header">
+                    <div>
+                        <h2>Server Console</h2>
+                    </div>
+                </div>
+
+                <div id="console-output" class="console-output" role="log" aria-live="polite" aria-label="Server console output">
+                    <div class="console-placeholder">Waiting for server output…</div>
+                </div>
+
+                <form id="console-form" class="console-form">
+                    <span class="console-prompt">›</span>
+                    <input id="console-command" name="command" type="text" placeholder="Enter any command." autocomplete="on" maxlength="512" required
+                    >
+                    <button id="console-send" class="button primary" type="submit">Send</button>
+                </form>
+            </section>
+        </section>
+        <section id="view-monitor" class="view hidden">
+    <div class="section-heading">
+        <div>
+            <h2>Server Monitor</h2>
+        </div>
+    </div>
+
+    <div class="stat-grid">
+        <article class="stat-card">
+            <span class="stat-label">CPU Usage</span>
+            <strong id="monitor-cpu">—</strong>
+            <small>System CPU</small>
+        </article>
+        <article class="stat-card">
+            <span class="stat-label">RAM Usage</span>
+            <strong id="monitor-ram">—</strong>
+            <small id="monitor-ram-details">JVM memory</small>
+        </article>
+        <article class="stat-card">
+            <span class="stat-label">TPS</span>
+            <strong id="monitor-tps">—</strong>
+            <small>Ticks per second</small>
+        </article>
+        <article class="stat-card">
+            <span class="stat-label">MSPT</span>
+            <strong id="monitor-mspt">—</strong>
+            <small>Milliseconds per tick</small>
+        </article>
+    </div>
+    <div class="monitor-graphs">
+    <article class="monitor-chart">
+        <div class="monitor-chart-header">
+            <div>
+                <h3>CPU Usage</h3>
+                <p>System CPU utilization</p>
+            </div>
+            <strong id="graph-cpu-value">—%</strong>
+        </div>
+        <canvas id="graph-cpu" aria-label="CPU usage history"></canvas>
+    </article>
+
+    <article class="monitor-chart">
+        <div class="monitor-chart-header">
+            <div>
+                <h3>RAM Usage</h3>
+                <p>JVM heap utilization</p>
+            </div>
+            <strong id="graph-ram-value">—%</strong>
+        </div>
+        <canvas id="graph-ram" aria-label="RAM usage history"></canvas>
+    </article>
+
+    <article class="monitor-chart">
+        <div class="monitor-chart-header">
+            <div>
+                <h3>TPS</h3>
+                <p>Ticks per second</p>
+            </div>
+            <strong id="graph-tps-value">—</strong>
+        </div>
+        <canvas id="graph-tps" aria-label="TPS history"></canvas>
+    </article>
+
+    <article class="monitor-chart">
+        <div class="monitor-chart-header">
+            <div>
+                <h3>MSPT</h3>
+                <p>Milliseconds per tick</p>
+            </div>
+            <strong id="graph-mspt-value">— ms</strong>
+        </div>
+        <canvas id="graph-mspt" aria-label="MSPT history"></canvas>
+    </article>
+</div>
+</section>
+        <section id="view-modules" class="view hidden">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">MODULE MANAGEMENT</div>
+                    <h2>Modules</h2>
+                    <p class="muted">Toggle module configuration flags. Restart may be required.</p>
+                </div>
+            </div>
+            <div id="module-list" class="module-list"></div>
+        </section>
+
+        <section id="view-file" class="view hidden">
+            <div class="file-toolbar">
+                <div>
+                    <div class="eyebrow">YAML CONFIGURATION</div>
+                    <h2 id="file-title">Select a file</h2>
+                    <p id="file-path" class="muted"></p>
+                </div>
+                <button id="add-key-open" class="button primary">+ Add YAML key</button>
+            </div>
+            <div id="settings-list" class="settings-list"></div>
+            <div id="empty-file" class="empty-state hidden">This file has no editable values yet.</div>
+            <div class="save-note"><span class="status-dot"></span> Changes are saved directly to the selected YAML file.</div>
+        </section>
+
+        <section id="view-security" class="view hidden">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">ACCOUNT SECURITY</div>
+                    <h2>Security</h2>
+                    <p class="muted">Your panel password is stored as a salted PBKDF2 hash.</p>
+                </div>
+            </div>
+            <form id="password-form" class="panel-card form-card">
+                <h3>Change panel password</h3>
+                <label>Current password
+                    <input name="current" type="password" autocomplete="current-password" required>
+                </label>
+                <label>New password
+                    <input name="next" type="password" minlength="12" autocomplete="new-password" required>
+                    <small>Use at least 12 characters.</small>
+                </label>
+                <button class="button primary" type="submit">Update password</button>
+                <p id="password-result" class="muted"></p>
+            </form>
+            <div class="notice warning">
+                <b>Network security</b>
+                <span>This embedded server defaults to localhost. Do not expose it over plain HTTP. Worldwide access requires a properly secured HTTPS tunnel or relay.</span>
+            </div>
+        </section>
+    </main>
+</div>
+
+<dialog id="add-dialog" class="modal">
+    <form id="add-form" method="dialog">
+        <div class="modal-head">
+            <div>
+                <div class="eyebrow">CONFIGURATION</div>
+                <h2>Add YAML key</h2>
+            </div>
+            <button class="icon-button" type="button" id="add-close" aria-label="Close">×</button>
+        </div>
+        <label>Key path
+            <input name="key" placeholder="modules.example.enabled" required>
+        </label>
+        <label>Value type
+            <select name="type">
+                <option value="string">Text</option>
+                <option value="boolean">On / Off</option>
+                <option value="number">Number</option>
+                <option value="list">List (one item per line)</option>
+            </select>
+        </label>
+        <label>Value
+            <textarea name="value" rows="3" placeholder="Enter value"></textarea>
+        </label>
+        <div class="modal-actions">
+            <button class="button secondary" type="button" id="add-cancel">Cancel</button>
+            <button class="button primary" id="add-submit" value="default">Add key</button>
+        </div>
+        <p id="add-error" class="error"></p>
+    </form>
+</dialog>
+
+<div id="toast" class="toast" role="status"></div>
+</body>
+</html>

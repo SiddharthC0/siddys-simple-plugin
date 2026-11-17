@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "org.siddharth"
-version = "2.5.1"
+version = "3.0.0"
 
 base {
     archivesName.set("SiddysSimplePlugin")
@@ -32,6 +32,7 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:26.3-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.7")
     compileOnly("com.github.milkbowl:VaultAPI:1.7.1")
+    compileOnly("org.apache.logging.log4j:log4j-core:2.19.0")
 }
 
 
