@@ -5,28 +5,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark light">
-<title>SSMP Control Panel</title>
+<title>Siddy's Control Panel</title>
 <link rel="stylesheet" href="/css/main.css">
 <script src="/js/api.js" defer></script>
 <script src="/js/app.js" defer></script>
 </head>
-<body>
+<body style="background-image: url(./css/image/background_login.png); background-size: cover;">
 <div class="app-shell">
     <div class="topbar">
-    <div class="topbar-brand">SSMP Control Panel</div>
+    <div class="topbar-brand">Siddy's Simple Plugin - Control Panel</div>
     <div class="topbar-menu">
-        <button class="nav-item" data-view="security"><span>◇</span> Security</button>
-            <button class="nav-item" id="theme-toggle"><span>◐</span> Toggle theme</button>
-            <button class="nav-item" id="logout"><span>↪</span> Sign out</button>
+        <button class="nav-item" data-view="security">Security settings</button>
+            <button class="nav-item" id="theme-toggle">Toggle theme</button>
+            <button class="nav-item" id="logout"> Log out</button>
     </div>
 </div>
     <aside class="sidebar">
         <div class="nav-label">MAIN</div>
-        <button class="nav-item active" data-view="overview">Overview</button>
-        <button class="nav-item" data-view="modules">Modules</button>
-        <button class="nav-item" data-view="monitor">Monitor</button>
+        <button class="nav-item active" data-view="overview">Home</button>
+        <button class="nav-item" data-view="modules">Module Control</button>
+        <button class="nav-item" data-view="monitor">Server Stats</button>
         <div class="nav-label nav-files-label">Configuration files</div>
-        <div id="file-nav" class="file-nav"><div class="nav-loading">Loading files…</div></div>
+        <div id="file-nav" class="file-nav"><div class="nav-loading">Loading</div></div>
         <div class="sidebar-bottom">
             
         </div>
@@ -46,23 +46,22 @@
     <div class="stat-grid">
         <article class="stat-card">
             <span class="stat-label">Online players</span>
-            <strong id="server-online">—</strong>
+            <strong id="server-online">N/A</strong>
             <small id="server-player-limit">Player capacity</small>
-        </article>
-        <article class="stat-card">
-            <span class="stat-label">Total players</span>
-            <strong id="server-total-players">—</strong>
-            <small>Known player data files</small>
         </article>
                 <article class="stat-card">
                     <span class="stat-label">Resource usage</span>
-                    <strong id="stat-resources">—</strong>
-                    <small id="stat-resource-details">Waiting for server statistics…</small>
+                    <strong id="stat-resources">N/A</strong>
+                    <small id="stat-resource-details">Loading</small>
                 </article>
+                <article class="stat-card">
+            <span class="stat-label">TPS</span>
+            <strong id="monitor-tps">N/A</strong>
+            <small>Ticks per second</small>
+        </article>
     </div>
-</section>
 
-            <section class="console-card">
+    <section class="console-card">
                 <div class="console-header">
                     <div>
                         <h2>Server Console</h2>
@@ -74,12 +73,13 @@
                 </div>
 
                 <form id="console-form" class="console-form">
-                    <span class="console-prompt">›</span>
+                    <span class="console-prompt"></span>
                     <input id="console-command" name="command" type="text" placeholder="Enter any command." autocomplete="on" maxlength="512" required
                     >
                     <button id="console-send" class="button primary" type="submit">Send</button>
                 </form>
             </section>
+</section>
         </section>
         <section id="view-monitor" class="view hidden">
     <div class="section-heading">
@@ -98,11 +98,6 @@
             <span class="stat-label">RAM Usage</span>
             <strong id="monitor-ram">—</strong>
             <small id="monitor-ram-details">JVM memory</small>
-        </article>
-        <article class="stat-card">
-            <span class="stat-label">TPS</span>
-            <strong id="monitor-tps">—</strong>
-            <small>Ticks per second</small>
         </article>
         <article class="stat-card">
             <span class="stat-label">MSPT</span>

@@ -58,14 +58,17 @@ button {
     position: fixed;
     inset: 0 auto 0 0;
     width: 200px;
-    background: var(--panel);
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
     z-index: 99;
-    border-radius: 10px;
-    margin: 1%;
     overflow-y: auto;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,.085);
+    box-shadow: 0 30px 100px rgba(0,0,0,.2);
+    backdrop-filter: blur(18px);
 }
 
 .brand {
@@ -195,6 +198,11 @@ button {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,.085);
+    box-shadow: 0 30px 100px rgba(0,0,0,.2);
+    backdrop-filter: blur(18px);
 }
 
 .topbar h1 {
@@ -234,12 +242,15 @@ button {
     font-weight: 700;
     font-size: 12px;
     transition: background .15s,border-color .15s,filter .15s;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,.085);
+    box-shadow: 0 30px 100px rgba(0,0,0,.2);
+    backdrop-filter: blur(18px);
 }
 
 .button.primary {
-    background: var(--lime);
     color: #101010;
-    border-color: var(--lime);
 }
 
 .button.primary:hover {
@@ -247,7 +258,6 @@ button {
 }
 
 .button.secondary {
-    background: var(--panel);
     color: var(--text);
 }
 
@@ -329,10 +339,14 @@ button {
 }
 
 .stat-card,.panel-card {
-    background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 30px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,.085);
+    box-shadow: 0 30px 100px rgba(0,0,0,.2);
+    backdrop-filter: blur(18px);
 }
 
 .stat-label {
@@ -384,10 +398,14 @@ button {
     display: flex;
     gap: 16px;
     align-items: flex-start;
-    background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 20px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,.085);
+    box-shadow: 0 30px 100px rgba(0,0,0,.2);
+    backdrop-filter: blur(18px);
 }
 
 .quick-icon {
@@ -459,7 +477,6 @@ button {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 14px 16px;
@@ -622,7 +639,6 @@ label small {
 }
 
 .modal {
-    background: var(--panel);
     color: var(--text);
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -696,21 +712,243 @@ label small {
     transform: translateY(0);
 }
 
+
+/* SSMP LOGIN REDESIGN */
+
 .login-page {
+    min-height: 100vh;
+    margin: 0;
+    padding: 50px clamp(24px, 9vw, 150px);
+    box-sizing: border-box;
     display: grid;
-    place-items: center;
-    padding: 20px;
-    background: radial-gradient(ellipse at 50% 25%,rgba(183,255,56,.07),transparent 50%),var(--bg);
+    grid-template-columns: minmax(300px, 400px) 1fr;
+    align-items: center;
+    gap: 40px;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 12% 15%, rgba(183,255,56,.055), transparent 40%),
+        radial-gradient(ellipse at 90% 85%, rgba(183,255,56,.035), transparent 45%),
+        var(--bg);
 }
 
-.login-card {
-    width: min(410px,100%);
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 36px;
-    box-shadow: var(--shadow);
+/* BACKGROUND */
+
+.login-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .16;
+    background-image: radial-gradient(var(--muted) .65px, transparent .65px);
+    background-size: 26px 26px;
+    mask-image: linear-gradient(90deg, black, transparent 85%);
 }
+
+/* LOGIN */
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    box-sizing: border-box;
+    padding: 42px;
+    position: relative;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,.085);
+    border-radius: 14px;
+    box-shadow: 0 30px 100px rgba(0,0,0,.2);
+    backdrop-filter: blur(18px);
+    animation: login-appear .7s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.login-card .eyebrow {
+    color: var(--accent, #b7ff38);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 3px;
+}
+
+.login-card h1 {
+    font-size: clamp(32px, 4vw, 43px);
+    font-weight: 750;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin: 18px 0 12px;
+}
+
+.login-card > p {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+/* INPUT */
+
+.login-card input[type="password"] {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 0 16px;
+    margin: 4px 0 17px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(0,0,0,.16);
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+}
+
+.login-card input[type="password"]:focus {
+    border-color: var(--accent, #b7ff38);
+    background: rgba(183,255,56,.025);
+    box-shadow: 0 0 0 3px rgba(183,255,56,.07);
+}
+
+/* BUTTON */
+
+.login-card .button.primary.full {
+    min-height: 49px;
+    border-radius: 8px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    transition: transform .2s, box-shadow .2s, filter .2s;
+}
+
+.login-card .button.primary.full:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 25px rgba(183,255,56,.12);
+    filter: brightness(1.06);
+}
+
+.login-card .button.primary.full:active {
+    transform: translateY(0);
+}
+
+/* ERROR */
+
+.login-card .error {
+    min-height: 18px;
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+/* CLOCK */
+.login-clock {
+    position: relative;
+    z-index: 1;
+    justify-self: end;
+    align-self: center;
+    margin-right: clamp(0px, 4vw, 65px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    gap: 18px;
+    user-select: none;
+    animation: clock-appear 1s .15s ease both;
+}
+
+
+
+.clock-time {
+    font-size: clamp(64px, 7vw, 100px);
+    font-weight: 750;
+    line-height: .95;
+    letter-spacing: -4px;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+
+.clock-date {
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: 4px;
+    color: var(--muted);
+}
+
+/* ANIMATIONS */
+
+@keyframes login-appear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes clock-appear {
+    from {
+        opacity: 0;
+        translate: 14px 0;
+    }
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 760px) {
+    .login-page {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 38px;
+        padding: 35px 20px;
+    }
+
+    .login-card {
+        max-width: 400px;
+        padding: 32px;
+    }
+
+    .login-clock {
+        writing-mode: horizontal-tb;
+        transform: none;
+        justify-self: center;
+        align-items: center;
+        margin: 0;
+        gap: 9px;
+    }
+
+    .clock-time {
+        font-size: 48px;
+        letter-spacing: -2px;
+    }
+
+    .clock-date {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 380px) {
+    .login-card {
+        padding: 25px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login-card,
+    .login-clock {
+        animation: none;
+    }
+
+    .login-card *,
+    .login-clock * {
+        transition: none !important;
+    }
+}
+
 
 .login-card .brand-mark {
     margin-bottom: 24px;
@@ -759,12 +997,30 @@ label small {
 /* Server console */
 
 .console-card {
-    background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 22px;
     margin-bottom: 30px;
     min-width: 0;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,.085);
+    box-shadow: 0 30px 100px rgba(0,0,0,.2);
+    backdrop-filter: blur(18px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login-card {
+        animation: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-card {
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
 }
 
 .console-header {
@@ -934,11 +1190,9 @@ label small {
         inset: auto;
         width: auto;
         height: auto;
-        margin: 0;
         padding: 13px;
         display: flex;
         flex-direction: column;
-        border-radius: 0;
         border-right: 0;
         border-bottom: 1px solid var(--border);
         overflow: visible;
@@ -1089,20 +1343,21 @@ label small {
 
 .sidebar {
     position: fixed;
-    top: calc(70px + 2%);
-    left: 1%;
-    bottom: 1%;
+    top: 6%;
     width: 200px;
-    background: var(--panel);
-    padding: 20px 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     z-index: 99;
-    border-radius: 10px;
     overflow-y: auto;
     box-sizing: border-box;
 
     border: 1px solid var(--border);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,.085);
+    box-shadow: 0 30px 100px rgba(0,0,0,.2);
+    backdrop-filter: blur(18px);
 }
 
 .main-content {
@@ -1142,14 +1397,11 @@ label small {
 
 .topbar {
     position: fixed;
-    top: 2%;
-    left: 1%;
-    right: 1%;
+    left: 0%;
+    right: 0%;
     height: 45px;
     padding: 0 18px;
-    background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 8px;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -1187,19 +1439,17 @@ label small {
 
 .sidebar {
     position: fixed;
-    top: calc(55px + 2%);
-    left: 1%;
-    bottom: 3%;
     width: 200px;
-    margin: 0;
-    padding: 18px 8px;
-    background: var(--panel);
-    border-radius: 10px;
+    padding: 18px;
     display: flex;
-    flex-direction: column;
     overflow-y: auto;
     box-sizing: border-box;
     z-index: 99;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,.085);
+    box-shadow: 0 30px 100px rgba(0,0,0,.2);
+    backdrop-filter: blur(18px);
 }
 
 .main {
@@ -1291,7 +1541,7 @@ label small {
 .monitor-chart canvas {
     display: block;
     width: 100%;
-    height: 170px;
+    height: 100px;
 }
 
 .monitor-chart-footer {
@@ -1319,3 +1569,4 @@ label small {
     white-space: nowrap;
     height: 40px;
 }
+

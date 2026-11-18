@@ -640,7 +640,6 @@ async function pollConsole() {
 
             $("#stat-resource-details").textContent = ramText + " · " + cpuText;
         } catch {
-            $("#stat-resources").textContent = "—";
             $("#stat-resource-details").textContent = "Statistics unavailable";
         }
     }
@@ -729,6 +728,7 @@ async function pollConsole() {
             refreshServerOverview();
         }, 7000);
     }
+    
 
     $$(".nav-item[data-view]").forEach(button => {
         button.addEventListener("click", async () => {
