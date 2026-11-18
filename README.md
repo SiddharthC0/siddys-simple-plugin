@@ -36,7 +36,9 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
 </p>
 <br><hr>
 <p align="center">
-
+<h2>Wonders of RPG : The central dashboard</h2>
+Turn the server that wasn't even supposed to be controlled by a dashboard into one you can access from anywhere. Configure the plugin, use the console and monitor the statistics. More coming soon.
+<img src="https://raw.githubusercontent.com/SiddharthC0/siddys-simple-plugin/refs/heads/main/external-textures/example-dashboard.png" alt="dashboard-example-picture">
 </p>
 <hr>
 <br><br>
