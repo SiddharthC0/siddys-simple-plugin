@@ -8,16 +8,7 @@
   <hr>
 <p>
   <a href="https://modrinth.com/project/mIr78G7Z">
-  <img alt="modrinth" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/modrinth_vector.svg"> </a>
-  <a href="https://hangar.papermc.io/SiddharthC0/SiddysSimplePlugin">
-  <img alt="hangar" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/hangar_vector.svg">
- </a>
- <a href="https://www.curseforge.com/minecraft/bukkit-plugins/siddys-simple-plugin">
-  <img style="filter: grayscale(100%);"  alt="curseforge" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/curseforge_vector.svg">
-  </a>
-  <a href="https://www.spigotmc.org/resources/siddys-simple-plugin.140401/"><img alt="spigot" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/supported/spigot_vector.svg"></a>
-<a href="https://github.com/SiddharthC0/siddys-simple-plugin"><img alt="github-plural" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/social/github-plural_vector.svg">
-</a>
+  <img alt="modrinth" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/modrinth_vector.svg"></a> <a href="https://hangar.papermc.io/SiddharthC0/SiddysSimplePlugin"><img alt="hangar" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/hangar_vector.svg"></a> <a href="https://www.curseforge.com/minecraft/bukkit-plugins/siddys-simple-plugin"><img style="filter: grayscale(100%);"  alt="curseforge" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/curseforge_vector.svg"></a> <a href="https://www.spigotmc.org/resources/siddys-simple-plugin.140401/"><img alt="spigot" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/supported/spigot_vector.svg"></a> <a href="https://github.com/SiddharthC0/siddys-simple-plugin"><img alt="github-plural" height="65" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/social/github-plural_vector.svg"></a>
 </p>
 <p>
   <img alt="sheilds-modrinth" src="https://img.shields.io/modrinth/dt/mIr78G7Z?style=for-the-badge&logo=modrinth&logoColor=%23FFEF00">
@@ -37,7 +28,8 @@ To actually show how this server is unique, count how many <b>paper plugins</b> 
 <br><hr>
 <p align="center">
 <h2>Wonders of RPG : The central dashboard</h2>
-Turn the server that wasn't even supposed to be controlled by a dashboard into one you can access from anywhere. Configure the plugin, use the console and monitor the statistics. More coming soon.
+Turn the server that wasn't even supposed to be controlled by a dashboard into one you can access from anywhere. Configure the plugin, use the console and monitor the statistics. This dashboard package will also include a client package, and soon a Passive FTP service willalso be embedded into this (PASV). <br>
+  <br><br>
 <img src="https://raw.githubusercontent.com/SiddharthC0/siddys-simple-plugin/refs/heads/main/external-textures/example-dashboard.png" alt="dashboard-example-picture">
 </p>
 <hr>
@@ -57,6 +49,10 @@ Turn the server that wasn't even supposed to be controlled by a dashboard into o
 - Contracts
 - Bounties
 - Levels system
+- **NEW** Central Control Dashboard
+- **NEW** Update Checker
+- **NEW** Auto-Bug solving
+- **NEW** Documentation Available !
 
 <br><br>
 <hr>
