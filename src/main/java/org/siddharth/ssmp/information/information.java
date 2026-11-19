@@ -1,12 +1,4 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.information;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -23,11 +15,9 @@ import java.util.TreeSet;
 import java.util.jar.JarFile;
 
 public class information {
-
     private final JavaPlugin plugin;
     private final Path manifest;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
     public information(JavaPlugin plugin) {
         this.plugin = plugin;
         this.manifest = plugin.getDataFolder().toPath().resolve("ssmp.manifest");
@@ -36,9 +26,7 @@ public class information {
     public void create() {
         try {
             Files.createDirectories(plugin.getDataFolder().toPath());
-
             JsonObject data;
-
             if (Files.exists(manifest)) {
                 try {
                     data = JsonParser.parseString(Files.readString(manifest)).getAsJsonObject();
@@ -49,7 +37,6 @@ public class information {
             } else {
                 data = new JsonObject();
             }
-
             data.addProperty("plugin", "Siddy's Simple Plugin");
             data.addProperty("developer", "Siddharth C");
             data.addProperty("version", plugin.getDescription().getVersion());
@@ -61,71 +48,39 @@ public class information {
             data.addProperty("last-refreshed", java.time.Instant.now().toString());
 
             JsonObject modules = discoverClasses();
-
             data.add("modules", modules);
-
-            if (!data.has("checklist")) {
-                JsonArray checklist = new JsonArray();
-
-                checklist.add(createTask("Complete module implementation", false));
-                checklist.add(createTask("Test all commands", false));
-                checklist.add(createTask("Test permissions", false));
-                checklist.add(createTask("Check configuration compatibility", false));
-                checklist.add(createTask("Update documentation", false));
-                checklist.add(createTask("Prepare release", false));
-
-                data.add("checklist", checklist);
-            }
-
             if (!data.has("notes")) {
                 data.add("notes", new JsonArray());
             }
-
             if (!data.has("release-history")) {
                 data.add("release-history", new JsonArray());
             }
 
             Files.writeString(manifest, gson.toJson(data));
-
             plugin.getLogger().info("SSMP manifest refreshed.");
-
         } catch (Exception e) {
-            plugin.getLogger().warning("Could not create SSMP manifest: " + e.getMessage());
+            plugin.getLogger().warning("SSMP Manifest failed to create due to exception : " + e.getMessage());
         }
     }
 
     private JsonObject discoverClasses() throws Exception {
         Map<String, TreeSet<String>> packages = new TreeMap<>();
-
         String root = "org/siddharth/ssmp/";
-        Path source = Path.of(
-                information.class.getProtectionDomain()
-                        .getCodeSource()
-                        .getLocation()
-                        .toURI()
-        );
-
+        Path source = Path.of(information.class.getProtectionDomain().getCodeSource().getLocation().toURI());
         if (Files.isDirectory(source)) {
             try (var paths = Files.walk(source.resolve(root))) {
-                paths.filter(path -> path.toString().endsWith(".class"))
-                        .forEach(path -> addClass(packages, root, source.relativize(path).toString().replace('\\', '/')));
+                paths.filter(path -> path.toString().endsWith(".class")).forEach(path -> addClass(packages, root, source.relativize(path).toString().replace('\\', '/')));
             }
         } else {
             try (JarFile jar = new JarFile(source.toFile())) {
-                jar.stream()
-                        .filter(entry -> entry.getName().startsWith(root))
-                        .filter(entry -> entry.getName().endsWith(".class"))
-                        .forEach(entry -> addClass(packages, root, entry.getName()));
+                jar.stream().filter(entry -> entry.getName().startsWith(root)).filter(entry -> entry.getName().endsWith(".class")).forEach(entry -> addClass(packages, root, entry.getName()));
             }
         }
 
         JsonObject result = new JsonObject();
-
         for (Map.Entry<String, TreeSet<String>> entry : packages.entrySet()) {
             JsonArray classes = new JsonArray();
-
             entry.getValue().forEach(classes::add);
-
             result.add(entry.getKey(), classes);
         }
 
@@ -138,21 +93,14 @@ public class information {
         }
 
         String className = path.substring(root.length(), path.length() - 6);
-
         if (className.equals("module-info") || className.equals("package-info")) {
             return;
         }
 
         int separator = className.lastIndexOf('/');
-
-        String packageName = separator == -1
-                ? "root"
-                : className.substring(0, separator).replace('/', '.');
-
+        String packageName = separator == -1 ? "root" : className.substring(0, separator).replace('/', '.');
         String simpleName = className.substring(separator + 1);
-
-        packages.computeIfAbsent(packageName, key -> new TreeSet<>())
-                .add(simpleName);
+        packages.computeIfAbsent(packageName, key -> new TreeSet<>()).add(simpleName);
     }
 
     private JsonObject createTask(String task, boolean completed) {

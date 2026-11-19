@@ -39,7 +39,7 @@ public class updateChecker implements Listener {
 
     public updateChecker(JavaPlugin plugin) {
         this.plugin = plugin;
-        this.configFile = new File("ssmp-update.txt");
+        this.configFile = new File(plugin.getDataFolder(), "ssmp-update.txt");
     }
 
     public void check() {
