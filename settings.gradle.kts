@@ -1,1 +1,1 @@
-rootProject.name = "ssmp"
+rootProject.name = "SiddysSimplePlugin"

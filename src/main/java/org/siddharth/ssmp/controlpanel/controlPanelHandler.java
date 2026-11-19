@@ -1,14 +1,4 @@
-
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
-
 package org.siddharth.ssmp.controlpanel;
-
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -25,11 +15,9 @@ final class controlPanelHandler implements HttpHandler {
     private final JavaPlugin plugin;
     private final controlPanelAPI api;
     private final Map<String, LoginAttempt> loginAttempts = new ConcurrentHashMap<>();
-
     private static final long LOCK_DURATION = 300000;
     private static final int MAX_LOGIN_ATTEMPTS = 5;
     private static final int MAX_REQUEST_SIZE = 16384;
-
     private static final class LoginAttempt {
         private int failures;
         private long lockedUntil;
@@ -44,27 +32,19 @@ final class controlPanelHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         try {
             securityHeaders(exchange.getResponseHeaders());
-
             String path = exchange.getRequestURI().getPath();
             String method = exchange.getRequestMethod();
-
             if (path.equals("/api/login")) {
                 handleLogin(exchange, method);
                 return;
-            }
-
-            if (path.equals("/api/logout")) {
+            } else if (path.equals("/api/logout")) {
                 handleLogout(exchange, method);
                 return;
-            }
-
-            if (path.equals("/api/console/stream")) {
+            } else if (path.equals("/api/console/stream")) {
                 if (!method.equals("GET")) {
                     send(exchange, 405, "{\"error\":\"GET required.\"}");
                     return;
-                }
-
-                if (!api.validSession(cookie(exchange, "SSMPSESSION"))) {
+                } else if (!api.validSession(cookie(exchange, "SSMPSESSION"))) {
                     send(exchange, 401, "{\"error\":\"Authentication required.\"}");
                     return;
                 }
@@ -123,12 +103,8 @@ final class controlPanelHandler implements HttpHandler {
             sendError(exchange, 400, exception.getMessage());
 
         } catch (Exception exception) {
-            plugin.getLogger().warning(
-                    "[SSMP Control Panel] Request failed: " + exception.getMessage()
-            );
-
-            sendError(exchange, 500, "The request could not be completed.");
-
+            plugin.getLogger().warning("[SSMP Control Panel] Request failed: " + exception.getMessage());
+            sendError(exchange, 500, "The request wasn't completed successfully.");
         } finally {
             exchange.close();
         }
@@ -145,18 +121,10 @@ final class controlPanelHandler implements HttpHandler {
             return;
         }
 
-        String address = exchange.getRemoteAddress().getAddress() == null
-                ? "unknown"
-                : exchange.getRemoteAddress().getAddress().getHostAddress();
-
-        LoginAttempt attempt = loginAttempts.computeIfAbsent(
-                address,
-                ignored -> new LoginAttempt()
-        );
-
+        String address = exchange.getRemoteAddress().getAddress() == null ? "unknown" : exchange.getRemoteAddress().getAddress().getHostAddress();
+        LoginAttempt attempt = loginAttempts.computeIfAbsent(address, ignored -> new LoginAttempt());
         synchronized (attempt) {
             long now = System.currentTimeMillis();
-
             if (attempt.lockedUntil > now) {
                 send(exchange, 429, "{\"error\":\"Too many attempts. Try again later.\"}");
                 return;
@@ -169,11 +137,9 @@ final class controlPanelHandler implements HttpHandler {
         }
 
         Map<String, String> form = readForm(exchange);
-
         if (!api.login(form.getOrDefault("password", ""))) {
             synchronized (attempt) {
                 attempt.failures++;
-
                 if (attempt.failures >= MAX_LOGIN_ATTEMPTS) {
                     attempt.lockedUntil = System.currentTimeMillis() + LOCK_DURATION;
                     attempt.failures = 0;
@@ -185,14 +151,8 @@ final class controlPanelHandler implements HttpHandler {
         }
 
         loginAttempts.remove(address);
-
         String token = api.newSession();
-
-        exchange.getResponseHeaders().add(
-                "Set-Cookie",
-                "SSMPSESSION=" + token + "; HttpOnly; SameSite=Strict; Path=/"
-        );
-
+        exchange.getResponseHeaders().add("Set-Cookie", "SSMPSESSION=" + token + "; HttpOnly; SameSite=Strict; Path=/");
         send(exchange, 200, "{\"authenticated\":true}");
     }
 
@@ -208,20 +168,11 @@ final class controlPanelHandler implements HttpHandler {
         }
 
         api.logout(cookie(exchange, "SSMPSESSION"));
-
-        exchange.getResponseHeaders().add(
-                "Set-Cookie",
-                "SSMPSESSION=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0"
-        );
-
+        exchange.getResponseHeaders().add("Set-Cookie", "SSMPSESSION=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0");
         send(exchange, 200, "{\"loggedOut\":true}");
     }
 
-    private void handleAPI(
-            HttpExchange exchange,
-            String method,
-            String path
-    ) throws Exception {
+    private void handleAPI(HttpExchange exchange, String method, String path) throws Exception {
         if (!api.validSession(cookie(exchange, "SSMPSESSION"))) {
             send(exchange, 401, "{\"error\":\"Authentication required.\"}");
             return;
@@ -237,57 +188,42 @@ final class controlPanelHandler implements HttpHandler {
             return;
         }
 
-        Map<String, String> params = method.equals("GET")
-                ? controlPanelAPI.decodeForm(exchange.getRequestURI().getRawQuery())
-                : readForm(exchange);
-
+        Map<String, String> params = method.equals("GET") ? controlPanelAPI.decodeForm(exchange.getRequestURI().getRawQuery()) : readForm(exchange);
         String response = api.handle(method, path, params);
         send(exchange, 200, response);
     }
 
     private String contentType(String path) {
         String lower = path.toLowerCase(java.util.Locale.ROOT);
-
         if (lower.endsWith(".css")) {
             return "text/css; charset=utf-8";
         }
-
         if (lower.endsWith(".js")) {
             return "text/javascript; charset=utf-8";
         }
-
         if (lower.endsWith(".png")) {
             return "image/png";
         }
-
         if (lower.endsWith(".jpg") || lower.endsWith(".jpeg")) {
             return "image/jpeg";
         }
-
         if (lower.endsWith(".svg")) {
             return "image/svg+xml";
         }
-
         if (lower.endsWith(".ico")) {
             return "image/x-icon";
         }
-
         if (lower.endsWith(".woff")) {
             return "font/woff";
         }
-
         if (lower.endsWith(".woff2")) {
             return "font/woff2";
         }
-
+        // More formats are well, not required (LIE)
         return "application/octet-stream";
     }
 
-    private void serveResource(
-            HttpExchange exchange,
-            String resource,
-            String contentType
-    ) throws IOException {
+    private void serveResource(HttpExchange exchange, String resource, String contentType) throws IOException {
         try (InputStream input = plugin.getResource(resource.substring(1))) {
             if (input == null) {
                 send(exchange, 404, "{\"error\":\"Missing bundled resource.\"}");
@@ -295,10 +231,8 @@ final class controlPanelHandler implements HttpHandler {
             }
 
             byte[] bytes = input.readAllBytes();
-
             exchange.getResponseHeaders().set("Content-Type", contentType);
             exchange.getResponseHeaders().set("Cache-Control", "no-store");
-
             exchange.sendResponseHeaders(200, bytes.length);
             exchange.getResponseBody().write(bytes);
         }
@@ -306,14 +240,11 @@ final class controlPanelHandler implements HttpHandler {
 
     private Map<String, String> readForm(HttpExchange exchange) throws IOException {
         byte[] bytes = exchange.getRequestBody().readNBytes(MAX_REQUEST_SIZE + 1);
-
         if (bytes.length > MAX_REQUEST_SIZE) {
             throw new IllegalArgumentException("Request too large.");
         }
 
-        return controlPanelAPI.decodeForm(
-                new String(bytes, StandardCharsets.UTF_8)
-        );
+        return controlPanelAPI.decodeForm(new String(bytes, StandardCharsets.UTF_8));
     }
 
     private String cookie(HttpExchange exchange, String name) {
@@ -325,41 +256,26 @@ final class controlPanelHandler implements HttpHandler {
 
         for (String part : header.split(";")) {
             String[] pair = part.trim().split("=", 2);
-
             if (pair.length == 2 && pair[0].equals(name)) {
                 return pair[1];
             }
         }
-
         return null;
     }
 
     private boolean sameOrigin(HttpExchange exchange) {
         String origin = exchange.getRequestHeaders().getFirst("Origin");
         if (origin == null) return false;
-
         String host = exchange.getRequestHeaders().getFirst("Host");
         if (host == null || host.isBlank()) return false;
-
         try {
             URI uri = URI.create(origin);
-
-            if (uri.getScheme() == null
-                    || uri.getHost() == null
-                    || uri.getUserInfo() != null
-                    || uri.getPath() != null && !uri.getPath().isEmpty()
-                    || uri.getQuery() != null
-                    || uri.getFragment() != null) {
+            if (uri.getScheme() == null || uri.getHost() == null || uri.getUserInfo() != null || uri.getPath() != null && !uri.getPath().isEmpty() || uri.getQuery() != null || uri.getFragment() != null) {
                 return false;
             }
 
             String originHost = uri.getRawAuthority();
-
-            return originHost != null
-                    && originHost.equalsIgnoreCase(host)
-                    && (uri.getScheme().equalsIgnoreCase("http")
-                    || uri.getScheme().equalsIgnoreCase("https"));
-
+            return originHost != null && originHost.equalsIgnoreCase(host) && (uri.getScheme().equalsIgnoreCase("http") || uri.getScheme().equalsIgnoreCase("https"));
         } catch (IllegalArgumentException exception) {
             return false;
         }
@@ -371,55 +287,23 @@ final class controlPanelHandler implements HttpHandler {
         headers.set("Referrer-Policy", "no-referrer");
         headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
-        headers.set(
-                "Content-Security-Policy",
-                "default-src 'self'; " +
-                        "style-src 'self'; " +
-                        "script-src 'self'; " +
-                        "img-src 'self' data:; " +
-                        "connect-src 'self'; " +
-                        "frame-ancestors 'none'; " +
-                        "base-uri 'none'; " +
-                        "form-action 'self'"
-        );
-
+        headers.set("Content-Security-Policy", "default-src 'self'; " + "style-src 'self'; " + "script-src 'self'; " + "img-src 'self' data:; " + "connect-src 'self'; " + "frame-ancestors 'none'; " + "base-uri 'none'; " + "form-action 'self'");
         headers.set("Cache-Control", "no-store");
     }
 
-    private void sendError(
-            HttpExchange exchange,
-            int status,
-            String message
-    ) throws IOException {
+    private void sendError(HttpExchange exchange, int status, String message) throws IOException {
         if (exchange.getResponseCode() != -1) {
             return;
         }
-
-        String safeMessage = controlPanelAPI.escape(
-                message == null ? "Unknown error." : message
-        );
-
-        send(
-                exchange,
-                status,
-                "{\"error\":\"" + safeMessage + "\"}"
-        );
+        // Look how i saved space <swag_emoji_here_pls>
+        String safeMessage = controlPanelAPI.escape(message == null ? "Unknown error." : message);
+        send(exchange, status, "{\"error\":\"" + safeMessage + "\"}");
     }
 
-    private void send(
-            HttpExchange exchange,
-            int status,
-            String body
-    ) throws IOException {
+    private void send(HttpExchange exchange, int status, String body) throws IOException {
         byte[] bytes = body.getBytes(StandardCharsets.UTF_8);
-
-        exchange.getResponseHeaders().set(
-                "Content-Type",
-                "application/json; charset=utf-8"
-        );
-
+        exchange.getResponseHeaders().set("Content-Type", "application/json; charset=utf-8");
         exchange.getResponseHeaders().set("Cache-Control", "no-store");
-
         exchange.sendResponseHeaders(status, bytes.length);
         exchange.getResponseBody().write(bytes);
     }

@@ -1,12 +1,4 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.gui;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -28,31 +20,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 public class bountyGUI implements Listener {
-
     private final bountySystem bounties;
     private final economy economy;
     private final File folder;
     private final File configFile;
     private final YamlConfiguration config;
-
-    public bountyGUI(
-            bountySystem bounties,
-            economy economy
-    ) {
+    public bountyGUI(bountySystem bounties, economy economy) {
         this.bounties = bounties;
         this.economy = economy;
-
-        folder = new File(
-                bounties.getPlugin().getDataFolder(),
-                "bountygui"
-        );
-
+        folder = new File(bounties.getPlugin().getDataFolder(), "bountygui");
         if (!folder.exists() && !folder.mkdirs()) {
-            throw new IllegalStateException(
-                    "Failed to create bountygui directory."
-            );
+            throw new IllegalStateException("Bounty folder could not be made!");
         }
 
         configFile = new File(folder, "config.yml");
@@ -60,15 +39,10 @@ public class bountyGUI implements Listener {
         if (!configFile.exists()) {
             try {
                 if (!configFile.createNewFile()) {
-                    throw new IOException(
-                            "Could not create bountygui config.yml."
-                    );
+                    throw new IOException("Bounty in config.yml could not be created...");
                 }
             } catch (IOException e) {
-                throw new IllegalStateException(
-                        "Failed to create bountygui config.yml.",
-                        e
-                );
+                throw new IllegalStateException("Bounty config couldn't be created due to exception: ", e);
             }
         }
 
@@ -85,10 +59,7 @@ public class bountyGUI implements Listener {
         try {
             config.save(configFile);
         } catch (IOException e) {
-            throw new IllegalStateException(
-                    "Failed to save bountygui config.yml.",
-                    e
-            );
+            throw new IllegalStateException("Bounty config couldn't be created because of exception: ", e);
         }
     }
 
@@ -96,62 +67,39 @@ public class bountyGUI implements Listener {
         if (player == null) {
             return;
         }
-
         int size = config.getInt("gui.size", 54);
-
         if (size < 18 || size > 54 || size % 9 != 0) {
             size = 54;
         }
 
-        int maxEntries = Math.max(
-                1,
-                Math.min(
-                        config.getInt("gui.max-entries", 45),
-                        size - 9
-                )
-        );
+        int maxEntries = Math.max(1, Math.min(config.getInt("gui.max-entries", 45), size - 9));
 
         Holder gui = new Holder();
-        Inventory inventory = Bukkit.createInventory(
-                gui,
-                size,
-                ChatColor.translateAlternateColorCodes(
-                        '&',
-                        config.getString("gui.title", "&4SSMP Bounties")
-                )
-        );
+        Inventory inventory = Bukkit.createInventory(gui, size, ChatColor.translateAlternateColorCodes('&', config.getString("gui.title", "&4SSMP Bounties")));
 
         gui.setInventory(inventory);
-
         int slot = 0;
-
         for (UUID uuid : bounties.getBountyTargets()) {
             if (slot >= maxEntries) {
                 break;
             }
 
             OfflinePlayer target = Bukkit.getOfflinePlayer(uuid);
-            String name = target.getName() == null
-                    ? uuid.toString()
-                    : target.getName();
 
+            // AI gave me this tenary so it could be wrong
+            String name = target.getName() == null ? uuid.toString() : target.getName();
             ItemStack item = new ItemStack(Material.PLAYER_HEAD);
             ItemMeta meta = item.getItemMeta();
-
             if (meta == null) {
                 continue;
             }
 
             meta.setDisplayName(ChatColor.RED + name);
-
             List<String> lore = new ArrayList<>();
             lore.add(ChatColor.GRAY + "Current bounty:");
-            lore.add(
-                    ChatColor.GOLD
-                            + (economy == null
-                            ? String.valueOf(bounties.getBounty(uuid))
-                            : economy.formatMoney(bounties.getBounty(uuid)))
-            );
+
+            // and i made this tenary myself :D
+            lore.add(ChatColor.GOLD + (economy == null ? String.valueOf(bounties.getBounty(uuid)) : economy.formatMoney(bounties.getBounty(uuid))));
             lore.add("");
             lore.add(ChatColor.GRAY + "Target UID:");
             lore.add(ChatColor.DARK_GRAY + uuid.toString());
@@ -172,9 +120,7 @@ public class bountyGUI implements Listener {
             return;
         }
 
-        if (event.getRawSlot() < 0
-                || event.getRawSlot()
-                >= event.getView().getTopInventory().getSize()) {
+        if (event.getRawSlot() < 0 || event.getRawSlot() >= event.getView().getTopInventory().getSize()) {
             return;
         }
 
@@ -186,9 +132,7 @@ public class bountyGUI implements Listener {
     }
 
     private static class Holder implements InventoryHolder {
-
         private Inventory inventory;
-
         public void setInventory(Inventory inventory) {
             this.inventory = inventory;
         }

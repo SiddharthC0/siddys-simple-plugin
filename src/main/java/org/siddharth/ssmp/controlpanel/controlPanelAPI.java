@@ -1,13 +1,4 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
-
 package org.siddharth.ssmp.controlpanel;
-
 import com.sun.management.OperatingSystemMXBean;
 import com.sun.net.httpserver.HttpExchange;
 import org.apache.logging.log4j.LogManager;
@@ -41,18 +32,16 @@ final class controlPanelAPI {
     private final controlPanelManifest manifest;
     private final Map<String, Long> sessions = Collections.synchronizedMap(new HashMap<>());
     private static final long SESSION_LIFETIME = TimeUnit.MINUTES.toMillis(30);
-    private static final int MAX_CONSOLE_HISTORY = 200;
-    private static final int MAX_CONSOLE_SUBSCRIBER_QUEUE = 256;
 
+    // Configure MAXCONSOLEHISTORY to make things less destructive if you're tryna set this up for a 'not a beast' server
+    private static final int MAX_CONSOLE_HISTORY = 500;
+    private static final int MAX_CONSOLE_SUBSCRIBER_QUEUE = 256;
     private volatile Runnable updateCheckAction;
     private volatile boolean closed;
-
     private final ArrayDeque<String> consoleHistory = new ArrayDeque<>();
     private final List<BlockingQueue<String>> consoleSubscribers = new CopyOnWriteArrayList<>();
     private final DateTimeFormatter consoleTime = DateTimeFormatter.ofPattern("HH:mm:ss");
-
     private final long startedAt = System.currentTimeMillis();
-
     private final long[] tickSamples = new long[100];
     private int tickSampleIndex;
     private int tickSampleCount;
@@ -61,7 +50,6 @@ final class controlPanelAPI {
 
     private volatile double currentTps = 20.0;
     private volatile double currentMspt = 0.0;
-
     private final BukkitTask monitorTask;
     private final AbstractAppender log4jAppender;
 
@@ -82,11 +70,9 @@ final class controlPanelAPI {
         };
 
         log4jAppender.start();
-
         LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
         ctx.getConfiguration().getRootLogger().addAppender(log4jAppender, Level.INFO, null);
         ctx.updateLoggers();
-
         monitorTask = Bukkit.getScheduler().runTaskTimer(plugin, this::recordTick, 1L, 1L);
     }
 
@@ -166,9 +152,15 @@ final class controlPanelAPI {
             default -> false;
         };
 
-        if (!postOnly && !getOnly) throw new IllegalArgumentException("Unknown API endpoint.");
-        if (postOnly && !method.equals("POST")) throw new IllegalArgumentException("This endpoint requires POST.");
-        if (getOnly && !method.equals("GET")) throw new IllegalArgumentException("This endpoint requires GET.");
+        if (!postOnly && !getOnly) {
+            throw new IllegalArgumentException("Unknown API endpoint.");
+        }
+        if (postOnly && !method.equals("POST")) {
+            throw new IllegalArgumentException("This endpoint requires POST.");
+        }
+        if (getOnly && !method.equals("GET")) {
+            throw new IllegalArgumentException("This endpoint requires GET.");
+        }
 
         return switch (path) {
             case "/api/session" -> "{\"authenticated\":true}";

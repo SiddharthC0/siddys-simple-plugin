@@ -94,6 +94,7 @@ public class placeholderSystem {
     private void registerDefaults() {
         register("player", Player::getName);
         register("player_name", Player::getName);
+        register("realname", Player::getName);
 
         register(
                 "player_health",

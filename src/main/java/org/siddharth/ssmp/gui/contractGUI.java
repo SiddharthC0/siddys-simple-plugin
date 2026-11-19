@@ -1,12 +1,4 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.gui;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -30,13 +22,11 @@ import java.util.List;
 import java.util.Map;
 
 public class contractGUI implements Listener {
-
     private static final int INVENTORY_SIZE = 54;
     private static final int CONTRACT_SLOTS = 45;
     private static final int PREVIOUS_SLOT = 45;
     private static final int PAGE_SLOT = 49;
     private static final int NEXT_SLOT = 53;
-
     private final contractSystem contracts;
     private final File folder;
     private final File configFile;
@@ -44,39 +34,24 @@ public class contractGUI implements Listener {
 
     public contractGUI(contractSystem contracts) {
         this.contracts = contracts;
-
         JavaPlugin plugin = contracts.getPlugin();
-
-        folder = new File(
-                plugin.getDataFolder(),
-                "contractsgui"
-        );
-
+        folder = new File(plugin.getDataFolder(), "contractsgui");
         if (!folder.exists() && !folder.mkdirs()) {
-            throw new IllegalStateException(
-                    "Failed to create contractsgui directory."
-            );
+            throw new IllegalStateException("Failed to create contractsgui folder.");
         }
 
         configFile = new File(folder, "config.yml");
-
         if (!configFile.exists()) {
             try {
                 if (!configFile.createNewFile()) {
-                    throw new IOException(
-                            "Could not create contractsgui config.yml."
-                    );
+                    throw new IOException("Could not create contractsgui config.yml.");
                 }
             } catch (IOException e) {
-                throw new IllegalStateException(
-                        "Failed to create contractsgui config.yml.",
-                        e
-                );
+                throw new IllegalStateException("Contracts config could not be created due to exception: ", e);
             }
         }
 
         config = YamlConfiguration.loadConfiguration(configFile);
-
         config.addDefault("gui.title", "&8SSMP Contracts");
         config.addDefault("gui.size", INVENTORY_SIZE);
         config.addDefault("gui.contract-slots", CONTRACT_SLOTS);
@@ -88,10 +63,7 @@ public class contractGUI implements Listener {
         try {
             config.save(configFile);
         } catch (IOException e) {
-            throw new IllegalStateException(
-                    "Failed to save contractsgui config.yml.",
-                    e
-            );
+            throw new IllegalStateException("Failed to save contractsgui config.yml.", e);
         }
     }
 
@@ -103,113 +75,44 @@ public class contractGUI implements Listener {
         if (player == null) {
             return;
         }
-
         List<String> contractList = contracts.getContracts();
-
         int size = config.getInt("gui.size", INVENTORY_SIZE);
-
         if (size != INVENTORY_SIZE) {
             size = INVENTORY_SIZE;
-        }
+        } // this has to be the useless thing in this entire code D:
+        int contractSlots = Math.max(1, Math.min(config.getInt("gui.contract-slots", CONTRACT_SLOTS), CONTRACT_SLOTS));
 
-        int contractSlots = Math.max(
-                1,
-                Math.min(
-                        config.getInt("gui.contract-slots", CONTRACT_SLOTS),
-                        CONTRACT_SLOTS
-                )
-        );
-
-        int totalPages = Math.max(
-                1,
-                (int) Math.ceil(
-                        contractList.size() / (double) contractSlots
-                )
-        );
-
+        int totalPages = Math.max(1, (int) Math.ceil(contractList.size() / (double) contractSlots));
         page = Math.max(0, Math.min(page, totalPages - 1));
-
-        Holder holder = new Holder(page);
-
-        Inventory inventory = Bukkit.createInventory(
-                holder,
-                size,
-                ChatColor.translateAlternateColorCodes(
-                        '&',
-                        config.getString(
-                                "gui.title",
-                                "&8SSMP Contracts"
-                        )
-                )
-        );
-
+        Holder holder = new Holder(page); // holder shall hold my page for me
+        Inventory inventory = Bukkit.createInventory(holder, size, ChatColor.translateAlternateColorCodes('&', config.getString("gui.title", "&8SSMP Contracts")));
         holder.setInventory(inventory);
-
         int start = page * contractSlots;
-        int end = Math.min(
-                start + contractSlots,
-                contractList.size()
-        );
+        int end = Math.min(start + contractSlots, contractList.size());
 
         for (int i = start; i < end; i++) {
             String id = contractList.get(i);
             int slot = i - start;
 
-            inventory.setItem(
-                    slot,
-                    createContractItem(player, id)
-            );
-
+            inventory.setItem(slot, createContractItem(player, id));
             holder.getSlots().put(slot, id);
         }
 
         if (page > 0) {
-            inventory.setItem(
-                    PREVIOUS_SLOT,
-                    createItem(
-                            Material.ARROW,
-                            ChatColor.YELLOW + "Previous Page",
-                            List.of(
-                                    ChatColor.GRAY + "Go to page " + page
-                            )
-                    )
-            );
+            inventory.setItem(PREVIOUS_SLOT, createItem(Material.ARROW,ChatColor.YELLOW + "Previous Page", List.of(ChatColor.GRAY + "Go to page " + page)));
         }
-
-        inventory.setItem(
-                PAGE_SLOT,
-                createItem(
-                        Material.PAPER,
-                        ChatColor.GOLD + "Page " + (page + 1),
-                        List.of(
-                                ChatColor.GRAY + "Page " + (page + 1)
-                                        + " of " + totalPages,
-                                ChatColor.GRAY + "Contracts: "
-                                        + contractList.size()
-                        )
-                )
-        );
+        inventory.setItem(PAGE_SLOT, createItem(Material.PAPER, ChatColor.GOLD + "Page " + (page + 1), List.of(ChatColor.GRAY + "Page " + (page + 1) + " of " + totalPages,
+                        ChatColor.GRAY + "Contracts: " + contractList.size()))); // i made it easy to understand becuz i care for u :>
 
         if (page < totalPages - 1) {
-            inventory.setItem(
-                    NEXT_SLOT,
-                    createItem(
-                            Material.ARROW,
-                            ChatColor.YELLOW + "Next Page",
-                            List.of(
-                                    ChatColor.GRAY + "Go to page "
-                                            + (page + 2)
-                            )
-                    )
-            );
+            inventory.setItem(NEXT_SLOT, createItem(Material.ARROW, ChatColor.YELLOW + "Next Page", List.of(ChatColor.GRAY + "Go to page "
+                                            + (page + 2))));
         }
-
         player.openInventory(inventory);
     }
 
     private ItemStack createContractItem(Player player, String id) {
         Material material;
-
         if (contracts.isCompleted(player, id)) {
             material = Material.LIME_STAINED_GLASS_PANE;
         } else if (contracts.isAccepted(player, id)) {
@@ -220,47 +123,25 @@ public class contractGUI implements Listener {
 
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
-
         if (meta == null) {
             return item;
         }
-
-        meta.setDisplayName(
-                ChatColor.translateAlternateColorCodes(
-                        '&',
-                        contracts.getContractName(id)
-                )
-        );
-
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', contracts.getContractName(id)));
         List<String> lore = new ArrayList<>();
-
-        lore.add(
-                ChatColor.GRAY + contracts.getContractDescription(id)
-        );
-
+        lore.add(ChatColor.GRAY + contracts.getContractDescription(id));
         lore.add("");
-        lore.add(
-                ChatColor.GRAY + "Difficulty: "
-                        + contracts.getDifficulty(id)
-        );
+        lore.add(ChatColor.GRAY + "Difficulty: " + contracts.getDifficulty(id));
         lore.add("");
 
         for (int i = 0; i < contracts.getTaskCount(id); i++) {
             int progress = contracts.getTaskProgress(player, id, i);
             int required = contracts.getTaskAmount(id, i);
 
-            ChatColor color = progress >= required
-                    ? ChatColor.GREEN
-                    : ChatColor.YELLOW;
-
-            lore.add(
-                    ChatColor.GRAY + contracts.getTaskName(id, i)
-                            + " " + color + progress + "/" + required
-            );
+            ChatColor color = progress >= required ? ChatColor.GREEN : ChatColor.YELLOW;
+            lore.add(ChatColor.GRAY + contracts.getTaskName(id, i) + " " + color + progress + "/" + required);
         }
 
         lore.add("");
-
         if (contracts.isCompleted(player, id)) {
             lore.add(ChatColor.GREEN + "Completed");
         } else if (contracts.isAccepted(player, id)) {
@@ -271,25 +152,18 @@ public class contractGUI implements Listener {
 
         meta.setLore(lore);
         item.setItemMeta(meta);
-
         return item;
     }
 
-    private ItemStack createItem(
-            Material material,
-            String name,
-            List<String> lore
-    ) {
+    private ItemStack createItem(Material material, String name, List<String> lore) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
-
         if (meta == null) {
             return item;
         }
 
         meta.setDisplayName(name);
         meta.setLore(lore);
-
         item.setItemMeta(meta);
         return item;
     }
@@ -307,13 +181,11 @@ public class contractGUI implements Listener {
 
         int rawSlot = event.getRawSlot();
 
-        if (rawSlot < 0
-                || rawSlot >= event.getView().getTopInventory().getSize()) {
+        if (rawSlot < 0 || rawSlot >= event.getView().getTopInventory().getSize()) {
             return;
         }
 
         event.setCancelled(true);
-
         if (rawSlot == PREVIOUS_SLOT) {
             if (holder.getPage() > 0) {
                 open(player, holder.getPage() - 1);
@@ -333,25 +205,12 @@ public class contractGUI implements Listener {
         }
 
         if (contracts.acceptContract(player, id)) {
-            player.sendMessage(
-                    ChatColor.GREEN + "You accepted "
-                            + ChatColor.translateAlternateColorCodes(
-                            '&',
-                            contracts.getContractName(id)
-                    ) + "."
-            );
-
+            player.sendMessage(ChatColor.GREEN + "You accepted " + ChatColor.translateAlternateColorCodes('&', contracts.getContractName(id)) + ".");
             open(player, holder.getPage());
         } else if (contracts.isAccepted(player, id)) {
-            player.sendMessage(
-                    ChatColor.YELLOW
-                            + "You have already accepted this contract."
-            );
+            player.sendMessage(ChatColor.YELLOW + "You already accept this contract!");
         } else if (contracts.isCompleted(player, id)) {
-            player.sendMessage(
-                    ChatColor.GREEN
-                            + "You have already completed this contract."
-            );
+            player.sendMessage(ChatColor.GREEN + "You already completed this contract!");
         }
     }
 
@@ -360,23 +219,18 @@ public class contractGUI implements Listener {
     }
 
     private static class Holder implements InventoryHolder {
-
         private final int page;
         private final Map<Integer, String> slots = new HashMap<>();
         private Inventory inventory;
-
         private Holder(int page) {
             this.page = page;
         }
-
         public int getPage() {
             return page;
         }
-
         public Map<Integer, String> getSlots() {
             return slots;
         }
-
         public void setInventory(Inventory inventory) {
             this.inventory = inventory;
         }

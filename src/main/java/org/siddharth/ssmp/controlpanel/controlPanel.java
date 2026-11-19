@@ -1,12 +1,4 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.controlpanel;
-
 import org.bukkit.plugin.java.JavaPlugin;
 import com.sun.net.httpserver.HttpServer;
 
@@ -35,51 +27,45 @@ public final class controlPanel {
     }
 
     public void setUpdateCheckAction(Runnable action) {
-        this.updateCheckAction = action == null ? () -> {} : action;
+        if (action == null) {
+            this.updateCheckAction = () -> {};
+        } else {
+            this.updateCheckAction = action;
+        }
         if (api != null) {
             api.setUpdateCheckAction(this.updateCheckAction);
         }
     }
 
     public void start() {
-        if (server != null) return;
-
+        if (server != null) {
+            return;
+        }
         try {
             Files.createDirectories(panelDirectory);
             manifest.loadOrCreate(plugin);
-
             if (!manifest.isEnabled()) {
                 plugin.getLogger().info("[SSMP Control Panel] Disabled in panel.ssmpManifest.");
                 return;
             }
-
-            String host = manifest.get("host", "127.0.0.1");
+            String host = manifest.get("host", "0.0.0.0");
             int port = manifest.getInt("port", 8765);
-
             if (manifest.getPasswordHash().isBlank()) {
-                throw new IllegalStateException(
-                        "A panel password is mandatory. Set password.hash in panel.ssmpManifest."
-                );
+                throw new IllegalStateException("A panel password is mandatory. Set password.hash in panel.ssmpManifest.");
             }
 
             api = new controlPanelAPI(plugin, manifest, updateCheckAction);
-
             server = HttpServer.create(new InetSocketAddress(host, port), 0);
             server.createContext("/", new controlPanelHandler(plugin, api));
-
             executor = Executors.newFixedThreadPool(8, runnable -> {
                 Thread thread = new Thread(runnable, "SSMP-ControlPanel");
                 thread.setDaemon(true);
                 return thread;
             });
-
             server.setExecutor(executor);
             server.start();
 
-            plugin.getLogger().info(
-                    "[SSMP Control Panel] Started at http://" + host + ":" + port
-            );
-
+            plugin.getLogger().info("[SSMP Control Panel] Started at http://" + host + ":" + port);
             if (!host.equals("127.0.0.1") && !host.equalsIgnoreCase("localhost")) {
                 plugin.getLogger().warning(
                         "[SSMP Control Panel] Non-local binding selected. " +
@@ -88,11 +74,7 @@ public final class controlPanel {
             }
         } catch (Exception exception) {
             stop();
-            plugin.getLogger().log(
-                    Level.SEVERE,
-                    "[SSMP Control Panel] Could not start.",
-                    exception
-            );
+            plugin.getLogger().log(Level.SEVERE, "[SSMP Control Panel] The panel failed to start due to an exception: ", exception);
         }
     }
 

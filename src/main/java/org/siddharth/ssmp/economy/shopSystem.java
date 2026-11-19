@@ -1,10 +1,3 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.economy;
 
 import org.bukkit.Bukkit;
@@ -17,354 +10,242 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.siddharth.ssmp.mechanics.soundSystem;
 import org.siddharth.ssmp.ssmp;
-
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class shopSystem implements CommandExecutor, Listener {
-
+    private static final String SHOP_TITLE = "§8SSMP §7» §6Shop";
+    private static final String CATEGORY_TITLE = "§8SSMP §7» §6";
+    private static final int[] CONTENT_SLOTS = {10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43};
     private final File shopFolder;
     private final File itemsFile;
     private final YamlConfiguration itemsData;
     private final economy economy;
     private final soundSystem sounds;
 
-    private static final String SHOP_TITLE = "SSMP | Shop";
-    private static final String CATEGORY_TITLE = "SSMP | Category | ";
+    private class shopHolder implements InventoryHolder {
+        private final String categoryId;
+        private final int page;
+        private final Map<Integer, String> entries = new LinkedHashMap<>();
+        private Inventory inventory;
+
+        private shopHolder(String categoryId, int page) {
+            this.categoryId = categoryId;
+            this.page = page;
+        }
+
+        @Override
+        public Inventory getInventory() {
+            return inventory;
+        }
+    }
 
     public shopSystem(economy economy, ssmp plugin, soundSystem sounds) {
         this.economy = economy;
         this.sounds = sounds;
-
         shopFolder = new File(plugin.getDataFolder(), "shop");
         itemsFile = new File(shopFolder, "items.yml");
 
-        if (!shopFolder.exists()) {
-            shopFolder.mkdirs();
-        }
-
+        if (!shopFolder.exists() && !shopFolder.mkdirs()) throw new IllegalStateException("Shop folder could not be created!");
         if (!itemsFile.exists()) {
             try {
-                itemsFile.createNewFile();
+                if (!itemsFile.createNewFile()) throw new IllegalStateException("Shop config creation was not possible!");
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new IllegalStateException("Shop config creation was not possible!", e);
             }
         }
-
         itemsData = YamlConfiguration.loadConfiguration(itemsFile);
+        loadDefaults();
+    }
 
-        if (!itemsData.contains("categories")) {
-            itemsData.set("categories.ores.name", "Ores & Minerals");
-            itemsData.set("categories.ores.material", "DIAMOND");
+    // Future me or Future you add more materials later pls.
+    private void loadDefaults() {
+        setDefault("categories.ores.name", "Ores & Minerals");
+        setDefault("categories.ores.material", "DIAMOND");
+        setDefault("categories.farming.name", "Farming");
+        setDefault("categories.farming.material", "WHEAT");
+        setDefault("categories.building.name", "Building Blocks");
+        setDefault("categories.building.material", "STONE");
 
-            itemsData.set("categories.farming.name", "Farming");
-            itemsData.set("categories.farming.material", "WHEAT");
+        setDefault("items.DIAMOND.category", "ores");
+        setDefault("items.DIAMOND.buy", 100);
+        setDefault("items.DIAMOND.sell", 50);
+        setDefault("items.IRON_INGOT.category", "ores");
+        setDefault("items.IRON_INGOT.buy", 25);
+        setDefault("items.IRON_INGOT.sell", 10);
+        setDefault("items.GOLD_INGOT.category", "ores");
+        setDefault("items.GOLD_INGOT.buy", 40);
+        setDefault("items.GOLD_INGOT.sell", 20);
+        setDefault("items.WHEAT.category", "farming");
+        setDefault("items.WHEAT.buy", 10);
+        setDefault("items.WHEAT.sell", 5);
+        setDefault("items.STONE.category", "building");
+        setDefault("items.STONE.buy", 5);
+        setDefault("items.STONE.sell", 2);
 
-            itemsData.set("categories.building.name", "Building Blocks");
-            itemsData.set("categories.building.material", "STONE");
+        saveData();
+    }
 
-            itemsData.set("items.DIAMOND.category", "ores");
-            itemsData.set("items.DIAMOND.buy", 100);
-            itemsData.set("items.DIAMOND.sell", 50);
+    private void setDefault(String path, Object value) {
+        if (!itemsData.contains(path)) itemsData.set(path, value);
+    }
 
-            itemsData.set("items.IRON_INGOT.category", "ores");
-            itemsData.set("items.IRON_INGOT.buy", 25);
-            itemsData.set("items.IRON_INGOT.sell", 10);
-
-            itemsData.set("items.GOLD_INGOT.category", "ores");
-            itemsData.set("items.GOLD_INGOT.buy", 40);
-            itemsData.set("items.GOLD_INGOT.sell", 20);
-
-            itemsData.set("items.WHEAT.category", "farming");
-            itemsData.set("items.WHEAT.buy", 10);
-            itemsData.set("items.WHEAT.sell", 5);
-
-            itemsData.set("items.STONE.category", "building");
-            itemsData.set("items.STONE.buy", 5);
-            itemsData.set("items.STONE.sell", 2);
-
-            try {
-                itemsData.save(itemsFile);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+    private void saveData() {
+        try {
+            itemsData.save(itemsFile);
+        } catch (IOException e) {
+            throw new IllegalStateException("Shop config could not be saved, maybe the directory is broken?", e);
         }
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("[SORRY] This command can only be executed by players.");
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage("Shop can be opened only by players.");
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if (cmd.getName().equalsIgnoreCase("shop")) {
-            openShop(player);
-        }
-
+        openShop(player);
         return true;
     }
 
     public void openShop(Player player) {
+        openShop(player, 0);
+    }
 
-        ConfigurationSection categories =
-                itemsData.getConfigurationSection("categories");
+    private void openShop(Player player, int page) {
+        ConfigurationSection categories = itemsData.getConfigurationSection("categories");
 
         if (categories == null || categories.getKeys(false).isEmpty()) {
-            player.sendMessage("§cThe shop has no categories.");
-            sounds.play(player, "shop-error");
+            player.sendMessage("Shop is empty...");
+            play(player, "shop-error");
             return;
         }
 
-        Inventory inventory =
-                Bukkit.createInventory(null, 54, SHOP_TITLE);
-
-        fillBackground(inventory);
-        addPlayerInfo(inventory, player);
-
-        List<String> categoryIds =
-                new ArrayList<>(categories.getKeys(false));
-
-        List<Integer> slots =
-                getCenteredSlots(categoryIds.size());
-
-        for (int i = 0; i < categoryIds.size() && i < slots.size(); i++) {
-
-            String categoryId = categoryIds.get(i);
-
-            String name = itemsData.getString(
-                    "categories." + categoryId + ".name",
-                    categoryId
-            );
-
-            String materialName = itemsData.getString(
-                    "categories." + categoryId + ".material",
-                    "CHEST"
-            );
-
-            Material material =
-                    Material.matchMaterial(materialName);
-
-            if (material == null) {
-                material = Material.CHEST;
-            }
-
-            ItemStack item =
-                    new ItemStack(material);
-
-            ItemMeta meta =
-                    item.getItemMeta();
-
-            if (meta != null) {
-                meta.setDisplayName("§6" + name);
-
-                List<String> lore =
-                        new ArrayList<>();
-
-                lore.add("");
-                lore.add("§7Click to browse");
-
-                meta.setLore(lore);
-                item.setItemMeta(meta);
-            }
-
-            inventory.setItem(
-                    slots.get(i),
-                    item
-            );
-        }
-
-        player.openInventory(inventory);
+        List<String> ids = new ArrayList<>(categories.getKeys(false));
+        openMenu(player, null, ids, page, SHOP_TITLE);
     }
 
     public void openCategory(Player player, String categoryId) {
+        openCategory(player, categoryId, 0);
+    }
 
-        ConfigurationSection items =
-                itemsData.getConfigurationSection("items");
-
-        if (items == null) {
-            player.sendMessage(
-                    "§cThis category has no items."
-            );
-            sounds.play(player, "shop-error");
+    private void openCategory(Player player, String categoryId, int page) {
+        String path = "categories." + categoryId;
+        if (!itemsData.isConfigurationSection(path)) {
+            player.sendMessage("That category does not exist, maybe you typed it wrong? : "+categoryId);
+            play(player, "shop-error");
             return;
         }
 
-        List<String> categoryItems =
-                new ArrayList<>();
+        ConfigurationSection items = itemsData.getConfigurationSection("items");
+        List<String> ids = new ArrayList<>();
 
-        for (String itemName : items.getKeys(false)) {
-
-            String itemCategory =
-                    itemsData.getString(
-                            "items." + itemName + ".category"
-                    );
-
-            if (categoryId.equalsIgnoreCase(itemCategory)) {
-                categoryItems.add(itemName);
+        if (items != null) {
+            for (String id : items.getKeys(false)) {
+                if (categoryId.equalsIgnoreCase(itemsData.getString("items." + id + ".category", "")) && getMaterial(id) != null && validPrice("items." + id + ".buy") && validPrice("items." + id + ".sell")) {
+                    ids.add(id);
+                }
             }
         }
 
-        if (categoryItems.isEmpty()) {
-            player.sendMessage(
-                    "§cThis category has no items."
-            );
-            sounds.play(player, "shop-error");
+        if (ids.isEmpty()) {
+            player.sendMessage("Category is empty");
+            play(player, "shop-error");
             return;
         }
 
-        String categoryName =
-                itemsData.getString(
-                        "categories." + categoryId + ".name",
-                        categoryId
-                );
+        String name = itemsData.getString(path + ".name", categoryId);
+        openMenu(player, categoryId, ids, page, CATEGORY_TITLE + name);
+    }
+    private void openMenu(Player player, String categoryId, List<String> ids, int page, String title) {
+        int maxPages = Math.max(1, (int) Math.ceil(ids.size() / (double) CONTENT_SLOTS.length));
+        page = Math.max(0, Math.min(page, maxPages - 1));
 
-        Inventory inventory =
-                Bukkit.createInventory(
-                        null,
-                        54,
-                        CATEGORY_TITLE + categoryName
-                );
+        shopHolder holder = new shopHolder(categoryId, page);
+        Inventory inventory = Bukkit.createInventory(holder, 54, title);
+        holder.inventory = inventory;
 
         fillBackground(inventory);
         addPlayerInfo(inventory, player);
-        addBackButton(inventory);
 
-        List<Integer> slots =
-                getCenteredSlots(categoryItems.size());
+        int start = page * CONTENT_SLOTS.length;
+        int end = Math.min(start + CONTENT_SLOTS.length, ids.size());
 
-        for (int i = 0;
-             i < categoryItems.size() && i < slots.size();
-             i++) {
+        for (int i = start; i < end; i++) {
+            String id = ids.get(i);
+            int slot = CONTENT_SLOTS[i - start];
+            ItemStack item = categoryId == null ? createCategoryItem(id) : createShopItem(id);
 
-            String itemName =
-                    categoryItems.get(i);
-
-            Material material =
-                    Material.matchMaterial(itemName);
-
-            if (material == null) {
-                continue;
+            if (item != null) {
+                inventory.setItem(slot, item);
+                holder.entries.put(slot, id);
             }
-
-            int buyPrice =
-                    itemsData.getInt(
-                            "items." + itemName + ".buy"
-                    );
-
-            int sellPrice =
-                    itemsData.getInt(
-                            "items." + itemName + ".sell"
-                    );
-
-            ItemStack item =
-                    new ItemStack(material);
-
-            ItemMeta meta =
-                    item.getItemMeta();
-
-            if (meta != null) {
-
-                meta.setDisplayName(
-                        "§f" + itemName
-                );
-
-                List<String> lore =
-                        new ArrayList<>();
-
-                lore.add("");
-                lore.add(
-                        "§aBuy: §f$" + buyPrice
-                );
-                lore.add(
-                        "§cSell: §f$" + sellPrice
-                );
-                lore.add("");
-                lore.add(
-                        "§7Left click §fto buy"
-                );
-                lore.add(
-                        "§7Right click §fto sell"
-                );
-
-                meta.setLore(lore);
-                item.setItemMeta(meta);
-            }
-
-            inventory.setItem(
-                    slots.get(i),
-                    item
-            );
         }
+
+        if (categoryId != null) inventory.setItem(45, createButton(Material.ARROW, "§c§lBack", "§7Return to categories"));
+        if (page > 0) inventory.setItem(48, createButton(Material.SPECTRAL_ARROW, "§e§lPrevious Page", "§7Go to page " + page));
+        if (page < maxPages - 1) inventory.setItem(53, createButton(Material.SPECTRAL_ARROW, "§a§lNext Page", "§7Go to page " + (page + 2)));
+
+        inventory.setItem(49, createButton(Material.PAPER, "§6Page §f" + (page + 1) + "§7/§f" + maxPages, "§7" + ids.size() + " entries available"));
 
         player.openInventory(inventory);
     }
 
-    private void addPlayerInfo(
-            Inventory inventory,
-            Player player
-    ) {
+    private ItemStack createCategoryItem(String id) {
+        String path = "categories." + id;
+        Material material = getMaterial(itemsData.getString(path + ".material", "CHEST"));
+        if (material == null) material = Material.CHEST;
 
-        ItemStack head =
-                new ItemStack(Material.PLAYER_HEAD);
-
-        SkullMeta meta =
-                (SkullMeta) head.getItemMeta();
-
-        if (meta == null) {
-            return;
-        }
-
-        meta.setOwningPlayer(player);
-
-        meta.setDisplayName(
-                "§e" + player.getName()
-        );
-
-        List<String> lore =
-                new ArrayList<>();
-
-        lore.add("");
-        lore.add(
-                "§7Balance: §a$" +
-                        economy.getPlayerBalance(player)
-        );
-
-        meta.setLore(lore);
-
-        head.setItemMeta(meta);
-
-        inventory.setItem(0, head);
+        return createButton(material, "§6" + itemsData.getString(path + ".name", id), "§7Browse this category", "§8Click to open");
     }
 
-    private void fillBackground(
-            Inventory inventory
-    ) {
+    private ItemStack createShopItem(String id) {
+        Material material = getMaterial(id);
+        if (material == null) return null;
 
-        ItemStack filler =
-                new ItemStack(
-                        Material.BLACK_STAINED_GLASS_PANE
-                );
+        String path = "items." + id;
+        double buy = itemsData.getDouble(path + ".buy");
+        double sell = itemsData.getDouble(path + ".sell");
 
-        ItemMeta meta =
-                filler.getItemMeta();
+        return createButton(material, "§f" + id.replace('_', ' '),
+                "",
+                "§aBuy: $" + formatMoney(buy),
+                "§cSell: $" + formatMoney(sell),
+                "",
+                "Left-click to buy",
+                "Right-click to sell");
+    }
 
-        if (meta != null) {
-            meta.setDisplayName(" ");
-            filler.setItemMeta(meta);
-        }
+    private void addPlayerInfo(Inventory inventory, Player player) {
+        ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta meta = (SkullMeta) head.getItemMeta();
+
+        if (meta == null) return;
+
+        meta.setOwningPlayer(player);
+        meta.setDisplayName("§e" + player.getName());
+        meta.setLore(List.of("", "§7Balance: §a$" + formatMoney(economy.getPlayerBalance(player))));
+        head.setItemMeta(meta);
+        inventory.setItem(4, head);
+    }
+    private void fillBackground(Inventory inventory) {
+        ItemStack filler = createButton(Material.BLACK_STAINED_GLASS_PANE, " ");
 
         for (int i = 0; i < 9; i++) {
             inventory.setItem(i, filler);
@@ -377,269 +258,157 @@ public class shopSystem implements CommandExecutor, Listener {
         }
     }
 
-    private List<Integer> getCenteredSlots(
-            int amount
-    ) {
-
-        List<Integer> slots =
-                new ArrayList<>();
-
-        if (amount <= 0) {
-            return slots;
-        }
-
-        int remaining = amount;
-        int row = 1;
-
-        while (remaining > 0 && row <= 4) {
-
-            int itemsThisRow =
-                    Math.min(9, remaining);
-
-            int startColumn =
-                    (9 - itemsThisRow) / 2;
-
-            for (int column = 0;
-                 column < itemsThisRow;
-                 column++) {
-
-                int slot =
-                        row * 9
-                                + startColumn
-                                + column;
-
-                slots.add(slot);
-            }
-
-            remaining -= itemsThisRow;
-            row++;
-        }
-
-        return slots;
-    }
-    private void addBackButton(Inventory inventory) {
-        ItemStack back = new ItemStack(Material.ARROW);
-        ItemMeta meta = back.getItemMeta();
+    private ItemStack createButton(Material material, String name, String... lore) {
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
-            meta.setDisplayName("§c§lBack");
-            meta.setLore(List.of(
-                    "",
-                    "§7Return to the shop"
-            ));
-            back.setItemMeta(meta);
+            meta.setDisplayName(name);
+            meta.setLore(List.of(lore));
+            item.setItemMeta(meta);
         }
 
-        inventory.setItem(45, back);
+        return item;
+    }
+
+    private Material getMaterial(String name) {
+        if (name == null || name.isBlank()) return null;
+        Material material = Material.matchMaterial(name);
+        return material == null || material.isAir() ? null : material;
+    }
+
+    private boolean validPrice(String path) {
+        if (!itemsData.contains(path)) return false;
+        double price = itemsData.getDouble(path);
+        return Double.isFinite(price) && price >= 0;
+    }
+
+    private String formatMoney(double amount) {
+        return BigDecimal.valueOf(amount).stripTrailingZeros().toPlainString();
+    }
+
+    private void play(Player player, String sound) {
+        if (sounds != null) sounds.play(player, sound);
     }
 
     @EventHandler
-    public void onInventoryClick(
-            InventoryClickEvent event
-    ) {
-
-        String title =
-                event.getView().getTitle();
-
-        if (!title.equals(SHOP_TITLE)
-                && !title.startsWith(CATEGORY_TITLE)) {
-            return;
-        }
+    public void onInventoryClick(InventoryClickEvent event) {
+        Inventory top = event.getView().getTopInventory();
+        if (!(top.getHolder() instanceof shopHolder holder)) return;
 
         event.setCancelled(true);
 
-        if (!(event.getWhoClicked() instanceof Player)) {
-            return;
-        }
+        if (!(event.getWhoClicked() instanceof Player player) || event.getRawSlot() < 0 || event.getRawSlot() >= top.getSize()) return;
 
-        Player player =
-                (Player) event.getWhoClicked();
+        int slot = event.getRawSlot();
 
-        ItemStack clickedItem =
-                event.getCurrentItem();
-
-        if (clickedItem == null
-                || clickedItem.getType() == Material.AIR) {
-            return;
-        }
-        if (event.getRawSlot() == 45) {
+        if (holder.categoryId != null && slot == 45) {
             openShop(player);
             return;
         }
 
-        if (title.equals(SHOP_TITLE)) {
-
-            ConfigurationSection categories =
-                    itemsData.getConfigurationSection(
-                            "categories"
-                    );
-
-            if (categories == null) {
-                return;
-            }
-
-            for (String categoryId :
-                    categories.getKeys(false)) {
-
-                String materialName =
-                        itemsData.getString(
-                                "categories."
-                                        + categoryId
-                                        + ".material"
-                        );
-
-                if (materialName == null) {
-                    continue;
-                }
-
-                Material material =
-                        Material.matchMaterial(materialName);
-
-                if (material == clickedItem.getType()) {
-
-                    openCategory(
-                            player,
-                            categoryId
-                    );
-
-                    return;
-                }
-            }
-
+        if (slot == 48 && holder.page > 0) {
+            if (holder.categoryId == null) openShop(player, holder.page - 1);
+            else openCategory(player, holder.categoryId, holder.page - 1);
             return;
         }
 
-        String categoryName =
-                title.substring(
-                        CATEGORY_TITLE.length()
-                );
-
-        String categoryId = null;
-
-        ConfigurationSection categories =
-                itemsData.getConfigurationSection(
-                        "categories"
-                );
-
-        if (categories != null) {
-
-            for (String id :
-                    categories.getKeys(false)) {
-
-                String name =
-                        itemsData.getString(
-                                "categories."
-                                        + id
-                                        + ".name",
-                                id
-                        );
-
-                if (name.equals(categoryName)) {
-                    categoryId = id;
-                    break;
-                }
-            }
-        }
-
-        if (categoryId == null) {
+        if (slot == 53) {
+            if (holder.categoryId == null) openShop(player, holder.page + 1);
+            else openCategory(player, holder.categoryId, holder.page + 1);
             return;
         }
 
-        String itemName =
-                clickedItem.getType().name();
+        String id = holder.entries.get(slot);
+        if (id == null) return;
 
-        String itemPath =
-                "items." + itemName;
-
-        if (!itemsData.contains(itemPath)) {
+        if (holder.categoryId == null) {
+            openCategory(player, id);
+            play(player, "shop-success");
             return;
         }
 
-        String itemCategory =
-                itemsData.getString(
-                        itemPath + ".category"
-                );
+        if (event.getClick() == ClickType.LEFT) buyItem(player, id);
+        else if (event.getClick() == ClickType.RIGHT) sellItem(player, id);
+    }
 
-        if (!categoryId.equalsIgnoreCase(itemCategory)) {
+    @EventHandler
+    public void onInventoryDrag(InventoryDragEvent event) {
+        if (event.getView().getTopInventory().getHolder() instanceof shopHolder) event.setCancelled(true);
+    }
+
+    private void buyItem(Player player, String id) {
+        String path = "items." + id;
+        Material material = getMaterial(id);
+
+        if (material == null || !validPrice(path + ".buy")) {
+            player.sendMessage("§cThis item is currently unavailable.");
+            play(player, "shop-error");
             return;
         }
 
-        int buyPrice =
-                itemsData.getInt(
-                        itemPath + ".buy"
-                );
+        double price = itemsData.getDouble(path + ".buy");
+        double balance = economy.getPlayerBalance(player);
 
-        int sellPrice =
-                itemsData.getInt(
-                        itemPath + ".sell"
-                );
-
-        if (event.isLeftClick()) {
-
-            if (economy.getPlayerBalance(player)
-                    < buyPrice) {
-
-                player.sendMessage(
-                        "§cYou cannot afford this item."
-                );
-                sounds.play(player, "shop-error");
-
-
-                return;
-            }
-
-            economy.removePlayerBalance(
-                    player,
-                    buyPrice
-            );
-
-            player.getInventory().addItem(
-                    new ItemStack(
-                            clickedItem.getType(),
-                            1
-                    )
-            );
-
-            player.sendMessage(
-                    "§aBought 1 "
-                            + itemName
-                            + " for $"
-                            + buyPrice
-            );
-            sounds.play(player, "shop-success");
-
-        } else if (event.isRightClick()) {
-
-            if (!player.getInventory().contains(
-                    clickedItem.getType())) {
-
-                player.sendMessage(
-                        "§cYou don't have this item."
-                );
-                sounds.play(player, "shop-error");
-
-                return;
-            }
-
-            player.getInventory().removeItem(
-                    new ItemStack(
-                            clickedItem.getType(),
-                            1
-                    )
-            );
-
-            economy.addPlayerBalance(
-                    player,
-                    sellPrice
-            );
-
-            player.sendMessage(
-                    "§aSold 1 "
-                            + itemName
-                            + " for $"
-                            + sellPrice
-            );
-            sounds.play(player, "shop-success");
+        if (!Double.isFinite(balance) || balance < price) {
+            player.sendMessage("§cYou don't have that much money in hand for that");
+            play(player, "shop-error");
+            return;
         }
+
+        ItemStack reward = new ItemStack(material);
+        if (!hasSpace(player, reward)) {
+            player.sendMessage("§cYou cannot buy that item, your inventory is full.");
+            play(player, "shop-error");
+            return;
+        }
+
+        ItemStack[] previousContents = player.getInventory().getStorageContents();
+        economy.removePlayerBalance(player, price);
+        Map<Integer, ItemStack> leftovers = player.getInventory().addItem(reward);
+
+        if (!leftovers.isEmpty()) {
+            player.getInventory().setStorageContents(previousContents);
+            economy.addPlayerBalance(player, price);
+            player.sendMessage("§cThe purchase was unsuccessful, so your money was refunded!");
+            play(player, "shop-error");
+            return;
+        }
+
+        player.sendMessage("§aPurchased §f" + id.replace('_', ' ') + " §afor §f$" + formatMoney(price) + "§a.");
+        play(player, "shop-success");
+    }
+
+    private void sellItem(Player player, String id) {
+        String path = "items." + id;
+        Material material = getMaterial(id);
+
+        if (material == null || !validPrice(path + ".sell")) {
+            player.sendMessage("§cThis item cannot be sold.");
+            play(player, "shop-error");
+            return;
+        }
+
+        double price = itemsData.getDouble(path + ".sell");
+        ItemStack item = new ItemStack(material);
+        Map<Integer, ItemStack> leftovers = player.getInventory().removeItem(item);
+
+        if (!leftovers.isEmpty()) {
+            player.sendMessage("§cYou don't have that item.");
+            play(player, "shop-error");
+            return;
+        }
+
+        economy.addPlayerBalance(player, price);
+        player.sendMessage("§aSold §f1 " + id.replace('_', ' ') + " §afor §f$" + formatMoney(price) + "§a.");
+        play(player, "shop-success");
+    }
+
+    private boolean hasSpace(Player player, ItemStack item) {
+        for (ItemStack contents : player.getInventory().getStorageContents()) {
+            if (contents == null || contents.getType().isAir()) return true;
+            if (contents.isSimilar(item) && contents.getAmount() < contents.getMaxStackSize()) return true;
+        }
+        return false;
     }
 }

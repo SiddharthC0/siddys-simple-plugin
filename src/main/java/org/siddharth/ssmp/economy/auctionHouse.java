@@ -1,12 +1,4 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.economy;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -36,39 +28,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 public class auctionHouse implements Listener, CommandExecutor, TabCompleter {
-
     private final ssmp plugin;
     private final economy economy;
     private final permissionSystem permissions;
     private final soundSystem sounds;
-
     private final File auctionFolder;
     private final File listingsFile;
     private final YamlConfiguration listings;
-
     private final NamespacedKey listingKey;
     private final int listingsPerPage = 36;
 
-    public auctionHouse(
-            ssmp plugin,
-            economy economy,
-            permissionSystem permissions,
-            soundSystem sounds
-    ) {
+    public auctionHouse(ssmp plugin, economy economy, permissionSystem permissions, soundSystem sounds) {
         this.plugin = plugin;
         this.economy = economy;
         this.permissions = permissions;
         this.sounds = sounds;
-
         auctionFolder = new File(plugin.getDataFolder(), "auction");
         listingsFile = new File(auctionFolder, "listings.yml");
-
         if (!auctionFolder.exists()) {
             auctionFolder.mkdirs();
         }
-
         try {
             if (!listingsFile.exists()) {
                 listingsFile.createNewFile();
@@ -78,108 +58,59 @@ public class auctionHouse implements Listener, CommandExecutor, TabCompleter {
         }
 
         listings = YamlConfiguration.loadConfiguration(listingsFile);
-
-        listingKey = new NamespacedKey(
-                plugin,
-                "auction-listing"
-        );
+        listingKey = new NamespacedKey(plugin, "auction-listing");
     }
 
     private boolean isEnabled() {
-        return plugin.getConfig().getBoolean(
-                "modules.auction.enabled",
-                true
-        );
+        return plugin.getConfig().getBoolean("modules.auction.enabled", true);
     }
 
     private int getMaxAuctionPrice() {
-        return plugin.getConfig().getInt(
-                "modules.auction.max-auction-price",
-                1000000
-        );
+        return plugin.getConfig().getInt("modules.auction.max-auction-price", 10000000);
     }
 
-    private int getNegateBuyPrice() {
-        return plugin.getConfig().getInt(
-                "modules.auction.negate-buy-price",
-                0
-        );
+    private int getNegateBuyPrice() {return plugin.getConfig().getInt("modules.auction.negate-buy-price", 0);
     }
 
     private int getMaxPages() {
-        return plugin.getConfig().getInt(
-                "modules.auction.max-pages",
-                10
-        );
+        return plugin.getConfig().getInt("modules.auction.max-pages", 10);
     }
 
     private List<String> getNonSellableItems() {
-        return plugin.getConfig().getStringList(
-                "modules.auction.non-sellable-items"
-        );
+        return plugin.getConfig().getStringList("modules.auction.non-sellable-items");
     }
 
     @Override
-    public boolean onCommand(
-            CommandSender sender,
-            Command command,
-            String label,
-            String[] args
-    ) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!isEnabled()) {
-            sender.sendMessage(
-                    ChatColor.RED + "The Auction House is currently disabled."
-            );
+            sender.sendMessage(ChatColor.RED + "The module auction house is disabled. ");
             return true;
         }
 
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(
-                    ChatColor.RED +
-                            "Only players can use the Auction House."
-            );
+            sender.sendMessage(ChatColor.RED + "Only players can open and use the auction house. ");
             return true;
         }
 
         if (args.length == 0) {
-            if (!permissions.hasPermission(
-                    player,
-                    "ssmp.auction.use"
-            )) {
-                error(
-                        player,
-                        "You do not have permission to use the Auction House."
-                );
+            if (!permissions.hasPermission(player, "ssmp.auction.use")) {
+                error(player, "Your rank does not include the perms to use auction house.");
                 return true;
             }
 
+            // Define the sound menu-open in soundsystem because i didn't
             sounds.play(player, "menu-open");
             openAuctionHouse(player, 1);
             return true;
-        }
-
-        if (args[0].equalsIgnoreCase("sell")) {
-            if (!permissions.hasPermission(
-                    player,
-                    "ssmp.auction.sell"
-            )) {
-                error(
-                        player,
-                        "You do not have permission to sell items."
-                );
+        } else if (args[0].equalsIgnoreCase("sell")) {
+            if (!permissions.hasPermission(player, "ssmp.auction.sell")) {
+                error(player, "Your rank does not include the permission to sell items in auctions.");
+                return true;
+            } else if (args.length < 2) {
+                error(player, "You use it wrong. Use it like: /ah sell <price> : To sell item in your hand for price <price>");
                 return true;
             }
-
-            if (args.length < 2) {
-                error(
-                        player,
-                        "Usage: /ah sell <price>"
-                );
-                return true;
-            }
-
             int price;
-
             try {
                 price = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
@@ -189,30 +120,16 @@ public class auctionHouse implements Listener, CommandExecutor, TabCompleter {
 
             createListing(player, price);
             return true;
-        }
-
-        if (args[0].equalsIgnoreCase("remove")) {
-            if (!permissions.hasPermission(
-                    player,
-                    "ssmp.auction.remove"
-            )) {
-                error(
-                        player,
-                        "You do not have permission to remove auction listings."
-                );
+        } else if (args[0].equalsIgnoreCase("remove")) {
+            if (!permissions.hasPermission(player, "ssmp.auction.remove")) {
+                error(player, "Your rank does not have permission to remove auction listings.");
                 return true;
-            }
-
-            if (args.length < 2) {
-                error(
-                        player,
-                        "Usage: /ah remove <id>"
-                );
+            } else if (args.length < 2) {
+                error(player, "Usage: /ah remove <id>");
                 return true;
             }
 
             int id;
-
             try {
                 id = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
@@ -224,103 +141,53 @@ public class auctionHouse implements Listener, CommandExecutor, TabCompleter {
             return true;
         }
 
-        error(
-                player,
-                "Usage: /ah [sell <price>|remove <id>]"
-        );
-
+        error(player, "You used it wrong! Use it like this: /ah [sell <price>|remove <id>] : To sell item or remove item from listing.");
         return true;
     }
 
     private void createListing(Player player, int price) {
         if (price <= 0) {
-            error(
-                    player,
-                    "The price must be greater than $0."
-            );
+            error(player, "You can't sell your item at a price under $1!");
             return;
         }
 
         int maxPrice = getMaxAuctionPrice();
-
         if (price > maxPrice) {
-            error(
-                    player,
-                    "The maximum auction price is $" + maxPrice + "."
-            );
+            error(player, "The max auction price is $" + maxPrice);
             return;
         }
 
-        ItemStack item =
-                player.getInventory().getItemInMainHand();
-
+        ItemStack item = player.getInventory().getItemInMainHand();
         if (item.getType().isAir()) {
-            error(
-                    player,
-                    "You must hold an item to auction."
-            );
+            error(player, "Your hand doesn't have any item, what to sell?");
             return;
         }
-
         if (isNonSellable(item)) {
-            error(
-                    player,
-                    "This item cannot be auctioned."
-            );
+            error(player, "This item cannot be auctioned.");
             return;
         }
 
         int maxPages = getMaxPages();
-
         if (getListingCount() >= maxPages * listingsPerPage) {
-            error(
-                    player,
-                    "The Auction House is currently full."
-            );
+            error(player, "The Auction House is currently full.");
             return;
         }
 
         int id = getNextListingId();
         String path = "listings." + id;
 
-        listings.set(
-                path + ".seller",
-                player.getUniqueId().toString()
-        );
-
-        listings.set(
-                path + ".seller-name",
-                player.getName()
-        );
-
-        listings.set(
-                path + ".item",
-                item.clone()
-        );
-
-        listings.set(
-                path + ".price",
-                price
-        );
-
-        listings.set(
-                path + ".created",
-                System.currentTimeMillis()
-        );
+        listings.set(path + ".seller", player.getUniqueId().toString());
+        listings.set(path + ".seller-name", player.getName());
+        listings.set(path + ".item", item.clone());
+        listings.set(path + ".price", price);
+        listings.set(path + ".created", System.currentTimeMillis());
 
         player.getInventory().setItemInMainHand(null);
-
         saveListings();
+        sounds.play(player, "auction-success");
 
-        sounds.play(
-                player,
-                "auction-success"
-        );
-
-        player.spigot().sendMessage(
-                ChatMessageType.ACTION_BAR,
-                new TextComponent(ChatColor.GREEN + "Your " + getItemName(item) + " has been listed for $" + price)
-        );
+        // Use the util messageSender to send these messages more quickly :)
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GREEN + "Your " + getItemName(item) + " has been listed for $" + price));
     }
 
     private boolean isNonSellable(ItemStack item) {
@@ -329,459 +196,201 @@ public class auctionHouse implements Listener, CommandExecutor, TabCompleter {
         }
 
         for (String blockedItem : getNonSellableItems()) {
-            if (blockedItem.equalsIgnoreCase(
-                    item.getType().name()
-            )) {
+            if (blockedItem.equalsIgnoreCase(item.getType().name())) {
                 return true;
             }
         }
-
         return false;
     }
-
     private void removeListing(Player player, int id) {
         String path = "listings." + id;
-
         if (!listings.contains(path)) {
-            error(
-                    player,
-                    "That auction does not exist."
-            );
+            error(player, "That auction does not exist.");
             return;
         }
 
-        String seller =
-                listings.getString(path + ".seller");
+        String seller = listings.getString(path + ".seller");
 
-        if (seller == null ||
-                !seller.equals(
-                        player.getUniqueId().toString()
-                )) {
-            error(
-                    player,
-                    "That is not your auction."
-            );
+        if (seller == null || !seller.equals(player.getUniqueId().toString())) {
+            error(player, "That is not your auction.");
             return;
         }
 
-        ItemStack item =
-                listings.getItemStack(path + ".item");
+        ItemStack item = listings.getItemStack(path + ".item");
 
         if (item == null) {
             listings.set(path, null);
             saveListings();
 
-            error(
-                    player,
-                    "That auction contained an invalid item."
-            );
-
+            error(player, "That auction contained an invalid item.");
             return;
         }
 
         if (!player.getInventory().addItem(item).isEmpty()) {
-            error(
-                    player,
-                    "You do not have enough inventory space."
-            );
+            error(player, "You do not have enough inventory space.");
             return;
         }
 
         listings.set(path, null);
         saveListings();
+        sounds.play(player, "auction-success");
 
-        sounds.play(
-                player,
-                "auction-success"
-        );
-
-        player.spigot().sendMessage(
-                ChatMessageType.ACTION_BAR,
-                new TextComponent(ChatColor.YELLOW + "Your auction has been removed")
-        );
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.YELLOW + "Your auction has been removed"));
     }
 
-    private void openAuctionHouse(
-            Player player,
-            int page
-    ) {
+    private void openAuctionHouse(Player player, int page) {
         int maxPage = getMaxPage();
 
-        page = Math.max(
-                1,
-                Math.min(page, maxPage)
-        );
+        page = Math.max(1, Math.min(page, maxPage));
 
-        Inventory inventory =
-                Bukkit.createInventory(
-                        null,
-                        54,
-                        ChatColor.DARK_GRAY +
-                                "Auction House | " +
-                                page
-                );
-
-        ItemStack glass =
-                createItem(
-                        Material.BLACK_STAINED_GLASS_PANE,
-                        " "
-                );
+        Inventory inventory = Bukkit.createInventory(null, 54, ChatColor.DARK_GRAY + "Auction House | " + page);
+        ItemStack glass = createItem(Material.BLACK_STAINED_GLASS_PANE, " ");
 
         for (int slot = 0; slot < 9; slot++) {
             inventory.setItem(slot, glass);
             inventory.setItem(45 + slot, glass);
         }
+        List<Integer> ids = getListingIds();
 
-        List<Integer> ids =
-                getListingIds();
-
-        int start =
-                (page - 1) * listingsPerPage;
-
-        int end =
-                Math.min(
-                        start + listingsPerPage,
-                        ids.size()
-                );
-
+        int start = (page - 1) * listingsPerPage;
+        int end = Math.min(start + listingsPerPage, ids.size());
         int guiSlot = 9;
-
         for (int i = start; i < end; i++) {
             int id = ids.get(i);
-
-            ItemStack display =
-                    createListingDisplay(id);
+            ItemStack display = createListingDisplay(id);
 
             if (display != null) {
-                setListingId(
-                        display,
-                        id
-                );
-
-                inventory.setItem(
-                        guiSlot,
-                        display
-                );
-
+                setListingId(display, id);
+                inventory.setItem(guiSlot, display);
                 guiSlot++;
             }
         }
 
         if (ids.isEmpty()) {
-            ItemStack empty =
-                    createItem(
-                            Material.BARRIER,
-                            ChatColor.RED +
-                                    "No auctions today"
-                    );
-
-            ItemMeta meta =
-                    empty.getItemMeta();
+            ItemStack empty = createItem(Material.BARRIER, ChatColor.RED + "No auctions today");
+            ItemMeta meta = empty.getItemMeta();
 
             if (meta != null) {
-                meta.setLore(
-                        List.of(
-                                ChatColor.GRAY +
-                                        "There are currently no items listed."
-                        )
-                );
-
+                meta.setLore(List.of(ChatColor.GRAY + "There are currently no items listed."));
                 empty.setItemMeta(meta);
             }
-
             inventory.setItem(22, empty);
         }
 
-        ItemStack head =
-                createPlayerHead(player);
-
+        ItemStack head = createPlayerHead(player);
         if (head != null) {
-            inventory.setItem(
-                    45,
-                    head
-            );
+            inventory.setItem(45, head);
         }
 
         if (page > 1) {
-            inventory.setItem(
-                    48,
-                    createItem(
-                            Material.ARROW,
-                            ChatColor.YELLOW +
-                                    "Previous Page"
-                    )
-            );
+            inventory.setItem(48, createItem(Material.ARROW, ChatColor.YELLOW + "Previous Page"));
         }
 
-        inventory.setItem(
-                49,
-                createItem(
-                        Material.PAPER,
-                        ChatColor.YELLOW +
-                                "Page " +
-                                page +
-                                "/" +
-                                maxPage
-                )
-        );
-
+        inventory.setItem(49, createItem(Material.PAPER,ChatColor.YELLOW + "Page " + page + "/" + maxPage));
         if (page < maxPage) {
-            inventory.setItem(
-                    50,
-                    createItem(
-                            Material.ARROW,
-                            ChatColor.YELLOW +
-                                    "Next Page"
-                    )
-            );
+            inventory.setItem(50, createItem(Material.ARROW, ChatColor.YELLOW + "Next Page"));
         }
 
         player.openInventory(inventory);
     }
 
-    private void openConfirmation(
-            Player player,
-            int id
-    ) {
-        String path =
-                "listings." + id;
+    private void openConfirmation(Player player, int id) {
+        String path = "listings." + id;
 
         if (!listings.contains(path)) {
-            error(
-                    player,
-                    "That auction no longer exists."
-            );
+            error(player, "That auction no longer exists.");
             return;
         }
 
-        ItemStack item =
-                listings.getItemStack(
-                        path + ".item"
-                );
-
+        ItemStack item = listings.getItemStack(path + ".item");
         if (item == null) {
-            error(
-                    player,
-                    "That auction is invalid."
-            );
+            error(player, "That auction is invalid.");
             return;
         }
 
-        int price =
-                listings.getInt(
-                        path + ".price"
-                );
-
-        String seller =
-                listings.getString(
-                        path + ".seller-name",
-                        "Unknown"
-                );
-
-        Inventory inventory =
-                Bukkit.createInventory(
-                        null,
-                        27,
-                        ChatColor.DARK_GRAY +
-                                "Confirm Purchase"
-                );
-
-        ItemStack glass =
-                createItem(
-                        Material.BLACK_STAINED_GLASS_PANE,
-                        " "
-                );
-
+        int price = listings.getInt(path + ".price");
+        String seller = listings.getString(path + ".seller-name", "Unknown");
+        Inventory inventory = Bukkit.createInventory(null, 27, ChatColor.DARK_GRAY + "Confirm Purchase");
+        ItemStack glass = createItem(Material.BLACK_STAINED_GLASS_PANE, " ");
         for (int slot = 0; slot < 27; slot++) {
-            if (slot != 11 &&
-                    slot != 13 &&
-                    slot != 15) {
-                inventory.setItem(
-                        slot,
-                        glass
-                );
+            if (slot != 11 && slot != 13 && slot != 15) {
+                inventory.setItem(slot, glass);
             }
         }
 
-        ItemStack display =
-                item.clone();
+        ItemStack display = item.clone();
 
-        ItemMeta itemMeta =
-                display.getItemMeta();
+        ItemMeta itemMeta = display.getItemMeta();
 
         if (itemMeta != null) {
-            List<String> lore =
-                    itemMeta.hasLore()
-                            ? new ArrayList<>(
-                            itemMeta.getLore()
-                    )
-                            : new ArrayList<>();
+            // If after your changes something goes wrong its DEFINATELY this line
+            List<String> lore = itemMeta.hasLore() ? new ArrayList<>(itemMeta.getLore()) : new ArrayList<>();
 
             lore.add("");
-            lore.add(
-                    ChatColor.GRAY +
-                            "Seller: " +
-                            seller
-            );
-
-            lore.add(
-                    ChatColor.GOLD +
-                            "Price: $" +
-                            price
-            );
-
+            lore.add(ChatColor.GRAY + "Seller: " + seller);
+            lore.add(ChatColor.GOLD + "Price: $" + price);
             itemMeta.setLore(lore);
             display.setItemMeta(itemMeta);
         }
+        setListingId(display, id);
+        inventory.setItem(13, display);
+        inventory.setItem(11, createItem(Material.RED_WOOL, ChatColor.RED + "Cancel"));
+        inventory.setItem(15, createItem(Material.LIME_WOOL, ChatColor.GREEN + "Buy for $" + price));
 
-        setListingId(
-                display,
-                id
-        );
-
-        inventory.setItem(
-                13,
-                display
-        );
-
-        inventory.setItem(
-                11,
-                createItem(
-                        Material.RED_WOOL,
-                        ChatColor.RED +
-                                "Cancel"
-                )
-        );
-
-        inventory.setItem(
-                15,
-                createItem(
-                        Material.LIME_WOOL,
-                        ChatColor.GREEN +
-                                "Buy for $" +
-                                price
-                )
-        );
-
-        sounds.play(
-                player,
-                "auction-click"
-        );
-
+        // Sound may not be present by default but its your job to do it forker :)
+        sounds.play(player, "auction-click");
         player.openInventory(inventory);
     }
 
     private ItemStack createListingDisplay(int id) {
-        String path =
-                "listings." + id;
-
-        ItemStack item =
-                listings.getItemStack(
-                        path + ".item"
-                );
-
+        String path = "listings." + id;
+        ItemStack item = listings.getItemStack(path + ".item");
         if (item == null) {
             return null;
         }
 
-        ItemStack display =
-                item.clone();
-
-        ItemMeta meta =
-                display.getItemMeta();
+        ItemStack display = item.clone();
+        ItemMeta meta = display.getItemMeta();
 
         if (meta == null) {
             return display;
         }
 
-        List<String> lore =
-                meta.hasLore()
-                        ? new ArrayList<>(
-                        meta.getLore()
-                )
-                        : new ArrayList<>();
-
+        // And this line can be err cause too
+        List<String> lore = meta.hasLore() ? new ArrayList<>(meta.getLore()) : new ArrayList<>();
         lore.add("");
 
-        lore.add(
-                ChatColor.GRAY +
-                        "Seller: " +
-                        listings.getString(
-                                path + ".seller-name",
-                                "Unknown"
-                        )
-        );
-
-        lore.add(
-                ChatColor.GOLD +
-                        "Price: $" +
-                        listings.getInt(
-                                path + ".price"
-                        )
-        );
-
+        lore.add(ChatColor.GRAY + "Seller: " + listings.getString(path + ".seller-name", "Unknown"));
+        lore.add(ChatColor.GOLD + "Price: $" + listings.getInt(path + ".price"));
         lore.add("");
-        lore.add(
-                ChatColor.YELLOW +
-                        "Click to view"
-        );
-
+        lore.add(ChatColor.YELLOW + "Click to view");
         meta.setLore(lore);
         display.setItemMeta(meta);
 
         return display;
     }
 
-    private ItemStack createPlayerHead(
-            Player player
-    ) {
-        ItemStack head =
-                new ItemStack(
-                        Material.PLAYER_HEAD
-                );
-
-        SkullMeta meta =
-                (SkullMeta) head.getItemMeta();
-
+    private ItemStack createPlayerHead(Player player) {
+        ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta meta = (SkullMeta) head.getItemMeta();
         if (meta == null) {
             return head;
         }
-
         meta.setOwningPlayer(player);
+        meta.setDisplayName(ChatColor.YELLOW + player.getName());
 
-        meta.setDisplayName(
-                ChatColor.YELLOW +
-                        player.getName()
-        );
-
-        List<String> lore =
-                new ArrayList<>();
-
+        List<String> lore = new ArrayList<>();
         lore.add("");
-
-        lore.add(
-                ChatColor.GRAY +
-                        "Balance: " +
-                        ChatColor.GREEN +
-                        "$" +
-                        economy.getPlayerBalance(player)
-        );
-
+        lore.add(ChatColor.GRAY + "Balance: " + ChatColor.GREEN + "$" + economy.getPlayerBalance(player));
         meta.setLore(lore);
         head.setItemMeta(meta);
-
         return head;
     }
 
-    private ItemStack createItem(
-            Material material,
-            String name
+    private ItemStack createItem(Material material, String name
     ) {
-        ItemStack item =
-                new ItemStack(material);
-
-        ItemMeta meta =
-                item.getItemMeta();
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
             meta.setDisplayName(name);
@@ -791,168 +400,83 @@ public class auctionHouse implements Listener, CommandExecutor, TabCompleter {
         return item;
     }
 
-    private void setListingId(
-            ItemStack item,
-            int id
-    ) {
-        ItemMeta meta =
-                item.getItemMeta();
-
+    private void setListingId(ItemStack item, int id) {
+        ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.getPersistentDataContainer()
-                    .set(
-                            listingKey,
-                            PersistentDataType.INTEGER,
-                            id
-                    );
-
+            meta.getPersistentDataContainer().set(listingKey, PersistentDataType.INTEGER, id);
             item.setItemMeta(meta);
         }
     }
 
-    private int getListingId(
-            ItemStack item
-    ) {
-        if (item == null ||
-                !item.hasItemMeta()) {
+    private int getListingId(ItemStack item) {
+        if (item == null || !item.hasItemMeta()) {
             return -1;
         }
 
-        Integer id =
-                item.getItemMeta()
-                        .getPersistentDataContainer()
-                        .get(
-                                listingKey,
-                                PersistentDataType.INTEGER
-                        );
-
+        Integer id = item.getItemMeta().getPersistentDataContainer().get(listingKey, PersistentDataType.INTEGER);
         return id == null ? -1 : id;
     }
 
     @EventHandler
-    public void onInventoryClick(
-            InventoryClickEvent event
-    ) {
+    public void onInventoryClick(InventoryClickEvent event) {
         if (!(event.getWhoClicked()
                 instanceof Player player)) {
             return;
         }
 
-        String title =
-                ChatColor.stripColor(
-                        event.getView().getTitle()
-                );
-
-        if (title.startsWith(
-                "Auction House | "
-        )) {
+        String title = ChatColor.stripColor(event.getView().getTitle());
+        if (title.startsWith("Auction House | ")) {
             event.setCancelled(true);
-
-            if (event.getRawSlot() < 0 ||
-                    event.getRawSlot() >=
-                            event.getView()
-                                    .getTopInventory()
-                                    .getSize()) {
+            if (event.getRawSlot() < 0 || event.getRawSlot() >= event.getView().getTopInventory().getSize()) {
                 return;
             }
 
-            ItemStack clicked =
-                    event.getCurrentItem();
-
+            ItemStack clicked = event.getCurrentItem();
             if (clicked == null) {
                 return;
             }
-
             if (event.getRawSlot() == 48) {
-                int page =
-                        getCurrentPage(title);
-
+                int page = getCurrentPage(title);
                 if (page > 1) {
-                    sounds.play(
-                            player,
-                            "auction-click"
-                    );
-
-                    openAuctionHouse(
-                            player,
-                            page - 1
-                    );
+                    sounds.play(player, "auction-click");
+                    openAuctionHouse(player, page - 1);
                 } else {
-                    sounds.play(
-                            player,
-                            "auction-error"
-                    );
+                    sounds.play(player, "auction-error");
                 }
 
                 return;
             }
 
             if (event.getRawSlot() == 50) {
-                int page =
-                        getCurrentPage(title);
+                int page = getCurrentPage(title);
 
                 if (page < getMaxPage()) {
-                    sounds.play(
-                            player,
-                            "auction-click"
-                    );
-
-                    openAuctionHouse(
-                            player,
-                            page + 1
-                    );
+                    sounds.play(player, "auction-click");
+                    openAuctionHouse(player, page + 1);
                 } else {
-                    sounds.play(
-                            player,
-                            "auction-error"
-                    );
+                    sounds.play(player, "auction-error");
                 }
-
                 return;
             }
 
-            int id =
-                    getListingId(clicked);
-
-            if (id != -1 &&
-                    listingExists(id)) {
-
-                if (!permissions.hasPermission(
-                        player,
-                        "ssmp.auction.buy"
-                )) {
-                    error(
-                            player,
-                            "You do not have permission to buy auctions."
-                    );
+            int id = getListingId(clicked);
+            if (id != -1 && listingExists(id)) {
+                if (!permissions.hasPermission(player, "ssmp.auction.buy")) {
+                    error(player, "You do not have permission to buy auctions.");
                     return;
                 }
 
-                sounds.play(
-                        player,
-                        "auction-click"
-                );
-
-                openConfirmation(
-                        player,
-                        id
-                );
+                sounds.play(player, "auction-click");
+                openConfirmation(player, id);
             }
 
             return;
         }
 
-        if (title.equals(
-                "Confirm Purchase"
-        )) {
+        if (title.equals("Confirm Purchase")) {
             event.setCancelled(true);
-
             if (event.getRawSlot() == 11) {
-                sounds.play(
-                        player,
-                        "auction-click"
-                );
-
+                sounds.play(player, "auction-click");
                 player.closeInventory();
                 return;
             }
@@ -961,251 +485,115 @@ public class auctionHouse implements Listener, CommandExecutor, TabCompleter {
                 return;
             }
 
-            ItemStack display =
-                    event.getInventory()
-                            .getItem(13);
-
-            int id =
-                    getListingId(display);
-
+            ItemStack display = event.getInventory().getItem(13);
+            int id = getListingId(display);
             if (id == -1) {
-                error(
-                        player,
-                        "This auction is invalid."
-                );
-
+                error(player, "This auction is invalid.");
                 player.closeInventory();
                 return;
             }
 
-            buyListing(
-                    player,
-                    id
-            );
+            buyListing(player, id);
         }
     }
 
-    private void buyListing(
-            Player buyer,
-            int id
-    ) {
-        String path =
-                "listings." + id;
-
+    private void buyListing(Player buyer, int id) {
+        String path = "listings." + id;
         if (!listings.contains(path)) {
-            error(
-                    buyer,
-                    "This auction is no longer available."
-            );
-
+            error(buyer, "This auction is no longer available.");
             buyer.closeInventory();
             return;
         }
 
-        String sellerString =
-                listings.getString(
-                        path + ".seller"
-                );
-
+        String sellerString = listings.getString(path + ".seller");
         UUID sellerUuid;
-
         try {
-            sellerUuid =
-                    UUID.fromString(
-                            sellerString
-                    );
+            sellerUuid = UUID.fromString(sellerString);
         } catch (Exception e) {
-            error(
-                    buyer,
-                    "This auction is invalid."
-            );
+            error(buyer, "This auction is invalid.");
             return;
         }
 
-        if (sellerUuid.equals(
-                buyer.getUniqueId()
-        )) {
-            error(
-                    buyer,
-                    "You cannot buy your own auction."
-            );
+        if (sellerUuid.equals(buyer.getUniqueId())) {
+            error(buyer, "You cannot buy your own auction.");
             return;
         }
-
-        double price =
-                listings.getDouble(
-                        path + ".price"
-                );
-
-        double balance =
-                economy.getPlayerBalance(
-                        buyer
-                );
-
-        int negate =
-                getNegateBuyPrice();
-
+        double price = listings.getDouble(path + ".price");
+        double balance = economy.getPlayerBalance(buyer);
+        int negate = getNegateBuyPrice();
         if (balance - price < -negate) {
-            error(
-                    buyer,
-                    "You cannot afford this item."
-            );
+            error(buyer, "You cannot afford this item.");
             return;
         }
 
-        ItemStack item =
-                listings.getItemStack(
-                        path + ".item"
-                );
-
-        if (item == null ||
-                item.getType().isAir()) {
-            error(
-                    buyer,
-                    "This auction is invalid."
-            );
+        ItemStack item = listings.getItemStack(path + ".item");
+        if (item == null || item.getType().isAir()) {
+            error(buyer, "This auction is invalid.");
             return;
         }
 
-        if (!buyer.getInventory()
-                .addItem(item.clone())
-                .isEmpty()) {
-            error(
-                    buyer,
-                    "You do not have enough inventory space."
-            );
+        if (!buyer.getInventory().addItem(item.clone()).isEmpty()) {
+            error(buyer, "You do not have enough inventory space.");
             return;
         }
 
-        String itemName =
-                getItemName(item);
-
-        listings.set(
-                path,
-                null
-        );
-
+        String itemName = getItemName(item);
+        listings.set(path, null);
         saveListings();
-
-        economy.removePlayerBalance(
-                buyer,
-                price
-        );
-
-        sounds.play(
-                buyer,
-                "auction-success"
-        );
-
-        buyer.spigot().sendMessage(
-                ChatMessageType.ACTION_BAR,
-                new TextComponent(ChatColor.YELLOW + "You have bought this item for $"+price)
-        );
-
-        Player seller =
-                Bukkit.getPlayer(
-                        sellerUuid
-                );
+        economy.removePlayerBalance(buyer, price);
+        sounds.play(buyer, "auction-success");
+        buyer.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.YELLOW + "You have bought this item for $"+price));
+        Player seller = Bukkit.getPlayer(sellerUuid);
 
         if (seller != null) {
-            economy.addPlayerBalance(
-                    seller,
-                    price
-            );
-
-            sounds.play(
-                    seller,
-                    "auction-success"
-            );
-            seller.spigot().sendMessage(
-                    ChatMessageType.ACTION_BAR,
-                    new TextComponent(ChatColor.GREEN+buyer.getName()+" has bought you "+itemName+" for $"+price)
-            );
+            economy.addPlayerBalance(seller, price);
+            sounds.play(seller, "auction-success");
+            seller.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GREEN+buyer.getName()+" has bought you "+itemName+" for $"+price));
         }
 
         buyer.closeInventory();
     }
 
-    private void error(
-            Player player,
-            String message
-    ) {
-        sounds.play(
-                player,
-                "auction-error"
-        );
-
-        player.spigot().sendMessage(
-                ChatMessageType.ACTION_BAR,
-                new TextComponent(ChatColor.RED + message)
-        );
+    private void error(Player player, String message) {
+        sounds.play(player, "auction-error");
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.RED + message));
     }
 
-    private String getItemName(
-            ItemStack item
-    ) {
+    private String getItemName(ItemStack item) {
         if (item == null) {
             return "item";
         }
 
-        ItemMeta meta =
-                item.getItemMeta();
-
+        ItemMeta meta = item.getItemMeta();
         if (meta != null &&
                 meta.hasDisplayName()) {
             return ChatColor.stripColor(
                     meta.getDisplayName()
             );
         }
-
-        String name =
-                item.getType()
-                        .name()
-                        .toLowerCase()
-                        .replace(
-                                '_',
-                                ' '
-                        );
-
-        return name.substring(0, 1).toUpperCase() +
-                name.substring(1);
+        String name = item.getType().name().toLowerCase().replace('_', ' ');
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
     private List<Integer> getListingIds() {
-        List<Integer> ids =
-                new ArrayList<>();
-
-        if (!listings.contains(
-                "listings"
-        )) {
+        List<Integer> ids = new ArrayList<>();
+        if (!listings.contains("listings")) {
             return ids;
         }
 
-        if (listings.getConfigurationSection(
-                "listings"
-        ) == null) {
+        if (listings.getConfigurationSection("listings") == null) {
             return ids;
         }
 
-        for (String key :
-                listings
-                        .getConfigurationSection(
-                                "listings"
-                        )
-                        .getKeys(false)) {
-
+        for (String key : listings.getConfigurationSection("listings").getKeys(false)) {
             try {
-                ids.add(
-                        Integer.parseInt(key)
-                );
+                ids.add(Integer.parseInt(key));
             } catch (NumberFormatException ignored) {
+                // haha lol do nothing because 'ignore'
             }
         }
 
-        ids.sort(
-                Integer::compareTo
-        );
-
+        ids.sort(Integer::compareTo);
         return ids;
     }
 
@@ -1214,60 +602,29 @@ public class auctionHouse implements Listener, CommandExecutor, TabCompleter {
     }
 
     private int getMaxPage() {
-        int count =
-                getListingCount();
-
+        int count = getListingCount();
         if (count == 0) {
             return 1;
         }
-
-        int configuredMaxPages =
-                Math.max(
-                        1,
-                        getMaxPages()
-                );
-
-        int calculatedPages =
-                (int) Math.ceil(
-                        (double) count /
-                                listingsPerPage
-                );
-
-        return Math.min(
-                calculatedPages,
-                configuredMaxPages
-        );
+        int configuredMaxPages = Math.max(1, getMaxPages());
+        int calculatedPages = (int) Math.ceil((double) count / listingsPerPage); // Add a ling and it becomes ceilling
+        return Math.min(calculatedPages, configuredMaxPages);
     }
 
     private int getNextListingId() {
         int id = 1;
-
-        while (listings.contains(
-                "listings." + id
-        )) {
+        while (listings.contains("listings." + id)) {
             id++;
         }
-
         return id;
     }
 
-    private boolean listingExists(
-            int id
-    ) {
-        return listings.contains(
-                "listings." + id
-        );
+    private boolean listingExists(int id) {
+        return listings.contains("listings." + id);
     }
-
-    private int getCurrentPage(
-            String title
-    ) {
+    private int getCurrentPage(String title) {
         try {
-            return Integer.parseInt(
-                    title.substring(
-                            title.lastIndexOf("| ") + 2
-                    )
-            );
+            return Integer.parseInt(title.substring(title.lastIndexOf("| ") + 2));
         } catch (Exception e) {
             return 1;
         }
@@ -1275,60 +632,30 @@ public class auctionHouse implements Listener, CommandExecutor, TabCompleter {
 
     private void saveListings() {
         try {
-            listings.save(
-                    listingsFile
-            );
+            listings.save(listingsFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public List<String> onTabComplete(
-            CommandSender sender,
-            Command command,
-            String alias,
-            String[] args
-    ) {
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (!isEnabled()) {
             return List.of();
         }
 
         if (args.length == 1) {
-            List<String> suggestions =
-                    new ArrayList<>();
-
+            List<String> suggestions = new ArrayList<>();
             suggestions.add("sell");
             suggestions.add("remove");
-
-            return suggestions.stream()
-                    .filter(
-                            value ->
-                                    value.toLowerCase()
-                                            .startsWith(
-                                                    args[0]
-                                                            .toLowerCase()
-                                            )
-                    )
-                    .toList();
+            return suggestions.stream().filter(value -> value.toLowerCase().startsWith(args[0].toLowerCase())).toList();
         }
 
-        if (args.length == 2 &&
-                args[0].equalsIgnoreCase(
-                        "remove"
-                )) {
-            return getListingIds()
-                    .stream()
-                    .map(String::valueOf)
-                    .filter(
-                            value ->
-                                    value.startsWith(
-                                            args[1]
-                                    )
-                    )
-                    .toList();
+        if (args.length == 2 && args[0].equalsIgnoreCase("remove")) {
+            return getListingIds().stream().map(String::valueOf).filter(value -> value.startsWith(args[1])).toList();
         }
 
         return List.of();
     }
 }
+// KasaiSora better not find more dumb bugs :( It took HOURS.

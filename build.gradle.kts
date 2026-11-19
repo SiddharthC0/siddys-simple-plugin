@@ -1,10 +1,11 @@
 
 plugins {
     id("java")
+    id("com.gradleup.shadow") version "9.5.0"
 }
 
 group = "org.siddharth"
-version = "3.0.0"
+version = "4.0.0"
 
 base {
     archivesName.set("SiddysSimplePlugin")
@@ -33,18 +34,19 @@ dependencies {
     compileOnly("me.clip:placeholderapi:2.11.7")
     compileOnly("com.github.milkbowl:VaultAPI:1.7.1")
     compileOnly("org.apache.logging.log4j:log4j-core:2.19.0")
+
+    implementation("org.xerial:sqlite-jdbc:3.54.1.0")
 }
 
-
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(25))
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
     withSourcesJar()
     withJavadocJar()
 }
 
 tasks.jar {
-    archiveClassifier.set("")
-
+    archiveClassifier.set("plain")
     isPreserveFileTimestamps = false
     isReproducibleFileOrder = true
 
@@ -60,14 +62,24 @@ tasks.jar {
     }
 }
 
+tasks.shadowJar {
+    archiveClassifier.set("")
+    mergeServiceFiles()
+}
+
 tasks.register("inspectJar") {
-    dependsOn(tasks.jar)
+    dependsOn(tasks.shadowJar)
 
     doLast {
-        val file = tasks.jar.get().archiveFile.get().asFile
+        val file = tasks.shadowJar.get().archiveFile.get().asFile
 
+        println("--- JAR Inspection ---")
         println("Name: ${file.name}")
         println("Size: ${file.length() / 1024} KB")
         println("Location: ${file.absolutePath}")
     }
+}
+
+tasks.build {
+    dependsOn(tasks.shadowJar)
 }

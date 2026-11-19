@@ -1,5 +1,5 @@
 name: SiddysSimplePlugin
-version: 3.0.0
+version: 4.0.0
 main: org.siddharth.ssmp.ssmp
 description: Siddys Simple Plugin. Available on MODRINTH | CURSEFORGE | SPIGOTMC. Wonders of RPG - The biggest update ever...
 author: SiddharthC
@@ -134,12 +134,54 @@ commands:
       - info
       - playerinfogui
 
+  mute:
+    description: Mute a player
+    usage: /mute <player> <duration|permanent> <reason>
+    permission: ssmp.moderation.mute
+    unmute:
+      description: Remove a player's mute
+      usage: /unmute <player>
+      permission: ssmp.moderation.unmute
+    warn:
+      description: Warn a player
+      usage: /warn <player> <reason>
+      permission: ssmp.moderation.warn
+    ban:
+      description: Ban a player
+      usage: /ban <player> <duration|permanent> <reason>
+      permission: ssmp.moderation.ban
+    unban:
+      description: Remove a player's ban
+      usage: /unban <player>
+      permission: ssmp.moderation.unban
+    filter:
+      description: Manage blocked chat terms
+      usage: /filter <add|remove|list|reload>
+      permission: ssmp.moderation.filter
+    history:
+      description: View moderation history
+      usage: /history <player>
+      permission: ssmp.moderation.history
+    resetviolations:
+      description: Reset a player's chat-filter violation count
+      usage: /resetviolations <player>
+      permission: ssmp.moderation.reset
+
 permissions:
 
-  ssmp.admin:
-    description: Grants access to all SSMP administrative features.
+  ssmp.moderation.admin:
+    description: Full moderation access
     default: op
     children:
+      ssmp.moderation.mute: true
+      ssmp.moderation.unmute: true
+      ssmp.moderation.warn: true
+      ssmp.moderation.ban: true
+      ssmp.moderation.unban: true
+      ssmp.moderation.filter: true
+      ssmp.moderation.history: true
+      ssmp.moderation.reset: true
+      ssmp.moderation.notify: true
       ssmp.rtp.use: true
       ssmp.rank.use: true
       ssmp.rank.create: true
@@ -195,6 +237,29 @@ permissions:
       ssmp.warps.use: true
       ssmp.warps.set: true
       ssmp.warps.delete: true
+
+
+  ssmp.moderation.mute:
+    default: op
+  ssmp.moderation.unmute:
+      default: op
+  ssmp.moderation.warn:
+      default: op
+  ssmp.moderation.ban:
+      default: op
+  ssmp.moderation.unban:
+      default: op
+  ssmp.moderation.filter:
+      default: op
+  ssmp.moderation.history:
+      default: op
+  ssmp.moderation.reset:
+      default: op
+  ssmp.moderation.notify:
+      default: op
+  ssmp.moderation.bypass:
+      description: Bypass chat moderation
+      default: op
 
   ssmp.rank.use:
     description: Allows the use of SSMP rank commands.
@@ -305,47 +370,17 @@ permissions:
     description: Allows removing own Auction House listings.
     default: true
 
-  ssmp.orders.use:
-    description: Allows using SSMP Orders.
-    default: true
-
-  ssmp.orders.create:
-    description: Allows creating orders.
-    default: true
-
-  ssmp.orders.fulfill:
-    description: Allows fulfilling orders.
-    default: true
-
-  ssmp.orders.cancel:
-    description: Allows cancelling own orders.
-    default: true
-
-
-
-  ssmp.crates.use:
-    description: Allows using crates.
-    default: true
-
-  ssmp.crates.create:
-    description: Allows creating crates.
-    default: op
-
-  ssmp.crates.delete:
-    description: Allows deleting crates.
-    default: op
-
   ssmp.crates.give:
     description: Allows giving crate keys.
     default: op
 
   ssmp.nickname.use:
     description: Allows using nicknames.
-    default: true
+    default: op
 
   ssmp.nickname.color:
     description: Allows changing nickname colors.
-    default: true
+    default: op
 
   ssmp.homes.use:
     description: Allows using and viewing homes.

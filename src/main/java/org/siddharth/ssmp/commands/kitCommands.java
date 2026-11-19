@@ -9,11 +9,9 @@ import org.siddharth.ssmp.gui.kitGUI;
 import org.siddharth.ssmp.util.coreUtilMethods;
 import org.siddharth.ssmp.mechanics.kitSystem;
 import org.siddharth.ssmp.ssmp;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import static java.util.Arrays.copyOfRange;
 
 public class kitCommands implements CommandExecutor, TabCompleter {
@@ -38,7 +36,6 @@ public class kitCommands implements CommandExecutor, TabCompleter {
             return true;
         }
         String subcommand = args[0].toLowerCase(Locale.ROOT);
-
         if (subcommand.equals("create")) {
             if (!sender.hasPermission("ssmp.kits.create")) {
                 core.sendMessage(sender, "&cYou don't have permission to create kits.");

@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.siddharth.ssmp.chat.chatFormatting;
 import org.siddharth.ssmp.commands.*;
 import org.siddharth.ssmp.economy.auctionHouse;
 import org.siddharth.ssmp.support.ValutSupport;
@@ -33,6 +34,8 @@ import org.siddharth.ssmp.information.information;
 import org.siddharth.ssmp.controlpanel.controlPanel;
 import org.siddharth.ssmp.support.placholderAPISupport;
 import org.siddharth.ssmp.util.coreUtilMethods;
+import org.siddharth.ssmp.moderation.moderationSystem;
+import org.siddharth.ssmp.moderation.moderationCommands;
 
 public final class ssmp extends JavaPlugin {
 
@@ -73,6 +76,7 @@ public final class ssmp extends JavaPlugin {
     private playerInformationGUI playerInfoGui;
 
     private controlPanel control;
+    private moderationSystem moderation;
 
     public coreUtilMethods getCore() {
         return core;
@@ -82,6 +86,17 @@ public final class ssmp extends JavaPlugin {
         new updateChecker(this).check();
         new information(this).create();
         createConfig();
+        moderation = new moderationSystem(this);
+        moderationCommands moderationCommandHandler = new moderationCommands(moderation);
+        String[] moderationCommandNames = {"mute", "unmute", "warn", "ban", "unban", "filter", "history", "resetviolations"};
+        for (String commandName : moderationCommandNames) {
+            if (getCommand(commandName) != null) {
+                getCommand(commandName).setExecutor(moderationCommandHandler);
+                getCommand(commandName).setTabCompleter(moderationCommandHandler);
+            } else {
+                getLogger().warning("Missing moderation command in plugin.yml: " + commandName);
+            }
+        }
         control = new controlPanel(this);
         control.setUpdateCheckAction(() -> new updateChecker(this).check());
         control.start();
@@ -165,21 +180,18 @@ public final class ssmp extends JavaPlugin {
         }
 
         if (isEnabled("chat")) {
-            chatFormatting chatFormatting =
-                    new chatFormatting(
-                            this,
-                            ranks,
-                            sounds
-                    );
+            chatFormatting chat = new chatFormatting(
+                    this,
+                    ranks,
+                    sounds,
+                    placeholders
+            );
 
-            chatFormatting.setNameProvider(
+            chat.setNameProvider(
                     player -> nicknames.getFormattedNickname(player)
             );
 
-            getServer().getPluginManager().registerEvents(
-                    chatFormatting,
-                    this
-            );
+            getServer().getPluginManager().registerEvents(chat, this);
         }
 
         if (getCommand("nick") != null) {
@@ -510,6 +522,9 @@ public final class ssmp extends JavaPlugin {
         if (placeholders != null) {
             placeholders.stop();
         }
+        if (moderation != null) {
+            moderation.close();
+        }
         getLogger().info("SSMP disabled.");
     }
     public levelSystem getLevels() {
@@ -529,6 +544,9 @@ public final class ssmp extends JavaPlugin {
 
             if (rtp != null) {
                 rtp.reload();
+            }
+            if (moderation != null) {
+                moderation.reloadFromConfig();
             }
 
             getLogger().info(
@@ -782,4 +800,7 @@ public final class ssmp extends JavaPlugin {
     public kitGUI getKitGui() {return kitGui;}
     public RTPSystem getRTP() {return rtp;}
     public rankSystem getRanks() {return ranks;}
+    public placeholderSystem getPlaceholders() {
+        return placeholders;
+    }
 }
