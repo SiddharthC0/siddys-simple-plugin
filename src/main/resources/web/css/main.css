@@ -1,7 +1,7 @@
 
 :root {
     --bg: #000000;
-    --panel: #121212;
+    --panel: #090909;
     --panel2: #181818;
     --raised: #202020;
     --border: #303030;
@@ -63,12 +63,7 @@ button {
     flex-direction: column;
     z-index: 99;
     overflow-y: auto;
-
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,.085);
-    box-shadow: 0 30px 100px rgba(0,0,0,.2);
-    backdrop-filter: blur(18px);
+    background-color: var(--panel);
 }
 
 .brand {
@@ -198,11 +193,7 @@ button {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,.085);
-    box-shadow: 0 30px 100px rgba(0,0,0,.2);
-    backdrop-filter: blur(18px);
+    background-color: var(--panel);
 }
 
 .topbar h1 {
@@ -242,11 +233,9 @@ button {
     font-weight: 700;
     font-size: 12px;
     transition: background .15s,border-color .15s,filter .15s;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,.085);
-    box-shadow: 0 30px 100px rgba(0,0,0,.2);
-    backdrop-filter: blur(18px);
+    
+    
+    
 }
 
 .button.primary {
@@ -342,11 +331,7 @@ button {
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 30px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,.085);
-    box-shadow: 0 30px 100px rgba(0,0,0,.2);
-    backdrop-filter: blur(18px);
+    background-color: var(--panel);
 }
 
 .stat-label {
@@ -401,11 +386,9 @@ button {
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 20px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,.085);
-    box-shadow: 0 30px 100px rgba(0,0,0,.2);
-    backdrop-filter: blur(18px);
+    
+    
+    
 }
 
 .quick-icon {
@@ -727,10 +710,7 @@ label small {
     overflow: hidden;
     position: relative;
     isolation: isolate;
-    background:
-        radial-gradient(ellipse at 12% 15%, rgba(183,255,56,.055), transparent 40%),
-        radial-gradient(ellipse at 90% 85%, rgba(183,255,56,.035), transparent 45%),
-        var(--bg);
+    background: #000000;
 }
 
 /* BACKGROUND */
@@ -758,11 +738,8 @@ label small {
     position: relative;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,.085);
-    border-radius: 14px;
-    box-shadow: 0 30px 100px rgba(0,0,0,.2);
-    backdrop-filter: blur(18px);
-    animation: login-appear .7s cubic-bezier(.2,.8,.2,1) both;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .login-card .eyebrow {
@@ -795,8 +772,8 @@ label small {
     padding: 0 16px;
     margin: 4px 0 17px;
     border-radius: 8px;
-    border: 1px solid var(--border);
-    background: rgba(0,0,0,.16);
+
+
     color: var(--text);
     font-size: 14px;
     outline: none;
@@ -817,6 +794,8 @@ label small {
     font-weight: 700;
     letter-spacing: .2px;
     transition: transform .2s, box-shadow .2s, filter .2s;
+    background-color: #b7ff38;
+    border: none;
 }
 
 .login-card .button.primary.full:hover {
@@ -1002,12 +981,7 @@ label small {
     padding: 22px;
     margin-bottom: 30px;
     min-width: 0;
-
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,.085);
-    box-shadow: 0 30px 100px rgba(0,0,0,.2);
-    backdrop-filter: blur(18px);
+    background-color: var(--panel);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1353,11 +1327,9 @@ label small {
     box-sizing: border-box;
 
     border: 1px solid var(--border);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,.085);
-    box-shadow: 0 30px 100px rgba(0,0,0,.2);
-    backdrop-filter: blur(18px);
+    
+    
+    
 }
 
 .main-content {
@@ -1445,11 +1417,9 @@ label small {
     overflow-y: auto;
     box-sizing: border-box;
     z-index: 99;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,.085);
-    box-shadow: 0 30px 100px rgba(0,0,0,.2);
-    backdrop-filter: blur(18px);
+    
+    
+    
 }
 
 .main {

@@ -67,10 +67,7 @@ public final class controlPanel {
 
             plugin.getLogger().info("[SSMP Control Panel] Started at http://" + host + ":" + port);
             if (!host.equals("127.0.0.1") && !host.equalsIgnoreCase("localhost")) {
-                plugin.getLogger().warning(
-                        "[SSMP Control Panel] Non-local binding selected. " +
-                                "Use HTTPS through a trusted reverse proxy or secure tunnel before exposing it publicly."
-                );
+                plugin.getLogger().warning("[SSMP Control Panel] Non-local binding selected. " + "Use HTTPS through a trusted reverse proxy or secure tunnel before exposing it publicly.");
             }
         } catch (Exception exception) {
             stop();
@@ -99,5 +96,8 @@ public final class controlPanel {
         byte[] bytes = new byte[18];
         new SecureRandom().nextBytes(bytes);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
+    }
+    public boolean isRunning() {
+        return server != null;
     }
 }

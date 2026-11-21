@@ -14,6 +14,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.event.HandlerList;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -22,11 +23,9 @@ import java.util.List;
 import org.siddharth.ssmp.chat.chatFormatting;
 import org.siddharth.ssmp.commands.*;
 import org.siddharth.ssmp.economy.auctionHouse;
+import org.siddharth.ssmp.gui.*;
+import org.siddharth.ssmp.information.joinMotdSystem;
 import org.siddharth.ssmp.support.ValutSupport;
-import org.siddharth.ssmp.gui.bountyGUI;
-import org.siddharth.ssmp.gui.contractGUI;
-import org.siddharth.ssmp.gui.kitGUI;
-import org.siddharth.ssmp.gui.playerInformationGUI;
 import org.siddharth.ssmp.economy.economy;
 import org.siddharth.ssmp.economy.economyCommands;
 import org.siddharth.ssmp.economy.shopSystem;
@@ -35,9 +34,12 @@ import org.siddharth.ssmp.updateChecker.updateChecker;
 import org.siddharth.ssmp.information.information;
 import org.siddharth.ssmp.controlpanel.controlPanel;
 import org.siddharth.ssmp.support.placholderAPISupport;
-import org.siddharth.ssmp.util.coreUtilMethods;
 import org.siddharth.ssmp.moderation.moderationSystem;
 import org.siddharth.ssmp.moderation.moderationCommands;
+import org.siddharth.ssmp.information.supportMain;
+
+// Utility files
+import org.siddharth.ssmp.util.coreUtilMethods;
 
 public final class ssmp extends JavaPlugin {
     String version = getDescription().getVersion(); // If you want to customize version of plugin, consider looking resources/plugin.yml
@@ -45,6 +47,7 @@ public final class ssmp extends JavaPlugin {
     String full_name = "COMPLETED Wonders of RPG"; // The full name of the RELEASE, not the plugin...
     String plugin_name = "Siddy's Simple Plugin"; // Name of the PLUGIN. This is used widely, be careful!
     String plugin_prefix = "[Siddy's Simple Plugin]"; // The prefix used to print useful messages. Not currently applicable to all msgs.
+    String creator_name = "Siddy"; // Config the name of the creator (ur name :D)
     Boolean debug_mode = true; // Toggle debug mode which prints important information...
 
     // Defination of all the modules that have to be loaded from here
@@ -78,6 +81,12 @@ public final class ssmp extends JavaPlugin {
     private playerInformationGUI playerInfoGui;
     private controlPanel control;
     private moderationSystem moderation;
+    private shopSystem shop;
+    private auctionHouse auctionHouse;
+    private supportMain support;
+    private infoBarSystem infoBar;
+    private infoBarGUI infoBarMenu;
+    private configSystem configMenu;
     public coreUtilMethods getCore() {return core;}
 
     // Stuff that happens when the server starts with the plugin installed
@@ -86,15 +95,30 @@ public final class ssmp extends JavaPlugin {
     public void onEnable() {
         new updateChecker(this).check();
         new information(this).create();
+        core = new coreUtilMethods(this);
         createConfig();
+        initializeModules();
 
+        // configure this message if you want
+        getLogger().info(plugin_prefix+" Enabled plugin version "+version);
+        getLogger().info(plugin_prefix+" By "+creator_name);
+        getLogger().info(plugin_prefix+" Code "+code_name+" Release "+full_name);
+    }
+
+    // uhh this method was added for that hot reloading thing... Because we wanna hot reload some time in the near future, ts, it REQUIRED.
+    // if you want to configure multiple stuff or smth, use this.
+    public void initializeModules() {
         // Very very very critical stuff
+        configMenu = new configSystem(this);
         try {
             ranks = new rankSystem(this);
-        } catch (Exception e) {getLogger().warning("The ranks system failed to load: "+e.getMessage());}
-
+        } catch (Exception e) {getLogger().warning("The ranks system failed to load: " + e.getMessage());}
         try {
-            permissions = new permissionSystem(this, ranks);
+            if (ranks != null) {
+                permissions = new permissionSystem(this, ranks);
+            } else {
+                getLogger().warning("The permissions system was disabled because ranks failed to load.");
+            }
         } catch (Exception e) {getLogger().warning("The permissions system failed to load: "+e.getMessage());}
 
         try {
@@ -106,9 +130,49 @@ public final class ssmp extends JavaPlugin {
         } catch (Exception e) {getLogger().warning("The nicknames system failed to load: "+e.getMessage());}
 
         try {
-            menu = new menuSystem(this, sounds);
-            getServer().getPluginManager().registerEvents(menu, this);
+            if (sounds != null) {
+                menu = new menuSystem(this, sounds);
+                getServer().getPluginManager().registerEvents(menu, this);
+            } else {
+                getLogger().warning("The menu system was disabled because sounds failed to load");
+            }
         } catch (Exception e) {getLogger().warning("The menu system failed to load: "+e.getMessage());}
+
+        // Support system
+        try {
+            support = new supportMain(this);
+
+            if (getCommand("support") != null) {
+                getCommand("support").setExecutor(support);
+                getCommand("support").setTabCompleter(support);
+            }
+        } catch (Exception e) {getLogger().warning("The support system failed to load: "+e.getMessage());}
+
+        // Join MOTD
+        try {
+            getServer().getPluginManager().registerEvents(new joinMotdSystem(this), this);
+        } catch (Exception e) {
+            getLogger().warning("The Join MOTD system failed to load: " + e.getMessage());
+        }
+
+        // Info bar
+        try {
+            if (isEnabled("infobar")) {
+                infoBar = new infoBarSystem(this);
+                if (infoBar.isAvailable()) {
+                    infoBarMenu = new infoBarGUI(this, infoBar);
+                    infoBarCommands commands = new infoBarCommands(this, infoBar, infoBarMenu);
+                    if (getCommand("infobar") != null) {
+                        getCommand("infobar").setExecutor(commands);
+                        getCommand("infobar").setTabCompleter(commands);
+                    } else {
+                        getLogger().warning("InfoBar command is missing from plugin.yml.");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            getLogger().severe("InfoBar subsystem failed: " + e.getMessage());
+        }
 
         // Moderation System
         try {
@@ -127,34 +191,74 @@ public final class ssmp extends JavaPlugin {
             getLogger().warning("Moderation failed to load: "+e.getMessage());
         }
 
-        // Rank system
-        try {
-            rankCommands rankCommands = new rankCommands(ranks, permissions);
-            if (getCommand("rank") != null) {
-                getCommand("rank").setExecutor(rankCommands);
-            }
-        } catch (Exception e) {
-            if (debug_mode == true) {
-                getLogger().warning("Failed to load Ranks: "+e.getMessage());
-            }
-        }
-
         // Control Panel
         try {
-            control = new controlPanel(this);
-            control.setUpdateCheckAction(() -> new updateChecker(this).check());
-            control.start();
-        } catch (Exception e) {
-            if (debug_mode == true) {
-                getLogger().warning("Failed to start control panel: " + e.getMessage());
+            if (isEnabled("cpanel")) {
+                control = new controlPanel(this);
+                control.setUpdateCheckAction(() -> new updateChecker(this).check());
+
+                if (getCommand("cpanel") != null) {
+                    getCommand("cpanel").setExecutor((sender, command, label, args) -> {
+                        if (!sender.hasPermission("ssmp.cpanel")) {
+                            sender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
+                            return true;
+                        }
+
+                        if (args.length > 1) {
+                            sender.sendMessage(ChatColor.RED + "Usage: /cpanel [start|stop|status]");
+                            return true;
+                        }
+
+                        String action = args.length == 0 ? "start" : args[0].toLowerCase();
+
+                        switch (action) { // uhh so if u reading this, just replace the entire comamnd section with your own command java file if you want..
+                            case "start" -> {
+                                if (control.isRunning()) {
+                                    sender.sendMessage(ChatColor.YELLOW + "The Control Panel is already running.");
+                                    return true;
+                                }
+
+                                control.start();
+
+                                if (control.isRunning()) {
+                                    sender.sendMessage(ChatColor.GREEN + "The Control Panel server has started.");
+                                    sender.sendMessage(ChatColor.GRAY + "Check the server console for its address.");
+                                    sender.sendMessage(ChatColor.GREEN + "And if you want any support or is confused, just do /support... only /support without any args will open the quick start guide");
+                                } else {
+                                    sender.sendMessage(ChatColor.RED + "The Control Panel could not be started. Check the console.");
+                                }
+                            }
+
+                            case "stop" -> {if (!control.isRunning()) {
+                                sender.sendMessage(ChatColor.YELLOW + "The Control Panel is already stopped.");
+                                return true;}
+                                control.stop();
+                                sender.sendMessage(ChatColor.GREEN + "The Control Panel server has stopped.");}
+                            case "status" -> sender.sendMessage(ChatColor.GRAY + "Control Panel status: " + (control.isRunning() ? ChatColor.GREEN + "Running" : ChatColor.RED + "Stopped"));
+                            default -> sender.sendMessage(ChatColor.RED + "Usage: /cpanel [start|stop|status]");
+                        }
+
+                        return true;
+                    });
+                } else {
+                    getLogger().warning("Missing cpanel command in plugin.yml.");
+                }
+            } else if (getCommand("cpanel") != null) { // js in case your smartypants removed it from plugin.yml
+                getCommand("cpanel").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The control panel is currently "+ChatColor.BLACK+"DISABLED");
+                    sender.sendMessage(ChatColor.GREEN+"Enable the control panel from SiddysSimplePlugin/config.yml");
+                    sender.sendMessage(ChatColor.AQUA+"Or use the /spconfig or /configp to open the SiddysSimplePlugin module enable/disable config menu.");
+                    return true;
+                });
             }
+        } catch (Exception e) {
+            getLogger().warning("Failed to initialize Control Panel: " + e.getMessage());
         }
 
         // Optimizer
         try {
             optimization = new optimizationSystem(this);
             optimization.initialize();
-            core = new coreUtilMethods(this);
         } catch (Exception e) {
             if  (debug_mode == true) {
                 getLogger().warning("Failed to start optimization system: " + e.getMessage());
@@ -163,8 +267,10 @@ public final class ssmp extends JavaPlugin {
 
         // Main menu system
         try {
-            if (getCommand("ssmp") != null) {
-                getCommand("ssmp").setExecutor(new commandSystem(this, sounds, menu));
+            if (getCommand("ssmp") != null && sounds != null && menu != null && support != null) {
+                getCommand("ssmp").setExecutor(new commandSystem(this, sounds, menu, support));
+            } else {
+                getLogger().warning("Fatal fallback: menu system couldn't load because some important modules were disabled. SiddysSimplePlugin will FAIL to load...");
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -259,6 +365,19 @@ public final class ssmp extends JavaPlugin {
                     Bukkit.getServicesManager().register(net.milkbowl.vault.economy.Economy.class, new ValutSupport(this, economy), this, org.bukkit.plugin.ServicePriority.Normal);
                     getLogger().info("Vault economy support enabled.");
                 }
+            } else {
+                getConfig().set("modules.shop.enabled", false);
+                getConfig().set("modules.contracts.enabled", false);
+                getConfig().set("modules.bounties.enabled", false);
+                getConfig().set("modules.playerinfo.enabled", false);
+                getConfig().set("modules.auction.enabled", false);
+                saveConfig();
+
+                getCommand("economy").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -269,11 +388,22 @@ public final class ssmp extends JavaPlugin {
         // Shop system
         try {
             if (isEnabled("shop") && economy != null) {
-                shopSystem shop = new shopSystem(economy, this, sounds);
+                shop = new shopSystem(economy, this, sounds);
                 getServer().getPluginManager().registerEvents(shop, this);
                 if (getCommand("shop") != null) {
                     getCommand("shop").setExecutor(shop);
                 }
+            } else {
+                getCommand("shop").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
+                getCommand("store").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
             }
         } catch (Exception e) {
             if  (debug_mode == true) {
@@ -283,7 +413,7 @@ public final class ssmp extends JavaPlugin {
 
         // Contracts system
         try {
-            if (isEnabled("contracts")) {
+            if (isEnabled("contracts") && economy != null && levels != null) {
                 contracts = new contractSystem(this, economy, levels);
                 contractGui = new contractGUI(contracts);
                 getServer().getPluginManager().registerEvents(contracts, this);
@@ -291,6 +421,27 @@ public final class ssmp extends JavaPlugin {
                 if (getCommand("contracts") != null) {
                     getCommand("contracts").setExecutor(new contractCommands(contractGui));
                 }
+            } else {
+                getCommand("contracts").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
+                getCommand("contractsgui").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
+                getCommand("contractgui").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
+                getCommand("contract").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -314,6 +465,22 @@ public final class ssmp extends JavaPlugin {
                 if (getCommand("bounty") != null) {
                     getCommand("bounty").setExecutor(bountyCommands);
                 }
+            } else {
+                getCommand("bounty").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
+                getCommand("bounties").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
+                getCommand("bountygui").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -323,7 +490,7 @@ public final class ssmp extends JavaPlugin {
 
         // Player information system
         try {
-            if (isEnabled("economy") && isEnabled("levels") && isEnabled("contracts") && isEnabled("bounties")) {
+            if (isEnabled("economy") && levels != null && contracts != null && bounties != null) {
                 playerInfo = new playerInformationSystem(this, economy, levels, contracts, bounties);
                 playerInfoGui = new playerInformationGUI(playerInfo);
                 getServer().getPluginManager().registerEvents(playerInfoGui, this);
@@ -342,7 +509,7 @@ public final class ssmp extends JavaPlugin {
 
         // Scoreboard system
         try {
-            if (isEnabled("scoreboard") && economy != null) {
+            if (isEnabled("scoreboard")) {
                 scoreboard = new scoreboardSystem(economy, this);
                 getServer().getPluginManager().registerEvents(scoreboard, this);
                 optimization.registerShutdownAction(scoreboard::stop);
@@ -375,6 +542,22 @@ public final class ssmp extends JavaPlugin {
                     getCommand("ah").setExecutor(auction);
                     getCommand("ah").setTabCompleter(auction);
                 }
+            } else {
+                getCommand("ah").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module AUCTIONHOUSE is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
+                getCommand("auctionhouse").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module AUCTIONHOUSE is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
+                getCommand("auction").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module AUCTIONHOUSE is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -387,21 +570,29 @@ public final class ssmp extends JavaPlugin {
             if (isEnabled("enderchest")) {
                 enderChest = new enderChestSystem(this);
                 getServer().getPluginManager().registerEvents(enderChest, this);
+
                 if (getCommand("enderchest") != null) {
                     enderChestSystem finalEnderChest = enderChest;
                     getCommand("enderchest").setExecutor((sender, command, label, args) -> {
-                                if (!(sender instanceof Player player)) {
-                                    sender.sendMessage(ChatColor.RED + "Only players can use this command.");
-                                    return true;
-                                }
-                                if (!player.hasPermission("ssmp.enderchest.use")) {
-                                    player.sendMessage(ChatColor.RED + "You don't have permission to use the Ender Chest.");
-                                    return true;
-                                }
-                                finalEnderChest.open(player);
-                                return true;
-                            }
-                    );
+                        if (!(sender instanceof Player player)) {
+                            sender.sendMessage(ChatColor.RED + "Only players can use this command.");
+                            return true;
+                        }
+                        if (!player.hasPermission("ssmp.enderchest.use")) {
+                            player.sendMessage(ChatColor.RED + "You don't have permission to use the Ender Chest.");
+                            return true;
+                        }
+                        finalEnderChest.open(player);
+                        return true;
+                    });
+                }
+            } else {
+                if (getCommand("enderchest") != null) {
+                    getCommand("enderchest").setExecutor((sender, command, label, args) -> {
+                        sender.sendMessage(ChatColor.RED + "The module ENDERCHEST is currently disabled.");
+                        sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                        return true;
+                    });
                 }
             }
         } catch (Exception e) {
@@ -428,6 +619,12 @@ public final class ssmp extends JavaPlugin {
                 if (getCommand("delhome") != null) {
                     getCommand("delhome").setExecutor(homeCommands);
                 }
+            } else {
+                getCommand("homes").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module HOMES is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -453,6 +650,12 @@ public final class ssmp extends JavaPlugin {
                 if (getCommand("delwarp") != null) {
                     getCommand("delwarp").setExecutor(warpCommands);
                 }
+            } else {
+                getCommand("warps").setExecutor((sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module WARPS is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                });
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -486,7 +689,8 @@ public final class ssmp extends JavaPlugin {
         try {
             if (isEnabled("chat")) {
                 chatFormatting chat = new chatFormatting(this, ranks, sounds, placeholders);
-                chat.setNameProvider(player -> nicknames.getFormattedNickname(player));
+                // look at this mom, i finally mastered ternarys :D
+                chat.setNameProvider(player -> nicknames != null ? nicknames.getFormattedNickname(player) : player.getName());
                 getServer().getPluginManager().registerEvents(chat, this);
             }
         } catch (Exception e) {
@@ -494,11 +698,6 @@ public final class ssmp extends JavaPlugin {
                 getLogger().warning("Failed to start chat system: " + e.getMessage());
             }
         }
-
-        // Finally, the plugin is enabled
-        getLogger().info(plugin_prefix+" Enabled plugin version "+version);
-        getLogger().info(plugin_prefix+" By Siddharth C");
-        getLogger().info(plugin_prefix+" Code "+code_name+" Release "+full_name);
     }
     // Tasks that are performed when the server is stopped with the plugin installed
     @Override
@@ -519,16 +718,23 @@ public final class ssmp extends JavaPlugin {
         shutdownSafely("Moderation", () -> {
             if (moderation != null) moderation.close();
         });
+        shutdownSafely("InfoBar", () -> {
+            if (infoBar != null) {infoBar.shutdown();}
+        });
 
         // Save and reload
-        if (levels != null) {
-            levels.save();
-        }
+        try {
+            if (levels != null) {
+                levels.save();
+            }
+        } catch (Exception e) {getLogger().warning("Failed to save levels: " + e.getMessage());}
+        try {
+            if (bounties != null) {
+                bounties.save();
+            }
+        } catch (Exception e) {getLogger().warning("Failed to save bounties: " + e.getMessage());}
         if (contracts != null) {
             contracts.reload();
-        }
-        if (bounties != null) {
-            bounties.save();
         }
         if (papiExpansion != null) {
             papiExpansion.unregister();
@@ -538,26 +744,106 @@ public final class ssmp extends JavaPlugin {
         getLogger().info(plugin_name+" has been disabled");
     }
 
+    // meth that unloads modules
+    private void unloadModules() {
+        shutdownSafely("Control Panel", () -> {if (control != null) control.stop();});
+        shutdownSafely("Optimization", () -> {if (optimization != null) optimization.shutdown();});
+        shutdownSafely("Placeholders", () -> {if (placeholders != null) placeholders.stop();});
+        shutdownSafely("Moderation", () -> {if (moderation != null) moderation.close();});
+        shutdownSafely("InfoBar", () -> {if (infoBar != null) infoBar.shutdown();});
+        shutdownSafely("Levels", () -> {if (levels != null) levels.save();});
+        shutdownSafely("Bounties", () -> {if (bounties != null) bounties.save();});
+        shutdownSafely("Contracts", () -> {if (contracts != null) contracts.reload();});
+        shutdownSafely("PlaceholderAPI", () -> {if (papiExpansion != null) papiExpansion.unregister();});
+        Bukkit.getScheduler().cancelTasks(this);
+        HandlerList.unregisterAll(this);
+        Bukkit.getServicesManager().unregisterAll(this);
+
+        // all the commands in the plugin
+        String[] commands = {
+                "support", "infobar", "mute", "unmute", "warn", "ban", "unban", "filter", "history", "resetviolations",
+                "rank", "cpanel", "ssmp", "rtp", "kit", "nick", "economy", "shop", "contracts", "bounties", "bounty",
+                "playerinfo", "ah", "enderchest", "sethome", "home", "homes", "delhome", "setwarp", "warp", "warps",
+                "delwarp", "configp"
+        };
+
+        for (String commandName : commands) {
+            if (getCommand(commandName) != null) {
+                getCommand(commandName).setExecutor(null);
+                getCommand(commandName).setTabCompleter(null);
+            }
+        }
+
+        ranks = null;
+        permissions = null;
+        sounds = null;
+        papiExpansion = null;
+        placeholders = null;
+        tablist = null;
+        scoreboard = null;
+        auction = null;
+        economyCommands = null;
+        enderChest = null;
+        homes = null;
+        warps = null;
+        menu = null;
+        nicknames = null;
+        kits = null;
+        kitGui = null;
+        kitCommands = null;
+        rtp = null;
+        optimization = null;
+        levels = null;
+        economy = null;
+        contracts = null;
+        contractGui = null;
+        bounties = null;
+        bountyGui = null;
+        playerInfo = null;
+        playerInfoGui = null;
+        control = null;
+        moderation = null;
+        shop = null;
+        auctionHouse = null;
+        support = null;
+        infoBar = null;
+        infoBarMenu = null;
+        configMenu = null;
+    }
+
+    // meth that reloads modules.. not the entire plugin.
+    public boolean reloadModules() {
+        try {
+            unloadModules();
+            reloadConfig();
+            initializeModules();
+
+            getLogger().info(plugin_name+" modules have been reloaded.");
+            return true;
+        } catch (Exception e) {
+            getLogger().severe("Failed to reload " + plugin_name + " modules: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     // Reload the plugin (a command btw)
     public boolean reloadSSMP() {
         try {
             reloadConfig();
-            if (optimization != null) {
-                optimization.refresh();
-            }
-
-            if (sounds != null) {
-                sounds.reload();
-            }
-
-            if (rtp != null) {
-                rtp.reload();
-            }
-            if (moderation != null) {
-                moderation.reloadFromConfig();
-            }
-
+            if (optimization != null) {optimization.refresh();}
+            if (sounds != null) {sounds.reload();}
+            if (rtp != null) {rtp.reload();}
+            if (scoreboard != null) {scoreboard.reload();}
+            if (economy != null) {economy.reload();}
+            if (tablist != null) {// Pls add tablist reload here
+                }
+            if (kits != null) {kits.reload();}
+            if (shop != null) {// pls add shop reload here
+                }
+            if (moderation != null) {moderation.reloadFromConfig();}
+            if (infoBar != null) { infoBar.reload(); }
             getLogger().info(plugin_name+"'s configuration has been reloaded succesfully'");
             return true;
         } catch (Exception e) {
@@ -589,8 +875,17 @@ public final class ssmp extends JavaPlugin {
         // All the values that will be added to the module config (config.yml). This is in order btw. Pls do not write memes here,
         // becuz memes belong in classes, not in final product...
 
+        config.setComments("", List.of(
+                "Welcome to Siddy's Simple Plugin config.yml",
+                "This file contains all the core enabling and disabling of modules, along with the configuration of standalone modules",
+                "If you do not understand this, or how to do stuff, I recommend that you use the QuickStartGuide.pdf attached in the SiddysSimplePlugin folder",
+                "Quick Start Guide however will not introduce you to all features, but will be enough...",
+                "Read documentation and please report bugs on the issue tracker...",
+                "Thank you :)"
+        ));
+
         // These are modules with standalone configs.
-        config.addDefault("modules.ranks.enabled", true);
+        config.setComments("", List.of("Use this modules section to enable and disable modules (both core and standalone)"));
         config.addDefault("modules.permissions.enabled", true);
         config.addDefault("modules.economy.enabled", true);
         config.addDefault("modules.contracts.enabled", true);
@@ -599,27 +894,32 @@ public final class ssmp extends JavaPlugin {
         config.addDefault("modules.warps.enabled", true);
         config.addDefault("modules.kits.enabled", true);
         config.addDefault("modules.rtp.enabled", true);
-        config.addDefault("cpanel.console.enabled", false);
+        config.addDefault("modules.cpanel.enabled", false);
         config.addDefault("modules.levels.enabled", true);
         config.addDefault("modules.scoreboard.enabled", true);
         config.addDefault("modules.chat.enabled", true);
         config.addDefault("modules.placeholders.enabled", true);
         config.addDefault("modules.menu.enabled", true);
+        config.addDefault("modules.auction.enabled", true);
+        config.addDefault("modules.tablist.enabled", true);
+        config.addDefault("modules.enderchest.enabled", true);
+        config.addDefault("modules.homes.enabled", true);
+        config.addDefault("modules.infobar.enabled", true);
+        config.addDefault("modules.nickname.enabled", true);
 
         // These are modules with core config
         // Auction house
-        config.addDefault("modules.auction.enabled", true);
+        config.setComments("", List.of("Use this modules section to configure core modules"));
         config.addDefault("modules.auction.max-auction-price", 1000000);
         config.addDefault("modules.auction.negate-buy-price", 0);
         config.addDefault("modules.auction.max-pages", 10);
         config.addDefault("modules.auction.non-sellable-items", List.of("COMPASS"));
 
         // Tablist
-        config.addDefault("modules.tablist.enabled", true);
         config.addDefault("modules.tablist.header.enabled", true);
         config.addDefault("modules.tablist.header.lines", List.of(
                         "",
-                        "<#55FFFF>&cSiddy's Tablist",
+                        "&cSiddy's Default Tablist",
                         "&7Welcome, %player_nickname%",
                         ""));
         config.addDefault("modules.tablist.footer.enabled", true);
@@ -633,11 +933,9 @@ public final class ssmp extends JavaPlugin {
         config.addDefault("modules.tablist.player-list.format", "%player_prefix%%player_nickname%%player_suffix% &8• &7%ping%ms");
 
         // Ender chest
-        config.addDefault("modules.enderchest.enabled", true);
         config.addDefault("modules.enderchest.doubled", false);
 
         // Homes
-        config.addDefault("modules.homes.enabled", true);
         config.addDefault("modules.homes.max-homes", 3);
 
         config.options().copyDefaults(true);
@@ -675,6 +973,8 @@ public final class ssmp extends JavaPlugin {
     public RTPSystem getRTP() {return rtp;}
     public rankSystem getRanks() {return ranks;}
     public placeholderSystem getPlaceholders() {return placeholders;}
+    public configSystem getConfigSystem() {return configMenu;}
+    public supportMain getSupport() {return support;}
 }
 
 // Thank you for choosing Siddy's Simple Plugin :D

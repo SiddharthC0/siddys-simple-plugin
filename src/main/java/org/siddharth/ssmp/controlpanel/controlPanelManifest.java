@@ -25,7 +25,7 @@ final class controlPanelManifest {
     synchronized void loadOrCreate(JavaPlugin plugin) throws IOException {
         Files.createDirectories(path.toAbsolutePath().getParent());
         if (!Files.exists(path)) {
-            String initialPassword = controlPanel.createInitialPassword();
+            String initialPassword = "ssmp_cpanel_admin"; // config ur init pass here
             byte[] salt = new byte[16]; // If your food tastes bad here is what you need
             new SecureRandom().nextBytes(salt);
             values.put("enabled", "true");
@@ -44,10 +44,11 @@ final class controlPanelManifest {
             save();
 
             plugin.getLogger().warning("== == == == == == Important message == == == == ==");
-            plugin.getLogger().warning("[SSMP Control Panel] Initial setup completed.");
+            plugin.getLogger().warning("[SSMP Control Panel] Initial setup has been completed :D");
             plugin.getLogger().warning("[SSMP Control Panel] INITIAL PASSWORD: " + initialPassword);
+            plugin.getLogger().warning("Use port 8756 to login on any of the public server IPS (only for personal hosted servers).");
             plugin.getLogger().warning("Change this password after your first login.");
-            plugin.getLogger().warning("The password will not be printed again.");
+            plugin.getLogger().warning("The password will not be printed again. But, will still be the same...");
             plugin.getLogger().warning("== == == == == == Be careful ok? == == == == ==");
             return;
         }

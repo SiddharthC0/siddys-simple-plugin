@@ -1,3 +1,5 @@
+// This is the second file you can configure to change the name and all of the plugin. be sure to configure this if you forked
+// Its name does NOT match the name in SSMP.java because it includes special feilds
 package org.siddharth.ssmp.information;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,7 +15,6 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.jar.JarFile;
-
 public class information {
     private final JavaPlugin plugin;
     private final Path manifest;
@@ -37,14 +38,14 @@ public class information {
             } else {
                 data = new JsonObject();
             }
-            data.addProperty("plugin", "Siddy's Simple Plugin");
-            data.addProperty("developer", "Siddharth C");
-            data.addProperty("version", plugin.getDescription().getVersion());
+            data.addProperty("plugin", "Siddy's Simple Plugin"); // config this for plugin name (full)
+            data.addProperty("developer", "Siddharth C"); // config this for author name (full)
+            data.addProperty("version", plugin.getDescription().getVersion()); // do not configure, auto fetch
             data.addProperty("main", plugin.getDescription().getMain());
             data.addProperty("api-version", plugin.getDescription().getAPIVersion());
-            data.addProperty("repository", "https://github.com/SiddharthC0/siddys-simple-plugin");
-            data.addProperty("issue-tracker", "https://github.com/SiddharthC0/siddys-simple-plugin/issues");
-            data.addProperty("modrinth-project-id", "mIr78G7Z");
+            data.addProperty("repository", "https://github.com/SiddharthC0/siddys-simple-plugin"); // repo (if present)
+            data.addProperty("issue-tracker", "https://github.com/SiddharthC0/siddys-simple-plugin/issues"); // issue tracker
+            data.addProperty("modrinth-project-id", "mIr78G7Z"); // modrinth proj id (if any)
             data.addProperty("last-refreshed", java.time.Instant.now().toString());
 
             JsonObject modules = discoverClasses();

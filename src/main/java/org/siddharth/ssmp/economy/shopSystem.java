@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.InputStream;
+import java.nio.file.Files;
 
 public class shopSystem implements CommandExecutor, Listener {
     private static final String SHOP_TITLE = "§8SSMP §7» §6Shop";
@@ -61,48 +63,24 @@ public class shopSystem implements CommandExecutor, Listener {
         shopFolder = new File(plugin.getDataFolder(), "shop");
         itemsFile = new File(shopFolder, "items.yml");
 
-        if (!shopFolder.exists() && !shopFolder.mkdirs()) throw new IllegalStateException("Shop folder could not be created!");
+        if (!shopFolder.exists() && !shopFolder.mkdirs()) {
+            throw new IllegalStateException("Shop folder could not be created!");
+        }
+
         if (!itemsFile.exists()) {
-            try {
-                if (!itemsFile.createNewFile()) throw new IllegalStateException("Shop config creation was not possible!");
+            try (InputStream resource = plugin.getResource("shop-items.yml")) {
+                if (resource == null) {
+                    throw new IllegalStateException("shop-items.yml is missing from the plugin resources!");
+                }
+
+                Files.copy(resource, itemsFile.toPath());
+                plugin.getLogger().info("Default shop configuration has been installed.");
             } catch (IOException e) {
-                throw new IllegalStateException("Shop config creation was not possible!", e);
+                throw new IllegalStateException("Shop configuration could not be created!", e);
             }
         }
+
         itemsData = YamlConfiguration.loadConfiguration(itemsFile);
-        loadDefaults();
-    }
-
-    // Future me or Future you add more materials later pls.
-    private void loadDefaults() {
-        setDefault("categories.ores.name", "Ores & Minerals");
-        setDefault("categories.ores.material", "DIAMOND");
-        setDefault("categories.farming.name", "Farming");
-        setDefault("categories.farming.material", "WHEAT");
-        setDefault("categories.building.name", "Building Blocks");
-        setDefault("categories.building.material", "STONE");
-
-        setDefault("items.DIAMOND.category", "ores");
-        setDefault("items.DIAMOND.buy", 100);
-        setDefault("items.DIAMOND.sell", 50);
-        setDefault("items.IRON_INGOT.category", "ores");
-        setDefault("items.IRON_INGOT.buy", 25);
-        setDefault("items.IRON_INGOT.sell", 10);
-        setDefault("items.GOLD_INGOT.category", "ores");
-        setDefault("items.GOLD_INGOT.buy", 40);
-        setDefault("items.GOLD_INGOT.sell", 20);
-        setDefault("items.WHEAT.category", "farming");
-        setDefault("items.WHEAT.buy", 10);
-        setDefault("items.WHEAT.sell", 5);
-        setDefault("items.STONE.category", "building");
-        setDefault("items.STONE.buy", 5);
-        setDefault("items.STONE.sell", 2);
-
-        saveData();
-    }
-
-    private void setDefault(String path, Object value) {
-        if (!itemsData.contains(path)) itemsData.set(path, value);
     }
 
     private void saveData() {
@@ -200,7 +178,7 @@ public class shopSystem implements CommandExecutor, Listener {
 
         if (categoryId != null) inventory.setItem(45, createButton(Material.ARROW, "§c§lBack", "§7Return to categories"));
         if (page > 0) inventory.setItem(48, createButton(Material.SPECTRAL_ARROW, "§e§lPrevious Page", "§7Go to page " + page));
-        if (page < maxPages - 1) inventory.setItem(53, createButton(Material.SPECTRAL_ARROW, "§a§lNext Page", "§7Go to page " + (page + 2)));
+        if (page < maxPages - 1) inventory.setItem(50, createButton(Material.SPECTRAL_ARROW, "§a§lNext Page", "§7Go to page " + (page + 2)));
 
         inventory.setItem(49, createButton(Material.PAPER, "§6Page §f" + (page + 1) + "§7/§f" + maxPages, "§7" + ids.size() + " entries available"));
 

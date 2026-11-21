@@ -1,12 +1,4 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.mechanics;
-
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -29,7 +21,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.siddharth.ssmp.util.coreUtilMethods;
 import org.siddharth.ssmp.ssmp;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -47,7 +38,6 @@ public class RTPSystem implements CommandExecutor, Listener {
     private final Map<UUID, String> selectedWorlds = new HashMap<>();
     private final Map<UUID, Long> cooldowns = new HashMap<>();
     private final Set<UUID> searching = new HashSet<>();
-
     private enum MenuType {
         WORLD,
         DISTANCE
@@ -58,7 +48,6 @@ public class RTPSystem implements CommandExecutor, Listener {
         private final Map<Integer, String> worldSlots = new HashMap<>();
         private final Map<Integer, Integer> distanceSlots = new HashMap<>();
         private Inventory inventory;
-
         private RtpHolder(MenuType type) {
             this.type = type;
         }
@@ -93,7 +82,7 @@ public class RTPSystem implements CommandExecutor, Listener {
     private void addDefaults() {
         config.addDefault("settings.enabled", true);
         config.addDefault("settings.cooldown", 60);
-        config.addDefault("settings.max-attempts", 50);
+        config.addDefault("settings.max-attempts", 200);
         config.addDefault("settings.min-y", -64);
         config.addDefault("settings.max-y", 320);
 
@@ -213,20 +202,11 @@ public class RTPSystem implements CommandExecutor, Listener {
 
     public void openWorldGui(Player player) {
         RtpHolder holder = new RtpHolder(MenuType.WORLD);
-
-        Inventory inventory = core.createGui(
-                holder,
-                validGuiSize(config.getInt("gui.world.size", 27)),
-                config.getString("gui.world.title", "&8SSMP | Select World")
-        );
-
+        Inventory inventory = core.createGui(holder, validGuiSize(config.getInt("gui.world.size", 27)), config.getString("gui.world.title", "&8SSMP | Select World"));
         holder.inventory = inventory;
-
         fillGui(inventory, "gui.world.filler");
-
         for (String worldKey : List.of("overworld", "nether", "end")) {
             String path = "gui.world." + worldKey;
-
             if (!config.getBoolean("worlds." + worldKey + ".enabled", true)) {
                 continue;
             }
@@ -238,21 +218,11 @@ public class RTPSystem implements CommandExecutor, Listener {
                 continue;
             }
 
-            Material material = getMaterial(
-                    config.getString(path + ".material"),
-                    Material.BARRIER
-            );
-
+            Material material = getMaterial(config.getString(path + ".material"), Material.BARRIER);
             String name = config.getString(path + ".name", "&f" + worldKey);
             List<String> lore = config.getStringList(path + ".lore");
-
-            inventory.setItem(
-                    slot,
-                    core.createGuiItem(material, name, lore)
-            );
-
+            inventory.setItem(slot, core.createGuiItem(material, name, lore));
             holder.worldSlots.put(slot, worldKey);
-
         }
 
         core.openGui(player, inventory);
@@ -261,52 +231,26 @@ public class RTPSystem implements CommandExecutor, Listener {
 
     private void openDistanceGui(Player player) {
         RtpHolder holder = new RtpHolder(MenuType.DISTANCE);
-
-        Inventory inventory = core.createGui(
-                holder,
-                validGuiSize(config.getInt("gui.distance.size", 27)),
-                config.getString("gui.distance.title", "&8SSMP | Select Distance")
-        );
-
+        Inventory inventory = core.createGui(holder, validGuiSize(config.getInt("gui.distance.size", 27)), config.getString("gui.distance.title", "&8SSMP | Select Distance"));
         holder.inventory = inventory;
-
         List<Integer> distances = config.getIntegerList("distances");
         List<Integer> slots = config.getIntegerList("gui.distance.slots");
-
-        Material material = getMaterial(
-                config.getString("gui.distance.material", "COMPASS"),
-                Material.COMPASS
-        );
-
+        Material material = getMaterial(config.getString("gui.distance.material", "COMPASS"), Material.COMPASS);
         List<String> configuredLore = config.getStringList("gui.distance.lore");
-
         for (int i = 0; i < Math.min(distances.size(), slots.size()); i++) {
             int distance = distances.get(i);
             int slot = slots.get(i);
-
             if (distance <= 0 || slot < 0 || slot >= inventory.getSize()) {
                 continue;
             }
 
-            String name = config.getString(
-                    "gui.distance.name",
-                    "&b%distance% Blocks"
-            ).replace("%distance%", String.valueOf(distance));
-
-            List<String> lore = configuredLore.stream()
-                    .map(line -> line.replace("%distance%", String.valueOf(distance)))
-                    .toList();
-
-            inventory.setItem(
-                    slot,
-                    core.createGuiItem(material, name, lore)
-            );
-
+            String name = config.getString("gui.distance.name", "&b%distance% Blocks").replace("%distance%", String.valueOf(distance));
+            List<String> lore = configuredLore.stream().map(line -> line.replace("%distance%", String.valueOf(distance))).toList();
+            inventory.setItem(slot, core.createGuiItem(material, name, lore));
             holder.distanceSlots.put(slot, distance);
         }
 
         fillEmptyGui(inventory, "gui.distance.filler");
-
         core.openGui(player, inventory);
         playSound(player, "open");
     }
@@ -341,15 +285,12 @@ public class RTPSystem implements CommandExecutor, Listener {
         }
 
         Inventory top = event.getView().getTopInventory();
-
         if (!(top.getHolder() instanceof RtpHolder holder)) {
             return;
         }
 
         event.setCancelled(true);
-
         int slot = event.getRawSlot();
-
         if (slot < 0 || slot >= top.getSize()) {
             return;
         }
@@ -383,27 +324,19 @@ public class RTPSystem implements CommandExecutor, Listener {
 
             return;
         }
-
         String worldName = config.getString("worlds." + worldKey + ".world-name", worldKey);
-
         selectedWorlds.put(player.getUniqueId(), worldKey);
-
         playSound(player, "select");
-
-
         openDistanceGui(player);
 
     }
 
     private void handleDistanceSelection(Player player, RtpHolder holder, int slot) {
         Integer distance = holder.distanceSlots.get(slot);
-
         if (distance == null) {
             return;
         }
-
         String worldKey = selectedWorlds.get(player.getUniqueId());
-
         if (worldKey == null) {
             player.closeInventory();
             openWorldGui(player);
@@ -495,13 +428,13 @@ public class RTPSystem implements CommandExecutor, Listener {
         actionBar(player, config.getString("actionbar.failed", "&cCould not find a safe location."));
         message(player, "invalid-location");
         playSound(player, "failed");
+        plugin.getLogger().warning("[RTP] Failed to find a safe location for " + player.getName() + " after " + config.getInt("settings.max-attempts") + " attempts.");
     }
 
     private Location findSafeLocation(World world, int minDistance, int maxDistance) {
         Location spawn = world.getSpawnLocation();
         double angle = random.nextDouble() * Math.PI * 2.0;
-        double radius = Math.sqrt(minDistance * (double) minDistance
-                + random.nextDouble() * (maxDistance * (double) maxDistance - minDistance * (double) minDistance));
+        double radius = Math.sqrt(minDistance * (double) minDistance + random.nextDouble() * (maxDistance * (double) maxDistance - minDistance * (double) minDistance));
         int x = spawn.getBlockX() + (int) Math.round(Math.cos(angle) * radius);
         int z = spawn.getBlockZ() + (int) Math.round(Math.sin(angle) * radius);
 
@@ -510,10 +443,20 @@ public class RTPSystem implements CommandExecutor, Listener {
             return null;
         }
 
-        int groundY = world.getHighestBlockYAt(x, z);
-        int feetY = groundY + 1;
         int minY = Math.max(world.getMinHeight(), config.getInt("settings.min-y", world.getMinHeight()));
         int maxY = Math.min(world.getMaxHeight() - 2, config.getInt("settings.max-y", world.getMaxHeight() - 2));
+
+        // For Nether, getHighestBlockYAt hits the roof — scan manually instead
+        int groundY;
+        if (world.getEnvironment() == World.Environment.NETHER) {
+            groundY = findNetherGround(world, x, z, minY, maxY);
+            if (groundY == -1) return null;
+        } else {
+            groundY = world.getHighestBlockYAt(x, z);
+        }
+
+        int feetY = groundY + 1;
+
         if (feetY < minY || feetY > maxY) {
             return null;
         }
@@ -525,6 +468,26 @@ public class RTPSystem implements CommandExecutor, Listener {
         location.setYaw(random.nextFloat() * 360.0f);
         location.setPitch(0.0f);
         return location;
+    }
+
+    private int findNetherGround(World world, int x, int z, int minY, int maxY) {
+        int scanFrom = Math.min(maxY, 110);
+
+        for (int y = scanFrom; y >= minY + 1; y--) {
+            Block block = world.getBlockAt(x, y, z);
+            Block below = world.getBlockAt(x, y - 1, z);
+            Block above = world.getBlockAt(x, y + 1, z);
+
+            if (below.getType().isSolid()
+                    && !below.isLiquid()
+                    && block.isPassable()
+                    && above.isPassable()
+                    && !isDangerous(below.getType())
+                    && !isDangerous(block.getType())) {
+                return y - 1;
+            }
+        }
+        return -1;
     }
 
     private boolean isSafeLocation(Location location) {
@@ -548,21 +511,17 @@ public class RTPSystem implements CommandExecutor, Listener {
                 && (!feet.isPassable() || !head.isPassable())) {
             return false;
         }
-        return !isDangerous(ground.getType())
-                && !isDangerous(feet.getType())
-                && !isDangerous(head.getType());
+        return !isDangerous(ground.getType()) && !isDangerous(feet.getType()) && !isDangerous(head.getType());
     }
 
     private boolean isDangerous(Material material) {
-        if (config.getBoolean("safety.avoid-water", true)
-                && (material == Material.WATER || material == Material.BUBBLE_COLUMN)) {
+        if (config.getBoolean("safety.avoid-water", true) && (material == Material.WATER || material == Material.BUBBLE_COLUMN)) {
             return true;
         }
         if (config.getBoolean("safety.avoid-lava", true) && material == Material.LAVA) {
             return true;
         }
-        if (config.getBoolean("safety.avoid-fire", true)
-                && (material == Material.FIRE || material == Material.SOUL_FIRE)) {
+        if (config.getBoolean("safety.avoid-fire", true) && (material == Material.FIRE || material == Material.SOUL_FIRE)) {
             return true;
         }
         if (config.getBoolean("safety.avoid-cactus", true) && material == Material.CACTUS) {

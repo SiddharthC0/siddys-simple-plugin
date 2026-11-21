@@ -54,7 +54,7 @@ tasks.jar {
         attributes(
             "Implementation-Title" to "Siddy's Simple Plugin",
             "Implementation-Version" to project.version,
-            "Implementation-Vendor" to "Siddharth Chauhan",
+            "Implementation-Vendor" to "Siddharth C",
             "Specification-Title" to "SSMP",
             "Specification-Version" to project.version,
             "Main-Class" to "org.siddharth.ssmp.ssmp"

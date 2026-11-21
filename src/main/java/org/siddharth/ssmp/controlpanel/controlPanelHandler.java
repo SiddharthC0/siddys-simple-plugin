@@ -73,24 +73,24 @@ final class controlPanelHandler implements HttpHandler {
                 return;
             }
 
-            if (path.startsWith("/assets/")
-                    || path.startsWith("/css/")
-                    || path.startsWith("/js/")) {
+            if (path.startsWith("/assets/") ||
+                    path.startsWith("/css/") ||
+                    path.startsWith("/js/") ||
+                    path.startsWith("/images/") ||
+                    path.startsWith("/fonts/")) {
 
                 if (!method.equals("GET")) {
                     send(exchange, 405, "{\"error\":\"GET required.\"}");
                     return;
                 }
 
-                if (path.contains("..") || path.contains("\\")) {
+                if (path.contains("..") || path.contains("\\") || path.indexOf('\0') >= 0) {
                     send(exchange, 400, "{\"error\":\"Invalid resource path.\"}");
                     return;
                 }
 
                 String resource = "/web" + path;
-                String type = contentType(path);
-
-                serveResource(exchange, resource, type);
+                serveResource(exchange, resource, contentType(path));
                 return;
             }
 
@@ -195,32 +195,24 @@ final class controlPanelHandler implements HttpHandler {
 
     private String contentType(String path) {
         String lower = path.toLowerCase(java.util.Locale.ROOT);
-        if (lower.endsWith(".css")) {
-            return "text/css; charset=utf-8";
-        }
-        if (lower.endsWith(".js")) {
-            return "text/javascript; charset=utf-8";
-        }
-        if (lower.endsWith(".png")) {
-            return "image/png";
-        }
-        if (lower.endsWith(".jpg") || lower.endsWith(".jpeg")) {
-            return "image/jpeg";
-        }
-        if (lower.endsWith(".svg")) {
-            return "image/svg+xml";
-        }
-        if (lower.endsWith(".ico")) {
-            return "image/x-icon";
-        }
-        if (lower.endsWith(".woff")) {
-            return "font/woff";
-        }
-        if (lower.endsWith(".woff2")) {
-            return "font/woff2";
-        }
-        // More formats are well, not required (LIE)
-        return "application/octet-stream";
+
+        if (lower.endsWith(".html")) return "text/html; charset=utf-8";
+        if (lower.endsWith(".css")) return "text/css; charset=utf-8";
+        if (lower.endsWith(".js")) return "text/javascript; charset=utf-8";
+        if (lower.endsWith(".json")) return "application/json; charset=utf-8";
+        if (lower.endsWith(".png")) return "image/png";
+        if (lower.endsWith(".jpg") || lower.endsWith(".jpeg")) return "image/jpeg";
+        if (lower.endsWith(".gif")) return "image/gif";
+        if (lower.endsWith(".webp")) return "image/webp";
+        if (lower.endsWith(".avif")) return "image/avif";
+        if (lower.endsWith(".svg")) return "image/svg+xml";
+        if (lower.endsWith(".ico")) return "image/x-icon";
+        if (lower.endsWith(".woff")) return "font/woff";
+        if (lower.endsWith(".woff2")) return "font/woff2";
+        if (lower.endsWith(".ttf")) return "font/ttf";
+        if (lower.endsWith(".otf")) return "font/otf";
+
+        return "application/octet-stream"; // it does not support more formats, if you r making a better panel, jsut set it urself
     }
 
     private void serveResource(HttpExchange exchange, String resource, String contentType) throws IOException {

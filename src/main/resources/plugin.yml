@@ -138,34 +138,64 @@ commands:
     description: Mute a player
     usage: /mute <player> <duration|permanent> <reason>
     permission: ssmp.moderation.mute
-    unmute:
-      description: Remove a player's mute
-      usage: /unmute <player>
-      permission: ssmp.moderation.unmute
-    warn:
-      description: Warn a player
-      usage: /warn <player> <reason>
-      permission: ssmp.moderation.warn
-    ban:
-      description: Ban a player
-      usage: /ban <player> <duration|permanent> <reason>
-      permission: ssmp.moderation.ban
-    unban:
-      description: Remove a player's ban
-      usage: /unban <player>
-      permission: ssmp.moderation.unban
-    filter:
-      description: Manage blocked chat terms
-      usage: /filter <add|remove|list|reload>
-      permission: ssmp.moderation.filter
-    history:
-      description: View moderation history
-      usage: /history <player>
-      permission: ssmp.moderation.history
-    resetviolations:
-      description: Reset a player's chat-filter violation count
-      usage: /resetviolations <player>
-      permission: ssmp.moderation.reset
+
+  unmute:
+    description: Remove a player's mute
+    usage: /unmute <player>
+    permission: ssmp.moderation.unmute
+
+  warn:
+    description: Warn a player
+    usage: /warn <player> <reason>
+    permission: ssmp.moderation.warn
+
+  ban:
+    description: Ban a player
+    usage: /ban <player> <duration|permanent> <reason>
+    permission: ssmp.moderation.ban
+
+  unban:
+    description: Remove a player's ban
+    usage: /unban <player>
+    permission: ssmp.moderation.unban
+
+  filter:
+    description: Manage blocked chat terms
+    usage: /filter <add|remove|list|reload>
+    permission: ssmp.moderation.filter
+
+  history:
+    description: View moderation history
+    usage: /history <player>
+    permission: ssmp.moderation.history
+
+  resetviolations:
+    description: Reset a player's chat-filter violation count
+    usage: /resetviolations <player>
+    permission: ssmp.moderation.reset
+
+  support:
+    description: Opens SSMP support documentation
+    usage: /support [name] [subname]
+    aliases: [ help ]
+
+  infobar:
+    description: Manage your personal InfoBar
+    usage: /infobar [on/off/toggle/reload]
+    aliases:
+      - ibar
+
+  cpanel:
+    description: Controls the SSMP Control Panel web server.
+    usage: /cpanel [start|stop|status]
+    aliases:
+      - controlpanel
+    permission: ssmp.cpanel
+
+  configp:
+    description: Opens the SSMP module configuration menu.
+    aliases: [ spconfig ]
+    permission: ssmp.config
 
 permissions:
 
@@ -245,6 +275,7 @@ permissions:
       default: op
   ssmp.moderation.warn:
       default: op
+
   ssmp.moderation.ban:
       default: op
   ssmp.moderation.unban:
@@ -265,6 +296,14 @@ permissions:
     description: Allows the use of SSMP rank commands.
     default: op
 
+  ssmp.config:
+    description: Allows access to the SSMP module manager.
+    default: op
+
+  ssmp.infobar.reload:
+    description: Allows reloading the InfoBar configuration
+    default: op
+
   ssmp.rank.create:
     description: Allows creating ranks.
     default: op
@@ -283,6 +322,10 @@ permissions:
 
   ssmp.rank.setprefix:
     description: Allows changing rank prefixes.
+    default: op
+
+  ssmp.cpanel:
+    description: Allows access to the SSMP Control Panel server controls.
     default: op
 
   ssmp.rank.setsuffix:

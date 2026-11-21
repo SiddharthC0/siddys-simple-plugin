@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.siddharth.ssmp.mechanics.nicknameSystem;
 import java.util.ArrayList;
 import java.util.List;
-// Dev note: Yes, i did not use switch()
+// Dev note: Yes, i did not use switch() because i wrote it all without switch
 
 public class nicknameCommands implements CommandExecutor, TabCompleter {
     private final nicknameSystem nicknames;

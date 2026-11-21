@@ -1,10 +1,3 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.updateChecker;
 
 import com.google.gson.JsonArray;
@@ -150,8 +143,11 @@ public class updateChecker implements Listener {
     }
 
     private int compareVersions(String current, String latest) {
-        current = current.replaceFirst("^[vV]", "").split("[-+]")[0];
-        latest = latest.replaceFirst("^[vV]", "").split("[-+]")[0];
+        current = current.trim().replaceFirst("(?i)^.*?v(?=\\d)", "");
+        latest = latest.trim().replaceFirst("(?i)^.*?v(?=\\d)", "");
+
+        current = current.split("[-+]")[0];
+        latest = latest.split("[-+]")[0];
 
         String[] currentParts = current.split("\\.");
         String[] latestParts = latest.split("\\.");

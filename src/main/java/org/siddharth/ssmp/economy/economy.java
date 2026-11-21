@@ -80,7 +80,7 @@ public class economy implements Listener {
 
     private void addConfigDefaults(YamlConfiguration config) {
         config.addDefaults(Map.ofEntries(
-                Map.entry("economy.starting-balance", 1000.00),
+                Map.entry("economy.starting-balance", 100.00),
                 Map.entry("economy.allow-negative-balances", false),
                 Map.entry("economy.minimum-transaction", 0.01),
                 Map.entry("economy.maximum-transaction", 1000000000.00),
