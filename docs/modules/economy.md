@@ -1,7 +1,7 @@
 # Economy
 Siddy's Simple Plugin comes with a rather common feature available in other plugins too. Its the most simple system.
 
-This module is known as the `economy` module. Its a kind of `standalone` module. You can set up this module through `economy: true`. It has its main command as `/siddyssimpleplugin:economy` or `/economy` simply. Its command **MUST** have arguments attached to it. These arguments can be `permission.level.default` or `permission.level.op`. The **OP** includes `give`, `take` and `set`. The **DEFAULT** includes `balance` and `pay` only. I plan on adding a bank system too, but that will be for later.
+This module is known as the `Economy` module. Its a kind of `standalone` module. You can set up this module through `economy: true`. It has its main command as `/siddyssimpleplugin:economy` or `/economy` simply. Its command **MUST** have arguments attached to it. These arguments can be `permission.level.default` or `permission.level.op`. The **OP** includes `give`, `take` and `set`. The **DEFAULT** includes `balance` and `pay` only. I plan on adding a bank system too, but that will be for later.
 
 ## Economy Configuration
 As this is a `standalone` module, it includes its own `config.yml` present in `siddyssimpleplugin/economy/config.yml`. It can also be turned *ON* or *OFF*. Its config looks something like:
@@ -59,8 +59,8 @@ errors:
 ```
 :::
 
-Not explaining everything in brief, I will only explain the sections. There are many sections, and henceforth `economy` is **very** customizable:
-- `economy`: The main Economy settings. 
+Not explaining everything in brief, I will only explain the sections. There are many sections, and henceforth `Economy` is **very** customizable:
+- `Economy`: The main Economy settings. 
  - `starting-balance`: The balance at which every new player starts. It does **NOT** affect players already registered within `economy/economy.yml`.
  - `allow-negative-balance`: Allows negative balances, works only with Auction House. 
  - `minimum-transaction` and `maximum-transaction`: Decide the Minimum and Maximum amount a person can transfer.
@@ -74,10 +74,10 @@ Not explaining everything in brief, I will only explain the sections. There are 
 ## Economy Support
 **Siddy's Simple Plugin** supports *Vault*, which if you did not know is a kind of plugin that acts as a link between an economy plugin and another plugin. Lets take an example. You are using a seperate Economy plugin maybe because you aren't satisfied with the current economy of **SSMP**. Now, for SSMP to actually use that economy, *Vault* acts as a bridge between both plugins.
 
-If you intend on using *Vault* and any other economy plugin, take into consideration that turning off `economy` from `config.yml` will cause issues. **SSMP** is designed such that you can turn off modules to your choice, but some modules are dependent on others. If you plan on disabling `economy`, there might be some plugins you have to disable too. But, I **do not reccomend** turning economy off, because you can obviously use vault. Turning off `economy` is advised in conditions where you already have substitutes or don't want the modules in [Teleport: #economy-dependent-modules](Economy Dependent Modules)
+If you intend on using *Vault* and any other economy plugin, take into consideration that turning off `Economy` from `config.yml` will cause issues. **SSMP** is designed such that you can turn off modules to your choice, but some modules are dependent on others. If you plan on disabling `Economy`, there might be some plugins you have to disable too. But, I **do not reccomend** turning economy off, because you can obviously use vault. Turning off `Economy` is advised in conditions where you already have substitutes or don't want the modules in [Teleport: #economy-dependent-modules](Economy Dependent Modules)
 
 ## Economy Dependent Modules
-Here is a list of modules that a directly / indirectly dependent on `economy`. These modules are specifically designed to work with `economy`, but some of them can be configured to not be. The modules which can work without `economy` **BUT** with some configurations are called `soft-depend modules`. The modules that **EXPLICITLY** require `economy` are called `hard-depend modules`.
+Here is a list of modules that a directly / indirectly dependent on `Economy`. These modules are specifically designed to work with `Economy`, but some of them can be configured to not be. The modules which can work without `Economy` **BUT** with some configurations are called `soft-depend modules`. The modules that **EXPLICITLY** require `Economy` are called `hard-depend modules`.
 |Module Name|Type|
 |------|------|
 |Shop|Hard Depend|

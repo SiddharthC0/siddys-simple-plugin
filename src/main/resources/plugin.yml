@@ -1,18 +1,19 @@
 name: SiddysSimplePlugin
-version: 4.0.0
-main: org.siddharth.ssmp.ssmp
-description: Siddys Simple Plugin. Available on MODRINTH | CURSEFORGE | SPIGOTMC. Wonders of RPG - The biggest update ever...
-author: SiddharthC
+version: 4.1.0
+main: org.siddharth.ssmp.SiddysSimplePlugin
+description: Siddys Simple Plugin 4.0.0 | Improved, Better and Fixed | Thanks a ton for using, you're the BEST.
+author: Siddy
 api-version: '1.21.11'
 
 commands:
 
   ssmp:
     description: Main SSMP management command.
-    usage: /ssmp <permission|reload>
+    usage: /SiddysSimplePlugin <permission|reload|help>
     aliases:
       - siddysimpleplugin
-      - ssp
+      - siddysimpleplugin
+      - menu
 
   rtp:
     description: Opens the SSMP Random Teleport GUI.
@@ -111,7 +112,7 @@ commands:
   contracts:
     description: Opens the contracts GUI
     usage: /contracts
-    permission: ssmp.contracts.use
+    permission: SiddysSimplePlugin.contracts.use
     aliases:
       - contractsgui
       - contractgui
@@ -120,7 +121,7 @@ commands:
   bounty:
     description: Opens the bounties GUI
     usage: /bounty
-    permission: ssmp.bounties.use
+    permission: SiddysSimplePlugin.bounties.use
     aliases:
       - bountygui
       - bounties
@@ -128,7 +129,7 @@ commands:
   playerinfo:
     description: Opens your player profile
     usage: /playerinfo
-    permission: ssmp.playerinfo.use
+    permission: SiddysSimplePlugin.playerinfo.use
     aliases:
       - pinfo
       - info
@@ -137,42 +138,42 @@ commands:
   mute:
     description: Mute a player
     usage: /mute <player> <duration|permanent> <reason>
-    permission: ssmp.moderation.mute
+    permission: SiddysSimplePlugin.moderation.mute
 
   unmute:
     description: Remove a player's mute
     usage: /unmute <player>
-    permission: ssmp.moderation.unmute
+    permission: SiddysSimplePlugin.moderation.unmute
 
   warn:
     description: Warn a player
     usage: /warn <player> <reason>
-    permission: ssmp.moderation.warn
+    permission: SiddysSimplePlugin.moderation.warn
 
   ban:
     description: Ban a player
     usage: /ban <player> <duration|permanent> <reason>
-    permission: ssmp.moderation.ban
+    permission: SiddysSimplePlugin.moderation.ban
 
   unban:
     description: Remove a player's ban
     usage: /unban <player>
-    permission: ssmp.moderation.unban
+    permission: SiddysSimplePlugin.moderation.unban
 
   filter:
     description: Manage blocked chat terms
     usage: /filter <add|remove|list|reload>
-    permission: ssmp.moderation.filter
+    permission: SiddysSimplePlugin.moderation.filter
 
   history:
     description: View moderation history
     usage: /history <player>
-    permission: ssmp.moderation.history
+    permission: SiddysSimplePlugin.moderation.history
 
   resetviolations:
     description: Reset a player's chat-filter violation count
     usage: /resetviolations <player>
-    permission: ssmp.moderation.reset
+    permission: SiddysSimplePlugin.moderation.reset
 
   support:
     description: Opens SSMP support documentation
@@ -190,12 +191,19 @@ commands:
     usage: /cpanel [start|stop|status]
     aliases:
       - controlpanel
-    permission: ssmp.cpanel
+    permission: SiddysSimplePlugin.cpanel
 
   configp:
     description: Opens the SSMP module configuration menu.
     aliases: [ spconfig ]
-    permission: ssmp.config
+    permission: SiddysSimplePlugin.config
+
+  realname:
+    description: Reveals the name of a player having a nickname.
+    aliases:
+      - revealname
+      - namewhat
+    permission: SiddysSimplePlugin.revealname
 
 permissions:
 
@@ -291,6 +299,10 @@ permissions:
   ssmp.moderation.bypass:
       description: Bypass chat moderation
       default: op
+
+  ssmp.revealname:
+    description: Allows revealing names from nicknames.
+    default: true
 
   ssmp.rank.use:
     description: Allows the use of SSMP rank commands.

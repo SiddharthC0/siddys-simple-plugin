@@ -19,8 +19,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.siddharth.ssmp.util.coreUtilMethods;
-import org.siddharth.ssmp.ssmp;
+import org.siddharth.ssmp.SiddysSimplePlugin;
+import org.siddharth.ssmp.util.CoreUtilMethods;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -32,7 +33,7 @@ import java.util.UUID;
 
 public class RTPSystem implements CommandExecutor, Listener {
     private final JavaPlugin plugin;
-    private final coreUtilMethods core;
+    private final CoreUtilMethods core;
     private final Random random = new Random();
     private FileConfiguration config;
     private final Map<UUID, String> selectedWorlds = new HashMap<>();
@@ -60,10 +61,10 @@ public class RTPSystem implements CommandExecutor, Listener {
 
     public RTPSystem(JavaPlugin plugin) {
         this.plugin = plugin;
-        if (!(plugin instanceof ssmp ssmpPlugin)) {
+        if (!(plugin instanceof SiddysSimplePlugin siddysSimplePluginPlugin)) {
             throw new IllegalArgumentException("SSMP plugin instance required.");
         }
-        this.core = ssmpPlugin.getCore();
+        this.core = siddysSimplePluginPlugin.getCore();
         if (core == null) {
             throw new IllegalStateException("SSMP core must be initialized before RTP.");
         }

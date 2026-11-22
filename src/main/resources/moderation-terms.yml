@@ -1,0 +1,33 @@
+terms:
+  PROFANITY:
+    - "fuck"
+    - "abuse"
+    - "rape"
+    - "shit"
+    - "trash"
+    - "ass"
+    - "butt"
+    - "asshole"
+    - "fucking"
+    - "harrass"
+    - "harras"
+    - "harass"
+    - "haras"
+
+  HARASSMENT:
+    - "stupid"
+    - "idiot"
+    - "fucker"
+    - "mock"
+
+  DISCRIMINATION:
+    - "nigga"
+    - "bitch"
+    - "gay"
+    - "lesbian"
+
+  REFERENCES:
+    - "epstein"
+    - "epstien"
+    - "diddy"
+    - "didy"

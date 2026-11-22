@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "org.siddharth"
-version = "4.0.0"
+version = "4.1.0"
 
 base {
     archivesName.set("SiddysSimplePlugin")
@@ -15,8 +15,8 @@ repositories {
     mavenCentral()
 
     maven {
-        name = "spigotmc"
-        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+        name = "papermc"
+        url = uri("https://repo.papermc.io/repository/maven-public/")
     }
 
     maven {
@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:26.3-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:26.3.build.+")
     compileOnly("me.clip:placeholderapi:2.11.7")
     compileOnly("com.github.milkbowl:VaultAPI:1.7.1")
     compileOnly("org.apache.logging.log4j:log4j-core:2.19.0")
@@ -41,6 +41,7 @@ dependencies {
 java {
     sourceCompatibility = JavaVersion.VERSION_25
     targetCompatibility = JavaVersion.VERSION_25
+
     withSourcesJar()
     withJavadocJar()
 }
@@ -54,7 +55,7 @@ tasks.jar {
         attributes(
             "Implementation-Title" to "Siddy's Simple Plugin",
             "Implementation-Version" to project.version,
-            "Implementation-Vendor" to "Siddharth C",
+            "Implementation-Vendor" to "Siddy",
             "Specification-Title" to "SSMP",
             "Specification-Version" to project.version,
             "Main-Class" to "org.siddharth.ssmp.ssmp"
