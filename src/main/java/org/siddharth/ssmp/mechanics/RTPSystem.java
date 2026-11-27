@@ -1,3 +1,4 @@
+
 package org.siddharth.ssmp.mechanics;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -39,6 +40,7 @@ public class RTPSystem implements CommandExecutor, Listener {
     private final Map<UUID, String> selectedWorlds = new HashMap<>();
     private final Map<UUID, Long> cooldowns = new HashMap<>();
     private final Set<UUID> searching = new HashSet<>();
+
     private enum MenuType {
         WORLD,
         DISTANCE
@@ -49,6 +51,7 @@ public class RTPSystem implements CommandExecutor, Listener {
         private final Map<Integer, String> worldSlots = new HashMap<>();
         private final Map<Integer, Integer> distanceSlots = new HashMap<>();
         private Inventory inventory;
+
         private RtpHolder(MenuType type) {
             this.type = type;
         }
@@ -145,12 +148,23 @@ public class RTPSystem implements CommandExecutor, Listener {
         config.addDefault("actionbar.cooldown", "&cWait %time%s before using RTP again.");
 
         config.addDefault("sounds.enabled", true);
-        config.addDefault("sounds.open.sound", "UI_BUTTON_CLICK");
-        config.addDefault("sounds.open.volume", 1.0);
-        config.addDefault("sounds.open.pitch", 1.0);
-        config.addDefault("sounds.select.sound", "UI_BUTTON_CLICK");
-        config.addDefault("sounds.select.volume", 1.0);
-        config.addDefault("sounds.select.pitch", 1.2);
+
+        config.addDefault("sounds.menu-open.sound", "minecraft:block.chest.open");
+        config.addDefault("sounds.menu-open.volume", 0.7);
+        config.addDefault("sounds.menu-open.pitch", 1.0);
+
+        config.addDefault("sounds.menu-click.sound", "minecraft:ui.button.click");
+        config.addDefault("sounds.menu-click.volume", 0.8);
+        config.addDefault("sounds.menu-click.pitch", 1.0);
+
+        config.addDefault("sounds.menu-success.sound", "minecraft:entity.player.levelup");
+        config.addDefault("sounds.menu-success.volume", 1.0);
+        config.addDefault("sounds.menu-success.pitch", 1.0);
+
+        config.addDefault("sounds.menu-error.sound", "minecraft:block.note_block.bass");
+        config.addDefault("sounds.menu-error.volume", 0.8);
+        config.addDefault("sounds.menu-error.pitch", 0.7);
+
         config.addDefault("sounds.searching.sound", "BLOCK_NOTE_BLOCK_PLING");
         config.addDefault("sounds.searching.volume", 1.0);
         config.addDefault("sounds.searching.pitch", 1.0);
@@ -194,7 +208,7 @@ public class RTPSystem implements CommandExecutor, Listener {
             return true;
         }
         if (searching.contains(player.getUniqueId())) {
-            send(player, "&cYou are already searching for a location.");
+            send(player, "&cYou are already searching for a location.", "false");
             return true;
         }
         openWorldGui(player);
@@ -206,6 +220,7 @@ public class RTPSystem implements CommandExecutor, Listener {
         Inventory inventory = core.createGui(holder, validGuiSize(config.getInt("gui.world.size", 27)), config.getString("gui.world.title", "&8SSMP | Select World"));
         holder.inventory = inventory;
         fillGui(inventory, "gui.world.filler");
+
         for (String worldKey : List.of("overworld", "nether", "end")) {
             String path = "gui.world." + worldKey;
             if (!config.getBoolean("worlds." + worldKey + ".enabled", true)) {
@@ -227,20 +242,23 @@ public class RTPSystem implements CommandExecutor, Listener {
         }
 
         core.openGui(player, inventory);
-        playSound(player, "open");
+        playSound(player, "menu-open");
     }
 
     private void openDistanceGui(Player player) {
         RtpHolder holder = new RtpHolder(MenuType.DISTANCE);
         Inventory inventory = core.createGui(holder, validGuiSize(config.getInt("gui.distance.size", 27)), config.getString("gui.distance.title", "&8SSMP | Select Distance"));
         holder.inventory = inventory;
+
         List<Integer> distances = config.getIntegerList("distances");
         List<Integer> slots = config.getIntegerList("gui.distance.slots");
         Material material = getMaterial(config.getString("gui.distance.material", "COMPASS"), Material.COMPASS);
         List<String> configuredLore = config.getStringList("gui.distance.lore");
+
         for (int i = 0; i < Math.min(distances.size(), slots.size()); i++) {
             int distance = distances.get(i);
             int slot = slots.get(i);
+
             if (distance <= 0 || slot < 0 || slot >= inventory.getSize()) {
                 continue;
             }
@@ -253,7 +271,7 @@ public class RTPSystem implements CommandExecutor, Listener {
 
         fillEmptyGui(inventory, "gui.distance.filler");
         core.openGui(player, inventory);
-        playSound(player, "open");
+        playSound(player, "menu-open");
     }
 
     private int validGuiSize(int size) {
@@ -292,10 +310,10 @@ public class RTPSystem implements CommandExecutor, Listener {
 
         event.setCancelled(true);
         int slot = event.getRawSlot();
+
         if (slot < 0 || slot >= top.getSize()) {
             return;
         }
-
 
         if (holder.type == MenuType.WORLD) {
             handleWorldSelection(player, holder, slot);
@@ -312,76 +330,81 @@ public class RTPSystem implements CommandExecutor, Listener {
     }
 
     private void handleWorldSelection(Player player, RtpHolder holder, int slot) {
-
-
         String worldKey = holder.worldSlots.get(slot);
 
         if (worldKey == null) {
-
             return;
         }
 
         if (!config.getBoolean("worlds." + worldKey + ".enabled", true)) {
-
+            playSound(player, "menu-error");
             return;
         }
-        String worldName = config.getString("worlds." + worldKey + ".world-name", worldKey);
-        selectedWorlds.put(player.getUniqueId(), worldKey);
-        playSound(player, "select");
-        openDistanceGui(player);
 
+        selectedWorlds.put(player.getUniqueId(), worldKey);
+        playSound(player, "menu-click");
+        openDistanceGui(player);
     }
 
     private void handleDistanceSelection(Player player, RtpHolder holder, int slot) {
         Integer distance = holder.distanceSlots.get(slot);
+
         if (distance == null) {
             return;
         }
+
         String worldKey = selectedWorlds.get(player.getUniqueId());
+
         if (worldKey == null) {
             player.closeInventory();
+            playSound(player, "menu-error");
             openWorldGui(player);
             return;
         }
 
         player.closeInventory();
-        playSound(player, "select");
-
+        playSound(player, "menu-click");
         startSearch(player, worldKey, distance);
     }
 
-
-
     private void startSearch(Player player, String worldKey, int distance) {
         UUID uuid = player.getUniqueId();
+
         if (searching.contains(uuid)) {
+            playSound(player, "menu-error");
             return;
         }
+
         long now = System.currentTimeMillis();
         long expiry = cooldowns.getOrDefault(uuid, 0L);
+
         if (expiry > now) {
             long remaining = (expiry - now + 999L) / 1000L;
             String text = config.getString("messages.cooldown", "&cPlease wait %time% seconds.").replace("%time%", String.valueOf(remaining));
-            send(player, text);
+            send(player, text, "false");
             actionBar(player, config.getString("actionbar.cooldown", "&cWait %time%s before using RTP again.").replace("%time%", String.valueOf(remaining)));
             return;
         }
 
         String worldName = config.getString("worlds." + worldKey + ".world-name", worldKey);
         World world = worldName == null ? null : Bukkit.getWorld(worldName);
+
         if (world == null) {
             message(player, "world-unavailable");
             return;
         }
+
         int minDistance = Math.max(0, config.getInt("worlds." + worldKey + ".min-distance", 0));
+
         if (minDistance > distance) {
-            send(player, "&cThe configured minimum distance exceeds the selected distance.");
+            send(player, "&cThe configured minimum distance exceeds the selected distance.", "false");
             return;
         }
 
         searching.add(uuid);
         actionBar(player, config.getString("actionbar.searching", "&eSearching for a safe location..."));
         playSound(player, "searching");
+
         int maxAttempts = Math.max(1, config.getInt("settings.max-attempts", 50));
 
         new BukkitRunnable() {
@@ -394,22 +417,29 @@ public class RTPSystem implements CommandExecutor, Listener {
                     cancel();
                     return;
                 }
+
                 if (attempts >= maxAttempts) {
                     finishFailure(player, uuid);
                     cancel();
                     return;
                 }
+
                 attempts++;
                 Location destination = findSafeLocation(world, minDistance, distance);
+
                 if (destination == null) {
                     return;
                 }
+
                 boolean teleported = player.teleport(destination);
+
                 if (teleported) {
                     int cooldown = Math.max(0, config.getInt("settings.cooldown", 60));
+
                     if (cooldown > 0) {
                         cooldowns.put(uuid, System.currentTimeMillis() + cooldown * 1000L);
                     }
+
                     actionBar(player, config.getString("actionbar.success", "&aTeleport successful!"));
                     message(player, "success");
                     playSound(player, "success");
@@ -418,6 +448,7 @@ public class RTPSystem implements CommandExecutor, Listener {
                     message(player, "invalid-location");
                     playSound(player, "failed");
                 }
+
                 searching.remove(uuid);
                 cancel();
             }
@@ -447,11 +478,14 @@ public class RTPSystem implements CommandExecutor, Listener {
         int minY = Math.max(world.getMinHeight(), config.getInt("settings.min-y", world.getMinHeight()));
         int maxY = Math.min(world.getMaxHeight() - 2, config.getInt("settings.max-y", world.getMaxHeight() - 2));
 
-        // For Nether, getHighestBlockYAt hits the roof — scan manually instead
         int groundY;
+
         if (world.getEnvironment() == World.Environment.NETHER) {
             groundY = findNetherGround(world, x, z, minY, maxY);
-            if (groundY == -1) return null;
+
+            if (groundY == -1) {
+                return null;
+            }
         } else {
             groundY = world.getHighestBlockYAt(x, z);
         }
@@ -463,9 +497,11 @@ public class RTPSystem implements CommandExecutor, Listener {
         }
 
         Location location = new Location(world, x + 0.5, feetY, z + 0.5);
+
         if (!world.getWorldBorder().isInside(location) || !isSafeLocation(location)) {
             return null;
         }
+
         location.setYaw(random.nextFloat() * 360.0f);
         location.setPitch(0.0f);
         return location;
@@ -488,14 +524,17 @@ public class RTPSystem implements CommandExecutor, Listener {
                 return y - 1;
             }
         }
+
         return -1;
     }
 
     private boolean isSafeLocation(Location location) {
         World world = location.getWorld();
+
         if (world == null) {
             return false;
         }
+
         Block ground = world.getBlockAt(location.getBlockX(), location.getBlockY() - 1, location.getBlockZ());
         Block feet = world.getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
         Block head = world.getBlockAt(location.getBlockX(), location.getBlockY() + 1, location.getBlockZ());
@@ -504,14 +543,17 @@ public class RTPSystem implements CommandExecutor, Listener {
                 && (!ground.getType().isSolid() || ground.isLiquid())) {
             return false;
         }
+
         if (config.getBoolean("safety.check-headroom", true)
                 && (!feet.isPassable() || !head.isPassable())) {
             return false;
         }
+
         if (config.getBoolean("safety.avoid-suffocation", true)
                 && (!feet.isPassable() || !head.isPassable())) {
             return false;
         }
+
         return !isDangerous(ground.getType()) && !isDangerous(feet.getType()) && !isDangerous(head.getType());
     }
 
@@ -519,18 +561,23 @@ public class RTPSystem implements CommandExecutor, Listener {
         if (config.getBoolean("safety.avoid-water", true) && (material == Material.WATER || material == Material.BUBBLE_COLUMN)) {
             return true;
         }
+
         if (config.getBoolean("safety.avoid-lava", true) && material == Material.LAVA) {
             return true;
         }
+
         if (config.getBoolean("safety.avoid-fire", true) && (material == Material.FIRE || material == Material.SOUL_FIRE)) {
             return true;
         }
+
         if (config.getBoolean("safety.avoid-cactus", true) && material == Material.CACTUS) {
             return true;
         }
+
         if (config.getBoolean("safety.avoid-magma", true) && material == Material.MAGMA_BLOCK) {
             return true;
         }
+
         return config.getBoolean("safety.avoid-powder-snow", true) && material == Material.POWDER_SNOW;
     }
 
@@ -538,6 +585,7 @@ public class RTPSystem implements CommandExecutor, Listener {
         if (!config.getBoolean("actionbar.enabled", true) || message == null || message.isEmpty()) {
             return;
         }
+
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(core.color(message)));
     }
 
@@ -545,9 +593,11 @@ public class RTPSystem implements CommandExecutor, Listener {
         if (!config.getBoolean("sounds.enabled", true)) {
             return;
         }
-        String sound = config.getString("sounds." + path + ".sound", "UI_BUTTON_CLICK");
+
+        String sound = config.getString("sounds." + path + ".sound", "minecraft:ui.button.click");
         float volume = (float) config.getDouble("sounds." + path + ".volume", 1.0);
         float pitch = (float) config.getDouble("sounds." + path + ".pitch", 1.0);
+
         core.playSound(player, sound, volume, pitch);
     }
 
@@ -557,13 +607,19 @@ public class RTPSystem implements CommandExecutor, Listener {
     }
 
     private void message(Player player, String path) {
-        send(player, config.getString("messages." + path, ""));
+        send(player, config.getString("messages." + path, ""), "true");
     }
 
-    private void send(Player player, String message) {
+    private void send(Player player, String message, String type) {
         if (message == null || message.isEmpty()) {
             return;
         }
+
+        switch (type) {
+            case "true" -> playSound(player, "menu-success");
+            case "false" -> playSound(player, "menu-error");
+        }
+
         core.sendMessage(player, config.getString("messages.prefix", "") + message);
     }
 }

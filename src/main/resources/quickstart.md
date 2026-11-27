@@ -1,7 +1,7 @@
 # SIDDY'S IMPROVED PLUGIN
 ## Quick Start Guide
 
-**Version:** 4.x  
+**Version:** 5.x  
 **Documentation type:** Server owners and third-party documentation
 
 ---

@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Map;
+import org.siddharth.ssmp.mechanics.SoundSystem;
 
 public class Economy implements Listener {
     private final SiddysSimplePlugin plugin;
@@ -144,7 +145,7 @@ public class Economy implements Listener {
     }
 
     public double getStartingBalance() {
-        return economyConfig.getDouble("economy.starting-balance", 1000.00);
+        return economyConfig.getDouble("economy.starting-balance", 100.00);
     }
 
     public double getMinimumTransaction() {
@@ -192,29 +193,35 @@ public class Economy implements Listener {
 
         economyData.set("players." + player.getUniqueId() + ".balance", balance);
         saveEconomy();
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(getMessage("actionbar.balance-set", "balance", formatMoney(balance))));
-
-        playSound(player, "transaction");
+        if (plugin.getToggleSystem().isActionBarEnabled(player)) {
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(getMessage("actionbar.balance-set", "balance", formatMoney(balance))));
+        }
+        if (plugin.getToggleSystem().isSoundEnabled(player)) {
+            playSound(player, "transaction");
+        }
     }
 
-    public void addPlayerBalance(Player player, double amount) {
-        if (!isEnabled() || player == null) return;
+    public boolean addPlayerBalance(Player player, double amount) {
+        if (!isEnabled() || player == null) return false;
 
         double finalBalance = getPlayerBalance(player) + amount;
         economyData.set("players." + player.getUniqueId() + ".balance", finalBalance);
         saveEconomy();
 
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(getMessage("actionbar.money-received", "amount", formatMoney(amount), "balance", formatMoney(finalBalance))));
-
-        playSound(player, "transaction");
+        if (plugin.getToggleSystem().isActionBarEnabled(player)) {
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(getMessage("actionbar.money-received", "amount", formatMoney(amount), "balance", formatMoney(finalBalance))));
+        }
+        if (plugin.getToggleSystem().isSoundEnabled(player)) {
+            playSound(player, "transaction");
+        }
+        return true;
     }
-
     public boolean removePlayerBalance(Player player, double amount) {
         if (!isEnabled() || player == null) return false;
 
         if (!canRemove(player, amount)) {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(getMessage("actionbar.negative-balance")));
-            playSound(player, "error");
+            playSound(player, "menu-error");
             return false;
         }
 
@@ -233,7 +240,7 @@ public class Economy implements Listener {
 
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(getMessage("actionbar.balance", "balance", formatMoney(getPlayerBalance(player)))));
 
-        playSound(player, "balance");
+        playSound(player, "menu-success");
     }
 
     public void sendPaymentSent(Player player, double amount) {
@@ -247,13 +254,17 @@ public class Economy implements Listener {
     public void sendPaymentReceived(Player player, double amount) {
         if (player == null) return;
 
-        sendActionBar(player, getMessage(
-                "actionbar.payment-received",
-                "amount", formatMoney(amount),
-                "balance", formatMoney(getPlayerBalance(player))
-        ));
+        if (plugin.getToggleSystem().isActionBarEnabled(player)) {
+            sendActionBar(player, getMessage(
+                    "actionbar.payment-received",
+                    "amount", formatMoney(amount),
+                    "balance", formatMoney(getPlayerBalance(player))
+            ));
+        }
 
-        playSound(player, "transaction");
+        if (plugin.getToggleSystem().isSoundEnabled(player)) {
+            playSound(player, "transaction");
+        }
     }
 
     // Uhhh if you forked this repo just use this method instead of the big player.spigot() thingy pls

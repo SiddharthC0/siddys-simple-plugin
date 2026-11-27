@@ -1,0 +1,73 @@
+items:
+  WOODEN_HOE:
+    buy: 15
+    sell: 4
+  STONE_HOE:
+    buy: 40
+    sell: 12
+  IRON_HOE:
+    buy: 120
+    sell: 40
+  GOLDEN_HOE:
+    buy: 100
+    sell: 35
+  DIAMOND_HOE:
+    buy: 500
+    sell: 170
+  NETHERITE_HOE:
+    buy: 7820
+    sell: 3100
+  WOODEN_SHOVEL:
+    buy: 15
+    sell: 4
+  STONE_SHOVEL:
+    buy: 40
+    sell: 12
+  IRON_SHOVEL:
+    buy: 120
+    sell: 40
+  GOLDEN_SHOVEL:
+    buy: 100
+    sell: 35
+  DIAMOND_SHOVEL:
+    buy: 500
+    sell: 170
+  NETHERITE_SHOVEL:
+    buy: 7820
+    sell: 3100
+  SHEARS:
+    buy: 80
+    sell: 28
+  FISHING_ROD:
+    buy: 60
+    sell: 20
+  LEAD:
+    buy: 60
+    sell: 22
+  SADDLE:
+    buy: 200
+    sell: 80
+  BUCKET:
+    buy: 50
+    sell: 18
+  WATER_BUCKET:
+    buy: 60
+    sell: 22
+  COMPOSTER:
+    buy: 60
+    sell: 22
+  CAULDRON:
+    buy: 80
+    sell: 30
+  BEEHIVE:
+    buy: 150
+    sell: 55
+  BEE_NEST:
+    buy: 200
+    sell: 80
+  FLOWER_POT:
+    buy: 20
+    sell: 7
+  BONE_MEAL:
+    buy: 15
+    sell: 5

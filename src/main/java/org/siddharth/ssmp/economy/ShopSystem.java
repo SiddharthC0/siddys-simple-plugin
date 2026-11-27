@@ -1,392 +1,574 @@
+
 package org.siddharth.ssmp.economy;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
-import org.siddharth.ssmp.mechanics.SoundSystem;
 import org.siddharth.ssmp.SiddysSimplePlugin;
+import org.siddharth.ssmp.mechanics.SoundSystem;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.io.InputStream;
-import java.nio.file.Files;
+import java.util.Set;
 
-public class ShopSystem implements CommandExecutor, Listener {
-    private static final String SHOP_TITLE = "§8SSMP §7» §6Shop";
-    private static final String CATEGORY_TITLE = "§8SSMP §7» §6";
-    private static final int[] CONTENT_SLOTS = {10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43};
+public class ShopSystem implements CommandExecutor {
+
+    private final SiddysSimplePlugin plugin;
     private final File shopFolder;
-    private final File itemsFile;
-    private final YamlConfiguration itemsData;
+    private final File categoriesFile;
     private final Economy economy;
     private final SoundSystem sounds;
 
-    private class shopHolder implements InventoryHolder {
-        private final String categoryId;
-        private final int page;
-        private final Map<Integer, String> entries = new LinkedHashMap<>();
-        private Inventory inventory;
+    private final YamlConfiguration categoriesData;
+    private final Map<String, File> categoryFolders = new LinkedHashMap<>();
+    private final Map<String, YamlConfiguration> itemConfigurations = new LinkedHashMap<>();
 
-        private shopHolder(String categoryId, int page) {
-            this.categoryId = categoryId;
-            this.page = page;
+    public ShopSystem(Economy economy, SiddysSimplePlugin plugin, SoundSystem sounds) {
+        this.plugin = plugin;
+        this.economy = economy;
+        this.sounds = sounds;
+
+        shopFolder = new File(plugin.getDataFolder(), "shop");
+        categoriesFile = new File(shopFolder, "categories.yml");
+
+        createDirectory(shopFolder);
+
+        ensureYamlFile(categoriesFile, "categories.yml", "categories:\n");
+
+        categoriesData = loadYaml(categoriesFile);
+
+        ConfigurationSection categories =
+                categoriesData.getConfigurationSection("categories");
+
+        if (categories == null) {
+            throw new IllegalStateException(
+                    "categories.yml must contain a categories section!"
+            );
         }
 
-        @Override
-        public Inventory getInventory() {
-            return inventory;
+        createCategoryDirectories(categories, "", shopFolder);
+    }
+
+    private void createDirectory(File directory) {
+        if (!directory.exists() && !directory.mkdirs()) {
+            throw new IllegalStateException(
+                    "Could not create directory: " + directory.getPath()
+            );
         }
     }
 
-    public ShopSystem(Economy economy, SiddysSimplePlugin plugin, SoundSystem sounds) {
-        this.economy = economy;
-        this.sounds = sounds;
-        shopFolder = new File(plugin.getDataFolder(), "shop");
-        itemsFile = new File(shopFolder, "items.yml");
+    private void ensureYamlFile(File file, String resourcePath, String fallback) {
+        createDirectory(file.getParentFile());
 
-        if (!shopFolder.exists() && !shopFolder.mkdirs()) {
-            throw new IllegalStateException("Shop folder could not be created!");
+        if (!file.exists()) {
+            installResource(file, resourcePath, fallback);
+            return;
         }
 
-        if (!itemsFile.exists()) {
-            try (InputStream resource = plugin.getResource("shop-items.yml")) {
-                if (resource == null) {
-                    throw new IllegalStateException("shop-items.yml is missing from the plugin resources!");
-                }
+        try {
+            YamlConfiguration configuration = new YamlConfiguration();
+            configuration.load(file);
+        } catch (IOException | InvalidConfigurationException e) {
+            backupBrokenFile(file);
+            installResource(file, resourcePath, fallback);
+        }
+    }
 
-                Files.copy(resource, itemsFile.toPath());
-                plugin.getLogger().info("Default shop configuration has been installed.");
-            } catch (IOException e) {
-                throw new IllegalStateException("Shop configuration could not be created!", e);
+    private void backupBrokenFile(File file) {
+        File backup = new File(file.getParentFile(), file.getName() + ".broken");
+
+        int index = 1;
+
+        while (backup.exists()) {
+            backup = new File(
+                    file.getParentFile(),
+                    file.getName() + ".broken." + index++
+            );
+        }
+
+        try {
+            Files.move(file.toPath(), backup.toPath());
+        } catch (IOException e) {
+            throw new IllegalStateException(
+                    "Could not back up broken configuration: " + file.getPath(), e
+            );
+        }
+    }
+
+    private void installResource(File file, String resourcePath, String fallback) {
+        try (InputStream resource = plugin.getResource(resourcePath)) {
+            if (resource != null) {
+                Files.copy(resource, file.toPath(),
+                        StandardCopyOption.REPLACE_EXISTING);
+            } else {
+                Files.writeString(file.toPath(), fallback);
+            }
+        } catch (IOException e) {
+            throw new IllegalStateException(
+                    "Could not install configuration: " + file.getPath(), e
+            );
+        }
+    }
+
+    private YamlConfiguration loadYaml(File file) {
+        YamlConfiguration configuration = new YamlConfiguration();
+
+        try {
+            configuration.load(file);
+        } catch (IOException | InvalidConfigurationException e) {
+            throw new IllegalStateException(
+                    "Could not load configuration: " + file.getPath(), e
+            );
+        }
+
+        return configuration;
+    }
+
+    private void createCategoryDirectories(
+            ConfigurationSection categories,
+            String parentPath,
+            File parentFolder
+    ) {
+        for (String id : categories.getKeys(false)) {
+            String categoryPath = parentPath.isEmpty()
+                    ? id
+                    : parentPath + "." + id;
+
+            File categoryFolder = new File(parentFolder, id);
+
+            createDirectory(categoryFolder);
+
+            categoryFolders.put(categoryPath, categoryFolder);
+
+            File itemsFile = new File(categoryFolder, "items.yml");
+
+            String resourcePath = "shop-items/"
+                    + categoryPath.replace('.', '/') + "/items.yml";
+
+            ensureYamlFile(itemsFile, resourcePath, "items:\n");
+
+            itemConfigurations.put(categoryPath, loadYaml(itemsFile));
+
+            ConfigurationSection subcategories =
+                    categories.getConfigurationSection(id + ".subcategories");
+
+            if (subcategories != null && !subcategories.getKeys(false).isEmpty()) {
+                createCategoryDirectories(
+                        subcategories,
+                        categoryPath,
+                        categoryFolder
+                );
+            }
+        }
+    }
+
+    public SiddysSimplePlugin getPlugin() {
+        return plugin;
+    }
+
+    public Economy getEconomy() {
+        return economy;
+    }
+
+    public SoundSystem getSounds() {
+        return sounds;
+    }
+
+    public File getShopFolder() {
+        return shopFolder;
+    }
+
+    public File getCategoriesFile() {
+        return categoriesFile;
+    }
+
+    public YamlConfiguration getCategoriesData() {
+        return categoriesData;
+    }
+
+    public Set<String> getCategoryPaths() {
+        return Collections.unmodifiableSet(categoryFolders.keySet());
+    }
+
+    public File getCategoryFolder(String categoryPath) {
+        return categoryFolders.get(categoryPath);
+    }
+
+    public boolean categoryExists(String categoryPath) {
+        return categoryFolders.containsKey(categoryPath);
+    }
+
+    public String getCategoryName(String categoryPath) {
+        ConfigurationSection section = getCategorySection(categoryPath);
+
+        if (section == null) {
+            return formatName(categoryPath);
+        }
+
+        return section.getString("name", formatName(categoryPath));
+    }
+
+    public Material getCategoryMaterial(String categoryPath) {
+        ConfigurationSection section = getCategorySection(categoryPath);
+
+        if (section == null) return Material.CHEST;
+
+        Material material = getMaterial(
+                section.getString("material", "CHEST")
+        );
+
+        return material == null ? Material.CHEST : material;
+    }
+
+
+    public ConfigurationSection getCategorySection(String categoryPath) {
+        return getCategorySectionDirect(categoryPath);
+    }
+
+    private ConfigurationSection getCategorySectionDirect(String categoryPath) {
+        if (categoryPath == null || categoryPath.isBlank()) return null;
+
+        StringBuilder path = new StringBuilder("categories");
+
+        for (String part : categoryPath.split("\\.")) {
+            path.append(".").append(part).append(".subcategories");
+        }
+
+        String result = path.substring(0, path.length() - ".subcategories".length());
+
+        return categoriesData.getConfigurationSection(result);
+    }
+
+    public List<String> getSubcategories(String categoryPath) {
+        ConfigurationSection section;
+
+        if (categoryPath == null || categoryPath.isBlank()) {
+            section = categoriesData.getConfigurationSection("categories");
+        } else {
+            ConfigurationSection category =
+                    getCategorySectionDirect(categoryPath);
+
+            section = category == null
+                    ? null
+                    : category.getConfigurationSection("subcategories");
+        }
+
+        if (section == null) return new ArrayList<>();
+
+        List<String> result = new ArrayList<>();
+
+        for (String id : section.getKeys(false)) {
+            String path = categoryPath == null || categoryPath.isBlank()
+                    ? id
+                    : categoryPath + "." + id;
+
+            if (categoryFolders.containsKey(path)) {
+                result.add(id);
             }
         }
 
-        itemsData = YamlConfiguration.loadConfiguration(itemsFile);
+        return result;
     }
 
-    private void saveData() {
-        try {
-            itemsData.save(itemsFile);
-        } catch (IOException e) {
-            throw new IllegalStateException("Shop config could not be saved, maybe the directory is broken?", e);
+    public boolean hasSubcategories(String categoryPath) {
+        return !getSubcategories(categoryPath).isEmpty();
+    }
+
+    public YamlConfiguration getItemsData(String categoryPath) {
+        return itemConfigurations.get(categoryPath);
+    }
+
+    public YamlConfiguration getItemsData() {
+        return itemConfigurations.values().stream()
+                .findFirst()
+                .orElse(new YamlConfiguration());
+    }
+
+    public List<String> getItemIds(String categoryPath) {
+        YamlConfiguration data = getItemsData(categoryPath);
+
+        if (data == null) return new ArrayList<>();
+
+        ConfigurationSection items =
+                data.getConfigurationSection("items");
+
+        if (items == null) return new ArrayList<>();
+
+        return new ArrayList<>(items.getKeys(false));
+    }
+
+    public Material getMaterial(String name) {
+        if (name == null || name.isBlank()) return null;
+
+        Material material = Material.matchMaterial(name);
+
+        return material == null || material.isAir() ? null : material;
+    }
+
+    public boolean validPrice(String categoryPath, String path) {
+        YamlConfiguration data = getItemsData(categoryPath);
+
+        if (data == null || !data.contains(path)) return false;
+
+        double price = data.getDouble(path);
+
+        return Double.isFinite(price) && price >= 0;
+    }
+
+    public boolean validPrice(String path) {
+        for (String categoryPath : categoryFolders.keySet()) {
+            if (validPrice(categoryPath, path)) return true;
         }
+
+        return false;
+    }
+
+    public double getBuyPrice(String categoryPath, String id) {
+        String path = "items." + id + ".buy";
+
+        return validPrice(categoryPath, path)
+                ? getItemsData(categoryPath).getDouble(path)
+                : Double.NaN;
+    }
+
+    public double getSellPrice(String categoryPath, String id) {
+        String path = "items." + id + ".sell";
+
+        return validPrice(categoryPath, path)
+                ? getItemsData(categoryPath).getDouble(path)
+                : Double.NaN;
+    }
+
+    public double getBuyPrice(String id) {
+        String category = findItemCategory(id);
+
+        return category == null ? Double.NaN : getBuyPrice(category, id);
+    }
+
+    public double getSellPrice(String id) {
+        String category = findItemCategory(id);
+
+        return category == null ? Double.NaN : getSellPrice(category, id);
+    }
+
+    public String getItemName(String categoryPath, String id) {
+        YamlConfiguration data = getItemsData(categoryPath);
+
+        if (data != null) {
+            String customName = data.getString(
+                    "items." + id + ".name"
+            );
+
+            if (customName != null && !customName.isBlank()) {
+                return customName;
+            }
+        }
+
+        return formatName(id);
+    }
+
+    public String getItemName(String id) {
+        String category = findItemCategory(id);
+
+        return category == null
+                ? formatName(id)
+                : getItemName(category, id);
+    }
+
+    public String formatName(String name) {
+        if (name == null || name.isBlank()) return "";
+
+        String normalized = name.replace('_', ' ').toLowerCase();
+
+        StringBuilder result = new StringBuilder();
+
+        for (String word : normalized.trim().split("\\s+")) {
+            if (word.isEmpty()) continue;
+
+            if (!result.isEmpty()) result.append(' ');
+
+            result.append(Character.toUpperCase(word.charAt(0)));
+
+            if (word.length() > 1) {
+                result.append(word.substring(1));
+            }
+        }
+
+        return result.toString();
+    }
+
+    public String formatMoney(double amount) {
+        return BigDecimal.valueOf(amount)
+                .stripTrailingZeros()
+                .toPlainString();
+    }
+
+    private String findItemCategory(String id) {
+        if (id == null) return null;
+
+        for (String categoryPath : categoryFolders.keySet()) {
+            YamlConfiguration data = getItemsData(categoryPath);
+
+            if (data != null &&
+                    data.isConfigurationSection("items." + id)) {
+                return categoryPath;
+            }
+        }
+
+        return null;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(
+            CommandSender sender,
+            Command cmd,
+            String label,
+            String[] args
+    ) {
         if (!(sender instanceof Player player)) {
             sender.sendMessage("Shop can be opened only by players.");
             return true;
         }
 
-        openShop(player);
+        player.sendMessage("§cThe shop GUI has not been connected yet.");
         return true;
     }
 
-    public void openShop(Player player) {
-        openShop(player, 0);
+    public boolean buyItem(Player player, String id, int quantity) {
+        String category = findItemCategory(id);
+
+        return category != null &&
+                buyItem(player, category, id, quantity);
     }
 
-    private void openShop(Player player, int page) {
-        ConfigurationSection categories = itemsData.getConfigurationSection("categories");
-
-        if (categories == null || categories.getKeys(false).isEmpty()) {
-            player.sendMessage("Shop is empty...");
-            play(player, "shop-error");
-            return;
+    public boolean buyItem(
+            Player player,
+            String categoryPath,
+            String id,
+            int quantity
+    ) {
+        if (quantity != 1 && quantity != 4 && quantity != 8 &&
+                quantity != 16 && quantity != 32 &&
+                quantity != 64 && quantity != 128) {
+            return false;
         }
 
-        List<String> ids = new ArrayList<>(categories.getKeys(false));
-        openMenu(player, null, ids, page, SHOP_TITLE);
-    }
-
-    public void openCategory(Player player, String categoryId) {
-        openCategory(player, categoryId, 0);
-    }
-
-    private void openCategory(Player player, String categoryId, int page) {
-        String path = "categories." + categoryId;
-        if (!itemsData.isConfigurationSection(path)) {
-            player.sendMessage("That category does not exist, maybe you typed it wrong? : "+categoryId);
-            play(player, "shop-error");
-            return;
-        }
-
-        ConfigurationSection items = itemsData.getConfigurationSection("items");
-        List<String> ids = new ArrayList<>();
-
-        if (items != null) {
-            for (String id : items.getKeys(false)) {
-                if (categoryId.equalsIgnoreCase(itemsData.getString("items." + id + ".category", "")) && getMaterial(id) != null && validPrice("items." + id + ".buy") && validPrice("items." + id + ".sell")) {
-                    ids.add(id);
-                }
-            }
-        }
-
-        if (ids.isEmpty()) {
-            player.sendMessage("Category is empty");
-            play(player, "shop-error");
-            return;
-        }
-
-        String name = itemsData.getString(path + ".name", categoryId);
-        openMenu(player, categoryId, ids, page, CATEGORY_TITLE + name);
-    }
-    private void openMenu(Player player, String categoryId, List<String> ids, int page, String title) {
-        int maxPages = Math.max(1, (int) Math.ceil(ids.size() / (double) CONTENT_SLOTS.length));
-        page = Math.max(0, Math.min(page, maxPages - 1));
-
-        shopHolder holder = new shopHolder(categoryId, page);
-        Inventory inventory = Bukkit.createInventory(holder, 54, title);
-        holder.inventory = inventory;
-
-        fillBackground(inventory);
-        addPlayerInfo(inventory, player);
-
-        int start = page * CONTENT_SLOTS.length;
-        int end = Math.min(start + CONTENT_SLOTS.length, ids.size());
-
-        for (int i = start; i < end; i++) {
-            String id = ids.get(i);
-            int slot = CONTENT_SLOTS[i - start];
-            ItemStack item = categoryId == null ? createCategoryItem(id) : createShopItem(id);
-
-            if (item != null) {
-                inventory.setItem(slot, item);
-                holder.entries.put(slot, id);
-            }
-        }
-
-        if (categoryId != null) inventory.setItem(45, createButton(Material.ARROW, "§c§lBack", "§7Return to categories"));
-        if (page > 0) inventory.setItem(48, createButton(Material.SPECTRAL_ARROW, "§e§lPrevious Page", "§7Go to page " + page));
-        if (page < maxPages - 1) inventory.setItem(50, createButton(Material.SPECTRAL_ARROW, "§a§lNext Page", "§7Go to page " + (page + 2)));
-
-        inventory.setItem(49, createButton(Material.PAPER, "§6Page §f" + (page + 1) + "§7/§f" + maxPages, "§7" + ids.size() + " entries available"));
-
-        player.openInventory(inventory);
-    }
-
-    private ItemStack createCategoryItem(String id) {
-        String path = "categories." + id;
-        Material material = getMaterial(itemsData.getString(path + ".material", "CHEST"));
-        if (material == null) material = Material.CHEST;
-
-        return createButton(material, "§6" + itemsData.getString(path + ".name", id), "§7Browse this category", "§8Click to open");
-    }
-
-    private ItemStack createShopItem(String id) {
         Material material = getMaterial(id);
-        if (material == null) return null;
+        double unitPrice = getBuyPrice(categoryPath, id);
 
-        String path = "items." + id;
-        double buy = itemsData.getDouble(path + ".buy");
-        double sell = itemsData.getDouble(path + ".sell");
-
-        return createButton(material, "§f" + id.replace('_', ' '),
-                "",
-                "§aBuy: $" + formatMoney(buy),
-                "§cSell: $" + formatMoney(sell),
-                "",
-                "Left-click to buy",
-                "Right-click to sell");
-    }
-
-    private void addPlayerInfo(Inventory inventory, Player player) {
-        ItemStack head = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta meta = (SkullMeta) head.getItemMeta();
-
-        if (meta == null) return;
-
-        meta.setOwningPlayer(player);
-        meta.setDisplayName("§e" + player.getName());
-        meta.setLore(List.of("", "§7Balance: §a$" + formatMoney(economy.getPlayerBalance(player))));
-        head.setItemMeta(meta);
-        inventory.setItem(4, head);
-    }
-    private void fillBackground(Inventory inventory) {
-        ItemStack filler = createButton(Material.BLACK_STAINED_GLASS_PANE, " ");
-
-        for (int i = 0; i < 9; i++) {
-            inventory.setItem(i, filler);
-            inventory.setItem(45 + i, filler);
-        }
-
-        for (int row = 1; row <= 4; row++) {
-            inventory.setItem(row * 9, filler);
-            inventory.setItem(row * 9 + 8, filler);
-        }
-    }
-
-    private ItemStack createButton(Material material, String name, String... lore) {
-        ItemStack item = new ItemStack(material);
-        ItemMeta meta = item.getItemMeta();
-
-        if (meta != null) {
-            meta.setDisplayName(name);
-            meta.setLore(List.of(lore));
-            item.setItemMeta(meta);
-        }
-
-        return item;
-    }
-
-    private Material getMaterial(String name) {
-        if (name == null || name.isBlank()) return null;
-        Material material = Material.matchMaterial(name);
-        return material == null || material.isAir() ? null : material;
-    }
-
-    private boolean validPrice(String path) {
-        if (!itemsData.contains(path)) return false;
-        double price = itemsData.getDouble(path);
-        return Double.isFinite(price) && price >= 0;
-    }
-
-    private String formatMoney(double amount) {
-        return BigDecimal.valueOf(amount).stripTrailingZeros().toPlainString();
-    }
-
-    private void play(Player player, String sound) {
-        if (sounds != null) sounds.play(player, sound);
-    }
-
-    @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-        Inventory top = event.getView().getTopInventory();
-        if (!(top.getHolder() instanceof shopHolder holder)) return;
-
-        event.setCancelled(true);
-
-        if (!(event.getWhoClicked() instanceof Player player) || event.getRawSlot() < 0 || event.getRawSlot() >= top.getSize()) return;
-
-        int slot = event.getRawSlot();
-
-        if (holder.categoryId != null && slot == 45) {
-            openShop(player);
-            return;
-        }
-
-        if (slot == 48 && holder.page > 0) {
-            if (holder.categoryId == null) openShop(player, holder.page - 1);
-            else openCategory(player, holder.categoryId, holder.page - 1);
-            return;
-        }
-
-        if (slot == 53) {
-            if (holder.categoryId == null) openShop(player, holder.page + 1);
-            else openCategory(player, holder.categoryId, holder.page + 1);
-            return;
-        }
-
-        String id = holder.entries.get(slot);
-        if (id == null) return;
-
-        if (holder.categoryId == null) {
-            openCategory(player, id);
-            play(player, "shop-success");
-            return;
-        }
-
-        if (event.getClick() == ClickType.LEFT) buyItem(player, id);
-        else if (event.getClick() == ClickType.RIGHT) sellItem(player, id);
-    }
-
-    @EventHandler
-    public void onInventoryDrag(InventoryDragEvent event) {
-        if (event.getView().getTopInventory().getHolder() instanceof shopHolder) event.setCancelled(true);
-    }
-
-    private void buyItem(Player player, String id) {
-        String path = "items." + id;
-        Material material = getMaterial(id);
-
-        if (material == null || !validPrice(path + ".buy")) {
+        if (material == null || !Double.isFinite(unitPrice)) {
             player.sendMessage("§cThis item is currently unavailable.");
-            play(player, "shop-error");
-            return;
+            play(player, "menu-error");
+            return false;
         }
 
-        double price = itemsData.getDouble(path + ".buy");
+        double totalPrice = unitPrice * quantity;
+
+        if (!Double.isFinite(totalPrice)) {
+            player.sendMessage("§cThe total price is invalid.");
+            play(player, "menu-error");
+            return false;
+        }
+
         double balance = economy.getPlayerBalance(player);
 
-        if (!Double.isFinite(balance) || balance < price) {
-            player.sendMessage("§cYou don't have that much money in hand for that");
-            play(player, "shop-error");
-            return;
+        if (!Double.isFinite(balance) || balance < totalPrice) {
+            player.sendMessage("§cYou don't have enough money for this purchase.");
+            play(player, "menu-error");
+            return false;
         }
 
-        ItemStack reward = new ItemStack(material);
-        if (!hasSpace(player, reward)) {
-            player.sendMessage("§cYou cannot buy that item, your inventory is full.");
-            play(player, "shop-error");
-            return;
-        }
+        ItemStack reward = new ItemStack(material, quantity);
+        ItemStack[] previousContents =
+                player.getInventory().getStorageContents();
 
-        ItemStack[] previousContents = player.getInventory().getStorageContents();
-        economy.removePlayerBalance(player, price);
-        Map<Integer, ItemStack> leftovers = player.getInventory().addItem(reward);
+        economy.removePlayerBalance(player, totalPrice);
+
+        Map<Integer, ItemStack> leftovers =
+                player.getInventory().addItem(reward);
 
         if (!leftovers.isEmpty()) {
             player.getInventory().setStorageContents(previousContents);
-            economy.addPlayerBalance(player, price);
-            player.sendMessage("§cThe purchase was unsuccessful, so your money was refunded!");
-            play(player, "shop-error");
-            return;
+            economy.addPlayerBalance(player, totalPrice);
+
+            player.sendMessage(
+                    "§cThe purchase was unsuccessful. Your money has been refunded!"
+            );
+
+            play(player, "menu-error");
+            return false;
         }
 
-        player.sendMessage("§aPurchased §f" + id.replace('_', ' ') + " §afor §f$" + formatMoney(price) + "§a.");
-        play(player, "shop-success");
+        player.sendMessage(
+                "§aPurchased §f" + quantity + "x " +
+                        getItemName(categoryPath, id) +
+                        " §afor §f$" + formatMoney(totalPrice) + "§a."
+        );
+
+        play(player, "menu-success");
+        return true;
     }
 
-    private void sellItem(Player player, String id) {
-        String path = "items." + id;
-        Material material = getMaterial(id);
+    public void sellItem(Player player, String id) {
+        String category = findItemCategory(id);
 
-        if (material == null || !validPrice(path + ".sell")) {
+        if (category == null) {
             player.sendMessage("§cThis item cannot be sold.");
-            play(player, "shop-error");
+            play(player, "menu-error");
             return;
         }
 
-        double price = itemsData.getDouble(path + ".sell");
+        sellItem(player, category, id);
+    }
+
+    public void sellItem(Player player, String categoryPath, String id) {
+        Material material = getMaterial(id);
+        double price = getSellPrice(categoryPath, id);
+
+        if (material == null || !Double.isFinite(price)) {
+            player.sendMessage("§cThis item cannot be sold.");
+            play(player, "menu-error");
+            return;
+        }
+
         ItemStack item = new ItemStack(material);
-        Map<Integer, ItemStack> leftovers = player.getInventory().removeItem(item);
+        Map<Integer, ItemStack> leftovers =
+                player.getInventory().removeItem(item);
 
         if (!leftovers.isEmpty()) {
             player.sendMessage("§cYou don't have that item.");
-            play(player, "shop-error");
+            play(player, "menu-error");
             return;
         }
 
         economy.addPlayerBalance(player, price);
-        player.sendMessage("§aSold §f1 " + id.replace('_', ' ') + " §afor §f$" + formatMoney(price) + "§a.");
-        play(player, "shop-success");
+
+        player.sendMessage(
+                "§aSold §f1 " + getItemName(categoryPath, id) +
+                        " §afor §f$" + formatMoney(price) + "§a."
+        );
+
+        play(player, "menu-success");
     }
 
-    private boolean hasSpace(Player player, ItemStack item) {
-        for (ItemStack contents : player.getInventory().getStorageContents()) {
-            if (contents == null || contents.getType().isAir()) return true;
-            if (contents.isSimilar(item) && contents.getAmount() < contents.getMaxStackSize()) return true;
+    private void play(Player player, String sound) {
+        if (sounds != null) {
+            sounds.play(player, sound);
         }
-        return false;
     }
 }

@@ -45,6 +45,7 @@ public class Information {
             data.addProperty("api-version", plugin.getDescription().getAPIVersion());
             data.addProperty("repository", "https://github.com/SiddharthC0/siddys-simple-plugin"); // repo (if present)
             data.addProperty("issue-tracker", "https://github.com/SiddharthC0/siddys-simple-plugin/issues"); // issue tracker
+            data.addProperty("discord", "https://discord.gg/ZMzrxAUxRb");
             data.addProperty("modrinth-project-id", "mIr78G7Z"); // modrinth proj id (if any)
             data.addProperty("last-refreshed", java.time.Instant.now().toString());
 

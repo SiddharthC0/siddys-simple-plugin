@@ -1,0 +1,82 @@
+items:
+  BRICKS:
+    buy: 50
+    sell: 15
+  BRICK_SLAB:
+    buy: 25
+    sell: 8
+  STONE_BRICKS:
+    buy: 80
+    sell: 25
+  CRACKED_STONE_BRICKS:
+    buy: 70
+    sell: 20
+  MOSSY_STONE_BRICKS:
+    buy: 90
+    sell: 30
+  CHISELED_STONE_BRICKS:
+    buy: 100
+    sell: 35
+  DEEPSLATE_BRICKS:
+    buy: 90
+    sell: 30
+  CRACKED_DEEPSLATE_BRICKS:
+    buy: 80
+    sell: 25
+  DEEPSLATE_TILES:
+    buy: 100
+    sell: 35
+  CRACKED_DEEPSLATE_TILES:
+    buy: 90
+    sell: 30
+  NETHER_BRICKS:
+    buy: 70
+    sell: 22
+  CRACKED_NETHER_BRICKS:
+    buy: 60
+    sell: 18
+  CHISELED_NETHER_BRICKS:
+    buy: 90
+    sell: 30
+  RED_NETHER_BRICKS:
+    buy: 80
+    sell: 25
+  END_STONE_BRICKS:
+    buy: 90
+    sell: 35
+  POLISHED_BLACKSTONE_BRICKS:
+    buy: 95
+    sell: 32
+  CRACKED_POLISHED_BLACKSTONE_BRICKS:
+    buy: 85
+    sell: 28
+  MUD_BRICKS:
+    buy: 40
+    sell: 12
+  SANDSTONE:
+    buy: 35
+    sell: 12
+  SMOOTH_SANDSTONE:
+    buy: 55
+    sell: 18
+  CHISELED_SANDSTONE:
+    buy: 70
+    sell: 22
+  RED_SANDSTONE:
+    buy: 40
+    sell: 14
+  SMOOTH_RED_SANDSTONE:
+    buy: 60
+    sell: 20
+  CHISELED_RED_SANDSTONE:
+    buy: 75
+    sell: 25
+  PRISMARINE_BRICKS:
+    buy: 110
+    sell: 40
+  QUARTZ_BRICKS:
+    buy: 100
+    sell: 38
+  CHISELED_QUARTZ_BLOCK:
+    buy: 110
+    sell: 42

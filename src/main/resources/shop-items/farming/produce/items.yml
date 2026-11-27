@@ -1,0 +1,88 @@
+items:
+  WHEAT:
+    buy: 15
+    sell: 5
+  CARROT:
+    buy: 15
+    sell: 5
+  POTATO:
+    buy: 15
+    sell: 5
+  BEETROOT:
+    buy: 15
+    sell: 5
+  PUMPKIN:
+    buy: 25
+    sell: 9
+  MELON:
+    buy: 25
+    sell: 9
+  NETHER_WART:
+    buy: 25
+    sell: 9
+  COCOA_BEANS:
+    buy: 20
+    sell: 7
+  SUGAR_CANE:
+    buy: 10
+    sell: 3
+  SUGAR:
+    buy: 12
+    sell: 4
+  BAMBOO:
+    buy: 10
+    sell: 3
+  CACTUS:
+    buy: 15
+    sell: 5
+  KELP:
+    buy: 10
+    sell: 3
+  DRIED_KELP_BLOCK:
+    buy: 25
+    sell: 8
+  SWEET_BERRIES:
+    buy: 15
+    sell: 5
+  GLOW_BERRIES:
+    buy: 20
+    sell: 7
+  CHORUS_FRUIT:
+    buy: 25
+    sell: 8
+  POISONOUS_POTATO:
+    buy: 5
+    sell: 1
+  BROWN_MUSHROOM:
+    buy: 15
+    sell: 5
+  RED_MUSHROOM:
+    buy: 15
+    sell: 5
+  BROWN_MUSHROOM_BLOCK:
+    buy: 30
+    sell: 10
+  RED_MUSHROOM_BLOCK:
+    buy: 30
+    sell: 10
+  MUSHROOM_STEM:
+    buy: 25
+    sell: 8
+  HONEYCOMB:
+    buy: 35
+    sell: 12
+  HONEY_BOTTLE:
+    buy: 40
+    sell: 14
+  TORCHFLOWER:
+    buy: 60
+    sell: 22
+  PITCHER_PLANT:
+    buy: 50
+    sell: 18
+  INK_SAC:
+    buy: 20
+    sell: 7
+  GLOW_INK_SAC:
+    buy: 50
+    sell: 18

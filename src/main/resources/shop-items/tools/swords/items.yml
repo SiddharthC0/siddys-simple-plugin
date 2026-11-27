@@ -1,0 +1,19 @@
+items:
+  WOODEN_SWORD:
+    buy: 20
+    sell: 5
+  STONE_SWORD:
+    buy: 50
+    sell: 15
+  IRON_SWORD:
+    buy: 150
+    sell: 50
+  GOLDEN_SWORD:
+    buy: 120
+    sell: 40
+  DIAMOND_SWORD:
+    buy: 600
+    sell: 200
+  NETHERITE_SWORD:
+    buy: 8000
+    sell: 3200

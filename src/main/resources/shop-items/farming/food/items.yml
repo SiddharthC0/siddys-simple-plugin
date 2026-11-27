@@ -1,0 +1,79 @@
+items:
+  BREAD:
+    buy: 20
+    sell: 7
+  COOKED_BEEF:
+    buy: 35
+    sell: 12
+  COOKED_PORKCHOP:
+    buy: 35
+    sell: 12
+  COOKED_CHICKEN:
+    buy: 30
+    sell: 10
+  COOKED_MUTTON:
+    buy: 30
+    sell: 10
+  COOKED_RABBIT:
+    buy: 35
+    sell: 12
+  COOKED_COD:
+    buy: 25
+    sell: 8
+  COOKED_SALMON:
+    buy: 30
+    sell: 10
+  BAKED_POTATO:
+    buy: 20
+    sell: 7
+  PUMPKIN_PIE:
+    buy: 30
+    sell: 10
+  COOKIE:
+    buy: 10
+    sell: 3
+  CAKE:
+    buy: 80
+    sell: 30
+  MUSHROOM_STEW:
+    buy: 35
+    sell: 12
+  RABBIT_STEW:
+    buy: 50
+    sell: 18
+  BEETROOT_SOUP:
+    buy: 35
+    sell: 12
+  SUSPICIOUS_STEW:
+    buy: 40
+    sell: 14
+  APPLE:
+    buy: 20
+    sell: 7
+  GOLDEN_APPLE:
+    buy: 300
+    sell: 120
+  ENCHANTED_GOLDEN_APPLE:
+    buy: 5000
+    sell: 2000
+  GOLDEN_CARROT:
+    buy: 200
+    sell: 80
+  MELON_SLICE:
+    buy: 10
+    sell: 3
+  DRIED_KELP:
+    buy: 8
+    sell: 2
+  SWEET_BERRIES:
+    buy: 15
+    sell: 5
+  GLOW_BERRIES:
+    buy: 20
+    sell: 7
+  CHORUS_FRUIT:
+    buy: 25
+    sell: 8
+  HONEY_BOTTLE:
+    buy: 40
+    sell: 14

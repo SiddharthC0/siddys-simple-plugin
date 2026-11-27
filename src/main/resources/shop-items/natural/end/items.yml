@@ -1,0 +1,49 @@
+items:
+  END_STONE:
+    buy: 50
+    sell: 20
+  END_STONE_BRICKS:
+    buy: 90
+    sell: 35
+  OBSIDIAN:
+    buy: 200
+    sell: 80
+  CRYING_OBSIDIAN:
+    buy: 220
+    sell: 90
+  PURPUR_BLOCK:
+    buy: 120
+    sell: 45
+  PURPUR_PILLAR:
+    buy: 130
+    sell: 50
+  CHORUS_PLANT:
+    buy: 40
+    sell: 15
+  CHORUS_FLOWER:
+    buy: 50
+    sell: 20
+  DRAGON_EGG:
+    buy: 999999
+    sell: 500000
+  DRAGON_HEAD:
+    buy: 50000
+    sell: 20000
+  END_ROD:
+    buy: 60
+    sell: 22
+  ENDER_CHEST:
+    buy: 500
+    sell: 200
+  SHULKER_SHELL:
+    buy: 300
+    sell: 120
+  SHULKER_BOX:
+    buy: 400
+    sell: 160
+  POPPED_CHORUS_FRUIT:
+    buy: 30
+    sell: 10
+  CHORUS_FRUIT:
+    buy: 25
+    sell: 8

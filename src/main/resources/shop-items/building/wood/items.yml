@@ -1,0 +1,170 @@
+items:
+  OAK_LOG:
+    buy: 20
+    sell: 8
+  OAK_WOOD:
+    buy: 25
+    sell: 10
+  STRIPPED_OAK_LOG:
+    buy: 30
+    sell: 12
+  STRIPPED_OAK_WOOD:
+    buy: 35
+    sell: 14
+  OAK_PLANKS:
+    buy: 15
+    sell: 5
+  SPRUCE_LOG:
+    buy: 20
+    sell: 8
+  SPRUCE_WOOD:
+    buy: 25
+    sell: 10
+  STRIPPED_SPRUCE_LOG:
+    buy: 30
+    sell: 12
+  STRIPPED_SPRUCE_WOOD:
+    buy: 35
+    sell: 14
+  SPRUCE_PLANKS:
+    buy: 15
+    sell: 5
+  BIRCH_LOG:
+    buy: 20
+    sell: 8
+  BIRCH_WOOD:
+    buy: 25
+    sell: 10
+  STRIPPED_BIRCH_LOG:
+    buy: 30
+    sell: 12
+  STRIPPED_BIRCH_WOOD:
+    buy: 35
+    sell: 14
+  BIRCH_PLANKS:
+    buy: 15
+    sell: 5
+  JUNGLE_LOG:
+    buy: 22
+    sell: 9
+  JUNGLE_WOOD:
+    buy: 27
+    sell: 11
+  STRIPPED_JUNGLE_LOG:
+    buy: 32
+    sell: 13
+  STRIPPED_JUNGLE_WOOD:
+    buy: 37
+    sell: 15
+  JUNGLE_PLANKS:
+    buy: 17
+    sell: 6
+  ACACIA_LOG:
+    buy: 22
+    sell: 9
+  ACACIA_WOOD:
+    buy: 27
+    sell: 11
+  STRIPPED_ACACIA_LOG:
+    buy: 32
+    sell: 13
+    sell: 13
+  STRIPPED_ACACIA_WOOD:
+    buy: 37
+    sell: 15
+  ACACIA_PLANKS:
+    buy: 17
+    sell: 6
+  DARK_OAK_LOG:
+    buy: 25
+    sell: 10
+  DARK_OAK_WOOD:
+    buy: 30
+    sell: 12
+  STRIPPED_DARK_OAK_LOG:
+    buy: 35
+    sell: 14
+  STRIPPED_DARK_OAK_WOOD:
+    buy: 40
+    sell: 16
+  DARK_OAK_PLANKS:
+    buy: 20
+    sell: 8
+  MANGROVE_LOG:
+    buy: 25
+    sell: 10
+  MANGROVE_WOOD:
+    buy: 30
+    sell: 12
+  STRIPPED_MANGROVE_LOG:
+    buy: 35
+    sell: 14
+  STRIPPED_MANGROVE_WOOD:
+    buy: 40
+    sell: 16
+  MANGROVE_PLANKS:
+    buy: 20
+    sell: 8
+  MANGROVE_ROOTS:
+    buy: 15
+    sell: 5
+  MUDDY_MANGROVE_ROOTS:
+    buy: 18
+    sell: 6
+  CHERRY_LOG:
+    buy: 30
+    sell: 12
+  CHERRY_WOOD:
+    buy: 35
+    sell: 14
+  STRIPPED_CHERRY_LOG:
+    buy: 40
+    sell: 16
+  STRIPPED_CHERRY_WOOD:
+    buy: 45
+    sell: 18
+  CHERRY_PLANKS:
+    buy: 25
+    sell: 10
+  BAMBOO_BLOCK:
+    buy: 20
+    sell: 8
+  STRIPPED_BAMBOO_BLOCK:
+    buy: 25
+    sell: 10
+  BAMBOO_PLANKS:
+    buy: 15
+    sell: 5
+  BAMBOO_MOSAIC:
+    buy: 30
+    sell: 12
+  CRIMSON_STEM:
+    buy: 30
+    sell: 12
+  CRIMSON_HYPHAE:
+    buy: 35
+    sell: 14
+  STRIPPED_CRIMSON_STEM:
+    buy: 40
+    sell: 16
+  STRIPPED_CRIMSON_HYPHAE:
+    buy: 45
+    sell: 18
+  CRIMSON_PLANKS:
+    buy: 25
+    sell: 10
+  WARPED_STEM:
+    buy: 30
+    sell: 12
+  WARPED_HYPHAE:
+    buy: 35
+    sell: 14
+  STRIPPED_WARPED_STEM:
+    buy: 40
+    sell: 16
+  STRIPPED_WARPED_HYPHAE:
+    buy: 45
+    sell: 18
+  WARPED_PLANKS:
+    buy: 25
+    sell: 10

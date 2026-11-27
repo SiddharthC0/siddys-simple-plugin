@@ -1,12 +1,4 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.util;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -26,41 +18,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 public class CoreUtilMethods {
-
     private final JavaPlugin plugin;
-
     public CoreUtilMethods(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
-    // GUI METHODS
-
+    // gui methods
     public Inventory createGui(int size, String title) {
         return Bukkit.createInventory(null, size, color(title));
     }
-
-    public Inventory createGui(InventoryHolder holder, int size, String title) {
-        return Bukkit.createInventory(holder, size, color(title));
-    }
-
+    public Inventory createGui(InventoryHolder holder, int size, String title) {return Bukkit.createInventory(holder, size, color(title));}
     public ItemStack createGuiItem(Material material) {
         return new ItemStack(material);
     }
-
-    public ItemStack createGuiItem(Material material, String name) {
-        return createGuiItem(material, 1, name, List.of());
-    }
-
-    public ItemStack createGuiItem(Material material, String name, String... lore) {
-        return createGuiItem(material, 1, name, List.of(lore));
-    }
-
+    public ItemStack createGuiItem(Material material, String name) {return createGuiItem(material, 1, name, List.of());}
+    public ItemStack createGuiItem(Material material, String name, String... lore) {return createGuiItem(material, 1, name, List.of(lore));}
     public ItemStack createGuiItem(Material material, int amount, String name, List<String> lore) {
         ItemStack item = new ItemStack(material, amount);
         ItemMeta meta = item.getItemMeta();
-
         if (meta != null) {
             meta.setDisplayName(color(name));
             meta.setLore(color(lore));
@@ -73,7 +49,6 @@ public class CoreUtilMethods {
     public ItemStack createGuiItem(ItemStack item, String name, List<String> lore) {
         ItemStack result = item.clone();
         ItemMeta meta = result.getItemMeta();
-
         if (meta != null) {
             meta.setDisplayName(color(name));
             meta.setLore(color(lore));

@@ -1,0 +1,57 @@
+items:
+  IRON_INGOT:
+    buy: 40
+    sell: 14
+  COPPER_INGOT:
+    buy: 30
+    sell: 10
+  GOLD_INGOT:
+    buy: 80
+    sell: 30
+  NETHERITE_SCRAP:
+    buy: 300
+    sell: 120
+  NETHERITE_INGOT:
+    # 4x GOLD_INGOT (4 * 80 = 320) + 6x ANCIENT_DEBRIS (6 * 1000 = 6000) + 1000 base = 7320
+    buy: 7320
+    sell: 3000
+  COPPER_BLOCK:
+    buy: 250
+    sell: 85
+  IRON_BLOCK:
+    buy: 340
+    sell: 115
+  GOLD_BLOCK:
+    buy: 700
+    sell: 260
+  DIAMOND_BLOCK:
+    buy: 2250
+    sell: 900
+  EMERALD_BLOCK:
+    buy: 1300
+    sell: 530
+  NETHERITE_BLOCK:
+    # 9x NETHERITE_INGOT (9 * 7320 = 65880)
+    buy: 65880
+    sell: 27000
+  EXPOSED_COPPER:
+    buy: 220
+    sell: 75
+  WEATHERED_COPPER:
+    buy: 200
+    sell: 68
+  OXIDIZED_COPPER:
+    buy: 180
+    sell: 60
+  WAXED_COPPER_BLOCK:
+    buy: 270
+    sell: 90
+  RAW_IRON_BLOCK:
+    buy: 260
+    sell: 88
+  RAW_COPPER_BLOCK:
+    buy: 210
+    sell: 70
+  RAW_GOLD_BLOCK:
+    buy: 530
+    sell: 195

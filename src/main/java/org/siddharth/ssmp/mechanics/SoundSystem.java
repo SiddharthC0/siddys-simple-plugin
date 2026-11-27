@@ -1,12 +1,4 @@
-/*
- * Siddy's Simple Plugin©
- * Copyright © 2026 Siddharth C
- * Licensed under the MIT License.
- *
- * This class is part of SSMP.
- */
 package org.siddharth.ssmp.mechanics;
-
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,231 +7,63 @@ import org.siddharth.ssmp.SiddysSimplePlugin;
 
 import java.io.File;
 import java.io.IOException;
-
 public class SoundSystem {
-
     private final File soundsFolder;
     private final File soundsFile;
     private final YamlConfiguration sounds;
-
     public SoundSystem(SiddysSimplePlugin plugin) {
-        soundsFolder = new File(
-                plugin.getDataFolder(),
-                "sounds"
-        );
-
-        soundsFile = new File(
-                soundsFolder,
-                "config.yml"
-        );
-
+        soundsFolder = new File(plugin.getDataFolder(), "sounds");
+        soundsFile = new File(soundsFolder, "config.yml");
         createFiles();
-
-        sounds =
-                YamlConfiguration.loadConfiguration(
-                        soundsFile
-                );
+        sounds = YamlConfiguration.loadConfiguration(soundsFile);
     }
 
     private void createFiles() {
-        if (!soundsFolder.exists()) {
-            soundsFolder.mkdirs();
-        }
-
+        if (!soundsFolder.exists()) {soundsFolder.mkdirs();}
         if (!soundsFile.exists()) {
-            try {
-                soundsFile.createNewFile();
-            } catch (IOException e) {
+            try {soundsFile.createNewFile();} catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
-        YamlConfiguration config =
-                YamlConfiguration.loadConfiguration(
-                        soundsFile
-                );
-
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(soundsFile);
         boolean changed = false;
+        // menus
+        changed |= addSound(config, "menu-open", true,
+                "minecraft:block.chest.open", 1.0, 1.0);
+        changed |= addSound(config, "menu-click", true,
+                "minecraft:ui.button.click", 1.0, 1.0);
+        changed |= addSound(config, "menu-close", true,
+                "minecraft:block.chest.close", 1.0, 1.0);
+        changed |= addSound(config, "menu-success", true,
+                "minecraft:entity.player.levelup", 1.0, 1.0);
+        changed |= addSound(config, "menu-error", true,
+                "minecraft:block.note_block.bass", 1.0, 1.0);
 
-        changed |= addSound(
-                config,
-                "menu-open",
-                true,
-                "minecraft:block.chest.open",
-                1.0,
-                1.0
-        );
+        // commands
+        changed |= addSound(config, "command-error", true,
+                "minecraft:entity.villager.no", 1.0, 1.0);
+        changed |= addSound(config, "command-success", true,
+                "minecraft:entity.player.levelup", 1.0, 1.0);
 
-        changed |= addSound(
-                config,
-                "menu-click",
-                true,
-                "minecraft:ui.button.click",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "menu-close",
-                true,
-                "minecraft:block.chest.close",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "auction-click",
-                true,
-                "minecraft:ui.button.click",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "auction-success",
-                true,
-                "minecraft:entity.player.levelup",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "auction-error",
-                true,
-                "minecraft:entity.villager.no",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "shop-open",
-                true,
-                "minecraft:block.chest.open",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "shop-click",
-                true,
-                "minecraft:ui.button.click",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "shop-purchase",
-                true,
-                "minecraft:entity.experience_orb.pickup",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "shop-error",
-                true,
-                "minecraft:entity.villager.no",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "command-error",
-                true,
-                "minecraft:entity.villager.no",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "command-success",
-                true,
-                "minecraft:entity.player.levelup",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "notification",
-                true,
-                "minecraft:block.note_block.pling",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "menu-error",
-                true,
-                "minecraft:entity.villager.no",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "shop-success",
-                true,
-                "minecraft:entity.villager.no",
-                1.0,
-                1.0
-        );
-
-        changed |= addSound(
-                config,
-                "shop-error",
-                true,
-                "minecraft:entity.player.levelup",
-                1.0,
-                1.0
-        );
-
-        if (changed) {
-            saveConfig(config);
-        }
+        //general player
+        changed |= addSound(config, "notification", true,
+                "minecraft:block.note_block.pling", 1.0, 1.0);
+        changed |= addSound(config, "transaction", true,
+                "minecraft:block.amethyst_block.chime", 1.0, 1.0);
+        if (changed) {saveConfig(config);}
     }
 
-    private boolean addSound(
-            YamlConfiguration config,
-            String name,
-            boolean enabled,
-            String sound,
-            double volume,
-            double pitch
-    ) {
-        String basePath =
-                "sounds." + name;
-
+    private boolean addSound(YamlConfiguration config, String name, boolean enabled, String sound, double volume, double pitch) {
+        String basePath = "sounds." + name;
         boolean changed = false;
-
-        if (!config.contains(
-                basePath + ".enabled"
-        )) {
-            config.set(
-                    basePath + ".enabled",
-                    enabled
-            );
-
+        if (!config.contains(basePath + ".enabled")) {
+            config.set(basePath + ".enabled", enabled);
             changed = true;
         }
 
-        if (!config.contains(
-                basePath + ".sound"
-        )) {
-            config.set(
-                    basePath + ".sound",
-                    sound
+        if (!config.contains(basePath + ".sound")) {
+            config.set(basePath + ".sound", sound
             );
 
             changed = true;

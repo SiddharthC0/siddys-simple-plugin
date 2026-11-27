@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
 public final class InfoBarSystem implements Listener {
 
     private final JavaPlugin plugin;
+    private PlayerInformationSystem playerInformationSystem;
     private final Map<UUID, BossBar> bars = new HashMap<>();
     private final Map<UUID, String> lastTitles = new HashMap<>();
     private final Set<UUID> suspended = new HashSet<>();
@@ -68,6 +69,14 @@ public final class InfoBarSystem implements Listener {
             available = false;
             shutdown();
             plugin.getLogger().severe("InfoBar failed to initialize: " + e.getMessage());
+        }
+    }
+
+    public void setPlayerInformationSystem(PlayerInformationSystem system) {
+        this.playerInformationSystem = system;
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            updatePlayer(player);
         }
     }
 
@@ -290,7 +299,15 @@ public final class InfoBarSystem implements Listener {
     }
 
     public boolean isPlayerEnabled(Player player) {
-        return data.getBoolean("players." + player.getUniqueId() + ".enabled", true);
+        boolean legacyEnabled = data.getBoolean(
+                "players." + player.getUniqueId() + ".enabled",
+                true
+        );
+
+        boolean interfaceEnabled = playerInformationSystem == null
+                || playerInformationSystem.isEnabled(player, "interface.infobar");
+
+        return legacyEnabled && interfaceEnabled;
     }
 
     public void setPlayerEnabled(Player player, boolean enabled) {

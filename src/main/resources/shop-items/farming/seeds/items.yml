@@ -1,0 +1,52 @@
+items:
+  WHEAT_SEEDS:
+    buy: 10
+    sell: 3
+  BEETROOT_SEEDS:
+    buy: 12
+    sell: 4
+  MELON_SEEDS:
+    buy: 15
+    sell: 5
+  PUMPKIN_SEEDS:
+    buy: 15
+    sell: 5
+  TORCHFLOWER_SEEDS:
+    buy: 80
+    sell: 30
+  PITCHER_POD:
+    buy: 80
+    sell: 30
+  COCOA_BEANS:
+    buy: 20
+    sell: 7
+  NETHER_WART:
+    buy: 25
+    sell: 9
+  SWEET_BERRIES:
+    buy: 15
+    sell: 5
+  GLOW_BERRIES:
+    buy: 20
+    sell: 7
+  BAMBOO:
+    buy: 10
+    sell: 3
+  SUGAR_CANE:
+    buy: 10
+    sell: 3
+  CACTUS:
+    buy: 15
+    sell: 5
+  CHORUS_FRUIT:
+    buy: 25
+    sell: 8
+  KELP:
+    buy: 10
+    sell: 3
+  MOSS_BLOCK:
+    buy: 20
+    sell: 7
+  VINE:
+    buy: 10
+    sell: 3

@@ -1,0 +1,19 @@
+items:
+  SKELETON_SKULL:
+    buy: 10000
+    sell: 80
+  WITHER_SKELETON_SKULL:
+    buy: 20000
+    sell: 350
+  ZOMBIE_HEAD:
+    buy: 10000
+    sell: 80
+  CREEPER_HEAD:
+    buy: 25000
+    sell: 120
+  DRAGON_HEAD:
+    buy: 50000
+    sell: 20000
+  PIGLIN_HEAD:
+    buy: 20000
+    sell: 100

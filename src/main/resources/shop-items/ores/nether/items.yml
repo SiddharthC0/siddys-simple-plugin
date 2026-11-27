@@ -1,0 +1,10 @@
+items:
+  NETHER_QUARTZ_ORE:
+    buy: 50
+    sell: 18
+  NETHER_GOLD_ORE:
+    buy: 90
+    sell: 35
+  ANCIENT_DEBRIS:
+    buy: 1000
+    sell: 500

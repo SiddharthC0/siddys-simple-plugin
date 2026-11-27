@@ -1,7 +1,7 @@
 name: SiddysSimplePlugin
-version: 4.1.0
+version: 5.0.0
 main: org.siddharth.ssmp.SiddysSimplePlugin
-description: Siddys Simple Plugin 4.0.0 | Improved, Better and Fixed | Thanks a ton for using, you're the BEST.
+description: Siddys Simple Plugin 5.0.0 | Improved, Better and Fixed | Thanks a ton for using, you're the BEST.
 author: Siddy
 api-version: '1.21.11'
 website: https://github.com/SiddharthC0/siddys-simple-plugin

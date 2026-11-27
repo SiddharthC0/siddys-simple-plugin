@@ -1,0 +1,25 @@
+items:
+  DEEPSLATE_COAL_ORE:
+    buy: 35
+    sell: 12
+  DEEPSLATE_IRON_ORE:
+    buy: 55
+    sell: 20
+  DEEPSLATE_COPPER_ORE:
+    buy: 50
+    sell: 18
+  DEEPSLATE_GOLD_ORE:
+    buy: 100
+    sell: 40
+  DEEPSLATE_REDSTONE_ORE:
+    buy: 80
+    sell: 30
+  DEEPSLATE_EMERALD_ORE:
+    buy: 250
+    sell: 100
+  DEEPSLATE_LAPIS_ORE:
+    buy: 110
+    sell: 45
+  DEEPSLATE_DIAMOND_ORE:
+    buy: 350
+    sell: 140

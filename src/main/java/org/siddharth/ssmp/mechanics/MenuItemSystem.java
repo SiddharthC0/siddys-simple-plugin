@@ -34,7 +34,6 @@ import org.bukkit.inventory.ItemFlag;
 
 import java.io.File;
 import java.util.Map;
-
 public class MenuItemSystem implements Listener {
 
     private final JavaPlugin plugin;
@@ -66,7 +65,7 @@ public class MenuItemSystem implements Listener {
         config.addDefault("material", "COMPASS");
         config.addDefault("name", "&6&lSSMP Menu");
         config.addDefault("slot", 8);
-        config.addDefault("command", "SiddysSimplePlugin");
+        config.addDefault("command", "ssmp");
         config.addDefault("lore", java.util.List.of(
                 "&7Right-click to open the SSMP menu"
         ));
@@ -266,10 +265,7 @@ public class MenuItemSystem implements Listener {
             return;
         }
 
-        if (event.getAction() == InventoryAction.COLLECT_TO_CURSOR
-                && hasMenuItem(player.getInventory())) {
-            event.setCancelled(true);
-        }
+
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
@@ -284,13 +280,13 @@ public class MenuItemSystem implements Listener {
         }
 
         int topSize = event.getView().getTopInventory().getSize();
+        int bottomSize = event.getView().getBottomInventory().getSize(); // typically 36
+        int hotbarOffset = topSize + (bottomSize - 9); // hotbar starts after main storage
         int protectedSlot = getMenuSlot();
 
         for (int rawSlot : event.getRawSlots()) {
-            if (rawSlot >= topSize + 27
-                    && rawSlot < topSize + 36) {
-
-                int hotbarSlot = rawSlot - topSize - 27;
+            if (rawSlot >= hotbarOffset && rawSlot < hotbarOffset + 9) {
+                int hotbarSlot = rawSlot - hotbarOffset;
 
                 if (hotbarSlot == protectedSlot) {
                     event.setCancelled(true);
@@ -346,9 +342,13 @@ public class MenuItemSystem implements Listener {
     }
 
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (!isEnabled() || event.getHand() != EquipmentSlot.HAND) {
+        if (!isEnabled()) {
+            return;
+        }
+
+        if (event.getHand() != EquipmentSlot.HAND) {
             return;
         }
 
@@ -362,14 +362,18 @@ public class MenuItemSystem implements Listener {
         }
 
         event.setCancelled(true);
+        event.setUseItemInHand(org.bukkit.event.Event.Result.DENY);
 
-        String command = config.getString("command", "SiddysSimplePlugin");
+        String command = config.getString("command", "ssmp");
 
         if (command == null || command.isBlank()) {
             return;
         }
 
-        command = command.replace("%player%", event.getPlayer().getName());
+        command = command.replace(
+                "%player%",
+                event.getPlayer().getName()
+        );
 
         if (command.startsWith("/")) {
             command = command.substring(1);

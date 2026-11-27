@@ -1,0 +1,97 @@
+items:
+  PRISMARINE:
+    buy: 60
+    sell: 20
+  PRISMARINE_BRICKS:
+    buy: 110
+    sell: 40
+  DARK_PRISMARINE:
+    buy: 120
+    sell: 45
+  SEA_LANTERN:
+    buy: 150
+    sell: 55
+  WET_SPONGE:
+    buy: 80
+    sell: 30
+  SPONGE:
+    buy: 100
+    sell: 40
+  KELP:
+    buy: 10
+    sell: 3
+  DRIED_KELP_BLOCK:
+    buy: 25
+    sell: 8
+  SEAGRASS:
+    buy: 10
+    sell: 3
+  CORAL_BLOCK:
+    buy: 80
+    sell: 28
+  DEAD_CORAL_BLOCK:
+    buy: 30
+    sell: 10
+  TUBE_CORAL_BLOCK:
+    buy: 80
+    sell: 28
+  BRAIN_CORAL_BLOCK:
+    buy: 80
+    sell: 28
+  BUBBLE_CORAL_BLOCK:
+    buy: 80
+    sell: 28
+  FIRE_CORAL_BLOCK:
+    buy: 80
+    sell: 28
+  HORN_CORAL_BLOCK:
+    buy: 80
+    sell: 28
+  TUBE_CORAL:
+    buy: 50
+    sell: 18
+  BRAIN_CORAL:
+    buy: 50
+    sell: 18
+  BUBBLE_CORAL:
+    buy: 50
+    sell: 18
+  FIRE_CORAL:
+    buy: 50
+    sell: 18
+  HORN_CORAL:
+    buy: 50
+    sell: 18
+  TUBE_CORAL_FAN:
+    buy: 40
+    sell: 14
+  BRAIN_CORAL_FAN:
+    buy: 40
+    sell: 14
+  BUBBLE_CORAL_FAN:
+    buy: 40
+    sell: 14
+  FIRE_CORAL_FAN:
+    buy: 40
+    sell: 14
+  HORN_CORAL_FAN:
+    buy: 40
+    sell: 14
+  HEART_OF_THE_SEA:
+    buy: 500
+    sell: 200
+  NAUTILUS_SHELL:
+    buy: 150
+    sell: 60
+  COD:
+    buy: 15
+    sell: 5
+  SALMON:
+    buy: 18
+    sell: 6
+  TROPICAL_FISH:
+    buy: 25
+    sell: 9
+  PUFFERFISH:
+    buy: 30
+    sell: 11

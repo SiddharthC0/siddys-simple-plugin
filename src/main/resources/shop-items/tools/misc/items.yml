@@ -1,0 +1,88 @@
+items:
+  COMPASS:
+    buy: 100
+    sell: 35
+  RECOVERY_COMPASS:
+    buy: 400
+    sell: 160
+  CLOCK:
+    buy: 120
+    sell: 45
+  SPYGLASS:
+    buy: 200
+    sell: 80
+  NAME_TAG:
+    buy: 300
+    sell: 120
+  LEAD:
+    buy: 60
+    sell: 22
+  BUCKET:
+    buy: 50
+    sell: 18
+  WATER_BUCKET:
+    buy: 60
+    sell: 22
+  LAVA_BUCKET:
+    buy: 80
+    sell: 30
+  MILK_BUCKET:
+    buy: 70
+    sell: 25
+  POWDER_SNOW_BUCKET:
+    buy: 90
+    sell: 35
+  BUNDLE:
+    buy: 150
+    sell: 55
+  ELYTRA:
+    buy: 8000
+    sell: 3500
+  FIREWORK_ROCKET:
+    buy: 30
+    sell: 10
+  TOTEM_OF_UNDYING:
+    buy: 2000
+    sell: 900
+  INK_SAC:
+    buy: 20
+    sell: 7
+  GLOW_INK_SAC:
+    buy: 50
+    sell: 18
+  NAUTILUS_SHELL:
+    buy: 150
+    sell: 60
+  BOWL:
+    buy: 10
+    sell: 3
+  STICK:
+    buy: 5
+    sell: 1
+  STRING:
+    buy: 15
+    sell: 5
+  BONE:
+    buy: 20
+    sell: 7
+  SADDLE:
+    buy: 200
+    sell: 80
+  HORSE_ARMOR_LEATHER:
+    buy: 100
+    sell: 35
+  HORSE_ARMOR_IRON:
+    buy: 200
+    sell: 75
+  HORSE_ARMOR_GOLD:
+    buy: 180
+    sell: 65
+  HORSE_ARMOR_DIAMOND:
+    buy: 600
+    sell: 220
+  TURTLE_HELMET:
+    buy: 400
+    sell: 150
+  TRIDENT:
+    buy: 1500
+    sell: 600

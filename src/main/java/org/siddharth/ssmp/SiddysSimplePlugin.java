@@ -5,6 +5,7 @@
 // that want to access a specfic file.
 package org.siddharth.ssmp;
 
+// UPD LOG: 5.0.0 : Adding reduced sphagetti & paper support, Complete revamp. -> this is teh commit message btw.
 // General imports
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -36,56 +37,72 @@ import org.siddharth.ssmp.support.PlacholderAPISupport;
 import org.siddharth.ssmp.moderation.ModerationSystem;
 import org.siddharth.ssmp.moderation.ModerationCommands;
 import org.siddharth.ssmp.information.SupportMain;
+import org.siddharth.ssmp.economy.playerShopSystem;
+import org.siddharth.ssmp.gui.ShopSystemGUI;
+import org.siddharth.ssmp.api.SiddyAPI;
 
 // Utility files
 import org.siddharth.ssmp.util.CoreUtilMethods;
+import org.siddharth.ssmp.commands.LegacyCommandAdapter;
 
 public final class SiddysSimplePlugin extends JavaPlugin {
     String version = getDescription().getVersion(); // If you want to customize version of plugin, consider looking resources/plugin.yml
-    String code_name = "Spice"; // Use this to customize the short name (code name) of the release.
-    String full_name = "Improved"; // The full name of the RELEASE, not the plugin...
+    String code_name = "Bottled"; // Use this to customize the short name (code name) of the release.
+    String full_name = "Improvement Made"; // The full name of the RELEASE, not the plugin...
     String plugin_name = "Siddy's Simple Plugin"; // Name of the PLUGIN. This is used widely, be careful!
-    String plugin_prefix = "[Siddy's Simple Plugin]"; // The prefix used to print useful messages. Not currently applicable to all msgs.
     String creator_name = "Siddy"; // Config the name of the creator (ur name :D)
     Boolean debug_mode = true; // Toggle debug mode which prints important information...
 
     // Defination of all the modules that have to be loaded from here
-    private RankSystem ranks;
-    private PermissionSystem permissions;
-    private SoundSystem sounds;
-    private PlacholderAPISupport papiExpansion;
-    private PlaceholderSystem placeholders;
-    private TabListSystem tablist;
-    private ScoreboardSystem scoreboard;
-    private AuctionHouse auction;
-    private EconomyCommands economyCommands;
-    private EnderChestSystem enderChest;
-    private HomeSystem homes;
-    private WarpSystem warps;
-    private MenuSystem menu;
-    private NicknameSystem nicknames;
-    private KitSystem kits;
-    private KitGUI kitGui;
-    private KitCommands kitCommands;
-    private CoreUtilMethods core;
-    private RTPSystem rtp;
-    private OptimizationSystem optimization;
-    private LevelSystem levels;
-    private Economy economy;
-    private ContractSystem contracts;
-    private ContractGUI contractGui;
-    private BountySystem bounties;
-    private BountyGUI bountyGui;
-    private PlayerInformationSystem playerInfo;
-    private PlayerInformationGUI playerInfoGui;
-    private ControlPanel control;
-    private ModerationSystem moderation;
-    private ShopSystem shop;
-    private AuctionHouse auctionHouse;
-    private SupportMain support;
-    private InfoBarSystem infoBar;
-    private InfoBarGUI infoBarMenu;
-    private ConfigSystem configMenu;
+    private RankSystem ranks; // RANKSYSTEM
+    private PermissionSystem permissions; // PERMISSIONSYSTEM
+    private SoundSystem sounds; // SOUNDSYSTEM
+    private PlacholderAPISupport papiExpansion; // PLACEHOLDERAPI
+    private PlaceholderSystem placeholders; // PLACEHOLDERSYSTEM
+    private TabListSystem tablist; // TABLSIT
+    private ScoreboardSystem scoreboard; // SCOREBOARD
+    private AuctionHouse auction; // AUCTIONHOUSESYSTEM
+    private EconomyCommands economyCommands; // ECONOMYCOMMANDS
+    private EnderChestSystem enderChest; // ENDERCHESTSYSTEM
+    private HomeSystem homes; // HOMESYSTEM
+    private WarpSystem warps; // WARPSYSTEM
+    private MenuSystem menu; // MENUSYSTEM
+    private NicknameSystem nicknames; // NICKNAMESYSTEM
+    private KitSystem kits; // KITSYSTEM
+    private KitGUI kitGui; // KITSYSTEM
+    private KitCommands kitCommands; // KITSYSTEM
+    private CoreUtilMethods core; // COREUTILMETHODS
+    private RTPSystem rtp; // RANDOMTP
+    private OptimizationSystem optimization; // OPTIMIZATIONSYSTEM
+    private LevelSystem levels; // LEVELSYSTEM
+    private Economy economy; // ECONOMYSYSTEM
+    private ContractSystem contracts; // CONTRACTSYSTEM
+    private ContractGUI contractGui; // CONTRACTSYSTEM
+    private BountySystem bounties; // BOUNTYSYSTEM
+    private BountyGUI bountyGui; // BOUNTYGUI
+    private PlayerInformationSystem playerInfo; // PLAYERINFOSYSTEM
+    private PlayerInformationGUI playerInfoGui; // PLAYERINFOSYSTEM
+    private ControlPanel control; // CONTROLPANELSYSTEM
+    private ModerationSystem moderation; // MODERATIONSYSTEM
+    private ShopSystem shop; // SHOPSYSTEM
+
+    private SupportMain support; // SUPPORTSYSTEM
+    private InfoBarSystem infoBar; // INFOBARSYSTEM
+    private InfoBarGUI infoBarMenu; // INFOBARSYSTEM
+    private ConfigSystem configMenu; // CONFIGMENU
+    private playerShopSystem playerShopSystem; // PSHOPSYSTEM
+    private SiddyAPI siddyAPI; // SIDDYAPI
+    private ShopSystemGUI shopGui; // SHOPGUI
+    private TPASystem tpa; // TPA
+    private ToggleSystem toggleSystem; // TOGGLESYSTEM
+
+    private ModerationCommands moderationCommandHandler; // MODERATIONSYSTEM
+    private InfoBarCommands infoBarCommands; // INFOBAR
+    private NicknameCommands nicknameCommands; // NICKNAMESYSTEM
+    private PlayerInformationCommands playerInformationCommands; // PLAYERINFO
+    private RankCommands rankCommands; // RANKSYSTEM
+    private WarpCommands warpCommands; // WARPSYSTEM
+    private CommandSystem commandSystem; // COMMANDSYSTEMMAIN
     public CoreUtilMethods getCore() {return core;}
 
     // Stuff that happens when the server starts with the plugin installed
@@ -96,12 +113,15 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         new Information(this).create();
         core = new CoreUtilMethods(this);
         createConfig();
+        siddyAPI = new SiddyAPI(this);
         initializeModules();
 
         // configure this message if you want
-        getLogger().info(plugin_prefix+" Enabled plugin version "+version);
-        getLogger().info(plugin_prefix+" By "+creator_name);
-        getLogger().info(plugin_prefix+" Code "+code_name+" Release "+full_name);
+        getLogger().info("Enabled plugin version "+version);
+        getLogger().info("By "+creator_name);
+        getLogger().info("Code "+code_name+" Release "+full_name);
+        getLogger().info("Join our discord to find problems and new releases right before they even release!");
+        getLogger().info("Join now at https://discord.gg/ZMzrxAUxRb");
     }
 
     // uhh this method was added for that hot reloading thing... Because we wanna hot reload some time in the near future, ts, it REQUIRED.
@@ -111,6 +131,12 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         configMenu = new ConfigSystem(this);
         try {
             ranks = new RankSystem(this);
+            rankCommands = new RankCommands(ranks, permissions);
+            registerCommand("rank", new LegacyCommandAdapter(
+                    "rank",
+                    () -> rankCommands,
+                    () -> rankCommands
+            ));
         } catch (Exception e) {getLogger().warning("The ranks system failed to load: " + e.getMessage());}
         try {
             if (ranks != null) {
@@ -140,11 +166,7 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         // Support system
         try {
             support = new SupportMain(this);
-
-            if (getCommand("support") != null) {
-                getCommand("support").setExecutor(support);
-                getCommand("support").setTabCompleter(support);
-            }
+            registerCommand("support", new LegacyCommandAdapter("support", () -> support, () -> support));
         } catch (Exception e) {getLogger().warning("The support system failed to load: "+e.getMessage());}
 
         // Join MOTD
@@ -160,13 +182,24 @@ public final class SiddysSimplePlugin extends JavaPlugin {
                 infoBar = new InfoBarSystem(this);
                 if (infoBar.isAvailable()) {
                     infoBarMenu = new InfoBarGUI(this, infoBar);
-                    InfoBarCommands commands = new InfoBarCommands(this, infoBar, infoBarMenu);
-                    if (getCommand("infobar") != null) {
-                        getCommand("infobar").setExecutor(commands);
-                        getCommand("infobar").setTabCompleter(commands);
-                    } else {
-                        getLogger().warning("InfoBar command is missing from plugin.yml.");
-                    }
+                    infoBarCommands = new InfoBarCommands(this, infoBar, infoBarMenu);
+                    registerCommand("infobar", new LegacyCommandAdapter(
+                            "infobar",
+                            () -> infoBarCommands,
+                            () -> infoBarCommands
+                    ));
+                }
+
+                if (playerInfo != null) {
+                    infoBar.setPlayerInformationSystem(playerInfo);
+                }
+
+                if (playerInfoGui != null) {
+                    playerInfoGui.setInfoBarSystem(infoBar);
+                }
+
+                if (toggleSystem != null) {
+                    toggleSystem.setInfoBarSystem(infoBar);
                 }
             }
         } catch (Exception e) {
@@ -176,20 +209,14 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         // Moderation System
         try {
             moderation = new ModerationSystem(this);
-            ModerationCommands moderationCommandHandler = new ModerationCommands(moderation);
-
-            String[] moderationCommandNames = {
-                    "mute", "unmute", "warn", "ban", "unban",
-                    "filter", "history", "resetviolations"
-            };
-
+            moderationCommandHandler = new ModerationCommands(moderation);
+            String[] moderationCommandNames = {"mute", "unmute", "warn", "ban", "unban", "filter", "history", "resetviolations"};
             for (String commandName : moderationCommandNames) {
-                if (getCommand(commandName) != null) {
-                    getCommand(commandName).setExecutor(moderationCommandHandler);
-                    getCommand(commandName).setTabCompleter(moderationCommandHandler);
-                } else {
-                    getLogger().warning("Missing moderation command in plugin.yml: " + commandName);
-                }
+                registerCommand(commandName, new LegacyCommandAdapter(
+                        commandName,
+                        () -> moderationCommandHandler,
+                        () -> moderationCommandHandler
+                ));
             }
         } catch (Exception e) {
             getLogger().severe("Moderation failed to load: " + e.getMessage());
@@ -199,62 +226,62 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         // Control Panel
         try {
             if (isEnabled("cpanel")) {
-                control = new ControlPanel(this);
-                control.setUpdateCheckAction(() -> new UpdateChecker(this).check());
+                registerCommand("cpanel", new LegacyCommandAdapter("cpanel", () -> (sender, command, label, args) -> {
+                    if (!sender.hasPermission("ssmp.cpanel")) {
+                        sender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
+                        return true;
+                    }
 
-                if (getCommand("cpanel") != null) {
-                    getCommand("cpanel").setExecutor((sender, command, label, args) -> {
-                        if (!sender.hasPermission("ssmp.cpanel")) {
-                            sender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
-                            return true;
-                        }
+                    if (args.length > 1) {
+                        sender.sendMessage(ChatColor.RED + "Usage: /cpanel [start|stop|status]");
+                        return true;
+                    }
 
-                        if (args.length > 1) {
-                            sender.sendMessage(ChatColor.RED + "Usage: /cpanel [start|stop|status]");
-                            return true;
-                        }
+                    String action = args.length == 0 ? "start" : args[0].toLowerCase();
 
-                        String action = args.length == 0 ? "start" : args[0].toLowerCase();
-
-                        switch (action) { // uhh so if u reading this, just replace the entire comamnd section with your own command java file if you want..
-                            case "start" -> {
-                                if (control.isRunning()) {
-                                    sender.sendMessage(ChatColor.YELLOW + "The Control Panel is already running.");
-                                    return true;
-                                }
-
-                                control.start();
-
-                                if (control.isRunning()) {
-                                    sender.sendMessage(ChatColor.GREEN + "The Control Panel server has started.");
-                                    sender.sendMessage(ChatColor.GRAY + "Check the server console for its address.");
-                                    sender.sendMessage(ChatColor.GREEN + "And if you want any support or is confused, just do /support... only /support without any args will open the quick start guide");
-                                } else {
-                                    sender.sendMessage(ChatColor.RED + "The Control Panel could not be started. Check the console.");
-                                }
+                    switch (action) {
+                        case "start" -> {
+                            if (control.isRunning()) {
+                                sender.sendMessage(ChatColor.YELLOW + "The Control Panel is already running.");
+                                return true;
                             }
 
-                            case "stop" -> {if (!control.isRunning()) {
-                                sender.sendMessage(ChatColor.YELLOW + "The Control Panel is already stopped.");
-                                return true;}
-                                control.stop();
-                                sender.sendMessage(ChatColor.GREEN + "The Control Panel server has stopped.");}
-                            case "status" -> sender.sendMessage(ChatColor.GRAY + "Control Panel status: " + (control.isRunning() ? ChatColor.GREEN + "Running" : ChatColor.RED + "Stopped"));
-                            default -> sender.sendMessage(ChatColor.RED + "Usage: /cpanel [start|stop|status]");
+                            control.start();
+
+                            if (control.isRunning()) {
+                                sender.sendMessage(ChatColor.GREEN + "The Control Panel server has started.");
+                                sender.sendMessage(ChatColor.GRAY + "Check the server console for its address.");
+                                sender.sendMessage(ChatColor.GREEN + "And if you want any support or are confused, just do /support... only /support without any args will open the quick start guide");
+                            } else {
+                                sender.sendMessage(ChatColor.RED + "The Control Panel could not be started. Check the console.");
+                            }
                         }
 
-                        return true;
-                    });
-                } else {
-                    getLogger().warning("Missing cpanel command in plugin.yml.");
-                }
-            } else if (getCommand("cpanel") != null) { // js in case your smartypants removed it from plugin.yml
-                getCommand("cpanel").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The control panel is currently "+ChatColor.BLACK+"DISABLED");
-                    sender.sendMessage(ChatColor.GREEN+"Enable the control panel from SiddysSimplePlugin/config.yml");
-                    sender.sendMessage(ChatColor.AQUA+"Or use the /spconfig or /configp to open the SiddysSimplePlugin module enable/disable config menu.");
+                        case "stop" -> {
+                            if (!control.isRunning()) {
+                                sender.sendMessage(ChatColor.YELLOW + "The Control Panel is already stopped.");
+                                return true;
+                            }
+
+                            control.stop();
+                            sender.sendMessage(ChatColor.GREEN + "The Control Panel server has stopped.");
+                        }
+
+                        case "status" -> sender.sendMessage(ChatColor.GRAY + "Control Panel status: " +
+                                (control.isRunning() ? ChatColor.GREEN + "Running" : ChatColor.RED + "Stopped"));
+
+                        default -> sender.sendMessage(ChatColor.RED + "Usage: /cpanel [start|stop|status]");
+                    }
+
                     return true;
-                });
+                }, null));
+            } else {
+                registerCommand("cpanel", new LegacyCommandAdapter("cpanel", () -> (sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The control panel is currently " + ChatColor.BLACK + "DISABLED");
+                    sender.sendMessage(ChatColor.GREEN + "Enable the control panel from SiddysSimplePlugin/config.yml");
+                    sender.sendMessage(ChatColor.AQUA + "Or use the /spconfig or /configp to open the SiddysSimplePlugin module enable/disable config menu.");
+                    return true;
+                }, null));
             }
         } catch (Exception e) {
             getLogger().warning("Failed to initialize Control Panel: " + e.getMessage());
@@ -272,10 +299,18 @@ public final class SiddysSimplePlugin extends JavaPlugin {
 
         // Main menu system
         try {
-            if (getCommand("ssmp") != null && sounds != null && menu != null && support != null) {
-                getCommand("ssmp").setExecutor(new CommandSystem(this, sounds, menu, support));
+            if (sounds != null && menu != null && support != null) {
+                commandSystem = new CommandSystem(this, sounds, menu, support);
             } else {
                 getLogger().warning("Fatal fallback: menu system couldn't load because some important modules were disabled. SiddysSimplePlugin will FAIL to load...");
+            }
+
+            if (commandSystem != null) {
+                registerCommand("ssmp", new LegacyCommandAdapter(
+                        "ssmp",
+                        () -> commandSystem,
+                        null
+                ));
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -314,9 +349,7 @@ public final class SiddysSimplePlugin extends JavaPlugin {
             if (isEnabled("rtp")) {
                 rtp = new RTPSystem(this);
                 getServer().getPluginManager().registerEvents(rtp, this);
-                if (getCommand("rtp") != null) {
-                    getCommand("rtp").setExecutor(rtp);
-                }
+                registerCommand("rtp", new LegacyCommandAdapter("rtp", () -> rtp, null));
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -329,13 +362,14 @@ public final class SiddysSimplePlugin extends JavaPlugin {
             if (isEnabled("kits")) {
                 kits = new KitSystem(this);
                 kitGui = new KitGUI(this, kits);
-                kitCommands = new KitCommands(this, kits, kitGui);
-
                 getServer().getPluginManager().registerEvents(kitGui, this);
-                if (getCommand("kit") != null) {
-                    getCommand("kit").setExecutor(kitCommands);
-                    getCommand("kit").setTabCompleter(kitCommands);
-                }
+
+                kitCommands = new KitCommands(this, kits, kitGui);
+                registerCommand("kit", new LegacyCommandAdapter(
+                        "kit",
+                        () -> kitCommands,
+                        () -> kitCommands
+                ));
             }
         } catch (Exception e) {
             if  (debug_mode == true) {
@@ -345,31 +379,34 @@ public final class SiddysSimplePlugin extends JavaPlugin {
 
         // Nickname system
         try {
-            if (getCommand("nick") != null && isEnabled("nickname")) {
-                getCommand("nick").setExecutor(new NicknameCommands(nicknames));
-                getCommand("realname").setExecutor((sender, command, label, args) -> {
-                    if (args.length == 0) {
-                        sender.sendMessage("Usage: /realname <nickname>");
-                        return true;
-                    }
-                    String nickname = String.join(" ", args);
-                    String realname = nicknames.revealName(nickname);
-                    if (realname == null) {
-                        sender.sendMessage("No player found with nickname " + nickname);
-                        return true;
-                    }
-                    sender.sendMessage(realname);
-                    return true;
-                });
-                getCommand("realname").setTabCompleter((sender, command, alias, args) -> {
-                    if (args.length != 1) {return Collections.emptyList();}
-                    String input = args[0].toLowerCase();
-                    return nicknames.getRegisteredNicknames().stream().filter(nickname -> nickname.toLowerCase().startsWith(input)).collect(Collectors.toList());});
-            }
+            nicknameCommands = new NicknameCommands(nicknames);
+            registerCommand("nick", new LegacyCommandAdapter(
+                    "nick",
+                    () -> nicknameCommands,
+                    () -> nicknameCommands
+            ));
         } catch (Exception e) {
             if  (debug_mode == true) {
                 getLogger().warning("Failed to start nickname system: " + e.getMessage());
             }
+        }
+
+        // TPA system
+        // TPA System
+        try {
+            tpa = new TPASystem(this, nicknames);
+            getServer().getPluginManager().registerEvents(tpa, this);
+            String[] tpaCommands = {"tpa", "tpahere", "tpaccept", "tpdeny", "tpcancel"};
+            for (String commandName : tpaCommands) {
+                registerCommand(commandName, new LegacyCommandAdapter(
+                        commandName,
+                        () -> tpa,
+                        () -> tpa
+                ));
+            }
+        } catch (Exception e) {
+            getLogger().severe("Failed to start TPA system: " + e.getMessage());
+            e.printStackTrace();
         }
 
         // Economy system
@@ -378,11 +415,11 @@ public final class SiddysSimplePlugin extends JavaPlugin {
             if (isEnabled("economy")) {
                 economy = new Economy(this, sounds);
                 getServer().getPluginManager().registerEvents(economy, this);
-                economyCommands = new EconomyCommands(economy);
-                if (getCommand("economy") != null) {
-                    getCommand("economy").setExecutor(economyCommands);
-                    getCommand("economy").setTabCompleter(economyCommands);
-                }
+                economyCommands = new EconomyCommands(this, economy);
+                registerCommand("economy",
+                        new LegacyCommandAdapter("economy",
+                                () -> economyCommands,
+                                () -> economyCommands));
 
                 if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
                     Bukkit.getServicesManager().register(net.milkbowl.vault.economy.Economy.class, new VaultSupport(this, economy), this, org.bukkit.plugin.ServicePriority.Normal);
@@ -395,12 +432,6 @@ public final class SiddysSimplePlugin extends JavaPlugin {
                 getConfig().set("modules.playerinfo.enabled", false);
                 getConfig().set("modules.auction.enabled", false);
                 saveConfig();
-
-                getCommand("economy").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -408,31 +439,37 @@ public final class SiddysSimplePlugin extends JavaPlugin {
             }
         }
 
-        // Shop system
+
+// Shop system
         try {
             if (isEnabled("shop") && economy != null) {
                 shop = new ShopSystem(economy, this, sounds);
-                getServer().getPluginManager().registerEvents(shop, this);
-                if (getCommand("shop") != null) {
-                    getCommand("shop").setExecutor(shop);
-                }
+                shopGui = new ShopSystemGUI(shop);
+
+                getServer().getPluginManager().registerEvents(shopGui, this);
+
+                registerCommand("shop", new LegacyCommandAdapter("shop", () -> (sender, command, label, args) -> {
+                    if (!(sender instanceof Player player)) {
+                        sender.sendMessage(ChatColor.RED + "Only players can use this command.");
+                        return true;
+                    }
+
+                    shopGui.openServerShop(player);
+                    return true;
+                }, null));
+
+                getLogger().info("Shop system enabled.");
             } else {
-                getCommand("shop").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                registerCommand("shop", new LegacyCommandAdapter("shop", () -> (sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The shop module is currently disabled.");
                     return true;
-                });
-                getCommand("store").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
+                }, null));
             }
         } catch (Exception e) {
-            if  (debug_mode == true) {
-                getLogger().warning("Failed to start shop system: " + e.getMessage());
-            }
+            getLogger().severe("Failed to start shop system: " + e.getMessage());
+            e.printStackTrace();
         }
+
 
         // Contracts system
         try {
@@ -441,30 +478,20 @@ public final class SiddysSimplePlugin extends JavaPlugin {
                 contractGui = new ContractGUI(contracts);
                 getServer().getPluginManager().registerEvents(contracts, this);
                 getServer().getPluginManager().registerEvents(contractGui, this);
-                if (getCommand("contracts") != null) {
-                    getCommand("contracts").setExecutor(new ContractCommands(contractGui));
-                }
+                ContractCommands contractCommands = new ContractCommands(contractGui);
+                registerCommand("contracts", new LegacyCommandAdapter(
+                        "contracts",
+                        () -> contractCommands,
+                        null
+                ));
             } else {
-                getCommand("contracts").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
-                getCommand("contractsgui").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
-                getCommand("contractgui").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
-                getCommand("contract").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
+                for (String cmd : List.of("contracts", "contractsgui", "contractgui", "contract")) {
+                    registerCommand(cmd, new LegacyCommandAdapter(cmd, () -> (sender, command, label, args) -> {
+                        sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                        sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                        return true;
+                    }, null));
+                }
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -480,30 +507,22 @@ public final class SiddysSimplePlugin extends JavaPlugin {
 
                 getServer().getPluginManager().registerEvents(bounties, this);
                 getServer().getPluginManager().registerEvents(bountyGui, this);
-                BountyCommands bountyCommands = new BountyCommands(bountyGui);
-                if (getCommand("bounties") != null) {
-                    getCommand("bounties").setExecutor(bountyCommands);
-                }
 
-                if (getCommand("bounty") != null) {
-                    getCommand("bounty").setExecutor(bountyCommands);
-                }
+                BountyCommands bountyCommands = new BountyCommands(bountyGui);
+
+                registerCommand("bounty", new LegacyCommandAdapter(
+                        "bounty",
+                        () -> bountyCommands,
+                        null
+                ));
             } else {
-                getCommand("bounty").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
-                getCommand("bounties").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
-                getCommand("bountygui").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
+                for (String cmd : List.of("bounty", "bounties", "bountygui")) {
+                    registerCommand(cmd, new LegacyCommandAdapter(cmd, () -> (sender, command, label, args) -> {
+                        sender.sendMessage(ChatColor.RED + "The module is currently disabled.");
+                        sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                        return true;
+                    }, null));
+                }
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -517,32 +536,69 @@ public final class SiddysSimplePlugin extends JavaPlugin {
                 playerInfo = new PlayerInformationSystem(this, economy, levels, contracts, bounties);
                 playerInfoGui = new PlayerInformationGUI(playerInfo);
                 getServer().getPluginManager().registerEvents(playerInfoGui, this);
-                if (playerInfoGui != null && getCommand("playerinfo") != null) {
-                    getCommand("playerinfo").setExecutor(
-                            new PlayerInformationCommands(playerInfoGui)
-                    );
-                }
+                playerInformationCommands = new PlayerInformationCommands(playerInfoGui);
+                registerCommand("playerinfo", new LegacyCommandAdapter(
+                        "playerinfo",
+                        () -> playerInformationCommands,
+                        null
+                ));
             }
         } catch (Exception e) {
             if (debug_mode == true) {
                 getLogger().warning("Failed to start playerinfo system: " + e.getMessage());
             }
         }
+        if (playerInfo != null) {toggleSystem = new ToggleSystem(playerInfo);}
+        if (toggleSystem != null && playerInfoGui != null) {playerInfoGui.setToggleSystem(toggleSystem);}
+
+        // connect
+        if (playerInfo != null) {
+
+            if (isEnabled("scoreboard") && scoreboard != null) {
+                scoreboard.setPlayerInformationSystem(playerInfo);
+
+                if (playerInfoGui != null) {
+                    playerInfoGui.setScoreboardSystem(scoreboard);
+                }
+            }
+
+            if (isEnabled("infobar") && infoBar != null) {
+                infoBar.setPlayerInformationSystem(playerInfo);
+
+                if (playerInfoGui != null) {
+                    playerInfoGui.setInfoBarSystem(infoBar);
+                }
+            }
+        }
 
 
-        // Scoreboard system
+
+// Scoreboard system
         try {
             if (isEnabled("scoreboard")) {
-                scoreboard = new ScoreboardSystem(economy, this);
+                scoreboard = new ScoreboardSystem(this);
+
+                if (playerInfo != null) {
+                    scoreboard.setPlayerInformationSystem(playerInfo);
+                }
+
                 getServer().getPluginManager().registerEvents(scoreboard, this);
                 optimization.registerShutdownAction(scoreboard::stop);
+
+                if (playerInfoGui != null) {
+                    playerInfoGui.setScoreboardSystem(scoreboard);
+                }
+
+                if (toggleSystem != null) {
+                    toggleSystem.setScoreboardSystem(scoreboard);
+                }
+
                 scoreboard.start();
             }
         } catch (Exception e) {
-            if (debug_mode == true) {
-                getLogger().warning("Failed to start scoreboard system: " + e.getMessage());
-            }
+            getLogger().warning("Failed to start scoreboard system: " + e.getMessage());
         }
+
 
         // Menu ITEM system
         try {
@@ -560,27 +616,18 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         try {
             if (isEnabled("auction") && economy != null) {
                 auction = new AuctionHouse(this, economy, permissions, sounds);
-                getServer().getPluginManager().registerEvents(auction, this);
-                if (getCommand("ah") != null) {
-                    getCommand("ah").setExecutor(auction);
-                    getCommand("ah").setTabCompleter(auction);
-                }
+
+                getServer().getPluginManager().registerEvents(auction.getGUI(), this);
+
+                registerCommand("ah", new LegacyCommandAdapter("ah", () -> auction, () -> auction));
             } else {
-                getCommand("ah").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module AUCTIONHOUSE is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
-                getCommand("auctionhouse").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module AUCTIONHOUSE is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
-                getCommand("auction").setExecutor((sender, command, label, args) -> {
-                    sender.sendMessage(ChatColor.RED + "The module AUCTIONHOUSE is currently disabled.");
-                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                    return true;
-                });
+                for (String cmd : List.of("ah", "auctionhouse", "auction")) {
+                    registerCommand(cmd, new LegacyCommandAdapter(cmd, () -> (sender, command, label, args) -> {
+                        sender.sendMessage(ChatColor.RED + "The module AUCTIONHOUSE is currently disabled.");
+                        sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                        return true;
+                    }, null));
+                }
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -594,29 +641,27 @@ public final class SiddysSimplePlugin extends JavaPlugin {
                 enderChest = new EnderChestSystem(this);
                 getServer().getPluginManager().registerEvents(enderChest, this);
 
-                if (getCommand("enderchest") != null) {
-                    EnderChestSystem finalEnderChest = enderChest;
-                    getCommand("enderchest").setExecutor((sender, command, label, args) -> {
-                        if (!(sender instanceof Player player)) {
-                            sender.sendMessage(ChatColor.RED + "Only players can use this command.");
-                            return true;
-                        }
-                        if (!player.hasPermission("ssmp.enderchest.use")) {
-                            player.sendMessage(ChatColor.RED + "You don't have permission to use the Ender Chest.");
-                            return true;
-                        }
-                        finalEnderChest.open(player);
+                registerCommand("enderchest", new LegacyCommandAdapter("enderchest", () -> (sender, command, label, args) -> {
+                    if (!(sender instanceof Player player)) {
+                        sender.sendMessage(ChatColor.RED + "Only players can use this command.");
                         return true;
-                    });
-                }
+                    }
+
+                    if (!player.hasPermission("ssmp.enderchest.use")) {
+                        player.sendMessage(ChatColor.RED + "You don't have permission to use the Ender Chest.");
+                        return true;
+                    }
+
+                    enderChest.open(player);
+                    return true;
+                }, null));
+
             } else {
-                if (getCommand("enderchest") != null) {
-                    getCommand("enderchest").setExecutor((sender, command, label, args) -> {
-                        sender.sendMessage(ChatColor.RED + "The module ENDERCHEST is currently disabled.");
-                        sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
-                        return true;
-                    });
-                }
+                registerCommand("enderchest", new LegacyCommandAdapter("enderchest", () -> (sender, command, label, args) -> {
+                    sender.sendMessage(ChatColor.RED + "The module ENDERCHEST is currently disabled.");
+                    sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
+                    return true;
+                }, null));
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -630,24 +675,20 @@ public final class SiddysSimplePlugin extends JavaPlugin {
                 homes = new HomeSystem(this);
                 getServer().getPluginManager().registerEvents(homes, this);
                 HomeCommands homeCommands = new HomeCommands(homes);
-                if (getCommand("sethome") != null) {
-                    getCommand("sethome").setExecutor(homeCommands);
-                }
-                if (getCommand("home") != null) {
-                    getCommand("home").setExecutor(homeCommands);
-                }
-                if (getCommand("homes") != null) {
-                    getCommand("homes").setExecutor(homeCommands);
-                }
-                if (getCommand("delhome") != null) {
-                    getCommand("delhome").setExecutor(homeCommands);
+                String[] homeCommandNames = {"sethome", "home", "homes", "delhome"};
+                for (String name : homeCommandNames) {
+                    registerCommand(name, new LegacyCommandAdapter(
+                            name,
+                            () -> homeCommands,
+                            null
+                    ));
                 }
             } else {
-                getCommand("homes").setExecutor((sender, command, label, args) -> {
+                registerCommand("homes", new LegacyCommandAdapter("homes", () -> (sender, command, label, args) -> {
                     sender.sendMessage(ChatColor.RED + "The module HOMES is currently disabled.");
                     sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
                     return true;
-                });
+                }, null));
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -655,30 +696,39 @@ public final class SiddysSimplePlugin extends JavaPlugin {
             }
         }
 
+        // Player Shop system
+        try {
+            playerShopSystem = new playerShopSystem(this, economy, sounds, shop, shopGui);
+            getServer().getPluginManager().registerEvents(playerShopSystem, this);
+            registerCommand("pshop", new LegacyCommandAdapter(
+                    "pshop",
+                    () -> playerShopSystem,
+                    () -> playerShopSystem
+            ));
+        } catch (Exception e) {
+            getLogger().warning("Failed to start player shop system: " + e.getMessage());
+            e.printStackTrace();
+        }
+
         // Warps system
         try {
             if (isEnabled("warps")) {
-                warps = new WarpSystem(this);
-                getServer().getPluginManager().registerEvents(warps, this);
-                WarpCommands warpCommands = new WarpCommands(warps);
-                if (getCommand("setwarp") != null) {
-                    getCommand("setwarp").setExecutor(warpCommands);
-                }
-                if (getCommand("warp") != null) {
-                    getCommand("warp").setExecutor(warpCommands);
-                }
-                if (getCommand("warps") != null) {
-                    getCommand("warps").setExecutor(warpCommands);
-                }
-                if (getCommand("delwarp") != null) {
-                    getCommand("delwarp").setExecutor(warpCommands);
+                warpCommands = new WarpCommands(warps);
+                String[] warpCommandNames = {"warp", "warps", "setwarp", "delwarp"};
+
+                for (String name : warpCommandNames) {
+                    registerCommand(name, new LegacyCommandAdapter(
+                            name,
+                            () -> warpCommands,
+                            () -> warpCommands
+                    ));
                 }
             } else {
-                getCommand("warps").setExecutor((sender, command, label, args) -> {
+                registerCommand("warps", new LegacyCommandAdapter("warps", () -> (sender, command, label, args) -> {
                     sender.sendMessage(ChatColor.RED + "The module WARPS is currently disabled.");
                     sender.sendMessage(ChatColor.RED + "Ask an op to do /spconfig and configure the enabling/disabling");
                     return true;
-                });
+                }, null));
             }
         } catch (Exception e) {
             if (debug_mode == true) {
@@ -767,6 +817,7 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         getLogger().info(plugin_name+" has been disabled");
     }
 
+
     // meth that unloads modules
     private void unloadModules() {
         shutdownSafely("Control Panel", () -> {if (control != null) control.stop();});
@@ -778,24 +829,10 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         shutdownSafely("Bounties", () -> {if (bounties != null) bounties.save();});
         shutdownSafely("Contracts", () -> {if (contracts != null) contracts.reload();});
         shutdownSafely("PlaceholderAPI", () -> {if (papiExpansion != null) papiExpansion.unregister();});
+        shutdownSafely("TPA", () -> {if (tpa != null) tpa.shutdown();});
         Bukkit.getScheduler().cancelTasks(this);
         HandlerList.unregisterAll(this);
         Bukkit.getServicesManager().unregisterAll(this);
-
-        // all the commands in the plugin
-        String[] commands = {
-                "support", "infobar", "mute", "unmute", "warn", "ban", "unban", "filter", "history", "resetviolations",
-                "rank", "cpanel", "ssmp", "rtp", "kit", "nick", "economy", "shop", "contracts", "bounties", "bounty",
-                "playerinfo", "ah", "enderchest", "sethome", "home", "homes", "delhome", "setwarp", "warp", "warps",
-                "delwarp", "configp"
-        };
-
-        for (String commandName : commands) {
-            if (getCommand(commandName) != null) {
-                getCommand(commandName).setExecutor(null);
-                getCommand(commandName).setTabCompleter(null);
-            }
-        }
 
         ranks = null;
         permissions = null;
@@ -811,6 +848,7 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         warps = null;
         menu = null;
         nicknames = null;
+        tpa = null;
         kits = null;
         kitGui = null;
         kitCommands = null;
@@ -827,11 +865,12 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         control = null;
         moderation = null;
         shop = null;
-        auctionHouse = null;
+        auction = null;
         support = null;
         infoBar = null;
         infoBarMenu = null;
         configMenu = null;
+        toggleSystem = null;
     }
 
     // meth that reloads modules.. not the entire plugin.
@@ -867,6 +906,7 @@ public final class SiddysSimplePlugin extends JavaPlugin {
                 }
             if (moderation != null) {moderation.reloadFromConfig();}
             if (infoBar != null) { infoBar.reload(); }
+            if (tpa != null) {tpa.reload();}
             getLogger().info(plugin_name+"'s configuration has been reloaded succesfully'");
             return true;
         } catch (Exception e) {
@@ -914,6 +954,7 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         config.addDefault("modules.contracts.enabled", true);
         config.addDefault("modules.bounties.enabled", true);
         config.addDefault("modules.shop.enabled", true);
+        config.addDefault("shop.selection-screen", true);
         config.addDefault("modules.warps.enabled", true);
         config.addDefault("modules.kits.enabled", true);
         config.addDefault("modules.rtp.enabled", true);
@@ -929,6 +970,7 @@ public final class SiddysSimplePlugin extends JavaPlugin {
         config.addDefault("modules.homes.enabled", true);
         config.addDefault("modules.infobar.enabled", true);
         config.addDefault("modules.nickname.enabled", true);
+        config.addDefault("modules.tpa.enabled", true);
 
         // These are modules with core config
         // Auction house
@@ -998,6 +1040,31 @@ public final class SiddysSimplePlugin extends JavaPlugin {
     public PlaceholderSystem getPlaceholders() {return placeholders;}
     public ConfigSystem getConfigSystem() {return configMenu;}
     public SupportMain getSupport() {return support;}
+    public TPASystem getTPA() {return tpa;}
+    public SiddyAPI getSiddyAPI() {return siddyAPI;}
+
+    // for api
+    public PermissionSystem getPermissions() {return permissions;}
+    public SoundSystem getSounds() {return sounds;}
+    public PlacholderAPISupport getPapiExpansion() {return papiExpansion;}
+    public TabListSystem getTablist() {return tablist;}
+    public ScoreboardSystem getScoreboard() {return scoreboard;}
+    public AuctionHouse getAuction() {return auction;}
+    public EconomyCommands getEconomyCommands() {return economyCommands;}
+    public NicknameSystem getNicknames() {return nicknames;}
+    public KitSystem getKits() {return kits;}
+    public KitCommands getKitCommands() {return kitCommands;}
+    public OptimizationSystem getOptimization() {return optimization;}
+    public ControlPanel getControl() {return control;}
+    public ModerationSystem getModeration() {return moderation;}
+    public ShopSystem getShop() {return shop;}
+    public InfoBarSystem getInfoBar() {return infoBar;}
+    public InfoBarGUI getInfoBarMenu() {return infoBarMenu;}
+    public MenuSystem getMenu() {return menu;}
+    public ShopSystemGUI getShopGui() { return shopGui; }
+    public PlaceholderSystem getPlaceholderSystem() {return placeholders; }
+    public ToggleSystem getToggleSystem() {return toggleSystem;}
+    public ConfigSystem getConfigMenu() {return configMenu;}
 }
 
 // Thank you for choosing Siddy's Simple Plugin :D

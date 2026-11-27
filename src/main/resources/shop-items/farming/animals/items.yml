@@ -1,0 +1,127 @@
+items:
+  EGG:
+    buy: 10
+    sell: 3
+  LEATHER:
+    buy: 30
+    sell: 10
+  RAW_BEEF:
+    buy: 20
+    sell: 7
+  RAW_PORKCHOP:
+    buy: 20
+    sell: 7
+  RAW_CHICKEN:
+    buy: 18
+    sell: 6
+  RAW_MUTTON:
+    buy: 18
+    sell: 6
+  RAW_RABBIT:
+    buy: 20
+    sell: 7
+  RAW_COD:
+    buy: 15
+    sell: 5
+  RAW_SALMON:
+    buy: 18
+    sell: 6
+  RABBIT_HIDE:
+    buy: 15
+    sell: 5
+  FEATHER:
+    buy: 10
+    sell: 3
+  WOOL:
+    buy: 20
+    sell: 7
+  WHITE_WOOL:
+    buy: 20
+    sell: 7
+  ORANGE_WOOL:
+    buy: 25
+    sell: 9
+  MAGENTA_WOOL:
+    buy: 25
+    sell: 9
+  LIGHT_BLUE_WOOL:
+    buy: 25
+    sell: 9
+  YELLOW_WOOL:
+    buy: 25
+    sell: 9
+  LIME_WOOL:
+    buy: 25
+    sell: 9
+  PINK_WOOL:
+    buy: 25
+    sell: 9
+  GRAY_WOOL:
+    buy: 25
+    sell: 9
+  LIGHT_GRAY_WOOL:
+    buy: 25
+    sell: 9
+  CYAN_WOOL:
+    buy: 25
+    sell: 9
+  PURPLE_WOOL:
+    buy: 25
+    sell: 9
+  BLUE_WOOL:
+    buy: 25
+    sell: 9
+  BROWN_WOOL:
+    buy: 25
+    sell: 9
+  GREEN_WOOL:
+    buy: 25
+    sell: 9
+  RED_WOOL:
+    buy: 25
+    sell: 9
+  BLACK_WOOL:
+    buy: 25
+    sell: 9
+  HONEY_BOTTLE:
+    buy: 40
+    sell: 14
+  HONEYCOMB:
+    buy: 35
+    sell: 12
+  MILK_BUCKET:
+    buy: 70
+    sell: 25
+  TURTLE_EGG:
+    buy: 100
+    sell: 40
+  SLIMEBALL:
+    buy: 30
+    sell: 10
+  SPIDER_EYE:
+    buy: 25
+    sell: 9
+  ROTTEN_FLESH:
+    buy: 5
+    sell: 1
+  BONE:
+    buy: 20
+    sell: 7
+  GUNPOWDER:
+    buy: 35
+    sell: 12
+  BLAZE_ROD:
+    buy: 80
+    sell: 30
+  GHAST_TEAR:
+    buy: 150
+    sell: 60
+  MAGMA_CREAM:
+    buy: 60
+    sell: 22
+  ENDER_PEARL:
+    buy: 100
+    sell: 40
+  BLAZE_POWDER:
+    buy: 50
+    sell: 18

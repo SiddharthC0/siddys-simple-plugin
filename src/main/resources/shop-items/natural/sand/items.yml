@@ -1,0 +1,55 @@
+items:
+  SAND:
+    buy: 15
+    sell: 5
+  RED_SAND:
+    buy: 18
+    sell: 6
+  GRAVEL:
+    buy: 15
+    sell: 5
+  SANDSTONE:
+    buy: 35
+    sell: 12
+  RED_SANDSTONE:
+    buy: 40
+    sell: 14
+  SMOOTH_SANDSTONE:
+    buy: 55
+    sell: 18
+  SMOOTH_RED_SANDSTONE:
+    buy: 60
+    sell: 20
+  CHISELED_SANDSTONE:
+    buy: 70
+    sell: 22
+  CHISELED_RED_SANDSTONE:
+    buy: 75
+    sell: 25
+  SUSPICIOUS_SAND:
+    buy: 60
+    sell: 20
+  SUSPICIOUS_GRAVEL:
+    buy: 60
+    sell: 20
+  FLINT:
+    buy: 20
+    sell: 7
+  POWDER_SNOW:
+    buy: 40
+    sell: 14
+  SNOW_BLOCK:
+    buy: 20
+    sell: 7
+  SNOW:
+    buy: 10
+    sell: 3
+  ICE:
+    buy: 30
+    sell: 10
+  PACKED_ICE:
+    buy: 50
+    sell: 18
+  BLUE_ICE:
+    buy: 80
+    sell: 30

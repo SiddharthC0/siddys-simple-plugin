@@ -1,0 +1,139 @@
+
+categories:
+  building:
+    name: "Building Blocks"
+    material: BRICKS
+    subcategories:
+      stone:
+        name: "Stone & Deepslate"
+        material: STONE
+      wood:
+        name: "Wood"
+        material: OAK_LOG
+      bricks:
+        name: "Bricks & Masonry"
+        material: BRICKS
+      concrete:
+        name: "Concrete & Terracotta"
+        material: WHITE_CONCRETE
+      glass:
+        name: "Glass"
+        material: GLASS
+
+  natural:
+    name: "Natural Blocks"
+    material: GRASS_BLOCK
+    subcategories:
+      dirt:
+        name: "Dirt & Soil"
+        material: DIRT
+      sand:
+        name: "Sand & Gravel"
+        material: SAND
+      plants:
+        name: "Plants & Leaves"
+        material: OAK_LEAVES
+      aquatic:
+        name: "Aquatic Blocks"
+        material: PRISMARINE
+      nether:
+        name: "Nether Blocks"
+        material: NETHERRACK
+      end:
+        name: "End Blocks"
+        material: END_STONE
+
+  ores:
+    name: "Ores & Minerals"
+    material: DIAMOND
+    subcategories:
+      overworld:
+        name: "Overworld Ores"
+        material: DIAMOND_ORE
+      deepslate:
+        name: "Deepslate Ores"
+        material: DEEPSLATE_DIAMOND_ORE
+      nether:
+        name: "Nether Ores"
+        material: ANCIENT_DEBRIS
+      gems:
+        name: "Gems & Minerals"
+        material: EMERALD
+      ingots:
+        name: "Ingots & Raw Metals"
+        material: IRON_INGOT
+
+  decoration:
+    name: "Decoration"
+    material: LANTERN
+    subcategories:
+      lighting:
+        name: "Lighting"
+        material: LANTERN
+      furniture:
+        name: "Decorative Blocks"
+        material: BOOKSHELF
+      flowers:
+        name: "Flowers"
+        material: POPPY
+      banners:
+        name: "Banners & Signs"
+        material: WHITE_BANNER
+      heads:
+        name: "Decorative Heads"
+        material: PLAYER_HEAD
+
+  tools:
+    name: "Tools, Equipment & Swords"
+    material: DIAMOND_PICKAXE
+    subcategories:
+      tools:
+        name: "Tools"
+        material: DIAMOND_PICKAXE
+      misc:
+        name: "Miscellaneous"
+        material: FIREWORK_ROCKET
+      armor:
+        name: "Armors"
+        material: NETHERITE_CHESTPLATE
+      swords:
+        name: "Swords"
+        material: DIAMOND_SWORD
+  farming:
+    name: "Farming"
+    material: WHEAT
+    subcategories:
+      seeds:
+        name: "Seeds"
+        material: WHEAT_SEEDS
+      animal:
+        name: "Animal Products"
+        material: EGG
+      equipment:
+        name: "Equipment"
+        material: WOODEN_HOE
+      food:
+        name: "Food & Meals"
+        material: GOLDEN_CARROT
+      produce:
+        name: "Produce & Products"
+        material: WHEAT
+  misc:
+    name: "Miscellaneous"
+    material: CHEST
+    subcategories:
+      redstone:
+        name: "Redstone"
+        material: REDSTONE
+      transportation:
+        name: "Transportation"
+        material: MINECART
+      storage:
+        name: "Storage"
+        material: CHEST
+      utility:
+        name: "Utility Items"
+        material: NAME_TAG
+      rare:
+        name: "Rare Items"
+        material: NETHER_STAR

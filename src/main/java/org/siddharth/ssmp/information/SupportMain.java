@@ -34,6 +34,7 @@ public final class SupportMain implements CommandExecutor, TabCompleter {
     }
 
     public void sendActionBar(Player player, String message) {
+
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(color(message)));
     }
 

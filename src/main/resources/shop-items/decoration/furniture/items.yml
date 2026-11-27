@@ -1,0 +1,91 @@
+items:
+  BOOKSHELF:
+    buy: 80
+    sell: 28
+  CHISELED_BOOKSHELF:
+    buy: 120
+    sell: 45
+  LECTERN:
+    buy: 90
+    sell: 32
+  CRAFTING_TABLE:
+    buy: 30
+    sell: 10
+  FURNACE:
+    buy: 50
+    sell: 18
+  BLAST_FURNACE:
+    buy: 100
+    sell: 38
+  SMOKER:
+    buy: 80
+    sell: 30
+  ANVIL:
+    buy: 200
+    sell: 80
+  CHIPPED_ANVIL:
+    buy: 150
+    sell: 55
+  DAMAGED_ANVIL:
+    buy: 100
+    sell: 35
+  GRINDSTONE:
+    buy: 90
+    sell: 32
+  SMITHING_TABLE:
+    buy: 110
+    sell: 40
+  CARTOGRAPHY_TABLE:
+    buy: 90
+    sell: 32
+  FLETCHING_TABLE:
+    buy: 90
+    sell: 32
+  LOOM:
+    buy: 80
+    sell: 28
+  STONECUTTER:
+    buy: 70
+    sell: 25
+  COMPOSTER:
+    buy: 60
+    sell: 22
+  CAULDRON:
+    buy: 80
+    sell: 30
+  FLOWER_POT:
+    buy: 20
+    sell: 7
+  ITEM_FRAME:
+    buy: 25
+    sell: 8
+  GLOW_ITEM_FRAME:
+    buy: 60
+    sell: 22
+  PAINTING:
+    buy: 30
+    sell: 10
+  ARMOR_STAND:
+    buy: 40
+    sell: 14
+  JUKEBOX:
+    buy: 150
+    sell: 55
+  NOTE_BLOCK:
+    buy: 60
+    sell: 22
+  BELL:
+    buy: 200
+    sell: 80
+  LODESTONE:
+    buy: 300
+    sell: 120
+  DECORATED_POT:
+    buy: 100
+    sell: 40
+  SUSPICIOUS_SAND:
+    buy: 60
+    sell: 20
+  SUSPICIOUS_GRAVEL:
+    buy: 60
+    sell: 20

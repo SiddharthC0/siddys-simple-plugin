@@ -1,0 +1,67 @@
+items:
+  DANDELION:
+    buy: 10
+    sell: 3
+  POPPY:
+    buy: 10
+    sell: 3
+  BLUE_ORCHID:
+    buy: 15
+    sell: 5
+  ALLIUM:
+    buy: 15
+    sell: 5
+  AZURE_BLUET:
+    buy: 15
+    sell: 5
+  RED_TULIP:
+    buy: 15
+    sell: 5
+  ORANGE_TULIP:
+    buy: 15
+    sell: 5
+  WHITE_TULIP:
+    buy: 15
+    sell: 5
+  PINK_TULIP:
+    buy: 15
+    sell: 5
+  OXEYE_DAISY:
+    buy: 15
+    sell: 5
+  CORNFLOWER:
+    buy: 15
+    sell: 5
+  LILY_OF_THE_VALLEY:
+    buy: 20
+    sell: 7
+  WITHER_ROSE:
+    buy: 80
+    sell: 30
+  SUNFLOWER:
+    buy: 20
+    sell: 7
+  LILAC:
+    buy: 20
+    sell: 7
+  ROSE_BUSH:
+    buy: 20
+    sell: 7
+  PEONY:
+    buy: 20
+    sell: 7
+  PITCHER_PLANT:
+    buy: 50
+    sell: 18
+  TORCHFLOWER:
+    buy: 60
+    sell: 22
+  PINK_PETALS:
+    buy: 25
+    sell: 9
+  CHERRY_LEAVES:
+    buy: 15
+    sell: 5
+  SPORE_BLOSSOM:
+    buy: 35
+    sell: 13

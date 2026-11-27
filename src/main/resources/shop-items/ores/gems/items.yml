@@ -1,0 +1,58 @@
+items:
+  COAL:
+    buy: 15
+    sell: 5
+  CHARCOAL:
+    buy: 18
+    sell: 6
+  RAW_IRON:
+    buy: 30
+    sell: 10
+  RAW_COPPER:
+    buy: 25
+    sell: 8
+  RAW_GOLD:
+    buy: 60
+    sell: 22
+  IRON_NUGGET:
+    buy: 10
+    sell: 3
+  GOLD_NUGGET:
+    buy: 20
+    sell: 7
+  QUARTZ:
+    buy: 30
+    sell: 10
+  REDSTONE:
+    buy: 25
+    sell: 9
+  LAPIS_LAZULI:
+    buy: 40
+    sell: 15
+  EMERALD:
+    buy: 150
+    sell: 60
+  DIAMOND:
+    buy: 250
+    sell: 100
+  AMETHYST_SHARD:
+    buy: 35
+    sell: 12
+  AMETHYST_BLOCK:
+    buy: 120
+    sell: 45
+  BUDDING_AMETHYST:
+    buy: 200
+    sell: 80
+  AMETHYST_CLUSTER:
+    buy: 60
+    sell: 22
+  ECHO_SHARD:
+    buy: 300
+    sell: 120
+  PRISMARINE_SHARD:
+    buy: 40
+    sell: 15
+  PRISMARINE_CRYSTALS:
+    buy: 50
+    sell: 18

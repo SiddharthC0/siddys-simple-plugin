@@ -6,13 +6,17 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.siddharth.ssmp.SiddysSimplePlugin;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class EconomyCommands implements CommandExecutor, TabCompleter {
     private final Economy economy;
+    private final SiddysSimplePlugin plugin;
 
-    public EconomyCommands(Economy economy) {
+    public EconomyCommands(SiddysSimplePlugin plugin, Economy economy) {
+        this.plugin = plugin;
         this.economy = economy;
     }
 
@@ -83,8 +87,12 @@ public class EconomyCommands implements CommandExecutor, TabCompleter {
 
         if (target.equals(payer)) {
             send(sender, economy.getMessage("errors.self-payment"));
-            economy.sendActionBar(payer, economy.getMessage("actionbar.invalid-amount"));
-            economy.playSound(payer, "error");
+            if (plugin.getToggleSystem().isActionBarEnabled(payer)) {
+                economy.sendActionBar(payer, economy.getMessage("actionbar.invalid-amount"));
+            }
+            if (plugin.getToggleSystem().isSoundEnabled(payer)) {
+                economy.playSound(payer, "menu-error");
+            }
             return true;
         }
 
@@ -98,8 +106,12 @@ public class EconomyCommands implements CommandExecutor, TabCompleter {
 
         if (!economy.canAfford(payer, amount)) {
             send(sender, economy.getMessage("errors.insufficient-funds"));
-            economy.sendActionBar(payer, economy.getMessage("actionbar.insufficient-funds"));
-            economy.playSound(payer, "error");
+            if (plugin.getToggleSystem().isActionBarEnabled(payer)) {
+                economy.sendActionBar(payer, economy.getMessage("actionbar.insufficient-funds"));
+            }
+            if (plugin.getToggleSystem().isSoundEnabled(payer)) {
+                economy.playSound(payer, "menu-error");
+            }
             return true;
         }
 

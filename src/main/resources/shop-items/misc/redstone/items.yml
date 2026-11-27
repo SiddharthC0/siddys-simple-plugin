@@ -1,0 +1,163 @@
+items:
+  REDSTONE:
+    buy: 25
+    sell: 9
+  REDSTONE_BLOCK:
+    buy: 200
+    sell: 75
+  REDSTONE_TORCH:
+    buy: 15
+    sell: 5
+  REDSTONE_LAMP:
+    buy: 70
+    sell: 25
+  REPEATER:
+    buy: 40
+    sell: 14
+  COMPARATOR:
+    buy: 60
+    sell: 22
+  OBSERVER:
+    buy: 80
+    sell: 30
+  PISTON:
+    buy: 60
+    sell: 22
+  STICKY_PISTON:
+    buy: 80
+    sell: 30
+  SLIME_BLOCK:
+    buy: 120
+    sell: 45
+  HONEY_BLOCK:
+    buy: 100
+    sell: 38
+  DROPPER:
+    buy: 50
+    sell: 18
+  DISPENSER:
+    buy: 80
+    sell: 30
+  HOPPER:
+    buy: 100
+    sell: 38
+  HOPPER_MINECART:
+    buy: 150
+    sell: 55
+  TNT:
+    buy: 100
+    sell: 35
+  LEVER:
+    buy: 15
+    sell: 5
+  STONE_BUTTON:
+    buy: 10
+    sell: 3
+  OAK_BUTTON:
+    buy: 10
+    sell: 3
+  STONE_PRESSURE_PLATE:
+    buy: 15
+    sell: 5
+  OAK_PRESSURE_PLATE:
+    buy: 15
+    sell: 5
+  LIGHT_WEIGHTED_PRESSURE_PLATE:
+    buy: 40
+    sell: 14
+  HEAVY_WEIGHTED_PRESSURE_PLATE:
+    buy: 40
+    sell: 14
+  TRIPWIRE_HOOK:
+    buy: 25
+    sell: 8
+  DAYLIGHT_DETECTOR:
+    buy: 80
+    sell: 30
+  TARGET:
+    buy: 60
+    sell: 22
+  LIGHTNING_ROD:
+    buy: 120
+    sell: 45
+  SCULK_SENSOR:
+    buy: 150
+    sell: 55
+  CALIBRATED_SCULK_SENSOR:
+    buy: 250
+    sell: 95
+  SCULK_SHRIEKER:
+    buy: 200
+    sell: 75
+  SCULK_CATALYST:
+    buy: 300
+    sell: 120
+  SCULK:
+    buy: 30
+    sell: 10
+  SCULK_VEIN:
+    buy: 20
+    sell: 7
+  DETECTOR_RAIL:
+    buy: 30
+    sell: 10
+  ACTIVATOR_RAIL:
+    buy: 35
+    sell: 12
+  POWERED_RAIL:
+    buy: 50
+    sell: 18
+  NOTE_BLOCK:
+    buy: 60
+    sell: 22
+  JUKEBOX:
+    buy: 150
+    sell: 55
+  MUSIC_DISC_13:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_CAT:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_BLOCKS:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_CHIRP:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_FAR:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_MALL:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_MELLOHI:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_STAL:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_STRAD:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_WARD:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_11:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_WAIT:
+    buy: 300
+    sell: 120
+  MUSIC_DISC_OTHERSIDE:
+    buy: 400
+    sell: 160
+  MUSIC_DISC_RELIC:
+    buy: 400
+    sell: 160
+  MUSIC_DISC_5:
+    buy: 500
+    sell: 200
+  MUSIC_DISC_PIGSTEP:
+    buy: 500
+    sell: 200

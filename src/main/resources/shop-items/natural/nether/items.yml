@@ -1,0 +1,79 @@
+items:
+  NETHERRACK:
+    buy: 10
+    sell: 3
+  NETHER_BRICKS:
+    buy: 70
+    sell: 22
+  CRACKED_NETHER_BRICKS:
+    buy: 60
+    sell: 18
+  CHISELED_NETHER_BRICKS:
+    buy: 90
+    sell: 30
+  RED_NETHER_BRICKS:
+    buy: 80
+    sell: 25
+  SOUL_SAND:
+    buy: 25
+    sell: 8
+  SOUL_SOIL:
+    buy: 30
+    sell: 10
+  BASALT:
+    buy: 35
+    sell: 12
+  SMOOTH_BASALT:
+    buy: 55
+    sell: 18
+  POLISHED_BASALT:
+    buy: 65
+    sell: 22
+  BLACKSTONE:
+    buy: 40
+    sell: 15
+  POLISHED_BLACKSTONE:
+    buy: 75
+    sell: 25
+  GILDED_BLACKSTONE:
+    buy: 150
+    sell: 60
+  MAGMA_BLOCK:
+    buy: 50
+    sell: 18
+  SHROOMLIGHT:
+    buy: 80
+    sell: 30
+  NETHER_WART_BLOCK:
+    buy: 40
+    sell: 14
+  WARPED_WART_BLOCK:
+    buy: 40
+    sell: 14
+  CRIMSON_STEM:
+    buy: 30
+    sell: 12
+  WARPED_STEM:
+    buy: 30
+    sell: 12
+  CRIMSON_HYPHAE:
+    buy: 35
+    sell: 14
+  WARPED_HYPHAE:
+    buy: 35
+    sell: 14
+  CRIMSON_PLANKS:
+    buy: 25
+    sell: 10
+  WARPED_PLANKS:
+    buy: 25
+    sell: 10
+  BONE_BLOCK:
+    buy: 40
+    sell: 14
+  GLOWSTONE:
+    buy: 60
+    sell: 22
+  ANCIENT_DEBRIS:
+    buy: 1000
+    sell: 500

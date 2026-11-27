@@ -1,0 +1,43 @@
+items:
+  DIRT:
+    buy: 10
+    sell: 3
+  COARSE_DIRT:
+    buy: 12
+    sell: 4
+  ROOTED_DIRT:
+    buy: 15
+    sell: 5
+  PODZOL:
+    buy: 20
+    sell: 7
+  MYCELIUM:
+    buy: 25
+    sell: 8
+  GRASS_BLOCK:
+    buy: 15
+    sell: 5
+  DIRT_PATH:
+    buy: 12
+    sell: 4
+  FARMLAND:
+    buy: 14
+    sell: 4
+  MUD:
+    buy: 12
+    sell: 4
+  MUDDY_MANGROVE_ROOTS:
+    buy: 18
+    sell: 6
+  CLAY:
+    buy: 20
+    sell: 7
+  PACKED_MUD:
+    buy: 25
+    sell: 8
+  SOUL_SOIL:
+    buy: 30
+    sell: 10
+  SOUL_SAND:
+    buy: 25
+    sell: 8

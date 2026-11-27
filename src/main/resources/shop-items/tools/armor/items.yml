@@ -1,0 +1,76 @@
+items:
+  LEATHER_HELMET:
+    buy: 40
+    sell: 12
+  LEATHER_CHESTPLATE:
+    buy: 80
+    sell: 25
+  LEATHER_LEGGINGS:
+    buy: 70
+    sell: 22
+  LEATHER_BOOTS:
+    buy: 50
+    sell: 15
+  CHAINMAIL_HELMET:
+    buy: 100
+    sell: 35
+  CHAINMAIL_CHESTPLATE:
+    buy: 180
+    sell: 65
+  CHAINMAIL_LEGGINGS:
+    buy: 160
+    sell: 55
+  CHAINMAIL_BOOTS:
+    buy: 120
+    sell: 40
+  IRON_HELMET:
+    buy: 150
+    sell: 50
+  IRON_CHESTPLATE:
+    buy: 280
+    sell: 95
+  IRON_LEGGINGS:
+    buy: 240
+    sell: 80
+  IRON_BOOTS:
+    buy: 180
+    sell: 60
+  GOLDEN_HELMET:
+    buy: 130
+    sell: 45
+  GOLDEN_CHESTPLATE:
+    buy: 240
+    sell: 85
+  GOLDEN_LEGGINGS:
+    buy: 200
+    sell: 70
+  GOLDEN_BOOTS:
+    buy: 150
+    sell: 52
+  DIAMOND_HELMET:
+    buy: 700
+    sell: 250
+  DIAMOND_CHESTPLATE:
+    buy: 1200
+    sell: 450
+  DIAMOND_LEGGINGS:
+    buy: 1000
+    sell: 380
+  DIAMOND_BOOTS:
+    buy: 800
+    sell: 300
+  NETHERITE_HELMET:
+    buy: 8320
+    sell: 3450
+  NETHERITE_CHESTPLATE:
+    buy: 8520
+    sell: 3650
+  NETHERITE_LEGGINGS:
+    buy: 8420
+    sell: 3550
+  NETHERITE_BOOTS:
+    buy: 8220
+    sell: 3350
+  TURTLE_HELMET:
+    buy: 400
+    sell: 150

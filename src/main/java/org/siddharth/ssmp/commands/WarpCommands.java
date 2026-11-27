@@ -1,3 +1,4 @@
+
 package org.siddharth.ssmp.commands;
 
 import org.bukkit.ChatColor;
@@ -13,7 +14,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class WarpCommands implements CommandExecutor, TabCompleter {
-
     private final WarpSystem warps;
 
     public WarpCommands(WarpSystem warps) {
@@ -27,13 +27,13 @@ public class WarpCommands implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        if (!warps.isEnabled()) {
+        if (warps == null || !warps.isEnabled()) {
             player.sendMessage(ChatColor.RED + "Module warps is currently disabled.");
             return true;
         }
 
         switch (command.getName().toLowerCase(Locale.ROOT)) {
-            case "setwarp":
+            case "setwarp" -> {
                 if (!player.hasPermission("ssmp.warps.set")) {
                     player.sendMessage(ChatColor.RED + "You don't have permission to set warps.");
                     return true;
@@ -47,7 +47,7 @@ public class WarpCommands implements CommandExecutor, TabCompleter {
                 String setName = args[0].toLowerCase(Locale.ROOT);
 
                 if (!setName.matches("[a-z0-9_-]{1,32}")) {
-                    player.sendMessage(ChatColor.RED + "Warp names may only contain letters, numbers, _ and -.");
+                    player.sendMessage(ChatColor.RED + "Warp names may only contain letters, numbers, underscores and hyphens.");
                     return true;
                 }
 
@@ -58,8 +58,9 @@ public class WarpCommands implements CommandExecutor, TabCompleter {
 
                 player.sendMessage(ChatColor.GREEN + "Warp " + ChatColor.AQUA + setName + ChatColor.GREEN + " set.");
                 return true;
+            }
 
-            case "warp":
+            case "warp" -> {
                 if (!player.hasPermission("ssmp.warps.use")) {
                     player.sendMessage(ChatColor.RED + "You don't have permission to use warps.");
                     return true;
@@ -84,8 +85,9 @@ public class WarpCommands implements CommandExecutor, TabCompleter {
 
                 player.sendMessage(ChatColor.GREEN + "Teleported to " + ChatColor.AQUA + warpName);
                 return true;
+            }
 
-            case "warps":
+            case "warps" -> {
                 if (!player.hasPermission("ssmp.warps.use")) {
                     player.sendMessage(ChatColor.RED + "You don't have permission to use warps.");
                     return true;
@@ -93,8 +95,9 @@ public class WarpCommands implements CommandExecutor, TabCompleter {
 
                 warps.openGUI(player);
                 return true;
+            }
 
-            case "delwarp":
+            case "delwarp" -> {
                 if (!player.hasPermission("ssmp.warps.delete")) {
                     player.sendMessage(ChatColor.RED + "You don't have permission to delete warps.");
                     return true;
@@ -114,39 +117,45 @@ public class WarpCommands implements CommandExecutor, TabCompleter {
 
                 player.sendMessage(ChatColor.GREEN + "Deleted warp " + ChatColor.AQUA + deleteName);
                 return true;
-        }
+            }
 
-        return false;
+            default -> {
+                return false;
+            }
+        }
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (!(sender instanceof Player player) || !warps.isEnabled()) {
+        if (!(sender instanceof Player player) || warps == null || !warps.isEnabled()) {
             return List.of();
         }
 
-        String commandName = command.getName().toLowerCase(Locale.ROOT);
         if (args.length != 1) {
             return List.of();
         }
 
-        if (commandName.equals("warp") || commandName.equals("delwarp")) {
-            String permission = commandName.equals("warp") ? "ssmp.warps.use" : "ssmp.warps.delete";
+        String commandName = command.getName().toLowerCase(Locale.ROOT);
 
-            if (!player.hasPermission(permission)) {
-                return List.of();
-            }
-
-            List<String> suggestions = new ArrayList<>(warps.getWarps());
-
-            String input = args[0].toLowerCase(Locale.ROOT);
-
-            return suggestions.stream()
-                    .filter(warp -> warp != null && warp.toLowerCase(Locale.ROOT).startsWith(input))
-                    .sorted(String.CASE_INSENSITIVE_ORDER)
-                    .toList();
+        if (!commandName.equals("warp") && !commandName.equals("delwarp")) {
+            return List.of();
         }
 
-        return List.of();
+        String permission = commandName.equals("warp")
+                ? "ssmp.warps.use"
+                : "ssmp.warps.delete";
+
+        if (!player.hasPermission(permission)) {
+            return List.of();
+        }
+
+        List<String> suggestions = new ArrayList<>(warps.getWarps());
+        String input = args[0].toLowerCase(Locale.ROOT);
+
+        return suggestions.stream()
+                .filter(warp -> warp != null && warp.toLowerCase(Locale.ROOT).startsWith(input))
+                .distinct()
+                .sorted(String.CASE_INSENSITIVE_ORDER)
+                .toList();
     }
 }

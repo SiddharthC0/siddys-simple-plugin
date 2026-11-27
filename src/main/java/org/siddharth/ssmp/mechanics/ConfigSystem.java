@@ -2,6 +2,7 @@
 package org.siddharth.ssmp.mechanics;
 
 import io.papermc.paper.dialog.Dialog;
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import io.papermc.paper.registry.data.dialog.ActionButton;
 import io.papermc.paper.registry.data.dialog.DialogBase;
 import io.papermc.paper.registry.data.dialog.type.DialogType;
@@ -15,6 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.siddharth.ssmp.SiddysSimplePlugin;
+import io.papermc.paper.command.brigadier.BasicCommand;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -61,18 +63,21 @@ public final class ConfigSystem implements Listener {
 
         Bukkit.getPluginManager().registerEvents(this, plugin);
 
-        if (plugin.getCommand("configp") != null) {
-            plugin.getCommand("configp").setExecutor((sender, command, label, args) -> {
+        plugin.getLifecycleManager().registerEventHandler(
+                LifecycleEvents.COMMANDS,
+                event -> event.registrar().register(
+                        "configp",
+                        "Opens the SSMP module configuration menu.",
+                        (sender, args) -> {
+                            if (!(sender.getSender() instanceof Player player)) {
+                                sender.getSender().sendMessage("Only players can use this command.");
+                                return;
+                            }
 
-                if (!(sender instanceof Player player)) {
-                    sender.sendMessage("Only players can use this command.");
-                    return true;
-                }
-
-                openMenu(player);
-                return true;
-            });
-        }
+                            openMenu(player);
+                        }
+                )
+        );
     }
 
     public void openMenu(Player player) {

@@ -1,0 +1,130 @@
+items:
+  STONE:
+    buy: 20
+    sell: 10
+  COBBLESTONE:
+    buy: 15
+    sell: 5
+  STONE_BRICKS:
+    buy: 80
+    sell: 25
+  CRACKED_STONE_BRICKS:
+    buy: 70
+    sell: 20
+  MOSSY_STONE_BRICKS:
+    buy: 90
+    sell: 30
+  CHISELED_STONE_BRICKS:
+    buy: 100
+    sell: 35
+  SMOOTH_STONE:
+    buy: 40
+    sell: 15
+  MOSSY_COBBLESTONE:
+    buy: 50
+    sell: 18
+  GRANITE:
+    buy: 25
+    sell: 10
+  POLISHED_GRANITE:
+    buy: 60
+    sell: 20
+  DIORITE:
+    buy: 25
+    sell: 10
+  POLISHED_DIORITE:
+    buy: 60
+    sell: 20
+  ANDESITE:
+    buy: 25
+    sell: 10
+  POLISHED_ANDESITE:
+    buy: 60
+    sell: 20
+  DEEPSLATE:
+    buy: 30
+    sell: 12
+  COBBLED_DEEPSLATE:
+    buy: 25
+    sell: 10
+  DEEPSLATE_BRICKS:
+    buy: 90
+    sell: 30
+  CRACKED_DEEPSLATE_BRICKS:
+    buy: 80
+    sell: 25
+  DEEPSLATE_TILES:
+    buy: 100
+    sell: 35
+  CRACKED_DEEPSLATE_TILES:
+    buy: 90
+    sell: 30
+  CHISELED_DEEPSLATE:
+    buy: 110
+    sell: 40
+  POLISHED_DEEPSLATE:
+    buy: 70
+    sell: 25
+  CALCITE:
+    buy: 35
+    sell: 12
+  TUFF:
+    buy: 30
+    sell: 10
+  DRIPSTONE_BLOCK:
+    buy: 40
+    sell: 15
+  BASALT:
+    buy: 35
+    sell: 12
+  SMOOTH_BASALT:
+    buy: 55
+    sell: 18
+  POLISHED_BASALT:
+    buy: 65
+    sell: 22
+  BLACKSTONE:
+    buy: 40
+    sell: 15
+  POLISHED_BLACKSTONE:
+    buy: 75
+    sell: 25
+  POLISHED_BLACKSTONE_BRICKS:
+    buy: 95
+    sell: 32
+  CRACKED_POLISHED_BLACKSTONE_BRICKS:
+    buy: 85
+    sell: 28
+  CHISELED_POLISHED_BLACKSTONE:
+    buy: 110
+    sell: 38
+  GILDED_BLACKSTONE:
+    buy: 150
+    sell: 60
+  NETHERRACK:
+    buy: 10
+    sell: 3
+  NETHER_BRICKS:
+    buy: 70
+    sell: 22
+  CRACKED_NETHER_BRICKS:
+    buy: 60
+    sell: 18
+  CHISELED_NETHER_BRICKS:
+    buy: 90
+    sell: 30
+  RED_NETHER_BRICKS:
+    buy: 80
+    sell: 25
+  END_STONE:
+    buy: 50
+    sell: 20
+  END_STONE_BRICKS:
+    buy: 90
+    sell: 35
+  OBSIDIAN:
+    buy: 200
+    sell: 80
+  CRYING_OBSIDIAN:
+    buy: 220
+    sell: 90

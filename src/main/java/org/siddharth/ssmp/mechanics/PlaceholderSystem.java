@@ -165,6 +165,11 @@ public class PlaceholderSystem {
         );
 
         register(
+                "ssmp_balance",
+                player -> String.valueOf(plugin.getEconomy().getPlayerBalance(player))
+        );
+
+        register(
                 "ssmp_player_prefix",
                 ranks::getPlayerPrefix
         );

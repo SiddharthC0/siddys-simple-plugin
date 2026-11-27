@@ -1,0 +1,112 @@
+items:
+  MINECART:
+    buy: 80
+    sell: 28
+  CHEST_MINECART:
+    buy: 130
+    sell: 48
+  HOPPER_MINECART:
+    buy: 150
+    sell: 55
+  FURNACE_MINECART:
+    buy: 120
+    sell: 45
+  TNT_MINECART:
+    buy: 150
+    sell: 55
+  RAIL:
+    buy: 20
+    sell: 7
+  POWERED_RAIL:
+    buy: 50
+    sell: 18
+  DETECTOR_RAIL:
+    buy: 30
+    sell: 10
+  ACTIVATOR_RAIL:
+    buy: 35
+    sell: 12
+  OAK_BOAT:
+    buy: 60
+    sell: 20
+  SPRUCE_BOAT:
+    buy: 60
+    sell: 20
+  BIRCH_BOAT:
+    buy: 60
+    sell: 20
+  JUNGLE_BOAT:
+    buy: 60
+    sell: 20
+  ACACIA_BOAT:
+    buy: 60
+    sell: 20
+  DARK_OAK_BOAT:
+    buy: 60
+    sell: 20
+  MANGROVE_BOAT:
+    buy: 70
+    sell: 24
+  CHERRY_BOAT:
+    buy: 75
+    sell: 26
+  BAMBOO_RAFT:
+    buy: 70
+    sell: 24
+  OAK_CHEST_BOAT:
+    buy: 110
+    sell: 40
+  SPRUCE_CHEST_BOAT:
+    buy: 110
+    sell: 40
+  BIRCH_CHEST_BOAT:
+    buy: 110
+    sell: 40
+  JUNGLE_CHEST_BOAT:
+    buy: 110
+    sell: 40
+  ACACIA_CHEST_BOAT:
+    buy: 110
+    sell: 40
+  DARK_OAK_CHEST_BOAT:
+    buy: 110
+    sell: 40
+  MANGROVE_CHEST_BOAT:
+    buy: 120
+    sell: 44
+  CHERRY_CHEST_BOAT:
+    buy: 125
+    sell: 46
+  BAMBOO_CHEST_RAFT:
+    buy: 120
+    sell: 44
+  SADDLE:
+    buy: 200
+    sell: 80
+  HORSE_ARMOR_LEATHER:
+    buy: 100
+    sell: 35
+  HORSE_ARMOR_IRON:
+    buy: 200
+    sell: 75
+  HORSE_ARMOR_GOLD:
+    buy: 180
+    sell: 65
+  HORSE_ARMOR_DIAMOND:
+    buy: 600
+    sell: 220
+  ELYTRA:
+    buy: 8000
+    sell: 3500
+  FIREWORK_ROCKET:
+    buy: 30
+    sell: 10
+  FIREWORK_STAR:
+    buy: 20
+    sell: 7
+  ENDER_PEARL:
+    buy: 100
+    sell: 40
+  CHORUS_FRUIT:
+    buy: 25
+    sell: 8

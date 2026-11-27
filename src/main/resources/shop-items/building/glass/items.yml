@@ -1,0 +1,106 @@
+items:
+  GLASS:
+    buy: 30
+    sell: 10
+  WHITE_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  ORANGE_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  MAGENTA_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  LIGHT_BLUE_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  YELLOW_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  LIME_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  PINK_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  GRAY_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  LIGHT_GRAY_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  CYAN_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  PURPLE_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  BLUE_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  BROWN_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  GREEN_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  RED_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  BLACK_STAINED_GLASS:
+    buy: 45
+    sell: 15
+  GLASS_PANE:
+    buy: 20
+    sell: 6
+  WHITE_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  ORANGE_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  MAGENTA_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  LIGHT_BLUE_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  YELLOW_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  LIME_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  PINK_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  GRAY_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  LIGHT_GRAY_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  CYAN_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  PURPLE_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  BLUE_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  BROWN_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  GREEN_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  RED_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  BLACK_STAINED_GLASS_PANE:
+    buy: 30
+    sell: 10
+  TINTED_GLASS:
+    buy: 70
+    sell: 25

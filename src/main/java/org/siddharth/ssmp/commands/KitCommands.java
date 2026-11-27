@@ -1,4 +1,6 @@
+
 package org.siddharth.ssmp.commands;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -7,25 +9,27 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.siddharth.ssmp.SiddysSimplePlugin;
 import org.siddharth.ssmp.gui.KitGUI;
-import org.siddharth.ssmp.util.CoreUtilMethods;
 import org.siddharth.ssmp.mechanics.KitSystem;
+import org.siddharth.ssmp.util.CoreUtilMethods;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import static java.util.Arrays.copyOfRange;
+import java.util.Arrays;
 
 public class KitCommands implements CommandExecutor, TabCompleter {
     private final SiddysSimplePlugin plugin;
     private final KitSystem kits;
     private final KitGUI gui;
     private final CoreUtilMethods core;
+
     public KitCommands(SiddysSimplePlugin plugin, KitSystem kits, KitGUI gui) {
         this.plugin = plugin;
         this.kits = kits;
         this.gui = gui;
         this.core = plugin.getCore();
     }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
@@ -36,7 +40,9 @@ public class KitCommands implements CommandExecutor, TabCompleter {
             }
             return true;
         }
+
         String subcommand = args[0].toLowerCase(Locale.ROOT);
+
         if (subcommand.equals("create")) {
             if (!sender.hasPermission("ssmp.kits.create")) {
                 core.sendMessage(sender, "&cYou don't have permission to create kits.");
@@ -54,13 +60,10 @@ public class KitCommands implements CommandExecutor, TabCompleter {
             }
 
             String name = args[1].toLowerCase(Locale.ROOT);
-            String displayName;
+            String displayName = args.length > 2
+                    ? String.join(" ", Arrays.copyOfRange(args, 2, args.length))
+                    : name;
 
-            if (args.length > 2) {
-                displayName = String.join(" ", copyOfRange(args, 2, args.length));
-            } else {
-                displayName = name;
-            }
             if (!kits.isValidName(name)) {
                 core.sendMessage(sender, "&cThe kit name is invalid. Kit names may only contain letters, numbers and underscores.");
                 return true;
@@ -72,7 +75,8 @@ public class KitCommands implements CommandExecutor, TabCompleter {
             }
 
             core.sendMessage(sender, "&aKit created: &f" + name);
-            core.sendMessage(sender, "&7Permission set:  &f" + kits.getKitPermission(name));
+            core.sendMessage(sender, "&7Permission set: &f" + kits.getKitPermission(name));
+
         } else if (subcommand.equals("delete")) {
             if (!sender.hasPermission("ssmp.kits.delete")) {
                 core.sendMessage(sender, "&cYou don't have permission to delete kits.");
@@ -90,6 +94,7 @@ public class KitCommands implements CommandExecutor, TabCompleter {
             }
 
             core.sendMessage(sender, "&aDeleted kit &f" + args[1]);
+
         } else if (subcommand.equals("edit")) {
             if (!sender.hasPermission("ssmp.kits.create")) {
                 core.sendMessage(sender, "&cYou don't have permission to edit kits.");
@@ -112,6 +117,7 @@ public class KitCommands implements CommandExecutor, TabCompleter {
             }
 
             core.sendMessage(sender, "&aEdited kit &f" + args[1]);
+
         } else if (subcommand.equals("give")) {
             if (!sender.hasPermission("ssmp.kits.give")) {
                 core.sendMessage(sender, "&cYou don't have permission to give kits.");
@@ -138,6 +144,7 @@ public class KitCommands implements CommandExecutor, TabCompleter {
             } else {
                 sendResult(sender, result, args[2]);
             }
+
         } else if (subcommand.equals("list")) {
             List<String> names = kits.getKitNames();
 
@@ -148,6 +155,7 @@ public class KitCommands implements CommandExecutor, TabCompleter {
             } else {
                 core.sendMessage(sender, "&f" + String.join("&7, &f", names));
             }
+
         } else if (subcommand.equals("reload")) {
             if (!sender.hasPermission("ssmp.admin")) {
                 core.sendMessage(sender, "&cYou don't have permission to reload kits.");
@@ -156,6 +164,7 @@ public class KitCommands implements CommandExecutor, TabCompleter {
 
             kits.reload();
             core.sendMessage(sender, "&aKits has been reloaded.");
+
         } else {
             if (sender instanceof Player player) {
                 sendResult(player, kits.giveKit(player, subcommand), subcommand);
@@ -169,7 +178,7 @@ public class KitCommands implements CommandExecutor, TabCompleter {
 
     private void sendResult(CommandSender sender, KitSystem.KitResult result, String name) {
         if (result == KitSystem.KitResult.SUCCESS) {
-            core.sendMessage(sender, "Succesfully claimed kit &f"+name);
+            core.sendMessage(sender, "Successfully claimed kit &f" + name);
         } else if (result == KitSystem.KitResult.NOT_FOUND) {
             core.sendMessage(sender, "&cThat kit doesn't exist.");
         } else if (result == KitSystem.KitResult.NO_PERMISSION) {
@@ -181,7 +190,7 @@ public class KitCommands implements CommandExecutor, TabCompleter {
                 long minutes = (secs % 3600) / 60;
                 long remainingSeconds = secs % 60;
 
-                core.sendMessage(sender, "&cYou must wait &f" + hours + "h "+ minutes + "m " + remainingSeconds + "s &cbefore using this kit again.");
+                core.sendMessage(sender, "&cYou must wait &f" + hours + "h " + minutes + "m " + remainingSeconds + "s &cbefore using this kit again.");
             }
         } else if (result == KitSystem.KitResult.DISABLED) {
             core.sendMessage(sender, "&cThe kit module is disabled.");
@@ -191,25 +200,32 @@ public class KitCommands implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> suggestions = new ArrayList<>();
+
         if (args.length == 1) {
-            suggestions.addAll(List.of("create", "delete", "edit", "give", "list", "reload"));
+            if (sender.hasPermission("ssmp.kits.create")) suggestions.add("create");
+            if (sender.hasPermission("ssmp.kits.delete")) suggestions.add("delete");
+            if (sender.hasPermission("ssmp.kits.create")) suggestions.add("edit");
+            if (sender.hasPermission("ssmp.kits.give")) suggestions.add("give");
+            suggestions.add("list");
+            if (sender.hasPermission("ssmp.admin")) suggestions.add("reload");
             suggestions.addAll(kits.getKitNames());
+
         } else if (args.length == 2) {
             switch (args[0].toLowerCase(Locale.ROOT)) {
-                case "delete", "edit":  {
-                    suggestions.addAll(kits.getKitNames());
-                }
-                case "create": {
-                    suggestions.add("<name>");
-                }
-                case "give": {
-                    Bukkit.getOnlinePlayers().forEach(player -> suggestions.add(player.getName()));
-                }
+                case "delete", "edit" -> suggestions.addAll(kits.getKitNames());
+                case "create" -> suggestions.add("<name>");
+                case "give" -> Bukkit.getOnlinePlayers().forEach(player -> suggestions.add(player.getName()));
             }
+
         } else if (args.length == 3 && args[0].equalsIgnoreCase("give")) {
             suggestions.addAll(kits.getKitNames());
         }
+
         String input = args[args.length - 1].toLowerCase(Locale.ROOT);
-        return suggestions.stream().filter(suggestion -> suggestion.toLowerCase(Locale.ROOT).startsWith(input)).distinct().toList();
+
+        return suggestions.stream()
+                .filter(suggestion -> suggestion.toLowerCase(Locale.ROOT).startsWith(input))
+                .distinct()
+                .toList();
     }
 }

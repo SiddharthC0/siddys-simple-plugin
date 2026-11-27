@@ -1,4 +1,6 @@
+
 package org.siddharth.ssmp.commands;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -8,6 +10,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.siddharth.ssmp.mechanics.PermissionSystem;
 import org.siddharth.ssmp.mechanics.RankSystem;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -16,95 +19,78 @@ import java.util.Locale;
 public class RankCommands implements CommandExecutor, TabCompleter {
     private final RankSystem ranks;
     private final PermissionSystem permissions;
+
     private static final String PREFIX = ChatColor.DARK_AQUA + "[SSmP] ";
     private static final String ERROR = ChatColor.RED + "";
     private static final String SUCCESS = ChatColor.GREEN + "";
     private static final String INFO = ChatColor.GRAY + "";
-    private static final List<String> SUBCOMMANDS = List.of(
-            "list",
-            "create",
-            "delete",
-            "give",
-            "remove",
-            "setprefix",
-            "setsuffix",
-            "setname",
-            "info"
-    );
+
     public RankCommands(RankSystem ranks, PermissionSystem permissions) {
         this.ranks = ranks;
         this.permissions = permissions;
     }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) {
             sender.sendMessage(ERROR + "Only players can use rank commands.");
             return true;
-        } else if (ranks == null || permissions == null) {
+        }
+
+        if (ranks == null || permissions == null) {
             player.sendMessage(ERROR + "The rank system is currently unavailable.");
             return true;
-        } else if (!hasPermission(player, "ssmp.rank.use")) {
+        }
+
+        if (!hasPermission(player, "ssmp.rank.use")) {
             noPermission(player);
             return true;
-        } else if (args.length == 0) {
+        }
+
+        if (args.length == 0) {
             sendHelp(player);
             return true;
         }
 
         String subcommand = args[0].toLowerCase(Locale.ROOT);
+
         switch (subcommand) {
-            case "list": {
-                if (requirePermission(player, "ssmp.rank.use")) {
-                    listRanks(player);
-                }
-            }
-            case "create": {
-                createRank(player, args);
-            }
-            case "delete": {
-                deleteRank(player, args);
-            }
-            case "give": {
-                giveRank(player, args);
-            }
-            case "remove": {
-                removeRank(player, args);
-            }
-            case "setprefix": {
-                setPrefix(player, args);
-            }
-            case "setsuffix": {
-                setSuffix(player, args);
-            }
-            case "setname": {
-                setName(player, args);
-            }
-            case "info": {
-                if (requirePermission(player, "ssmp.rank.use")) {
-                    rankInfo(player, args);
-                }
-            }
-            default: {
+            case "list" -> listRanks(player);
+            case "create" -> createRank(player, args);
+            case "delete" -> deleteRank(player, args);
+            case "give" -> giveRank(player, args);
+            case "remove" -> removeRank(player, args);
+            case "setprefix" -> setPrefix(player, args);
+            case "setsuffix" -> setSuffix(player, args);
+            case "setname" -> setName(player, args);
+            case "info" -> rankInfo(player, args);
+            default -> {
                 player.sendMessage(ERROR + "Unknown rank subcommand: " + args[0]);
                 player.sendMessage(INFO + "Use /rank for available commands.");
             }
         }
+
         return true;
     }
 
     private void listRanks(Player player) {
         List<String> rankList = ranks.getRanks();
+
         player.sendMessage(PREFIX + ChatColor.WHITE + "Available Ranks");
+
         if (rankList == null || rankList.isEmpty()) {
             player.sendMessage(INFO + "No ranks currently exist.");
             return;
         }
+
         for (String rank : rankList) {
             if (rank == null || rank.isBlank()) {
                 continue;
             }
+
             player.sendMessage(ChatColor.GRAY + " - " + ChatColor.WHITE + rank);
         }
+
         player.sendMessage(INFO + "Total ranks: " + rankList.size());
     }
 
@@ -131,49 +117,65 @@ public class RankCommands implements CommandExecutor, TabCompleter {
             return;
         }
 
-        // For future me: if there is a bug, its 100% this tenary statement
         String displayName = args.length > 2 ? joinArguments(args, 2) : rank;
+
         if (displayName.isBlank()) {
             error(player, "The display name cannot be empty.");
             return;
         }
+
         boolean created = ranks.createRank(rank, displayName, "&7[" + displayName + "] ", "");
+
         if (!created) {
             error(player, "Failed to create the rank.");
             player.sendMessage(INFO + "The rank system rejected the operation.");
             return;
         }
+
         success(player, "Successfully created rank " + rank);
     }
+
     private void deleteRank(Player player, String[] args) {
         if (!requirePermission(player, "ssmp.rank.delete")) {
             return;
-        } else if (args.length < 2) {
+        }
+
+        if (args.length < 2) {
             usage(player, "/rank delete <rank>");
             return;
         }
+
         String rank = normalizeRank(args[1]);
+
         if (!ranks.rankExists(rank)) {
             error(player, "That rank does not exist.");
             return;
-        } else if (rank.equals("default")) {
+        }
+
+        if (rank.equals("default")) {
             error(player, "The default rank cannot be deleted.");
             return;
-        } else if (!ranks.deleteRank(rank)) {
+        }
+
+        if (!ranks.deleteRank(rank)) {
             error(player, "Failed to delete the rank.");
             player.sendMessage(INFO + "The rank may be in use or the operation was rejected.");
             return;
         }
+
         success(player, "Successfully deleted rank " + rank);
     }
 
     private void giveRank(Player player, String[] args) {
         if (!requirePermission(player, "ssmp.rank.give")) {
             return;
-        } else if (args.length < 3) {
+        }
+
+        if (args.length < 3) {
             usage(player, "/rank give <player> <rank>");
             return;
         }
+
         Player target = Bukkit.getPlayerExact(args[1]);
 
         if (target == null) {
@@ -181,17 +183,24 @@ public class RankCommands implements CommandExecutor, TabCompleter {
             player.sendMessage(INFO + "Check the player's username and try again.");
             return;
         }
+
         String rank = normalizeRank(args[2]);
+
         if (!ranks.rankExists(rank)) {
             error(player, "That rank does not exist.");
             return;
-        } else if (rank.equalsIgnoreCase(ranks.getPlayerRank(target))) {
+        }
+
+        if (rank.equalsIgnoreCase(ranks.getPlayerRank(target))) {
             error(player, "That player already has this rank.");
             return;
-        } else if (!ranks.setPlayerRank(target, rank)) {
+        }
+
+        if (!ranks.setPlayerRank(target, rank)) {
             error(player, "Failed to assign the rank.");
             return;
         }
+
         success(player, "Set " + target.getName() + "'s rank to " + rank);
         target.sendMessage(PREFIX + ChatColor.GREEN + "Your rank is now " + ChatColor.WHITE + ranks.getPlayerRankDisplayName(target));
     }
@@ -205,16 +214,20 @@ public class RankCommands implements CommandExecutor, TabCompleter {
             usage(player, "/rank remove <player>");
             return;
         }
+
         Player target = Bukkit.getPlayerExact(args[1]);
+
         if (target == null) {
             error(player, "That player is not online.");
             return;
         }
+
         if (!ranks.removePlayerRank(target)) {
             error(player, "Could not remove that player's rank.");
             player.sendMessage(INFO + "They may already have the default rank.");
             return;
         }
+
         success(player, "Removed " + target.getName() + "'s rank.");
         target.sendMessage(PREFIX + ChatColor.GREEN + "Your rank is now " + ChatColor.WHITE + ranks.getPlayerRankDisplayName(target));
     }
@@ -223,23 +236,31 @@ public class RankCommands implements CommandExecutor, TabCompleter {
         if (!requirePermission(player, "ssmp.rank.setprefix")) {
             return;
         }
+
         if (args.length < 3) {
             usage(player, "/rank setprefix <rank> <prefix>");
             return;
         }
+
         String rank = normalizeRank(args[1]);
+
         if (!ranks.rankExists(rank)) {
             error(player, "That rank does not exist.");
             return;
         }
+
         String prefix = joinArguments(args, 2);
+
         if (prefix.isBlank()) {
             error(player, "The prefix cannot be empty.");
             return;
-        } else if (!ranks.setRankPrefix(rank, prefix)) {
+        }
+
+        if (!ranks.setRankPrefix(rank, prefix)) {
             error(player, "Failed to update the rank prefix.");
             return;
         }
+
         success(player, "Successfully updated the prefix of " + rank + ".");
     }
 
@@ -247,23 +268,31 @@ public class RankCommands implements CommandExecutor, TabCompleter {
         if (!requirePermission(player, "ssmp.rank.setsuffix")) {
             return;
         }
+
         if (args.length < 3) {
             usage(player, "/rank setsuffix <rank> <suffix>");
             return;
         }
+
         String rank = normalizeRank(args[1]);
+
         if (!ranks.rankExists(rank)) {
             error(player, "That rank does not exist.");
             return;
         }
+
         String suffix = joinArguments(args, 2);
+
         if (suffix.isBlank()) {
             error(player, "The suffix cannot be empty.");
             return;
-        } else if (!ranks.setRankSuffix(rank, suffix)) {
+        }
+
+        if (!ranks.setRankSuffix(rank, suffix)) {
             error(player, "Failed to update the rank suffix.");
             return;
         }
+
         success(player, "Successfully updated the suffix of " + rank + ".");
     }
 
@@ -278,19 +307,24 @@ public class RankCommands implements CommandExecutor, TabCompleter {
         }
 
         String rank = normalizeRank(args[1]);
+
         if (!ranks.rankExists(rank)) {
             error(player, "That rank does not exist.");
             return;
         }
 
         String name = joinArguments(args, 2);
+
         if (name.isBlank()) {
             error(player, "The display name cannot be empty.");
             return;
-        } else if (!ranks.setRankDisplayName(rank, name)) {
+        }
+
+        if (!ranks.setRankDisplayName(rank, name)) {
             error(player, "Failed to update the rank display name.");
             return;
         }
+
         success(player, "Successfully updated the display name of " + rank + ".");
     }
 
@@ -301,6 +335,7 @@ public class RankCommands implements CommandExecutor, TabCompleter {
         }
 
         String rank = normalizeRank(args[1]);
+
         if (!ranks.rankExists(rank)) {
             error(player, "That rank does not exist.");
             return;
@@ -316,10 +351,11 @@ public class RankCommands implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof Player player) || !hasPermission(player, "ssmp.rank.use")) {
             return List.of();
         }
-        if (args.length == 0 || !hasPermission(player, "ssmp.rank.use")) {
+
+        if (args.length == 0) {
             return List.of();
         }
 
@@ -335,13 +371,11 @@ public class RankCommands implements CommandExecutor, TabCompleter {
             addSubcommand(suggestions, player, "setsuffix", "ssmp.rank.setsuffix");
             addSubcommand(suggestions, player, "setname", "ssmp.rank.setname");
             addSubcommand(suggestions, player, "info", "ssmp.rank.use");
-        }
-
-        else if (args.length == 2) {
+        } else if (args.length == 2) {
             String subcommand = args[0].toLowerCase(Locale.ROOT);
 
             switch (subcommand) {
-                case "delete", "setprefix", "setsuffix", "setname", "info": {
+                case "delete", "setprefix", "setsuffix", "setname", "info" -> {
                     String permission = switch (subcommand) {
                         case "delete" -> "ssmp.rank.delete";
                         case "setprefix" -> "ssmp.rank.setprefix";
@@ -354,8 +388,7 @@ public class RankCommands implements CommandExecutor, TabCompleter {
                         addRanks(suggestions);
                     }
                 }
-
-                case "give", "remove": {
+                case "give", "remove" -> {
                     String permission = subcommand.equals("give")
                             ? "ssmp.rank.give"
                             : "ssmp.rank.remove";
@@ -364,12 +397,15 @@ public class RankCommands implements CommandExecutor, TabCompleter {
                         addOnlinePlayers(suggestions);
                     }
                 }
+                default -> {
+                }
             }
         } else if (args.length == 3 && args[0].equalsIgnoreCase("give")) {
             if (hasPermission(player, "ssmp.rank.give")) {
                 addRanks(suggestions);
             }
         }
+
         return filterSuggestions(suggestions, args[args.length - 1]);
     }
 
@@ -381,6 +417,7 @@ public class RankCommands implements CommandExecutor, TabCompleter {
 
     private void addRanks(List<String> suggestions) {
         List<String> availableRanks = ranks.getRanks();
+
         if (availableRanks == null) {
             return;
         }
@@ -400,8 +437,14 @@ public class RankCommands implements CommandExecutor, TabCompleter {
 
     private List<String> filterSuggestions(List<String> suggestions, String input) {
         String prefix = input.toLowerCase(Locale.ROOT);
-        return suggestions.stream().filter(suggestion -> suggestion.toLowerCase(Locale.ROOT).startsWith(prefix)).distinct().sorted(Comparator.comparing(String::toLowerCase)).toList();
+
+        return suggestions.stream()
+                .filter(suggestion -> suggestion.toLowerCase(Locale.ROOT).startsWith(prefix))
+                .distinct()
+                .sorted(Comparator.comparing(String::toLowerCase))
+                .toList();
     }
+
     private boolean hasPermission(Player player, String permission) {
         return permissions.hasPermission(player, permission);
     }
@@ -410,12 +453,15 @@ public class RankCommands implements CommandExecutor, TabCompleter {
         if (hasPermission(player, permission)) {
             return true;
         }
+
         noPermission(player);
         return false;
     }
+
     private boolean isValidRankId(String rank) {
         return rank != null && rank.matches("[a-z0-9_-]{1,32}");
     }
+
     private String normalizeRank(String rank) {
         if (rank == null) {
             return "";

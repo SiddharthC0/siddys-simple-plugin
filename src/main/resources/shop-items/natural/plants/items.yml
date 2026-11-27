@@ -1,0 +1,112 @@
+items:
+  OAK_LEAVES:
+    buy: 10
+    sell: 3
+  SPRUCE_LEAVES:
+    buy: 10
+    sell: 3
+  BIRCH_LEAVES:
+    buy: 10
+    sell: 3
+  JUNGLE_LEAVES:
+    buy: 10
+    sell: 3
+  ACACIA_LEAVES:
+    buy: 10
+    sell: 3
+  DARK_OAK_LEAVES:
+    buy: 10
+    sell: 3
+  MANGROVE_LEAVES:
+    buy: 12
+    sell: 4
+  CHERRY_LEAVES:
+    buy: 15
+    sell: 5
+  AZALEA_LEAVES:
+    buy: 20
+    sell: 7
+  FLOWERING_AZALEA_LEAVES:
+    buy: 25
+    sell: 9
+  GRASS:
+    buy: 5
+    sell: 2
+  TALL_GRASS:
+    buy: 6
+    sell: 2
+  FERN:
+    buy: 8
+    sell: 3
+  LARGE_FERN:
+    buy: 10
+    sell: 3
+  DEAD_BUSH:
+    buy: 8
+    sell: 3
+  VINE:
+    buy: 10
+    sell: 3
+  HANGING_ROOTS:
+    buy: 12
+    sell: 4
+  MOSS_BLOCK:
+    buy: 20
+    sell: 7
+  MOSS_CARPET:
+    buy: 12
+    sell: 4
+  AZALEA:
+    buy: 25
+    sell: 9
+  FLOWERING_AZALEA:
+    buy: 30
+    sell: 11
+  SPORE_BLOSSOM:
+    buy: 35
+    sell: 13
+  BIG_DRIPLEAF:
+    buy: 25
+    sell: 9
+  SMALL_DRIPLEAF:
+    buy: 20
+    sell: 7
+  CACTUS:
+    buy: 15
+    sell: 5
+  SUGAR_CANE:
+    buy: 10
+    sell: 3
+  BAMBOO:
+    buy: 10
+    sell: 3
+  LILY_PAD:
+    buy: 15
+    sell: 5
+  SEA_PICKLE:
+    buy: 20
+    sell: 7
+  NETHER_WART:
+    buy: 25
+    sell: 9
+  WARPED_FUNGUS:
+    buy: 20
+    sell: 7
+  CRIMSON_FUNGUS:
+    buy: 20
+    sell: 7
+  WARPED_ROOTS:
+    buy: 15
+    sell: 5
+  CRIMSON_ROOTS:
+    buy: 15
+    sell: 5
+  NETHER_SPROUTS:
+    buy: 15
+    sell: 5
+  WEEPING_VINES:
+    buy: 15
+    sell: 5
+  TWISTING_VINES:
+    buy: 15
+    sell: 5

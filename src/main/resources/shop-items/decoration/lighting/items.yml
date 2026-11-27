@@ -1,0 +1,109 @@
+items:
+  TORCH:
+    buy: 5
+    sell: 1
+  WALL_TORCH:
+    buy: 5
+    sell: 1
+  SOUL_TORCH:
+    buy: 10
+    sell: 3
+  LANTERN:
+    buy: 40
+    sell: 14
+  SOUL_LANTERN:
+    buy: 50
+    sell: 18
+  GLOWSTONE:
+    buy: 60
+    sell: 22
+  SEA_LANTERN:
+    buy: 150
+    sell: 55
+  SHROOMLIGHT:
+    buy: 80
+    sell: 30
+  JACK_O_LANTERN:
+    buy: 35
+    sell: 12
+  REDSTONE_LAMP:
+    buy: 70
+    sell: 25
+  END_ROD:
+    buy: 60
+    sell: 22
+  CAMPFIRE:
+    buy: 55
+    sell: 20
+  SOUL_CAMPFIRE:
+    buy: 65
+    sell: 24
+  CANDLE:
+    buy: 30
+    sell: 10
+  WHITE_CANDLE:
+    buy: 35
+    sell: 12
+  ORANGE_CANDLE:
+    buy: 35
+    sell: 12
+  MAGENTA_CANDLE:
+    buy: 35
+    sell: 12
+  LIGHT_BLUE_CANDLE:
+    buy: 35
+    sell: 12
+  YELLOW_CANDLE:
+    buy: 35
+    sell: 12
+  LIME_CANDLE:
+    buy: 35
+    sell: 12
+  PINK_CANDLE:
+    buy: 35
+    sell: 12
+  GRAY_CANDLE:
+    buy: 35
+    sell: 12
+  LIGHT_GRAY_CANDLE:
+    buy: 35
+    sell: 12
+  CYAN_CANDLE:
+    buy: 35
+    sell: 12
+  PURPLE_CANDLE:
+    buy: 35
+    sell: 12
+  BLUE_CANDLE:
+    buy: 35
+    sell: 12
+  BROWN_CANDLE:
+    buy: 35
+    sell: 12
+  GREEN_CANDLE:
+    buy: 35
+    sell: 12
+  RED_CANDLE:
+    buy: 35
+    sell: 12
+  BLACK_CANDLE:
+    buy: 35
+    sell: 12
+  FROGLIGHT:
+    buy: 90
+    sell: 35
+  OCHRE_FROGLIGHT:
+    buy: 90
+    sell: 35
+  PEARLESCENT_FROGLIGHT:
+    buy: 90
+    sell: 35
+  VERDANT_FROGLIGHT:
+    buy: 90
+    sell: 35
+  GLOW_BERRIES:
+    buy: 20
+    sell: 7
+  GLOW_LICHEN:
+    buy: 15
+    sell: 5

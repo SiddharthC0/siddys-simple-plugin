@@ -1,0 +1,79 @@
+items:
+  NETHER_STAR:
+    buy: 5000
+    sell: 2500
+  BEACON:
+    buy: 6000
+    sell: 3000
+  DRAGON_EGG:
+    buy: 999999
+    sell: 500000
+  DRAGON_HEAD:
+    buy: 50000
+    sell: 20000
+  ELYTRA:
+    buy: 8000
+    sell: 3500
+  TOTEM_OF_UNDYING:
+    buy: 2000
+    sell: 900
+  CONDUIT:
+    buy: 3000
+    sell: 1500
+  HEART_OF_THE_SEA:
+    buy: 500
+    sell: 200
+  TRIDENT:
+    buy: 1500
+    sell: 600
+  ENCHANTED_GOLDEN_APPLE:
+    buy: 5000
+    sell: 2000
+  ANCIENT_DEBRIS:
+    buy: 1000
+    sell: 500
+  NETHERITE_INGOT:
+    buy: 7320
+    sell: 3000
+  NETHERITE_BLOCK:
+    buy: 65880
+    sell: 27000
+  SHULKER_SHELL:
+    buy: 300
+    sell: 120
+  ECHO_SHARD:
+    buy: 300
+    sell: 120
+  DISC_FRAGMENT_5:
+    buy: 200
+    sell: 80
+  POTTERY_SHARD_ARCHER:
+    buy: 150
+    sell: 60
+  POTTERY_SHARD_PRIZE:
+    buy: 150
+    sell: 60
+  POTTERY_SHARD_ARMS_UP:
+    buy: 150
+    sell: 60
+  POTTERY_SHARD_SKULL:
+    buy: 150
+    sell: 60
+  WITHER_SKELETON_SKULL:
+    buy: 800
+    sell: 350
+  SPORE_BLOSSOM:
+    buy: 35
+    sell: 13
+  RECOVERY_COMPASS:
+    buy: 400
+    sell: 160
+  LODESTONE:
+    buy: 300
+    sell: 120
+  EXPERIENCE_BOTTLE:
+    buy: 100
+    sell: 40
+  END_CRYSTAL:
+    buy: 1000
+    sell: 450

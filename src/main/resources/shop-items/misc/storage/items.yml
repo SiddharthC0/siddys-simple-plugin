@@ -1,0 +1,97 @@
+items:
+  CHEST:
+    buy: 40
+    sell: 14
+  TRAPPED_CHEST:
+    buy: 55
+    sell: 20
+  BARREL:
+    buy: 60
+    sell: 22
+  ENDER_CHEST:
+    buy: 500
+    sell: 200
+  SHULKER_BOX:
+    buy: 400
+    sell: 160
+  WHITE_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  ORANGE_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  MAGENTA_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  LIGHT_BLUE_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  YELLOW_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  LIME_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  PINK_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  GRAY_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  LIGHT_GRAY_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  CYAN_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  PURPLE_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  BLUE_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  BROWN_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  GREEN_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  RED_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  BLACK_SHULKER_BOX:
+    buy: 420
+    sell: 168
+  BUNDLE:
+    buy: 150
+    sell: 55
+  HOPPER:
+    buy: 100
+    sell: 38
+  DROPPER:
+    buy: 50
+    sell: 18
+  DISPENSER:
+    buy: 80
+    sell: 30
+  FURNACE:
+    buy: 50
+    sell: 18
+  BLAST_FURNACE:
+    buy: 100
+    sell: 38
+  SMOKER:
+    buy: 80
+    sell: 30
+  BREWING_STAND:
+    buy: 120
+    sell: 45
+  BOOKSHELF:
+    buy: 80
+    sell: 28
+  CHISELED_BOOKSHELF:
+    buy: 120
+    sell: 45
+  LECTERN:
+    buy: 90
+    sell: 32

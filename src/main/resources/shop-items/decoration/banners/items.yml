@@ -1,0 +1,115 @@
+items:
+  WHITE_BANNER:
+    buy: 40
+    sell: 14
+  ORANGE_BANNER:
+    buy: 40
+    sell: 14
+  MAGENTA_BANNER:
+    buy: 40
+    sell: 14
+  LIGHT_BLUE_BANNER:
+    buy: 40
+    sell: 14
+  YELLOW_BANNER:
+    buy: 40
+    sell: 14
+  LIME_BANNER:
+    buy: 40
+    sell: 14
+  PINK_BANNER:
+    buy: 40
+    sell: 14
+  GRAY_BANNER:
+    buy: 40
+    sell: 14
+  LIGHT_GRAY_BANNER:
+    buy: 40
+    sell: 14
+  CYAN_BANNER:
+    buy: 40
+    sell: 14
+  PURPLE_BANNER:
+    buy: 40
+    sell: 14
+  BLUE_BANNER:
+    buy: 40
+    sell: 14
+  BROWN_BANNER:
+    buy: 40
+    sell: 14
+  GREEN_BANNER:
+    buy: 40
+    sell: 14
+  RED_BANNER:
+    buy: 40
+    sell: 14
+  BLACK_BANNER:
+    buy: 40
+    sell: 14
+  OAK_SIGN:
+    buy: 25
+    sell: 8
+  SPRUCE_SIGN:
+    buy: 25
+    sell: 8
+  BIRCH_SIGN:
+    buy: 25
+    sell: 8
+  JUNGLE_SIGN:
+    buy: 25
+    sell: 8
+  ACACIA_SIGN:
+    buy: 25
+    sell: 8
+  DARK_OAK_SIGN:
+    buy: 25
+    sell: 8
+  MANGROVE_SIGN:
+    buy: 30
+    sell: 10
+  CHERRY_SIGN:
+    buy: 35
+    sell: 12
+  BAMBOO_SIGN:
+    buy: 30
+    sell: 10
+  CRIMSON_SIGN:
+    buy: 30
+    sell: 10
+  WARPED_SIGN:
+    buy: 30
+    sell: 10
+  OAK_HANGING_SIGN:
+    buy: 35
+    sell: 12
+  SPRUCE_HANGING_SIGN:
+    buy: 35
+    sell: 12
+  BIRCH_HANGING_SIGN:
+    buy: 35
+    sell: 12
+  JUNGLE_HANGING_SIGN:
+    buy: 35
+    sell: 12
+  ACACIA_HANGING_SIGN:
+    buy: 35
+    sell: 12
+  DARK_OAK_HANGING_SIGN:
+    buy: 35
+    sell: 12
+  MANGROVE_HANGING_SIGN:
+    buy: 40
+    sell: 14
+  CHERRY_HANGING_SIGN:
+    buy: 45
+    sell: 16
+  BAMBOO_HANGING_SIGN:
+    buy: 40
+    sell: 14
+  CRIMSON_HANGING_SIGN:
+    buy: 40
+    sell: 14
+  WARPED_HANGING_SIGN:
+    buy: 40
+    sell: 14

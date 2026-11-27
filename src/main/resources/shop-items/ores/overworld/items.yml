@@ -1,0 +1,25 @@
+items:
+  COAL_ORE:
+    buy: 25
+    sell: 8
+  IRON_ORE:
+    buy: 40
+    sell: 14
+  COPPER_ORE:
+    buy: 35
+    sell: 12
+  GOLD_ORE:
+    buy: 80
+    sell: 30
+  REDSTONE_ORE:
+    buy: 60
+    sell: 22
+  EMERALD_ORE:
+    buy: 200
+    sell: 80
+  LAPIS_ORE:
+    buy: 90
+    sell: 35
+  DIAMOND_ORE:
+    buy: 300
+    sell: 120

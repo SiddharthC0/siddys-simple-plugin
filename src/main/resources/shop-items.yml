@@ -177,6711 +177,6711 @@ items:
   # ============================================================
   COAL_ORE:
     category: ores_minerals
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DEEPSLATE_COAL_ORE:
     category: ores_minerals
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   IRON_ORE:
     category: ores_minerals
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   DEEPSLATE_IRON_ORE:
     category: ores_minerals
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   COPPER_ORE:
     category: ores_minerals
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   DEEPSLATE_COPPER_ORE:
     category: ores_minerals
-    buy: 17
-    sell: 8
+    buy: 170000
+    sell: 80000
 
   GOLD_ORE:
     category: ores_minerals
-    buy: 35
-    sell: 17
+    buy: 350000
+    sell: 170000
 
   DEEPSLATE_GOLD_ORE:
     category: ores_minerals
-    buy: 38
-    sell: 19
+    buy: 380000
+    sell: 190000
 
   NETHER_GOLD_ORE:
     category: ores_minerals
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   REDSTONE_ORE:
     category: ores_minerals
-    buy: 18
-    sell: 9
+    buy: 180000
+    sell: 90000
 
   DEEPSLATE_REDSTONE_ORE:
     category: ores_minerals
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LAPIS_ORE:
     category: ores_minerals
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   DEEPSLATE_LAPIS_ORE:
     category: ores_minerals
-    buy: 27
-    sell: 13
+    buy: 270000
+    sell: 130000
 
   DIAMOND_ORE:
     category: ores_minerals
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   DEEPSLATE_DIAMOND_ORE:
     category: ores_minerals
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   EMERALD_ORE:
     category: ores_minerals
-    buy: 120
-    sell: 60
+    buy: 1200000
+    sell: 600000
 
   DEEPSLATE_EMERALD_ORE:
     category: ores_minerals
-    buy: 130
-    sell: 65
+    buy: 1300000
+    sell: 650000
 
   NETHER_QUARTZ_ORE:
     category: ores_minerals
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   ANCIENT_DEBRIS:
     category: ores_minerals
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   # ============================================================
   # INGOTS & GEMS
   # ============================================================
   COAL:
     category: ingots_gems
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CHARCOAL:
     category: ingots_gems
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   RAW_IRON:
     category: ingots_gems
-    buy: 18
-    sell: 9
+    buy: 180000
+    sell: 90000
 
   RAW_COPPER:
     category: ingots_gems
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   RAW_GOLD:
     category: ingots_gems
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   IRON_INGOT:
     category: ingots_gems
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   COPPER_INGOT:
     category: ingots_gems
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   GOLD_INGOT:
     category: ingots_gems
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   NETHERITE_INGOT:
     category: ingots_gems
-    buy: 1000
-    sell: 500
+    buy: 10000000
+    sell: 5000000
 
   NETHERITE_SCRAP:
     category: ingots_gems
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   DIAMOND:
     category: ingots_gems
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   EMERALD:
     category: ingots_gems
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   LAPIS_LAZULI:
     category: ingots_gems
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   QUARTZ:
     category: ingots_gems
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   REDSTONE:
     category: ingots_gems
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   AMETHYST_SHARD:
     category: ingots_gems
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   ECHO_SHARD:
     category: ingots_gems
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   GOLD_NUGGET:
     category: ingots_gems
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   IRON_NUGGET:
     category: ingots_gems
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   COPPER_BLOCK:
     category: ingots_gems
-    buy: 135
-    sell: 67
+    buy: 1350000
+    sell: 670000
 
   EXPOSED_COPPER:
     category: ingots_gems
-    buy: 135
-    sell: 67
+    buy: 1350000
+    sell: 670000
 
   WEATHERED_COPPER:
     category: ingots_gems
-    buy: 135
-    sell: 67
+    buy: 1350000
+    sell: 670000
 
   OXIDIZED_COPPER:
     category: ingots_gems
-    buy: 135
-    sell: 67
+    buy: 1350000
+    sell: 670000
 
   WAXED_COPPER_BLOCK:
     category: ingots_gems
-    buy: 140
-    sell: 70
+    buy: 1400000
+    sell: 700000
 
   WAXED_EXPOSED_COPPER:
     category: ingots_gems
-    buy: 140
-    sell: 70
+    buy: 1400000
+    sell: 700000
 
   WAXED_WEATHERED_COPPER:
     category: ingots_gems
-    buy: 140
-    sell: 70
+    buy: 1400000
+    sell: 700000
 
   WAXED_OXIDIZED_COPPER:
     category: ingots_gems
-    buy: 140
-    sell: 70
+    buy: 1400000
+    sell: 700000
 
   CUT_COPPER:
     category: ingots_gems
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   EXPOSED_CUT_COPPER:
     category: ingots_gems
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   WEATHERED_CUT_COPPER:
     category: ingots_gems
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   OXIDIZED_CUT_COPPER:
     category: ingots_gems
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   WAXED_CUT_COPPER:
     category: ingots_gems
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   WAXED_EXPOSED_CUT_COPPER:
     category: ingots_gems
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   WAXED_WEATHERED_CUT_COPPER:
     category: ingots_gems
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   WAXED_OXIDIZED_CUT_COPPER:
     category: ingots_gems
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   CUT_COPPER_SLAB:
     category: ingots_gems
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   EXPOSED_CUT_COPPER_SLAB:
     category: ingots_gems
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   WEATHERED_CUT_COPPER_SLAB:
     category: ingots_gems
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   OXIDIZED_CUT_COPPER_SLAB:
     category: ingots_gems
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   WAXED_CUT_COPPER_SLAB:
     category: ingots_gems
-    buy: 11
-    sell: 5
+    buy: 110000
+    sell: 50000
 
   WAXED_EXPOSED_CUT_COPPER_SLAB:
     category: ingots_gems
-    buy: 11
-    sell: 5
+    buy: 110000
+    sell: 50000
 
   WAXED_WEATHERED_CUT_COPPER_SLAB:
     category: ingots_gems
-    buy: 11
-    sell: 5
+    buy: 110000
+    sell: 50000
 
   WAXED_OXIDIZED_CUT_COPPER_SLAB:
     category: ingots_gems
-    buy: 11
-    sell: 5
+    buy: 110000
+    sell: 50000
 
   CUT_COPPER_STAIRS:
     category: ingots_gems
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   EXPOSED_CUT_COPPER_STAIRS:
     category: ingots_gems
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   WEATHERED_CUT_COPPER_STAIRS:
     category: ingots_gems
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   OXIDIZED_CUT_COPPER_STAIRS:
     category: ingots_gems
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   WAXED_CUT_COPPER_STAIRS:
     category: ingots_gems
-    buy: 17
-    sell: 8
+    buy: 170000
+    sell: 80000
 
   WAXED_EXPOSED_CUT_COPPER_STAIRS:
     category: ingots_gems
-    buy: 17
-    sell: 8
+    buy: 170000
+    sell: 80000
 
   WAXED_WEATHERED_CUT_COPPER_STAIRS:
     category: ingots_gems
-    buy: 17
-    sell: 8
+    buy: 170000
+    sell: 80000
 
   WAXED_OXIDIZED_CUT_COPPER_STAIRS:
     category: ingots_gems
-    buy: 17
-    sell: 8
+    buy: 170000
+    sell: 80000
 
   # ============================================================
   # BUILDING BLOCKS
   # ============================================================
   STONE:
     category: building_blocks
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   COBBLESTONE:
     category: building_blocks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   STONE_BRICKS:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   CRACKED_STONE_BRICKS:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   MOSSY_STONE_BRICKS:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CHISELED_STONE_BRICKS:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   SMOOTH_STONE:
     category: building_blocks
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   GRANITE:
     category: building_blocks
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   POLISHED_GRANITE:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DIORITE:
     category: building_blocks
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   POLISHED_DIORITE:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   ANDESITE:
     category: building_blocks
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   POLISHED_ANDESITE:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DEEPSLATE:
     category: building_blocks
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   COBBLED_DEEPSLATE:
     category: building_blocks
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   POLISHED_DEEPSLATE:
     category: building_blocks
-    buy: 9
-    sell: 4
+    buy: 90000
+    sell: 40000
 
   DEEPSLATE_BRICKS:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CRACKED_DEEPSLATE_BRICKS:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   DEEPSLATE_TILES:
     category: building_blocks
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   CRACKED_DEEPSLATE_TILES:
     category: building_blocks
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   CHISELED_DEEPSLATE:
     category: building_blocks
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   REINFORCED_DEEPSLATE:
     category: building_blocks
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   TUFF:
     category: building_blocks
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   TUFF_BRICKS:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   POLISHED_TUFF:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   CHISELED_TUFF:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CHISELED_TUFF_BRICKS:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BRICKS:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   MOSSY_COBBLESTONE:
     category: building_blocks
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   OBSIDIAN:
     category: building_blocks
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   CRYING_OBSIDIAN:
     category: building_blocks
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   BEDROCK:
     category: building_blocks
-    buy: 9999
-    sell: 9999
+    buy: 99990000
+    sell: 99990000
 
   GRAVEL:
     category: building_blocks
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   FLINT:
     category: building_blocks
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SANDSTONE:
     category: building_blocks
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   CHISELED_SANDSTONE:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   SMOOTH_SANDSTONE:
     category: building_blocks
-    buy: 9
-    sell: 4
+    buy: 90000
+    sell: 40000
 
   CUT_SANDSTONE:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   RED_SANDSTONE:
     category: building_blocks
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   CHISELED_RED_SANDSTONE:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   SMOOTH_RED_SANDSTONE:
     category: building_blocks
-    buy: 9
-    sell: 4
+    buy: 90000
+    sell: 40000
 
   CUT_RED_SANDSTONE:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   QUARTZ_BLOCK:
     category: building_blocks
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   SMOOTH_QUARTZ:
     category: building_blocks
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   QUARTZ_PILLAR:
     category: building_blocks
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CHISELED_QUARTZ_BLOCK:
     category: building_blocks
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   QUARTZ_BRICKS:
     category: building_blocks
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   IRON_BLOCK:
     category: building_blocks
-    buy: 225
-    sell: 112
+    buy: 2250000
+    sell: 1120000
 
   GOLD_BLOCK:
     category: building_blocks
-    buy: 360
-    sell: 180
+    buy: 3600000
+    sell: 1800000
 
   DIAMOND_BLOCK:
     category: building_blocks
-    buy: 900
-    sell: 450
+    buy: 9000000
+    sell: 4500000
 
   EMERALD_BLOCK:
     category: building_blocks
-    buy: 720
-    sell: 360
+    buy: 7200000
+    sell: 3600000
 
   LAPIS_BLOCK:
     category: building_blocks
-    buy: 135
-    sell: 67
+    buy: 1350000
+    sell: 670000
 
   REDSTONE_BLOCK:
     category: building_blocks
-    buy: 72
-    sell: 36
+    buy: 720000
+    sell: 360000
 
   COAL_BLOCK:
     category: building_blocks
-    buy: 45
-    sell: 22
+    buy: 450000
+    sell: 220000
 
   NETHERITE_BLOCK:
     category: building_blocks
-    buy: 9000
-    sell: 4500
+    buy: 90000000
+    sell: 45000000
 
   AMETHYST_BLOCK:
     category: building_blocks
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   BUDDING_AMETHYST:
     category: building_blocks
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   CALCITE:
     category: building_blocks
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   DRIPSTONE_BLOCK:
     category: building_blocks
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   POINTED_DRIPSTONE:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   ROOTED_DIRT:
     category: building_blocks
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MUD:
     category: building_blocks
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   PACKED_MUD:
     category: building_blocks
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   MUD_BRICKS:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   MAGMA_BLOCK:
     category: building_blocks
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BONE_BLOCK:
     category: building_blocks
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   HAY_BLOCK:
     category: building_blocks
-    buy: 45
-    sell: 22
+    buy: 450000
+    sell: 220000
 
   SPONGE:
     category: building_blocks
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   WET_SPONGE:
     category: building_blocks
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   SNOW_BLOCK:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   ICE:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PACKED_ICE:
     category: building_blocks
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BLUE_ICE:
     category: building_blocks
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   SNOW:
     category: building_blocks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   CLAY:
     category: building_blocks
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   HONEYCOMB_BLOCK:
     category: building_blocks
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   SLIME_BLOCK:
     category: building_blocks
-    buy: 90
-    sell: 45
+    buy: 900000
+    sell: 450000
 
   HONEY_BLOCK:
     category: building_blocks
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   DRIED_KELP_BLOCK:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PUMPKIN:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CARVED_PUMPKIN:
     category: building_blocks
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   JACK_O_LANTERN:
     category: building_blocks
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   MELON:
     category: building_blocks
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   TARGET:
     category: building_blocks
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LODESTONE:
     category: building_blocks
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   CHISELED_BOOKSHELF:
     category: building_blocks
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   BOOKSHELF:
     category: building_blocks
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   LECTERN:
     category: building_blocks
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   # ============================================================
   # WOOD & LOGS
   # ============================================================
   OAK_LOG:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SPRUCE_LOG:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BIRCH_LOG:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   JUNGLE_LOG:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ACACIA_LOG:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DARK_OAK_LOG:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MANGROVE_LOG:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CHERRY_LOG:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   BAMBOO_BLOCK:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   STRIPPED_OAK_LOG:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_SPRUCE_LOG:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_BIRCH_LOG:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_JUNGLE_LOG:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_ACACIA_LOG:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_DARK_OAK_LOG:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_MANGROVE_LOG:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_CHERRY_LOG:
     category: wood
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   STRIPPED_BAMBOO_BLOCK:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   OAK_WOOD:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SPRUCE_WOOD:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BIRCH_WOOD:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   JUNGLE_WOOD:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ACACIA_WOOD:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DARK_OAK_WOOD:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MANGROVE_WOOD:
     category: wood
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CHERRY_WOOD:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_OAK_WOOD:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_SPRUCE_WOOD:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_BIRCH_WOOD:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_JUNGLE_WOOD:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_ACACIA_WOOD:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_DARK_OAK_WOOD:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_MANGROVE_WOOD:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_CHERRY_WOOD:
     category: wood
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   CRIMSON_STEM:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   WARPED_STEM:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_CRIMSON_STEM:
     category: wood
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   STRIPPED_WARPED_STEM:
     category: wood
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   CRIMSON_HYPHAE:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   WARPED_HYPHAE:
     category: wood
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STRIPPED_CRIMSON_HYPHAE:
     category: wood
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   STRIPPED_WARPED_HYPHAE:
     category: wood
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   # ============================================================
   # PLANKS
   # ============================================================
   OAK_PLANKS:
     category: planks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   SPRUCE_PLANKS:
     category: planks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   BIRCH_PLANKS:
     category: planks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   JUNGLE_PLANKS:
     category: planks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   ACACIA_PLANKS:
     category: planks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   DARK_OAK_PLANKS:
     category: planks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   MANGROVE_PLANKS:
     category: planks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   CHERRY_PLANKS:
     category: planks
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BAMBOO_PLANKS:
     category: planks
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   CRIMSON_PLANKS:
     category: planks
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   WARPED_PLANKS:
     category: planks
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   # ============================================================
   # SLABS
   # ============================================================
   OAK_SLAB:
     category: slabs
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   SPRUCE_SLAB:
     category: slabs
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   BIRCH_SLAB:
     category: slabs
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   JUNGLE_SLAB:
     category: slabs
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   ACACIA_SLAB:
     category: slabs
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   DARK_OAK_SLAB:
     category: slabs
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   MANGROVE_SLAB:
     category: slabs
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   CHERRY_SLAB:
     category: slabs
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   BAMBOO_SLAB:
     category: slabs
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   CRIMSON_SLAB:
     category: slabs
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   WARPED_SLAB:
     category: slabs
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   STONE_SLAB:
     category: slabs
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   SMOOTH_STONE_SLAB:
     category: slabs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   STONE_BRICK_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   COBBLESTONE_SLAB:
     category: slabs
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   MOSSY_COBBLESTONE_SLAB:
     category: slabs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   MOSSY_STONE_BRICK_SLAB:
     category: slabs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   GRANITE_SLAB:
     category: slabs
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   POLISHED_GRANITE_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DIORITE_SLAB:
     category: slabs
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   POLISHED_DIORITE_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ANDESITE_SLAB:
     category: slabs
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   POLISHED_ANDESITE_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SANDSTONE_SLAB:
     category: slabs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   SMOOTH_SANDSTONE_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CUT_SANDSTONE_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   RED_SANDSTONE_SLAB:
     category: slabs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   SMOOTH_RED_SANDSTONE_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CUT_RED_SANDSTONE_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BRICK_SLAB:
     category: slabs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   QUARTZ_SLAB:
     category: slabs
-    buy: 11
-    sell: 5
+    buy: 110000
+    sell: 50000
 
   SMOOTH_QUARTZ_SLAB:
     category: slabs
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   NETHER_BRICK_SLAB:
     category: slabs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   RED_NETHER_BRICK_SLAB:
     category: slabs
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   PURPUR_SLAB:
     category: slabs
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PRISMARINE_SLAB:
     category: slabs
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PRISMARINE_BRICK_SLAB:
     category: slabs
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   DARK_PRISMARINE_SLAB:
     category: slabs
-    buy: 14
-    sell: 7
+    buy: 140000
+    sell: 70000
 
   PEARLESCENT_FROGLIGHT:
     category: slabs
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   VERDANT_FROGLIGHT:
     category: slabs
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   OCHRE_FROGLIGHT:
     category: slabs
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   COBBLED_DEEPSLATE_SLAB:
     category: slabs
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   POLISHED_DEEPSLATE_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DEEPSLATE_BRICK_SLAB:
     category: slabs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   DEEPSLATE_TILE_SLAB:
     category: slabs
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   TUFF_SLAB:
     category: slabs
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   POLISHED_TUFF_SLAB:
     category: slabs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   TUFF_BRICK_SLAB:
     category: slabs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   MUD_BRICK_SLAB:
     category: slabs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   BLACKSTONE_SLAB:
     category: slabs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   POLISHED_BLACKSTONE_SLAB:
     category: slabs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   POLISHED_BLACKSTONE_BRICK_SLAB:
     category: slabs
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   END_STONE_BRICK_SLAB:
     category: slabs
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   # ============================================================
   # STAIRS
   # ============================================================
   OAK_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   SPRUCE_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BIRCH_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   JUNGLE_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   ACACIA_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   DARK_OAK_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   MANGROVE_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   CHERRY_STAIRS:
     category: stairs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BAMBOO_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   CRIMSON_STAIRS:
     category: stairs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   WARPED_STAIRS:
     category: stairs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   STONE_STAIRS:
     category: stairs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   STONE_BRICK_STAIRS:
     category: stairs
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   COBBLESTONE_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   MOSSY_COBBLESTONE_STAIRS:
     category: stairs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   MOSSY_STONE_BRICK_STAIRS:
     category: stairs
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   GRANITE_STAIRS:
     category: stairs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   POLISHED_GRANITE_STAIRS:
     category: stairs
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   DIORITE_STAIRS:
     category: stairs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   POLISHED_DIORITE_STAIRS:
     category: stairs
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   ANDESITE_STAIRS:
     category: stairs
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   POLISHED_ANDESITE_STAIRS:
     category: stairs
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   SANDSTONE_STAIRS:
     category: stairs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   SMOOTH_SANDSTONE_STAIRS:
     category: stairs
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   RED_SANDSTONE_STAIRS:
     category: stairs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   SMOOTH_RED_SANDSTONE_STAIRS:
     category: stairs
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   BRICK_STAIRS:
     category: stairs
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   QUARTZ_STAIRS:
     category: stairs
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   SMOOTH_QUARTZ_STAIRS:
     category: stairs
-    buy: 16
-    sell: 8
+    buy: 160000
+    sell: 80000
 
   NETHER_BRICK_STAIRS:
     category: stairs
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   RED_NETHER_BRICK_STAIRS:
     category: stairs
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PURPUR_STAIRS:
     category: stairs
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PRISMARINE_STAIRS:
     category: stairs
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PRISMARINE_BRICK_STAIRS:
     category: stairs
-    buy: 18
-    sell: 9
+    buy: 180000
+    sell: 90000
 
   DARK_PRISMARINE_STAIRS:
     category: stairs
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   COBBLED_DEEPSLATE_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   POLISHED_DEEPSLATE_STAIRS:
     category: stairs
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   DEEPSLATE_BRICK_STAIRS:
     category: stairs
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DEEPSLATE_TILE_STAIRS:
     category: stairs
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   TUFF_STAIRS:
     category: stairs
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   POLISHED_TUFF_STAIRS:
     category: stairs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   TUFF_BRICK_STAIRS:
     category: stairs
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   MUD_BRICK_STAIRS:
     category: stairs
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BLACKSTONE_STAIRS:
     category: stairs
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   POLISHED_BLACKSTONE_STAIRS:
     category: stairs
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   POLISHED_BLACKSTONE_BRICK_STAIRS:
     category: stairs
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   END_STONE_BRICK_STAIRS:
     category: stairs
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   # ============================================================
   # WALLS
   # ============================================================
   COBBLESTONE_WALL:
     category: walls
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   MOSSY_COBBLESTONE_WALL:
     category: walls
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   STONE_BRICK_WALL:
     category: walls
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   MOSSY_STONE_BRICK_WALL:
     category: walls
-    buy: 9
-    sell: 4
+    buy: 90000
+    sell: 40000
 
   GRANITE_WALL:
     category: walls
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DIORITE_WALL:
     category: walls
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ANDESITE_WALL:
     category: walls
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SANDSTONE_WALL:
     category: walls
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   RED_SANDSTONE_WALL:
     category: walls
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   BRICK_WALL:
     category: walls
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   NETHER_BRICK_WALL:
     category: walls
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   RED_NETHER_BRICK_WALL:
     category: walls
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PRISMARINE_WALL:
     category: walls
-    buy: 14
-    sell: 7
+    buy: 140000
+    sell: 70000
 
   END_STONE_BRICK_WALL:
     category: walls
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BLACKSTONE_WALL:
     category: walls
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   POLISHED_BLACKSTONE_WALL:
     category: walls
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   POLISHED_BLACKSTONE_BRICK_WALL:
     category: walls
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   COBBLED_DEEPSLATE_WALL:
     category: walls
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   POLISHED_DEEPSLATE_WALL:
     category: walls
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   DEEPSLATE_BRICK_WALL:
     category: walls
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DEEPSLATE_TILE_WALL:
     category: walls
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   TUFF_WALL:
     category: walls
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   POLISHED_TUFF_WALL:
     category: walls
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   TUFF_BRICK_WALL:
     category: walls
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   MUD_BRICK_WALL:
     category: walls
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   # ============================================================
   # FENCES & GATES
   # ============================================================
   OAK_FENCE:
     category: fences
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SPRUCE_FENCE:
     category: fences
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BIRCH_FENCE:
     category: fences
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   JUNGLE_FENCE:
     category: fences
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ACACIA_FENCE:
     category: fences
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DARK_OAK_FENCE:
     category: fences
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MANGROVE_FENCE:
     category: fences
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CHERRY_FENCE:
     category: fences
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   BAMBOO_FENCE:
     category: fences
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CRIMSON_FENCE:
     category: fences
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   WARPED_FENCE:
     category: fences
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   NETHER_BRICK_FENCE:
     category: fences
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   OAK_FENCE_GATE:
     category: fences
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   SPRUCE_FENCE_GATE:
     category: fences
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   BIRCH_FENCE_GATE:
     category: fences
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   JUNGLE_FENCE_GATE:
     category: fences
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   ACACIA_FENCE_GATE:
     category: fences
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   DARK_OAK_FENCE_GATE:
     category: fences
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   MANGROVE_FENCE_GATE:
     category: fences
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   CHERRY_FENCE_GATE:
     category: fences
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BAMBOO_FENCE_GATE:
     category: fences
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   CRIMSON_FENCE_GATE:
     category: fences
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   WARPED_FENCE_GATE:
     category: fences
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   # ============================================================
   # DOORS & TRAPDOORS
   # ============================================================
   OAK_DOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   SPRUCE_DOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   BIRCH_DOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   JUNGLE_DOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   ACACIA_DOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   DARK_OAK_DOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   MANGROVE_DOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   CHERRY_DOOR:
     category: doors_trapdoors
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   BAMBOO_DOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   CRIMSON_DOOR:
     category: doors_trapdoors
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   WARPED_DOOR:
     category: doors_trapdoors
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   IRON_DOOR:
     category: doors_trapdoors
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   COPPER_DOOR:
     category: doors_trapdoors
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   EXPOSED_COPPER_DOOR:
     category: doors_trapdoors
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   WEATHERED_COPPER_DOOR:
     category: doors_trapdoors
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   OXIDIZED_COPPER_DOOR:
     category: doors_trapdoors
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   WAXED_COPPER_DOOR:
     category: doors_trapdoors
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   WAXED_EXPOSED_COPPER_DOOR:
     category: doors_trapdoors
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   WAXED_WEATHERED_COPPER_DOOR:
     category: doors_trapdoors
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   WAXED_OXIDIZED_COPPER_DOOR:
     category: doors_trapdoors
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   OAK_TRAPDOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   SPRUCE_TRAPDOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   BIRCH_TRAPDOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   JUNGLE_TRAPDOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   ACACIA_TRAPDOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   DARK_OAK_TRAPDOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   MANGROVE_TRAPDOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   CHERRY_TRAPDOOR:
     category: doors_trapdoors
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   BAMBOO_TRAPDOOR:
     category: doors_trapdoors
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   CRIMSON_TRAPDOOR:
     category: doors_trapdoors
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   WARPED_TRAPDOOR:
     category: doors_trapdoors
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   IRON_TRAPDOOR:
     category: doors_trapdoors
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   COPPER_TRAPDOOR:
     category: doors_trapdoors
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   EXPOSED_COPPER_TRAPDOOR:
     category: doors_trapdoors
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   WEATHERED_COPPER_TRAPDOOR:
     category: doors_trapdoors
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   OXIDIZED_COPPER_TRAPDOOR:
     category: doors_trapdoors
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   WAXED_COPPER_TRAPDOOR:
     category: doors_trapdoors
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   WAXED_EXPOSED_COPPER_TRAPDOOR:
     category: doors_trapdoors
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   WAXED_WEATHERED_COPPER_TRAPDOOR:
     category: doors_trapdoors
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   WAXED_OXIDIZED_COPPER_TRAPDOOR:
     category: doors_trapdoors
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   # ============================================================
   # GLASS
   # ============================================================
   GLASS:
     category: glass
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   GLASS_PANE:
     category: glass
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   WHITE_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   ORANGE_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   MAGENTA_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   LIGHT_BLUE_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   YELLOW_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   LIME_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PINK_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   GRAY_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   LIGHT_GRAY_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CYAN_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PURPLE_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BLUE_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BROWN_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   GREEN_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   RED_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BLACK_STAINED_GLASS:
     category: glass
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   WHITE_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   ORANGE_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   MAGENTA_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   LIGHT_BLUE_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   YELLOW_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   LIME_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   PINK_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   GRAY_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   LIGHT_GRAY_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   CYAN_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   PURPLE_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BLUE_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BROWN_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   GREEN_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   RED_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BLACK_STAINED_GLASS_PANE:
     category: glass
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   TINTED_GLASS:
     category: glass
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   # ============================================================
   # SAND & GRAVEL
   # ============================================================
   SAND:
     category: sand_gravel
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   RED_SAND:
     category: sand_gravel
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   GRAVEL:
     category: sand_gravel
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   # ============================================================
   # SOIL & DIRT
   # ============================================================
   DIRT:
     category: soil
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   COARSE_DIRT:
     category: soil
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   GRASS_BLOCK:
     category: soil
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   PODZOL:
     category: soil
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MYCELIUM:
     category: soil
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   FARMLAND:
     category: soil
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   DIRT_PATH:
     category: soil
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   MUD:
     category: soil
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   ROOTED_DIRT:
     category: soil
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   # ============================================================
   # CLAY & TERRACOTTA
   # ============================================================
   CLAY_BALL:
     category: clay_terracotta
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CLAY:
     category: clay_terracotta
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   TERRACOTTA:
     category: clay_terracotta
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   WHITE_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   ORANGE_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   MAGENTA_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   LIGHT_BLUE_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   YELLOW_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   LIME_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   PINK_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   GRAY_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   LIGHT_GRAY_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   CYAN_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   PURPLE_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   BLUE_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   BROWN_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   GREEN_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   RED_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   BLACK_TERRACOTTA:
     category: clay_terracotta
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   WHITE_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   ORANGE_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   MAGENTA_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   LIGHT_BLUE_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   YELLOW_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   LIME_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PINK_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   GRAY_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   LIGHT_GRAY_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   CYAN_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PURPLE_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   BLUE_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   BROWN_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   GREEN_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   RED_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   BLACK_GLAZED_TERRACOTTA:
     category: clay_terracotta
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   # ============================================================
   # CONCRETE
   # ============================================================
   WHITE_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   ORANGE_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   MAGENTA_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   LIGHT_BLUE_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   YELLOW_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   LIME_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PINK_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   GRAY_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   LIGHT_GRAY_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CYAN_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PURPLE_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BLUE_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BROWN_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   GREEN_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   RED_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BLACK_CONCRETE:
     category: concrete
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   WHITE_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   ORANGE_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   MAGENTA_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   LIGHT_BLUE_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   YELLOW_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   LIME_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   PINK_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   GRAY_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   LIGHT_GRAY_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   CYAN_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   PURPLE_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   BLUE_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   BROWN_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   GREEN_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   RED_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   BLACK_CONCRETE_POWDER:
     category: concrete
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   # ============================================================
   # WOOL
   # ============================================================
   WHITE_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   ORANGE_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   MAGENTA_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   LIGHT_BLUE_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   YELLOW_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   LIME_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   PINK_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   GRAY_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   LIGHT_GRAY_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   CYAN_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   PURPLE_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BLUE_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BROWN_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   GREEN_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   RED_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BLACK_WOOL:
     category: wool
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   # ============================================================
   # CARPET
   # ============================================================
   WHITE_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   ORANGE_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   MAGENTA_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   LIGHT_BLUE_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   YELLOW_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   LIME_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   PINK_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   GRAY_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   LIGHT_GRAY_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   CYAN_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   PURPLE_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BLUE_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BROWN_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   GREEN_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   RED_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BLACK_CARPET:
     category: carpet
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   MOSS_CARPET:
     category: carpet
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   # ============================================================
   # FARMING
   # ============================================================
   WHEAT:
     category: farming
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CARROT:
     category: farming
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   POTATO:
     category: farming
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BAKED_POTATO:
     category: farming
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   POISONOUS_POTATO:
     category: farming
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   BEETROOT:
     category: farming
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   SUGAR_CANE:
     category: farming
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SUGAR:
     category: farming
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   KELP:
     category: farming
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   DRIED_KELP:
     category: farming
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CACTUS:
     category: farming
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BAMBOO:
     category: farming
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   COCOA_BEANS:
     category: farming
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   NETHER_WART:
     category: farming
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CHORUS_FRUIT:
     category: farming
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   POPPED_CHORUS_FRUIT:
     category: farming
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   CHORUS_PLANT:
     category: farming
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   CHORUS_FLOWER:
     category: farming
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   SWEET_BERRIES:
     category: farming
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   GLOW_BERRIES:
     category: farming
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   HONEYCOMB:
     category: farming
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   HONEY_BOTTLE:
     category: farming
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PUMPKIN_SEEDS:
     category: farming
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MELON_SEEDS:
     category: farming
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MELON_SLICE:
     category: farming
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   GLISTERING_MELON_SLICE:
     category: farming
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   # ============================================================
   # SEEDS & SAPLINGS
   # ============================================================
   WHEAT_SEEDS:
     category: seeds
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   BEETROOT_SEEDS:
     category: seeds
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   TORCHFLOWER_SEEDS:
     category: seeds
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PITCHER_POD:
     category: seeds
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   OAK_SAPLING:
     category: seeds
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SPRUCE_SAPLING:
     category: seeds
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BIRCH_SAPLING:
     category: seeds
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   JUNGLE_SAPLING:
     category: seeds
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ACACIA_SAPLING:
     category: seeds
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DARK_OAK_SAPLING:
     category: seeds
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MANGROVE_PROPAGULE:
     category: seeds
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   CHERRY_SAPLING:
     category: seeds
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   AZALEA:
     category: seeds
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   FLOWERING_AZALEA:
     category: seeds
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   # ============================================================
   # FOOD
   # ============================================================
   BREAD:
     category: food
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   COOKIE:
     category: food
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CAKE:
     category: food
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   PUMPKIN_PIE:
     category: food
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   APPLE:
     category: food
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   GOLDEN_APPLE:
     category: food
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   ENCHANTED_GOLDEN_APPLE:
     category: food
-    buy: 2000
-    sell: 1000
+    buy: 20000000
+    sell: 10000000
 
   MUSHROOM_STEW:
     category: food
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BEETROOT_SOUP:
     category: food
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   RABBIT_STEW:
     category: food
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   SUSPICIOUS_STEW:
     category: food
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   DRIED_KELP:
     category: food
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   # ============================================================
   # MEAT & FISH
   # ============================================================
   RAW_BEEF:
     category: meat
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   COOKED_BEEF:
     category: meat
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   RAW_PORKCHOP:
     category: meat
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   COOKED_PORKCHOP:
     category: meat
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   RAW_CHICKEN:
     category: meat
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   COOKED_CHICKEN:
     category: meat
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   RAW_MUTTON:
     category: meat
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   COOKED_MUTTON:
     category: meat
-    buy: 13
-    sell: 6
+    buy: 130000
+    sell: 60000
 
   RAW_RABBIT:
     category: meat
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   COOKED_RABBIT:
     category: meat
-    buy: 13
-    sell: 6
+    buy: 130000
+    sell: 60000
 
   RAW_COD:
     category: meat
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   COOKED_COD:
     category: meat
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   RAW_SALMON:
     category: meat
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   COOKED_SALMON:
     category: meat
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   TROPICAL_FISH:
     category: meat
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   PUFFERFISH:
     category: meat
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   ROTTEN_FLESH:
     category: meat
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   SPIDER_EYE:
     category: meat
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   FERMENTED_SPIDER_EYE:
     category: meat
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   # ============================================================
   # MOB DROPS
   # ============================================================
   BONE:
     category: mob_drops
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BONE_MEAL:
     category: mob_drops
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   STRING:
     category: mob_drops
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   FEATHER:
     category: mob_drops
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   GUNPOWDER:
     category: mob_drops
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   SLIMEBALL:
     category: mob_drops
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BLAZE_ROD:
     category: mob_drops
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   BLAZE_POWDER:
     category: mob_drops
-    buy: 13
-    sell: 6
+    buy: 130000
+    sell: 60000
 
   MAGMA_CREAM:
     category: mob_drops
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   GHAST_TEAR:
     category: mob_drops
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   NETHER_STAR:
     category: mob_drops
-    buy: 2000
-    sell: 1000
+    buy: 20000000
+    sell: 10000000
 
   DRAGON_BREATH:
     category: mob_drops
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   DRAGON_EGG:
     category: mob_drops
-    buy: 5000
-    sell: 2500
+    buy: 50000000
+    sell: 25000000
 
   SHULKER_SHELL:
     category: mob_drops
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   ELYTRA:
     category: mob_drops
-    buy: 2000
-    sell: 1000
+    buy: 20000000
+    sell: 10000000
 
   TOTEM_OF_UNDYING:
     category: mob_drops
-    buy: 1000
-    sell: 500
+    buy: 10000000
+    sell: 5000000
 
   TRIDENT:
     category: mob_drops
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   PHANTOM_MEMBRANE:
     category: mob_drops
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   TURTLE_SCUTE:
     category: mob_drops
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   ARMADILLO_SCUTE:
     category: mob_drops
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   HEART_OF_THE_SEA:
     category: mob_drops
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   NAUTILUS_SHELL:
     category: mob_drops
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   INK_SAC:
     category: mob_drops
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   GLOW_INK_SAC:
     category: mob_drops
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PRISMARINE_SHARD:
     category: mob_drops
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PRISMARINE_CRYSTALS:
     category: mob_drops
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   BREEZE_ROD:
     category: mob_drops
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   WIND_CHARGE:
     category: mob_drops
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   HEAVY_CORE:
     category: mob_drops
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   WITHER_SKELETON_SKULL:
     category: mob_drops
-    buy: 300
-    sell: 150
+    buy: 3000000
+    sell: 1500000
 
   CREEPER_HEAD:
     category: mob_drops
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   ZOMBIE_HEAD:
     category: mob_drops
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   SKELETON_SKULL:
     category: mob_drops
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   LEATHER:
     category: mob_drops
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   RABBIT_HIDE:
     category: mob_drops
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   RABBIT_FOOT:
     category: mob_drops
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   WOOL:
     category: mob_drops
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   ENDER_PEARL:
     category: mob_drops
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   ENDER_EYE:
     category: mob_drops
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   OMINOUS_BOTTLE:
     category: mob_drops
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   TRIAL_KEY:
     category: mob_drops
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   OMINOUS_TRIAL_KEY:
     category: mob_drops
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   BREEZE_ROD:
     category: mob_drops
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   MUSIC_DISC_CREATOR:
     category: mob_drops
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   MUSIC_DISC_CREATOR_MUSIC_BOX:
     category: mob_drops
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   MUSIC_DISC_PRECIPICE:
     category: mob_drops
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   # ============================================================
   # TOOLS
   # ============================================================
   WOODEN_PICKAXE:
     category: tools
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   STONE_PICKAXE:
     category: tools
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   IRON_PICKAXE:
     category: tools
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   GOLDEN_PICKAXE:
     category: tools
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   DIAMOND_PICKAXE:
     category: tools
-    buy: 350
-    sell: 175
+    buy: 3500000
+    sell: 1750000
 
   NETHERITE_PICKAXE:
     category: tools
-    buy: 1500
-    sell: 750
+    buy: 15000000
+    sell: 7500000
 
   WOODEN_AXE:
     category: tools
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   STONE_AXE:
     category: tools
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   IRON_AXE:
     category: tools
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   GOLDEN_AXE:
     category: tools
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   DIAMOND_AXE:
     category: tools
-    buy: 350
-    sell: 175
+    buy: 3500000
+    sell: 1750000
 
   NETHERITE_AXE:
     category: tools
-    buy: 1500
-    sell: 750
+    buy: 15000000
+    sell: 7500000
 
   WOODEN_SHOVEL:
     category: tools
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   STONE_SHOVEL:
     category: tools
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   IRON_SHOVEL:
     category: tools
-    buy: 45
-    sell: 22
+    buy: 450000
+    sell: 220000
 
   GOLDEN_SHOVEL:
     category: tools
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   DIAMOND_SHOVEL:
     category: tools
-    buy: 250
-    sell: 125
+    buy: 2500000
+    sell: 1250000
 
   NETHERITE_SHOVEL:
     category: tools
-    buy: 1200
-    sell: 600
+    buy: 12000000
+    sell: 6000000
 
   WOODEN_HOE:
     category: tools
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   STONE_HOE:
     category: tools
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   IRON_HOE:
     category: tools
-    buy: 45
-    sell: 22
+    buy: 450000
+    sell: 220000
 
   GOLDEN_HOE:
     category: tools
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   DIAMOND_HOE:
     category: tools
-    buy: 250
-    sell: 125
+    buy: 2500000
+    sell: 1250000
 
   NETHERITE_HOE:
     category: tools
-    buy: 1200
-    sell: 600
+    buy: 12000000
+    sell: 6000000
 
   FLINT_AND_STEEL:
     category: tools
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   SHEARS:
     category: tools
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   FISHING_ROD:
     category: tools
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   COMPASS:
     category: tools
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   RECOVERY_COMPASS:
     category: tools
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   CLOCK:
     category: tools
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   SPYGLASS:
     category: tools
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   LEAD:
     category: tools
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   NAME_TAG:
     category: tools
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   BUCKET:
     category: tools
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   WATER_BUCKET:
     category: tools
-    buy: 35
-    sell: 17
+    buy: 350000
+    sell: 170000
 
   LAVA_BUCKET:
     category: tools
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   MILK_BUCKET:
     category: tools
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POWDER_SNOW_BUCKET:
     category: tools
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   AXOLOTL_BUCKET:
     category: tools
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   COD_BUCKET:
     category: tools
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   SALMON_BUCKET:
     category: tools
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   TROPICAL_FISH_BUCKET:
     category: tools
-    buy: 35
-    sell: 17
+    buy: 350000
+    sell: 170000
 
   PUFFERFISH_BUCKET:
     category: tools
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   TADPOLE_BUCKET:
     category: tools
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   BUNDLE:
     category: tools
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   BRUSH:
     category: tools
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   # ============================================================
   # WEAPONS
   # ============================================================
   WOODEN_SWORD:
     category: weapons
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   STONE_SWORD:
     category: weapons
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   IRON_SWORD:
     category: weapons
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   GOLDEN_SWORD:
     category: weapons
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   DIAMOND_SWORD:
     category: weapons
-    buy: 300
-    sell: 150
+    buy: 3000000
+    sell: 1500000
 
   NETHERITE_SWORD:
     category: weapons
-    buy: 1400
-    sell: 700
+    buy: 14000000
+    sell: 7000000
 
   BOW:
     category: weapons
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   CROSSBOW:
     category: weapons
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   ARROW:
     category: weapons
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   SPECTRAL_ARROW:
     category: weapons
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   TIPPED_ARROW:
     category: weapons
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   TRIDENT:
     category: weapons
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   MACE:
     category: weapons
-    buy: 600
-    sell: 300
+    buy: 6000000
+    sell: 3000000
 
   SHIELD:
     category: weapons
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   # ============================================================
   # ARMOR
   # ============================================================
   LEATHER_HELMET:
     category: armor
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LEATHER_CHESTPLATE:
     category: armor
-    buy: 35
-    sell: 17
+    buy: 350000
+    sell: 170000
 
   LEATHER_LEGGINGS:
     category: armor
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   LEATHER_BOOTS:
     category: armor
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CHAINMAIL_HELMET:
     category: armor
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   CHAINMAIL_CHESTPLATE:
     category: armor
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   CHAINMAIL_LEGGINGS:
     category: armor
-    buy: 70
-    sell: 35
+    buy: 700000
+    sell: 350000
 
   CHAINMAIL_BOOTS:
     category: armor
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   IRON_HELMET:
     category: armor
-    buy: 70
-    sell: 35
+    buy: 700000
+    sell: 350000
 
   IRON_CHESTPLATE:
     category: armor
-    buy: 120
-    sell: 60
+    buy: 1200000
+    sell: 600000
 
   IRON_LEGGINGS:
     category: armor
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   IRON_BOOTS:
     category: armor
-    buy: 70
-    sell: 35
+    buy: 700000
+    sell: 350000
 
   GOLDEN_HELMET:
     category: armor
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   GOLDEN_CHESTPLATE:
     category: armor
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   GOLDEN_LEGGINGS:
     category: armor
-    buy: 85
-    sell: 42
+    buy: 850000
+    sell: 420000
 
   GOLDEN_BOOTS:
     category: armor
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   DIAMOND_HELMET:
     category: armor
-    buy: 300
-    sell: 150
+    buy: 3000000
+    sell: 1500000
 
   DIAMOND_CHESTPLATE:
     category: armor
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   DIAMOND_LEGGINGS:
     category: armor
-    buy: 450
-    sell: 225
+    buy: 4500000
+    sell: 2250000
 
   DIAMOND_BOOTS:
     category: armor
-    buy: 300
-    sell: 150
+    buy: 3000000
+    sell: 1500000
 
   NETHERITE_HELMET:
     category: armor
-    buy: 1300
-    sell: 650
+    buy: 13000000
+    sell: 6500000
 
   NETHERITE_CHESTPLATE:
     category: armor
-    buy: 1800
-    sell: 900
+    buy: 18000000
+    sell: 9000000
 
   NETHERITE_LEGGINGS:
     category: armor
-    buy: 1600
-    sell: 800
+    buy: 16000000
+    sell: 8000000
 
   NETHERITE_BOOTS:
     category: armor
-    buy: 1300
-    sell: 650
+    buy: 13000000
+    sell: 6500000
 
   TURTLE_HELMET:
     category: armor
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   ELYTRA:
     category: armor
-    buy: 2000
-    sell: 1000
+    buy: 20000000
+    sell: 10000000
 
   WOLF_ARMOR:
     category: armor
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   # ============================================================
   # POTIONS
   # ============================================================
   POTION:
     category: potions
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   SPLASH_POTION:
     category: potions
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   LINGERING_POTION:
     category: potions
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   AWKWARD_POTION:
     category: potions
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   THICK_POTION:
     category: potions
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   MUNDANE_POTION:
     category: potions
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   # ============================================================
   # BREWING
   # ============================================================
   BREWING_STAND:
     category: brewing
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   CAULDRON:
     category: brewing
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   GLASS_BOTTLE:
     category: brewing
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   NETHER_WART:
     category: brewing
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BLAZE_POWDER:
     category: brewing
-    buy: 13
-    sell: 6
+    buy: 130000
+    sell: 60000
 
   GLOWSTONE_DUST:
     category: brewing
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   REDSTONE:
     category: brewing
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   FERMENTED_SPIDER_EYE:
     category: brewing
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   MAGMA_CREAM:
     category: brewing
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   SUGAR:
     category: brewing
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   RABBIT_FOOT:
     category: brewing
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   GHAST_TEAR:
     category: brewing
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   PHANTOM_MEMBRANE:
     category: brewing
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   GOLDEN_CARROT:
     category: brewing
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   PUFFERFISH:
     category: brewing
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   TURTLE_SCUTE:
     category: brewing
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   DRAGON_BREATH:
     category: brewing
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   # ============================================================
   # REDSTONE
   # ============================================================
   REDSTONE:
     category: redstone
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   REDSTONE_TORCH:
     category: redstone
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   REDSTONE_LAMP:
     category: redstone
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LEVER:
     category: redstone
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   STONE_BUTTON:
     category: redstone
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   OAK_BUTTON:
     category: redstone
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   SPRUCE_BUTTON:
     category: redstone
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   BIRCH_BUTTON:
     category: redstone
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   JUNGLE_BUTTON:
     category: redstone
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   ACACIA_BUTTON:
     category: redstone
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   DARK_OAK_BUTTON:
     category: redstone
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   MANGROVE_BUTTON:
     category: redstone
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   CHERRY_BUTTON:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BAMBOO_BUTTON:
     category: redstone
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   CRIMSON_BUTTON:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   WARPED_BUTTON:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   POLISHED_BLACKSTONE_BUTTON:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   STONE_PRESSURE_PLATE:
     category: redstone
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   OAK_PRESSURE_PLATE:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   SPRUCE_PRESSURE_PLATE:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BIRCH_PRESSURE_PLATE:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   JUNGLE_PRESSURE_PLATE:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   ACACIA_PRESSURE_PLATE:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   DARK_OAK_PRESSURE_PLATE:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   MANGROVE_PRESSURE_PLATE:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   CHERRY_PRESSURE_PLATE:
     category: redstone
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BAMBOO_PRESSURE_PLATE:
     category: redstone
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   CRIMSON_PRESSURE_PLATE:
     category: redstone
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   WARPED_PRESSURE_PLATE:
     category: redstone
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   POLISHED_BLACKSTONE_PRESSURE_PLATE:
     category: redstone
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   LIGHT_WEIGHTED_PRESSURE_PLATE:
     category: redstone
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   HEAVY_WEIGHTED_PRESSURE_PLATE:
     category: redstone
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   REPEATER:
     category: redstone
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   COMPARATOR:
     category: redstone
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   DISPENSER:
     category: redstone
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   DROPPER:
     category: redstone
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PISTON:
     category: redstone
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   STICKY_PISTON:
     category: redstone
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   OBSERVER:
     category: redstone
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   HOPPER:
     category: redstone
-    buy: 35
-    sell: 17
+    buy: 350000
+    sell: 170000
 
   DROPPER:
     category: redstone
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   TNT:
     category: redstone
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   DAYLIGHT_DETECTOR:
     category: redstone
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   TRIPWIRE_HOOK:
     category: redstone
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   NOTE_BLOCK:
     category: redstone
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   JUKEBOX:
     category: redstone
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   SCULK_SENSOR:
     category: redstone
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   CALIBRATED_SCULK_SENSOR:
     category: redstone
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   SCULK_SHRIEKER:
     category: redstone
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   SCULK_CATALYST:
     category: redstone
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   SCULK:
     category: redstone
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   SCULK_VEIN:
     category: redstone
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   TARGET:
     category: redstone
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   # ============================================================
   # RAILS & MINECARTS
   # ============================================================
   RAIL:
     category: rails
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   POWERED_RAIL:
     category: rails
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   DETECTOR_RAIL:
     category: rails
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   ACTIVATOR_RAIL:
     category: rails
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   MINECART:
     category: rails
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CHEST_MINECART:
     category: rails
-    buy: 35
-    sell: 17
+    buy: 350000
+    sell: 170000
 
   HOPPER_MINECART:
     category: rails
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   FURNACE_MINECART:
     category: rails
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   TNT_MINECART:
     category: rails
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   BOAT:
     category: rails
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   OAK_BOAT:
     category: rails
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   SPRUCE_BOAT:
     category: rails
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BIRCH_BOAT:
     category: rails
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   JUNGLE_BOAT:
     category: rails
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   ACACIA_BOAT:
     category: rails
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   DARK_OAK_BOAT:
     category: rails
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   MANGROVE_BOAT:
     category: rails
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CHERRY_BOAT:
     category: rails
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   BAMBOO_RAFT:
     category: rails
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   OAK_CHEST_BOAT:
     category: rails
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   SPRUCE_CHEST_BOAT:
     category: rails
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BIRCH_CHEST_BOAT:
     category: rails
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   JUNGLE_CHEST_BOAT:
     category: rails
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   ACACIA_CHEST_BOAT:
     category: rails
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   DARK_OAK_CHEST_BOAT:
     category: rails
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   MANGROVE_CHEST_BOAT:
     category: rails
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CHERRY_CHEST_BOAT:
     category: rails
-    buy: 22
-    sell: 11
+    buy: 220000
+    sell: 110000
 
   BAMBOO_CHEST_RAFT:
     category: rails
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   # ============================================================
   # LIGHTING
   # ============================================================
   TORCH:
     category: lighting
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   SOUL_TORCH:
     category: lighting
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   LANTERN:
     category: lighting
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   SOUL_LANTERN:
     category: lighting
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   GLOWSTONE:
     category: lighting
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   GLOWSTONE_DUST:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   SEA_LANTERN:
     category: lighting
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   SHROOMLIGHT:
     category: lighting
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   GLOW_ITEM_FRAME:
     category: lighting
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CAMPFIRE:
     category: lighting
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   SOUL_CAMPFIRE:
     category: lighting
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CANDLE:
     category: lighting
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   WHITE_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   ORANGE_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   MAGENTA_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   LIGHT_BLUE_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   YELLOW_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   LIME_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   PINK_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   GRAY_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   LIGHT_GRAY_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   CYAN_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   PURPLE_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   BLUE_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   BROWN_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   GREEN_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   RED_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   BLACK_CANDLE:
     category: lighting
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   FROGLIGHT:
     category: lighting
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PEARLESCENT_FROGLIGHT:
     category: lighting
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   VERDANT_FROGLIGHT:
     category: lighting
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   OCHRE_FROGLIGHT:
     category: lighting
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   END_ROD:
     category: lighting
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   # ============================================================
   # STORAGE
   # ============================================================
   CHEST:
     category: storage
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   TRAPPED_CHEST:
     category: storage
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BARREL:
     category: storage
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   SHULKER_BOX:
     category: storage
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   WHITE_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   ORANGE_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   MAGENTA_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   LIGHT_BLUE_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   YELLOW_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   LIME_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   PINK_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   GRAY_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   LIGHT_GRAY_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   CYAN_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   PURPLE_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   BLUE_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   BROWN_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   GREEN_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   RED_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   BLACK_SHULKER_BOX:
     category: storage
-    buy: 160
-    sell: 80
+    buy: 1600000
+    sell: 800000
 
   ENDER_CHEST:
     category: storage
-    buy: 300
-    sell: 150
+    buy: 3000000
+    sell: 1500000
 
   FURNACE:
     category: storage
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   BLAST_FURNACE:
     category: storage
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   SMOKER:
     category: storage
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   # ============================================================
   # DECORATION
   # ============================================================
   FLOWER_POT:
     category: decoration
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   ITEM_FRAME:
     category: decoration
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   PAINTING:
     category: decoration
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   ARMOR_STAND:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BELL:
     category: decoration
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   SIGN:
     category: decoration
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   OAK_SIGN:
     category: decoration
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SPRUCE_SIGN:
     category: decoration
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BIRCH_SIGN:
     category: decoration
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   JUNGLE_SIGN:
     category: decoration
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ACACIA_SIGN:
     category: decoration
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DARK_OAK_SIGN:
     category: decoration
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MANGROVE_SIGN:
     category: decoration
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CHERRY_SIGN:
     category: decoration
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   BAMBOO_SIGN:
     category: decoration
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CRIMSON_SIGN:
     category: decoration
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   WARPED_SIGN:
     category: decoration
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   OAK_HANGING_SIGN:
     category: decoration
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   SPRUCE_HANGING_SIGN:
     category: decoration
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BIRCH_HANGING_SIGN:
     category: decoration
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   JUNGLE_HANGING_SIGN:
     category: decoration
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   ACACIA_HANGING_SIGN:
     category: decoration
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DARK_OAK_HANGING_SIGN:
     category: decoration
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   MANGROVE_HANGING_SIGN:
     category: decoration
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   CHERRY_HANGING_SIGN:
     category: decoration
-    buy: 9
-    sell: 4
+    buy: 90000
+    sell: 40000
 
   BAMBOO_HANGING_SIGN:
     category: decoration
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   CRIMSON_HANGING_SIGN:
     category: decoration
-    buy: 9
-    sell: 4
+    buy: 90000
+    sell: 40000
 
   WARPED_HANGING_SIGN:
     category: decoration
-    buy: 9
-    sell: 4
+    buy: 90000
+    sell: 40000
 
   DECORATED_POT:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   COMPOSTER:
     category: decoration
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   STONECUTTER:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   GRINDSTONE:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   SMITHING_TABLE:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CARTOGRAPHY_TABLE:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   FLETCHING_TABLE:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LOOM:
     category: decoration
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   WHITE_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   ORANGE_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   MAGENTA_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LIGHT_BLUE_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   YELLOW_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LIME_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PINK_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   GRAY_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LIGHT_GRAY_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CYAN_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PURPLE_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BLUE_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BROWN_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   GREEN_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   RED_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BLACK_BED:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   ANVIL:
     category: decoration
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   CHIPPED_ANVIL:
     category: decoration
-    buy: 35
-    sell: 17
+    buy: 350000
+    sell: 170000
 
   DAMAGED_ANVIL:
     category: decoration
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   # ============================================================
   # FLOWERS & PLANTS
   # ============================================================
   DANDELION:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   POPPY:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   BLUE_ORCHID:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ALLIUM:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   AZURE_BLUET:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   RED_TULIP:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ORANGE_TULIP:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   WHITE_TULIP:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   PINK_TULIP:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   OXEYE_DAISY:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CORNFLOWER:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   LILY_OF_THE_VALLEY:
     category: flowers_plants
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   WITHER_ROSE:
     category: flowers_plants
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   SUNFLOWER:
     category: flowers_plants
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   LILAC:
     category: flowers_plants
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   ROSE_BUSH:
     category: flowers_plants
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   PEONY:
     category: flowers_plants
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   TALL_GRASS:
     category: flowers_plants
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   LARGE_FERN:
     category: flowers_plants
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   GRASS:
     category: flowers_plants
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   FERN:
     category: flowers_plants
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   DEAD_BUSH:
     category: flowers_plants
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   SEAGRASS:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   SEA_PICKLE:
     category: flowers_plants
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   LILY_PAD:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MOSS_BLOCK:
     category: flowers_plants
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   MOSS_CARPET:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   HANGING_ROOTS:
     category: flowers_plants
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   BIG_DRIPLEAF:
     category: flowers_plants
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   SMALL_DRIPLEAF:
     category: flowers_plants
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   SPORE_BLOSSOM:
     category: flowers_plants
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BROWN_MUSHROOM:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   RED_MUSHROOM:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CRIMSON_FUNGUS:
     category: flowers_plants
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   WARPED_FUNGUS:
     category: flowers_plants
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   CRIMSON_ROOTS:
     category: flowers_plants
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   WARPED_ROOTS:
     category: flowers_plants
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   NETHER_SPROUTS:
     category: flowers_plants
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   WEEPING_VINES:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   TWISTING_VINES:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   VINE:
     category: flowers_plants
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   GLOW_LICHEN:
     category: flowers_plants
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   CAVE_VINES:
     category: flowers_plants
-    buy: 6
-    sell: 3
+    buy: 60000
+    sell: 30000
 
   PINK_PETALS:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   TORCHFLOWER:
     category: flowers_plants
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PITCHER_PLANT:
     category: flowers_plants
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   AZALEA_LEAVES:
     category: flowers_plants
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   FLOWERING_AZALEA_LEAVES:
     category: flowers_plants
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   OAK_LEAVES:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   SPRUCE_LEAVES:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   BIRCH_LEAVES:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   JUNGLE_LEAVES:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   ACACIA_LEAVES:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   DARK_OAK_LEAVES:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   MANGROVE_LEAVES:
     category: flowers_plants
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   CHERRY_LEAVES:
     category: flowers_plants
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   # ============================================================
   # CORAL & OCEAN
   # ============================================================
   TUBE_CORAL:
     category: coral
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BRAIN_CORAL:
     category: coral
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   BUBBLE_CORAL:
     category: coral
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   FIRE_CORAL:
     category: coral
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   HORN_CORAL:
     category: coral
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   DEAD_TUBE_CORAL:
     category: coral
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DEAD_BRAIN_CORAL:
     category: coral
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DEAD_BUBBLE_CORAL:
     category: coral
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DEAD_FIRE_CORAL:
     category: coral
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   DEAD_HORN_CORAL:
     category: coral
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   TUBE_CORAL_BLOCK:
     category: coral
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BRAIN_CORAL_BLOCK:
     category: coral
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BUBBLE_CORAL_BLOCK:
     category: coral
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   FIRE_CORAL_BLOCK:
     category: coral
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   HORN_CORAL_BLOCK:
     category: coral
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   DEAD_TUBE_CORAL_BLOCK:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DEAD_BRAIN_CORAL_BLOCK:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DEAD_BUBBLE_CORAL_BLOCK:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DEAD_FIRE_CORAL_BLOCK:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DEAD_HORN_CORAL_BLOCK:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   TUBE_CORAL_FAN:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BRAIN_CORAL_FAN:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BUBBLE_CORAL_FAN:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   FIRE_CORAL_FAN:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   HORN_CORAL_FAN:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   DEAD_TUBE_CORAL_FAN:
     category: coral
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   DEAD_BRAIN_CORAL_FAN:
     category: coral
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   DEAD_BUBBLE_CORAL_FAN:
     category: coral
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   DEAD_FIRE_CORAL_FAN:
     category: coral
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   DEAD_HORN_CORAL_FAN:
     category: coral
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   KELP:
     category: coral
-    buy: 4
-    sell: 2
+    buy: 40000
+    sell: 20000
 
   SEAGRASS:
     category: coral
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   SEA_PICKLE:
     category: coral
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   PRISMARINE:
     category: coral
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PRISMARINE_BRICKS:
     category: coral
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   DARK_PRISMARINE:
     category: coral
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   CONDUIT:
     category: coral
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   # ============================================================
   # NETHER BLOCKS
   # ============================================================
   NETHERRACK:
     category: nether
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   SOUL_SAND:
     category: nether
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   SOUL_SOIL:
     category: nether
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   NETHER_BRICKS:
     category: nether
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   RED_NETHER_BRICKS:
     category: nether
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   CRACKED_NETHER_BRICKS:
     category: nether
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CHISELED_NETHER_BRICKS:
     category: nether
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   NETHER_BRICK:
     category: nether
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   NETHER_QUARTZ_ORE:
     category: nether
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   NETHER_GOLD_ORE:
     category: nether
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   BASALT:
     category: nether
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   SMOOTH_BASALT:
     category: nether
-    buy: 7
-    sell: 3
+    buy: 70000
+    sell: 30000
 
   POLISHED_BASALT:
     category: nether
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BLACKSTONE:
     category: nether
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   GILDED_BLACKSTONE:
     category: nether
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   POLISHED_BLACKSTONE:
     category: nether
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   POLISHED_BLACKSTONE_BRICKS:
     category: nether
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CRACKED_POLISHED_BLACKSTONE_BRICKS:
     category: nether
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CHISELED_POLISHED_BLACKSTONE:
     category: nether
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   NETHER_WART_BLOCK:
     category: nether
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   WARPED_WART_BLOCK:
     category: nether
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   SHROOMLIGHT:
     category: nether
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   MAGMA_BLOCK:
     category: nether
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   GLOWSTONE:
     category: nether
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CRYING_OBSIDIAN:
     category: nether
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   RESPAWN_ANCHOR:
     category: nether
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   ANCIENT_DEBRIS:
     category: nether
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   CRIMSON_NYLIUM:
     category: nether
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   WARPED_NYLIUM:
     category: nether
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   # ============================================================
   # END BLOCKS
   # ============================================================
   END_STONE:
     category: end
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   END_STONE_BRICKS:
     category: end
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PURPUR_BLOCK:
     category: end
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PURPUR_PILLAR:
     category: end
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   END_ROD:
     category: end
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   CHORUS_PLANT:
     category: end
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   CHORUS_FLOWER:
     category: end
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   DRAGON_EGG:
     category: end
-    buy: 5000
-    sell: 2500
+    buy: 50000000
+    sell: 25000000
 
   DRAGON_HEAD:
     category: end
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   # ============================================================
   # ENCHANTING
   # ============================================================
   ENCHANTING_TABLE:
     category: enchanting
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   BOOKSHELF:
     category: enchanting
-    buy: 25
-    sell: 12
+    buy: 250000
+    sell: 120000
 
   ANVIL:
     category: enchanting
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   EXPERIENCE_BOTTLE:
     category: enchanting
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   ENCHANTED_BOOK:
     category: enchanting
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   GRINDSTONE:
     category: enchanting
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BOOK:
     category: enchanting
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   PAPER:
     category: enchanting
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   WRITABLE_BOOK:
     category: enchanting
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   WRITTEN_BOOK:
     category: enchanting
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   KNOWLEDGE_BOOK:
     category: enchanting
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   MAP:
     category: enchanting
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   FILLED_MAP:
     category: enchanting
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   EXPLORER_MAP:
     category: enchanting
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   # ============================================================
   # MUSIC DISCS
   # ============================================================
   MUSIC_DISC_13:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_CAT:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_BLOCKS:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_CHIRP:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_FAR:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_MALL:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_MELLOHI:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_STAL:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_STRAD:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_WARD:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_11:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_WAIT:
     category: music
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   MUSIC_DISC_OTHERSIDE:
     category: music
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   MUSIC_DISC_RELIC:
     category: music
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   MUSIC_DISC_5:
     category: music
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   MUSIC_DISC_PIGSTEP:
     category: music
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   MUSIC_DISC_CREATOR:
     category: music
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   MUSIC_DISC_CREATOR_MUSIC_BOX:
     category: music
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   MUSIC_DISC_PRECIPICE:
     category: music
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   # ============================================================
   # BANNERS
   # ============================================================
   WHITE_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   ORANGE_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   MAGENTA_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LIGHT_BLUE_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   YELLOW_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LIME_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PINK_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   GRAY_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   LIGHT_GRAY_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   CYAN_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   PURPLE_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BLUE_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BROWN_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   GREEN_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   RED_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   BLACK_BANNER:
     category: banners
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   OMINOUS_BANNER:
     category: banners
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   # ============================================================
   # DYES
   # ============================================================
   WHITE_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   ORANGE_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MAGENTA_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   LIGHT_BLUE_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   YELLOW_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   LIME_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   PINK_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   GRAY_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   LIGHT_GRAY_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   CYAN_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   PURPLE_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BLUE_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BROWN_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   GREEN_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   RED_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   BLACK_DYE:
     category: dyes
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   # ============================================================
   # HEADS & SKULLS
   # ============================================================
   SKELETON_SKULL:
     category: heads
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   WITHER_SKELETON_SKULL:
     category: heads
-    buy: 300
-    sell: 150
+    buy: 3000000
+    sell: 1500000
 
   ZOMBIE_HEAD:
     category: heads
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   CREEPER_HEAD:
     category: heads
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   DRAGON_HEAD:
     category: heads
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   PIGLIN_HEAD:
     category: heads
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   PLAYER_HEAD:
     category: heads
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   # ============================================================
   # SPAWN EGGS
   # ============================================================
   ALLAY_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   ARMADILLO_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   AXOLOTL_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   BAT_SPAWN_EGG:
     category: spawn_eggs
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   BEE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   BLAZE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   BOGGED_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   BREEZE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   CAT_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   CAMEL_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   CAVE_SPIDER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   CHICKEN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   COD_SPAWN_EGG:
     category: spawn_eggs
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   COW_SPAWN_EGG:
     category: spawn_eggs
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   CREEPER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   DOLPHIN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   DONKEY_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   DROWNED_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   ELDER_GUARDIAN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   ENDER_DRAGON_SPAWN_EGG:
     category: spawn_eggs
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   ENDERMAN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   ENDERMITE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   EVOKER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   FOX_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   FROG_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   GHAST_SPAWN_EGG:
     category: spawn_eggs
-    buy: 120
-    sell: 60
+    buy: 1200000
+    sell: 600000
 
   GLOW_SQUID_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   GOAT_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   GUARDIAN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   HOGLIN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   HORSE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   HUSK_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   IRON_GOLEM_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   LLAMA_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   MAGMA_CUBE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   MOOSHROOM_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   MULE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   OCELOT_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   PANDA_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   PARROT_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   PHANTOM_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   PIG_SPAWN_EGG:
     category: spawn_eggs
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   PIGLIN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   PIGLIN_BRUTE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   PILLAGER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   POLAR_BEAR_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   PUFFERFISH_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   RABBIT_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   RAVAGER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   SALMON_SPAWN_EGG:
     category: spawn_eggs
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   SHEEP_SPAWN_EGG:
     category: spawn_eggs
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   SHULKER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   SILVERFISH_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   SKELETON_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   SKELETON_HORSE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   SLIME_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   SNIFFER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   SNOW_GOLEM_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   SPIDER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   SQUID_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   STRAY_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   STRIDER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   TADPOLE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 40
-    sell: 20
+    buy: 400000
+    sell: 200000
 
   TRADER_LLAMA_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   TROPICAL_FISH_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   TURTLE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   VEX_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   VILLAGER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   VINDICATOR_SPAWN_EGG:
     category: spawn_eggs
-    buy: 120
-    sell: 60
+    buy: 1200000
+    sell: 600000
 
   WANDERING_TRADER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   WARDEN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 300
-    sell: 150
+    buy: 3000000
+    sell: 1500000
 
   WITCH_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   WITHER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   WITHER_SKELETON_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   WOLF_SPAWN_EGG:
     category: spawn_eggs
-    buy: 60
-    sell: 30
+    buy: 600000
+    sell: 300000
 
   ZOGLIN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 120
-    sell: 60
+    buy: 1200000
+    sell: 600000
 
   ZOMBIE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 80
-    sell: 40
+    buy: 800000
+    sell: 400000
 
   ZOMBIE_HORSE_SPAWN_EGG:
     category: spawn_eggs
-    buy: 150
-    sell: 75
+    buy: 1500000
+    sell: 750000
 
   ZOMBIE_VILLAGER_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   ZOMBIFIED_PIGLIN_SPAWN_EGG:
     category: spawn_eggs
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   # ============================================================
   # MISCELLANEOUS
   # ============================================================
   STRING:
     category: misc
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   STICK:
     category: misc
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   BOWL:
     category: misc
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   APPLE:
     category: misc
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   SADDLE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   SNOWBALL:
     category: misc
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   EGG:
     category: misc
-    buy: 2
-    sell: 1
+    buy: 20000
+    sell: 10000
 
   FIRE_CHARGE:
     category: misc
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   FIREWORK_ROCKET:
     category: misc
-    buy: 10
-    sell: 5
+    buy: 100000
+    sell: 50000
 
   FIREWORK_STAR:
     category: misc
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   MINECART:
     category: misc
-    buy: 20
-    sell: 10
+    buy: 200000
+    sell: 100000
 
   NETHER_BRICK:
     category: misc
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   BRICK:
     category: misc
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   CHARCOAL:
     category: misc
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   COAL:
     category: misc
-    buy: 5
-    sell: 2
+    buy: 50000
+    sell: 20000
 
   INK_SAC:
     category: misc
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   COCOA_BEANS:
     category: misc
-    buy: 8
-    sell: 4
+    buy: 80000
+    sell: 40000
 
   BONE_MEAL:
     category: misc
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   LAPIS_LAZULI:
     category: misc
-    buy: 15
-    sell: 7
+    buy: 150000
+    sell: 70000
 
   NETHER_BRICK:
     category: misc
-    buy: 3
-    sell: 1
+    buy: 30000
+    sell: 10000
 
   POPPED_CHORUS_FRUIT:
     category: misc
-    buy: 12
-    sell: 6
+    buy: 120000
+    sell: 60000
 
   HEART_OF_THE_SEA:
     category: misc
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   NAUTILUS_SHELL:
     category: misc
-    buy: 50
-    sell: 25
+    buy: 500000
+    sell: 250000
 
   CONDUIT:
     category: misc
-    buy: 500
-    sell: 250
+    buy: 5000000
+    sell: 2500000
 
   DISC_FRAGMENT_5:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   ECHO_SHARD:
     category: misc
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   POTTERY_SHARD_ANGLER:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_ARCHER:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_ARMS_UP:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_BLADE:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_BREWER:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_BURN:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_DANGER:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_EXPLORER:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_FRIEND:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_HEART:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_HEARTBREAK:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_HOWL:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_MINER:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_MOURNER:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_PLENTY:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_PRIZE:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_SHEAF:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_SHELTER:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_SKULL:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   POTTERY_SHARD_SNORT:
     category: misc
-    buy: 30
-    sell: 15
+    buy: 300000
+    sell: 150000
 
   SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   NETHERITE_UPGRADE_SMITHING_TEMPLATE:
     category: misc
-    buy: 200
-    sell: 100
+    buy: 2000000
+    sell: 1000000
 
   SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   DUNE_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   COAST_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   WILD_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   WARD_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   EYE_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   VEX_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   TIDE_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   RIB_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   RAISER_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   HOST_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   FLOW_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
 
   BOLT_ARMOR_TRIM_SMITHING_TEMPLATE:
     category: misc
-    buy: 100
-    sell: 50
+    buy: 1000000
+    sell: 500000
