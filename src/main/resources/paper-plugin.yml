@@ -4,6 +4,9 @@ main: org.siddharth.ssmp.SiddysSimplePlugin
 description: Siddys Simple Plugin 4.0.0 | Improved, Better and Fixed | Thanks a ton for using, you're the BEST.
 author: Siddy
 api-version: '1.21.11'
+website: https://github.com/SiddharthC0/siddys-simple-plugin
+prefix: SiddysSimplePlugin
+bootstrapper: org.siddharth.ssmp.mechanics.Bootstrap
 
 commands:
 
@@ -35,8 +38,6 @@ commands:
     usage: /economy <balance|pay|give|take|set>
     aliases:
       - eco
-      - bal
-      - balance
 
   shop:
     description: Opens the SSMP shop.
@@ -204,6 +205,39 @@ commands:
       - revealname
       - namewhat
     permission: SiddysSimplePlugin.revealname
+
+  pshop:
+    description: Manage player shops
+    usage: /pshop
+    aliases: [ playershop, pshops ]
+    permission: ssmp.playershop
+
+  tpa:
+    description: Teleport to a player through its playername
+    usage: /tpa [playername/playernickname]
+    aliases:
+      - tpplayer
+    permission: ssmp.tpa
+
+  tpahere:
+    description: Teleport a player to your position through its playername
+    usage: /tpahere [playername/playernicknam]
+    permission: ssmp.tpa
+
+  tpaccept:
+    description: Accept teleportation request
+    usage: /tpaccept
+    permission: ssmp.tpa
+
+  tpdeny:
+    description: Deny teleportation request
+    usage: /tpdeny
+    permission: ssmp.tpa
+
+  tpcancel:
+    description: Cancel teleportation request
+    usage: /tpcancel
+    permission: ssmp.tpa
 
 permissions:
 
@@ -469,6 +503,14 @@ permissions:
     default: true
   ssmp.playerinfo.use:
     description: Allows using player info GUI
+    default: true
+
+  ssmp.playershop:
+    description: Allows players to use the player shop system
+    default: true
+
+  ssmp.tpa:
+    description: Allows players to teleport to each other
     default: true
 
 softdepend:
